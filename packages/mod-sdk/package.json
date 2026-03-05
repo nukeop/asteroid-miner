@@ -1,0 +1,6 @@
+{
+  "name": "@asteroid-miner/mod-sdk",
+  "version": "0.0.0",
+  "private": false,
+  "description": "Modding SDK"
+}
