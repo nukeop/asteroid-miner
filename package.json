@@ -5,7 +5,9 @@
   "type": "module",
   "packageManager": "pnpm@9.15.9",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "storybook": "pnpm --filter @asteroid-miner/storybook dev"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",

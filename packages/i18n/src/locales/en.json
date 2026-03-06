@@ -1,0 +1,21 @@
+{
+  "common": {
+    "save": "Save",
+    "load": "Load",
+    "newGame": "New Game",
+    "tick": "Tick",
+    "day": "Day {{count}}",
+    "credits": "{{amount}} CR"
+  },
+  "tabs": {
+    "map": "Map",
+    "company": "Company",
+    "market": "Market",
+    "missions": "Missions",
+    "hiring": "Hiring",
+    "rivals": "Rivals"
+  },
+  "placeholder": {
+    "selectTab": "Select a tab to begin."
+  }
+}
