@@ -1,1 +1,21 @@
-plans
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+target/
+pkg/
+*.node
+
+# Turborepo
+.turbo/
+
+# Test coverage
+coverage/
+
+# OS files
+.DS_Store
+
+# Plans (private)
+plans/
