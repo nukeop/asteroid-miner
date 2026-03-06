@@ -2,5 +2,31 @@
   "name": "@asteroid-miner/game",
   "version": "0.0.0",
   "private": true,
-  "description": "Main Electron app"
+  "type": "module",
+  "description": "Main Electron app",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@asteroid-miner/i18n": "workspace:^",
+    "@asteroid-miner/tailwind-config": "workspace:^",
+    "@asteroid-miner/ui": "workspace:^",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "electron": "^40.8.0",
+    "electron-vite": "^5.0.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-top-level-await": "^1.6.0",
+    "vite-plugin-wasm": "^3.5.0"
+  }
 }
