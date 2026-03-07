@@ -9,6 +9,7 @@
     "build": "turbo build",
     "build:wasm": "wasm-pack build packages/simulation --target web --out-dir pkg",
     "test": "turbo test",
+    "test:rust": "cargo test --manifest-path packages/simulation/Cargo.toml",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "type-check": "turbo type-check",

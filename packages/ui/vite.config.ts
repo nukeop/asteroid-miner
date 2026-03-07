@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { resolve } from 'path';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -23,5 +24,11 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    css: true,
+    setupFiles: './src/test/setup.ts',
   },
 });
