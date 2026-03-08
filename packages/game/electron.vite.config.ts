@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite';
+import { tanstackRouter } from '@tanstack/router-vite-plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'electron-vite';
 import topLevelAwait from 'vite-plugin-top-level-await';
@@ -16,7 +17,13 @@ export default defineConfig({
     },
   },
   renderer: {
-    plugins: [react(), tailwindcss(), wasm(), topLevelAwait()],
+    plugins: [
+      react(),
+      tanstackRouter(),
+      tailwindcss(),
+      wasm(),
+      topLevelAwait(),
+    ],
     build: {
       target: 'es2022',
     },
