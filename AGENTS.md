@@ -1,26 +1,150 @@
 # Asteroid Miner - Agent Instructions
 
+## What this project is
+
+A management simulation game: "Football Manager meets Dwarf Fortress in space." You run an asteroid mining company in a contested planetary system. Blue-collar space industry tone: worn-out ships, overworked crews, tight margins, corporate rivalry.
+
+Core loop: Scout > Acquire rights > Crew a ship > Mine > Sell > Reinvest.
+
+Desktop app targeting Steam (Mac, Linux). Built on Electron.
+
+**Status:** Early development, "dancing skeleton" stage. The architecture works end-to-end (Electron boots, React renders, Rust compiles to WASM, IPC handles save/load, Storybook renders components), but no game systems exist yet. The WASM module only exposes `ping()`. The game's `stores/` and `components/` directories are empty.
+
+## Monorepo structure
+
+pnpm workspaces + Turborepo. 8 packages total:
+
+| Package                    | Purpose                                                                          |
+| -------------------------- | -------------------------------------------------------------------------------- |
+| `packages/game`            | Main Electron app. electron-vite for unified main/preload/renderer builds.       |
+| `packages/ui`              | Shared React component library. Vite library mode, ES module output.             |
+| `packages/storybook`       | Storybook 10. Stories live here, not co-located with components.                 |
+| `packages/simulation`      | Rust simulation engine, compiles to WASM via wasm-pack.                          |
+| `packages/tailwind-config` | Shared Tailwind v4 CSS-first config. No build step. Entry: `src/global.css`.     |
+| `packages/eslint-config`   | Shared ESLint flat config. Re-exported by root `eslint.config.ts`.               |
+| `packages/i18n`            | i18next + react-i18next wrapper. All UI strings go through this.                 |
+| `packages/mod-sdk`         | Modding SDK. Dependency-inversion host pattern. Pure TS interfaces. Publishable. |
+
+### Dependency flow
+
+```
+eslint-config  tailwind-config    i18n
+                    |               |
+                    v               v
+     ui <───── storybook         game
+     |                             |
+     v                             v
+   game <──── simulation (WASM) mod-sdk
+```
+
+The game package imports `@asteroid-miner/ui`, `@asteroid-miner/i18n`, `@asteroid-miner/tailwind-config`, and the simulation WASM module via relative path (`../simulation/pkg/`).
+
+## Tech stack
+
+- **TypeScript 5.9**, target ES2022, `moduleResolution: bundler`, strict mode
+- **React 19** with automatic JSX runtime
+- **Electron 40** via **electron-vite 5**
+- **Rust** (edition 2024) for the simulation engine, compiled to WASM via `wasm-pack --target web`
+- **Vite 7** for all builds. Library packages use Vite library mode + `vite-plugin-dts`
+- **Tailwind CSS v4**, CSS-first config (no JS config file). Colors in OKLCH.
+- **cva** (class-variance-authority) for component variants
+- **TanStack Table** + **TanStack Virtual** for data tables
+- **lucide-react** for icons
+- **Vitest 4** + **@testing-library/react** + jsdom for tests
+- **ESLint 10** flat config + **Prettier** with import sorting and Tailwind class sorting
+- **Husky** pre-commit hook runs lint-staged (`eslint --fix` on staged files)
+
+State management (Zustand + Immer) is planned but not yet implemented.
+
+## Development workflow
+
+| Command                       | What it does                                                                  |
+| ----------------------------- | ----------------------------------------------------------------------------- |
+| `pnpm dev`                    | `electron-vite dev` with hot reload                                           |
+| `pnpm build`                  | Turbo build across all packages                                               |
+| `pnpm build:wasm`             | `wasm-pack build` the simulation crate. **Must run before `dev` or `build`.** |
+| `pnpm test`                   | Turbo test across all packages                                                |
+| `pnpm test:rust`              | `cargo test` on the simulation crate                                          |
+| `pnpm lint` / `pnpm lint:fix` | ESLint across all packages                                                    |
+| `pnpm type-check`             | Turbo type-check across all packages                                          |
+| `pnpm storybook`              | Storybook on port 6006                                                        |
+
+CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
+
 ## UI components
 
 - Follow the `creating-components` skill in `.agents/skills/creating-components/SKILL.md`.
 - Components use `cva` + `FC` + `ComponentProps`.
 - All components live in `packages/ui/src/components/ComponentName/`.
-- Export from `packages/ui/src/components/index.ts` and `packages/ui/src/index.ts`.
-- Use `cn()` from `../../utils` for class merging.
+- Each component directory has: `ComponentName.tsx`, `ComponentName.test.tsx`, `index.ts` (barrel re-export).
+- Export chain: component `index.ts` > `components/index.ts` > `src/index.ts`.
+- Use `cn()` from `../../utils` for class merging (`clsx` + `tailwind-merge`).
+- Generic components (like DataTable) use `function` declarations instead of `FC` to support type parameters.
+- Named exports only, no default exports.
 
 ## CRT styling
 
 - Two palettes: amber (primary) and green (secondary), defined in OKLCH in `packages/tailwind-config/src/global.css`.
 - CRT effects (scanlines, flicker, vignette, glow) live in `packages/tailwind-config/src/crt.css` as `@utility` classes.
+- Effects are composed in the `CrtScreen` component.
+- Body base: `bg-amber-deep text-amber-text font-sans`.
+- Everything is monospace: `--font-sans` and `--font-mono` both point to Share Tech Mono.
 
 ## Storybook
 
-- Stories live in `packages/storybook/src/`.
+- Stories live in `packages/storybook/src/`, NOT co-located with components.
 - Use `const meta: Meta<typeof X> = {}`, not `satisfies Meta<>` (type inference issues with pnpm hoisting).
-- Separate stories when they need different container constraints (e.g., virtualized tables need fixed-height containers, non-virtualized ones don't).
 - Wrap table stories in `<CrtScreen>` to see them in context.
+- Use real-looking game data in stories.
 
 ## Fonts
 
-- Share Tech Mono (regular UI), Geo (h3/h4), Orbitron Variable (h1/h2).
+- Share Tech Mono: regular UI (both `--font-sans` and `--font-mono`).
+- Geo: h3/h4 headings (`--font-display`).
+- Orbitron Variable: h1/h2 headings (`--font-heading`).
 - Loaded via `@fontsource` packages.
+
+## Testing conventions
+
+- Test behavior, not implementation details.
+- Use snapshots (1-2 per component) to cover CSS/DOM structure. Don't assert on CSS classes.
+- Consolidate related assertions into fewer tests.
+
+## i18n
+
+All UI strings go through `@asteroid-miner/i18n`. Never hardcode user-facing text.
+
+## Electron architecture
+
+- **Main process** (`packages/game/src/main/`): Creates BrowserWindow, registers IPC handlers.
+- **Preload** (`packages/game/src/preload/`): Exposes `electronAPI` with `saveGame`/`loadGame` via `contextBridge`.
+- **Renderer** (`packages/game/src/renderer/`): React SPA. Imports WASM module, initializes i18n.
+- IPC channels: `save-game` (writes JSON to userData), `load-game` (reads it back).
+
+## Simulation (Rust/WASM)
+
+- Crate at `packages/simulation/`, compiled via `wasm-pack --target web`.
+- Output goes to `packages/simulation/pkg/`, imported by the game renderer.
+- Uses `wasm-bindgen`, `serde`, `serde-wasm-bindgen` for JS interop.
+
+## Mod SDK
+
+Follows a dependency-inversion pattern: SDK defines host interfaces (contracts between game and mods), game provides implementations, mods receive a `ModAPI` object composed of typed host objects. Currently one placeholder host: `GameStateHost`.
+
+## Package exports pattern
+
+Source files are the entry points for workspace consumption (Vite resolves them directly). Built types live in `dist/`:
+
+```json
+{
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./dist/index.d.ts"
+    }
+  }
+}
+```
