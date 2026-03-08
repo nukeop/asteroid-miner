@@ -79,6 +79,7 @@ CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
 - Each component directory has: `ComponentName.tsx`, `ComponentName.test.tsx`, `index.ts` (barrel re-export).
 - Export chain: component `index.ts` > `components/index.ts` > `src/index.ts`.
 - Use `cn()` from `../../utils` for class merging (`clsx` + `tailwind-merge`).
+- Use `cn` object syntax for conditional classes: `cn('base', { 'active-class': isActive })`. No ternaries or `&&` for applying classes.
 - Generic components (like DataTable) use `function` declarations instead of `FC` to support type parameters.
 - Named exports only, no default exports.
 

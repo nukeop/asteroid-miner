@@ -15,12 +15,12 @@ export type TabDefinition = {
 
 // TODO: Remove this hardcoded data when migrating to TanStack Router
 export const TABS: TabDefinition[] = [
-  { id: 'map', shortcut: 'F1' },
-  { id: 'company', shortcut: 'F2' },
-  { id: 'market', shortcut: 'F3' },
-  { id: 'missions', shortcut: 'F4' },
-  { id: 'hiring', shortcut: 'F5' },
-  { id: 'rivals', shortcut: 'F6' },
+  { id: 'map', shortcut: '1' },
+  { id: 'company', shortcut: '2' },
+  { id: 'market', shortcut: '3' },
+  { id: 'missions', shortcut: '4' },
+  { id: 'hiring', shortcut: '5' },
+  { id: 'rivals', shortcut: '6' },
 ];
 
 export type TabBarLabels = Record<TabId, string>;
