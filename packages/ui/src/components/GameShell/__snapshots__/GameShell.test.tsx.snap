@@ -31,7 +31,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
     >
       <button
         aria-selected="true"
-        class="flex-1 border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow-amber border-amber-text text-amber-text"
+        class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow-amber border-amber-text text-amber-text"
         role="tab"
         type="button"
       >
@@ -43,7 +43,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
       </button>
       <button
         aria-selected="false"
-        class="flex-1 border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+        class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
         role="tab"
         type="button"
       >
@@ -55,7 +55,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
       </button>
       <button
         aria-selected="false"
-        class="flex-1 border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+        class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
         role="tab"
         type="button"
       >
@@ -67,7 +67,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
       </button>
       <button
         aria-selected="false"
-        class="flex-1 border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+        class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
         role="tab"
         type="button"
       >
@@ -79,7 +79,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
       </button>
       <button
         aria-selected="false"
-        class="flex-1 border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+        class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
         role="tab"
         type="button"
       >
@@ -91,7 +91,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
       </button>
       <button
         aria-selected="false"
-        class="flex-1 border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+        class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
         role="tab"
         type="button"
       >
