@@ -59,15 +59,12 @@ export function DataTable<T extends RowData>({
     <div
       ref={scrollParentRef}
       className={cn(
-        'relative flex max-h-full w-full overflow-y-auto',
+        'relative max-h-full w-full overflow-y-auto',
         classes?.root,
       )}
+      aria-label={props['aria-label']}
     >
-      <table
-        role="table"
-        aria-label={props['aria-label']}
-        className="w-full border-collapse"
-      >
+      <table role="table" className="w-full border-separate border-spacing-0">
         {resolvedFeatures.header && (
           <TableHeader
             headerGroups={table.getHeaderGroups()}

@@ -1,5 +1,6 @@
 import type { HeaderGroup, RowData } from '@tanstack/react-table';
 
+import { cn } from '../../utils';
 import { HeaderCell } from './HeaderCell';
 import type { DataTableClasses } from './types';
 
@@ -13,9 +14,13 @@ export function TableHeader<T extends RowData>({
   classes,
 }: Props<T>) {
   return (
-    <thead className={classes?.header}>
+    <thead className={cn('sticky top-0 z-10', classes?.header)}>
       {headerGroups.map((headerGroup) => (
-        <tr key={headerGroup.id} role="row" className={classes?.headerRow}>
+        <tr
+          key={headerGroup.id}
+          role="row"
+          className={cn('bg-amber-text text-amber-screen', classes?.headerRow)}
+        >
           {headerGroup.headers.map((header) => (
             <HeaderCell
               key={header.id}

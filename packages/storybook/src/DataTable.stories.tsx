@@ -129,9 +129,11 @@ export const Default: Story = {
   render: () => (
     <div className="bg-amber-deep p-8">
       <CrtScreen>
-        <div className="h-100">
-          <DataTable data={sampleData} columns={columns} />
-        </div>
+        <DataTable
+          data={sampleData}
+          columns={columns}
+          classes={{ root: 'h-100' }}
+        />
       </CrtScreen>
     </div>
   ),
@@ -141,13 +143,12 @@ export const NoHeader: Story = {
   render: () => (
     <div className="bg-amber-deep p-8">
       <CrtScreen>
-        <div className="h-100">
-          <DataTable
-            data={sampleData.slice(0, 4)}
-            columns={columns}
-            features={{ header: false }}
-          />
-        </div>
+        <DataTable
+          data={sampleData.slice(0, 4)}
+          columns={columns}
+          features={{ header: false }}
+          classes={{ root: 'h-100' }}
+        />
       </CrtScreen>
     </div>
   ),
@@ -157,9 +158,11 @@ export const Virtualized: Story = {
   render: () => (
     <div className="bg-amber-deep p-8">
       <CrtScreen>
-        <div className="h-100">
-          <DataTable data={largeDataset} columns={columns} />
-        </div>
+        <DataTable
+          data={largeDataset}
+          columns={columns}
+          classes={{ root: 'h-100' }}
+        />
       </CrtScreen>
     </div>
   ),

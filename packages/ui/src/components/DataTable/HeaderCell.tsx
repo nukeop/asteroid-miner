@@ -18,7 +18,7 @@ export function HeaderCell<T extends RowData>({ header, className }: Props<T>) {
       key={header.id}
       role="columnheader"
       className={cn(
-        'text-left select-none',
+        'px-2 text-left select-none',
         canSort && 'cursor-pointer',
         className,
       )}
