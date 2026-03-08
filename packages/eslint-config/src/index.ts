@@ -11,17 +11,21 @@ import { tailwind4 } from 'tailwind-csstree';
 import tseslint from 'typescript-eslint';
 
 const ignores = [
-  '**/dist/**/*',
-  '**/build/**/*',
-  '**/out/**/*',
-  '**/target/**/*',
-  '**/node_modules/**/*',
-  '**/pkg/**/*',
+  '**/dist/',
+  '**/build/',
+  '**/out/',
+  '**/target/',
+  '**/node_modules/',
+  '**/pkg/',
+  '**/.turbo/',
+  '**/.git/',
+  '**/.husky/',
+  '**/coverage/',
   '**/*.d.ts',
   '**/*.d.ts.map',
   '**/*.js.map',
   '**/*.gen.*',
-  'packages/*/coverage',
+  'pnpm-lock.yaml',
 ];
 
 export default defineConfig([
