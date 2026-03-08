@@ -20,3 +20,7 @@ coverage/
 
 # Plans (private)
 plans/
+
+storybook-static
+coverage
+test-results

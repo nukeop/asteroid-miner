@@ -192,6 +192,15 @@ importers:
 
   packages/tailwind-config:
     dependencies:
+      '@fontsource-variable/orbitron':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/geo':
+        specifier: ^5.2.7
+        version: 5.2.7
+      '@fontsource/share-tech-mono':
+        specifier: ^5.2.7
+        version: 5.2.7
       tailwindcss:
         specifier: '4'
         version: 4.2.1
@@ -1060,6 +1069,24 @@ packages:
     peerDependenciesMeta:
       '@noble/hashes':
         optional: true
+
+  '@fontsource-variable/orbitron@5.2.8':
+    resolution:
+      {
+        integrity: sha512-Jazvuj2cgBq663z1j/+JdwH2ztqQ8RaGhJgdHYphFbtfowiFaR74R8UgZl7x1skbXmUMWWH1jXfG7mrYFIYK0A==,
+      }
+
+  '@fontsource/geo@5.2.7':
+    resolution:
+      {
+        integrity: sha512-GdWnP8D1fndWAUd0dgo+rv7U8EcPVIAILT/sElUyR8eIpqZq5ubuVNKscFrGoPrCX5p4PrV1j7FBfQ8zCbY8ww==,
+      }
+
+  '@fontsource/share-tech-mono@5.2.7':
+    resolution:
+      {
+        integrity: sha512-1JBJ6CU9u5av8aFEUOGOJkq60/IEVVOZDCmiU8X3i0skk0Pp69GngDwlBUHaTZa4G6pbF1UDrC+Fm7XSckW6TQ==,
+      }
 
   '@humanfs/core@0.19.1':
     resolution:
@@ -6147,6 +6174,12 @@ snapshots:
       levn: 0.4.1
 
   '@exodus/bytes@1.15.0': {}
+
+  '@fontsource-variable/orbitron@5.2.8': {}
+
+  '@fontsource/geo@5.2.7': {}
+
+  '@fontsource/share-tech-mono@5.2.7': {}
 
   '@humanfs/core@0.19.1': {}
 

@@ -1,57 +1,65 @@
+@import '@fontsource/share-tech-mono';
+@import '@fontsource/geo';
+@import '@fontsource-variable/orbitron';
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@source "../../game/src";
-@source "../../ui/src";
-@source "../../storybook/src";
+@source '../../game/src';
+@source '../../ui/src';
+@source '../../storybook/src';
 
 @theme {
-  --color-background: oklch(0.13 0.01 250);
-  --color-surface: oklch(0.17 0.01 250);
-  --color-surface-raised: oklch(0.21 0.012 250);
+  /* === Amber CRT palette (primary) === */
+  --color-amber-text: oklch(0.8124 0.1704 76.4); /* #FFB000 */
+  --color-amber-bright: oklch(0.8652 0.1768 90.4); /* #FFCC00 */
+  --color-amber-dim: oklch(0.3834 0.0748 65.6); /* #5E3A10 */
+  --color-amber-glow: oklch(0.9066 0.1697 97.7); /* #FFE040 */
+  --color-amber-flare: oklch(0.7505 0.1791 58.3); /* #FF8C00 */
+  --color-amber-deep: oklch(0.1324 0.0156 42.5); /* #0D0604 */
+  --color-amber-screen: oklch(0.1763 0.0371 75.5); /* #1A0E00 */
 
-  --color-foreground: oklch(0.85 0.04 145);
-  --color-foreground-muted: oklch(0.55 0.03 145);
-
-  --color-primary: oklch(0.75 0.18 145);
-  --color-primary-hover: oklch(0.82 0.2 145);
-  --color-primary-muted: oklch(0.45 0.1 145);
-
-  --color-accent: oklch(0.78 0.16 75);
-  --color-accent-hover: oklch(0.85 0.18 75);
-  --color-accent-muted: oklch(0.5 0.1 75);
+  /* === Green CRT palette (secondary) === */
+  --color-green-text: oklch(0.8716 0.2785 142.7); /* #33FF33 */
+  --color-green-bright: oklch(0.8867 0.2344 143.3); /* #66FF66 */
+  --color-green-afterglow: oklch(0.6394 0.2176 142.5); /* #00AA00 */
+  --color-green-dim: oklch(0.3156 0.0949 142.9); /* #0A3D0A */
+  --color-green-screen: oklch(0.2011 0.0314 144.3); /* #0D1A0D */
+  --color-green-deep: oklch(0.1577 0.0106 145.1); /* #0A0E0A */
 
   --color-danger: oklch(0.65 0.2 25);
-  --color-warning: oklch(0.78 0.16 75);
-  --color-success: oklch(0.7 0.18 145);
-  --color-info: oklch(0.65 0.15 230);
 
-  --color-border: oklch(0.35 0.03 145);
-  --color-border-hover: oklch(0.5 0.08 145);
-
-  --font-sans: 'Inter', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Space Mono', 'JetBrains Mono', ui-monospace, monospace;
-  --font-heading: 'Inter', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Share Tech Mono', ui-monospace, monospace;
+  --font-mono: 'Share Tech Mono', ui-monospace, monospace;
+  --font-display: 'Geo', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Orbitron Variable', ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 2px;
   --radius-md: 4px;
   --radius-lg: 6px;
-
-  --shadow-sm: 2px 2px 0px oklch(0 0 0 / 0.5);
-  --shadow-md: 3px 3px 0px oklch(0 0 0 / 0.5);
-  --shadow-lg: 5px 5px 0px oklch(0 0 0 / 0.5);
 }
 
 @layer base {
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-amber-deep text-amber-text font-sans;
     cursor: default;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold;
+  h1,
+  h2 {
+    @apply font-heading font-bold tracking-wider uppercase;
+  }
+
+  h3,
+  h4 {
+    @apply font-display font-normal tracking-wide;
+  }
+
+  h5,
+  h6 {
+    @apply font-sans font-normal;
   }
 
   * {
@@ -64,14 +72,14 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-background;
+    @apply bg-amber-deep;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-border rounded-sm;
+    @apply bg-amber-dim rounded-sm;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-border-hover;
+    @apply bg-amber-text;
   }
 }
