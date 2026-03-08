@@ -21,6 +21,8 @@ const ignores = [
   '**/.git/',
   '**/.husky/',
   '**/coverage/',
+  '**/storybook-static/',
+  'plans/',
   '**/*.d.ts',
   '**/*.d.ts.map',
   '**/*.js.map',
@@ -73,6 +75,7 @@ export default defineConfig([
     rules: {
       'css/no-invalid-at-rules': 0,
       'css/no-invalid-properties': 0,
+      'css/use-baseline': 0,
     },
   },
   { ...prettierPlugin, ignores: ['**/*.md'] },
