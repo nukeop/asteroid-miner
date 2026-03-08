@@ -23,10 +23,11 @@ export const TabBar: FC<TabBarProps> = ({
           aria-selected={isActive}
           role="tab"
           className={cn(
-            'flex-1 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors',
+            'flex-1 border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors',
             {
-              'bg-amber-text text-amber-screen': isActive,
-              'text-amber-dim hover:text-amber-text': !isActive,
+              'crt-glow-amber border-amber-text text-amber-text': isActive,
+              'text-amber-dim hover:text-amber-text border-transparent':
+                !isActive,
             },
           )}
           onClick={() => onTabChange(id)}

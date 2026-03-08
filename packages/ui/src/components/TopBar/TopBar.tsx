@@ -25,7 +25,7 @@ export const TopBar: FC<TopBarProps> = ({
     )}
     {...props}
   >
-    <span className="font-heading text-amber-bright text-xs tracking-widest uppercase">
+    <span className="crt-glow-amber font-heading text-amber-bright text-xs tracking-widest uppercase">
       {companyName}
     </span>
 
