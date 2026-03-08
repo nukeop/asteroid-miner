@@ -14,11 +14,13 @@
     "@asteroid-miner/i18n": "workspace:^",
     "@asteroid-miner/tailwind-config": "workspace:^",
     "@asteroid-miner/ui": "workspace:^",
+    "@tanstack/react-router": "^1.166.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.1",
+    "@tanstack/router-vite-plugin": "^1.166.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
