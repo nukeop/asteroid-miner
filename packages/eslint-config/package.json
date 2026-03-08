@@ -12,6 +12,14 @@
     "eslint": "^10.0.2",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^17.4.0",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.56.1",
+    "@eslint/css": "^0.14.1",
+    "@eslint/json": "^1.0.1",
+    "@eslint/markdown": "^7.5.1",
+    "@typescript-eslint/utils": "^8.56.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-storybook": "^10.2.16",
+    "tailwind-csstree": "^0.1.4"
   }
 }

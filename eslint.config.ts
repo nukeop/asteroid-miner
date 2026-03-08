@@ -1,1 +1,1 @@
-export { default } from '@asteroid-miner/eslint-config';
+export { default } from './packages/eslint-config/src/index';
