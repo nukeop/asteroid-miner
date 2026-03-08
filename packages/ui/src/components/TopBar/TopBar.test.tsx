@@ -9,7 +9,7 @@ const defaultProps = {
 };
 
 describe('TopBar', () => {
-  it('(Snapshot) renders company name, day, and credits', () => {
+  it('renders company name, day, and credits', () => {
     render(<TopBar {...defaultProps} />);
 
     expect(screen.getByText('Kuiper Industrial')).toBeInTheDocument();

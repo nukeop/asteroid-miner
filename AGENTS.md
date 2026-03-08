@@ -109,6 +109,7 @@ CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
 
 - Test behavior, not implementation details.
 - Use snapshots (1-2 per component) to cover CSS/DOM structure. Don't assert on CSS classes.
+- Snapshot tests: prefix test title with `(Snapshot)`. Don't prefix non-snapshot tests.
 - Consolidate related assertions into fewer tests.
 
 ## i18n
