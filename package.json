@@ -14,12 +14,15 @@
     "lint:fix": "eslint . --fix",
     "type-check": "turbo type-check",
     "storybook": "pnpm --filter @asteroid-miner/storybook dev",
-    "clean": "turbo clean"
+    "clean": "turbo clean",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "eslint": "^10.0.2",
+    "husky": "^9.1.7",
     "jiti": "^2.6.1",
+    "lint-staged": "^16.3.2",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "turbo": "^2.8.13",
