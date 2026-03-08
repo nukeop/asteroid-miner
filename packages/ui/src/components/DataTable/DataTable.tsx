@@ -59,7 +59,7 @@ export function DataTable<T extends RowData>({
     <div
       ref={scrollParentRef}
       className={cn(
-        'relative max-h-full w-full overflow-y-auto',
+        'relative flex max-h-full w-full overflow-y-auto',
         classes?.root,
       )}
     >

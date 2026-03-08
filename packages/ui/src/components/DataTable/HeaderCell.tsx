@@ -18,12 +18,11 @@ export function HeaderCell<T extends RowData>({ header, className }: Props<T>) {
       key={header.id}
       role="columnheader"
       className={cn(
-        'text-left',
-        canSort && 'cursor-pointer select-none',
+        'text-left select-none',
+        canSort && 'cursor-pointer',
         className,
       )}
       onClick={header.column.getToggleSortingHandler()}
-      style={{ width: header.getSize() }}
     >
       {header.isPlaceholder
         ? null
