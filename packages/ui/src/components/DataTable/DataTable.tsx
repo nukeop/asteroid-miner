@@ -1,6 +1,5 @@
 import type { RowData } from '@tanstack/react-table';
 import {
-  flexRender,
   getCoreRowModel,
   getSortedRowModel,
   useReactTable,
@@ -16,6 +15,7 @@ import {
 import { useSorting } from './hooks/useSorting';
 import { useVirtualRows } from './hooks/useVirtualRows';
 import { TableHeader } from './TableHeader';
+import { TableRow } from './TableRow';
 import type { DataTableProps } from './types';
 import { VirtualizedBody } from './VirtualizedBody';
 
@@ -81,19 +81,14 @@ export function DataTable<T extends RowData>({
           paddingBottom={paddingBottom}
           colSpan={colCount}
           renderRow={({ row, virtual }) => (
-            <tr
+            <TableRow
               key={row.id}
-              role="row"
+              row={row}
+              height={rowHeight}
               className={classes?.row}
-              style={{ height: rowHeight }}
+              cellClassName={classes?.cell}
               data-index={virtual.index}
-            >
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} role="cell" className={classes?.cell}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
+            />
           )}
         />
       </table>
