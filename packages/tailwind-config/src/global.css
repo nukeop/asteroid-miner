@@ -4,6 +4,7 @@
 
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import './crt.css';
 
 @source '../../game/src';
 @source '../../ui/src';

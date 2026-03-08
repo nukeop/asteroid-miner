@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CrtScreen > matches snapshot for amber palette 1`] = `
+<div
+  class="crt-scanlines crt-flicker crt-vignette relative overflow-hidden rounded-lg bg-amber-screen text-amber-text"
+>
+  <div
+    class="relative z-1 p-4 blur-[0.3px] crt-glow-amber"
+  >
+    Amber content
+  </div>
+</div>
+`;
+
+exports[`CrtScreen > matches snapshot for green palette 1`] = `
+<div
+  class="crt-scanlines crt-flicker crt-vignette relative overflow-hidden rounded-lg bg-green-screen text-green-text"
+>
+  <div
+    class="relative z-1 p-4 blur-[0.3px] crt-glow-green"
+  >
+    Green content
+  </div>
+</div>
+`;

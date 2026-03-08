@@ -1,0 +1,57 @@
+@utility crt-scanlines {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.15) 50%);
+    background-size: 100% 2px;
+    pointer-events: none;
+    z-index: 2;
+    animation: crt-scanline-scroll 10s linear infinite;
+  }
+}
+
+@utility crt-flicker {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.03);
+    pointer-events: none;
+    z-index: 2;
+    animation: crt-flicker 0.15s infinite;
+  }
+}
+
+@utility crt-vignette {
+  box-shadow: inset 0 0 80px 20px rgba(0, 0, 0, 0.6);
+}
+
+@utility crt-glow-amber {
+  text-shadow: 0 0 6px var(--color-amber-glow);
+}
+
+@utility crt-glow-green {
+  text-shadow: 0 0 6px var(--color-green-bright);
+}
+
+@keyframes crt-flicker {
+  0% {
+    opacity: 0.97;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.98;
+  }
+}
+
+@keyframes crt-scanline-scroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}

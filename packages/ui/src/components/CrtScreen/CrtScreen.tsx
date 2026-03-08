@@ -1,65 +1,45 @@
-import {
-  forwardRef,
-  type CSSProperties,
-  type HTMLAttributes,
-  type ReactNode,
-} from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { type ComponentProps, type FC } from 'react';
 
 import { cn } from '../../utils';
 
-import './CrtScreen.css';
-
-type Palette = 'amber' | 'green';
-
-type CrtScreenProps = HTMLAttributes<HTMLDivElement> & {
-  palette?: Palette;
-  children?: ReactNode;
-};
-
-const paletteConfig: Record<
-  Palette,
-  { classes: string; vars: Record<string, string> }
-> = {
-  amber: {
-    classes: 'bg-amber-screen text-amber-text',
-    vars: {
-      '--crt-text': 'var(--color-amber-text)',
-      '--crt-glow': 'var(--color-amber-glow)',
-      '--crt-screen': 'var(--color-amber-screen)',
-      '--crt-dim': 'var(--color-amber-dim)',
+const screenVariants = cva(
+  'crt-scanlines crt-flicker crt-vignette relative overflow-hidden rounded-lg',
+  {
+    variants: {
+      palette: {
+        amber: 'bg-amber-screen text-amber-text',
+        green: 'bg-green-screen text-green-text',
+      },
     },
-  },
-  green: {
-    classes: 'bg-green-screen text-green-text',
-    vars: {
-      '--crt-text': 'var(--color-green-text)',
-      '--crt-glow': 'var(--color-green-bright)',
-      '--crt-screen': 'var(--color-green-screen)',
-      '--crt-dim': 'var(--color-green-dim)',
+    defaultVariants: {
+      palette: 'amber',
     },
-  },
-};
-
-const CrtScreen = forwardRef<HTMLDivElement, CrtScreenProps>(
-  ({ palette = 'amber', children, className, style, ...rest }, ref) => {
-    const config = paletteConfig[palette];
-
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          'crt-screen relative overflow-hidden rounded-lg',
-          config.classes,
-          className,
-        )}
-        style={{ ...config.vars, ...style } as CSSProperties}
-        {...rest}
-      >
-        <div className="crt-content relative z-[1] p-4">{children}</div>
-      </div>
-    );
   },
 );
 
-export { CrtScreen };
-export type { CrtScreenProps };
+const contentVariants = cva('relative z-1 p-4 blur-[0.3px]', {
+  variants: {
+    palette: {
+      amber: 'crt-glow-amber',
+      green: 'crt-glow-green',
+    },
+  },
+  defaultVariants: {
+    palette: 'amber',
+  },
+});
+
+export type CrtScreenProps = ComponentProps<'div'> &
+  VariantProps<typeof screenVariants>;
+
+export const CrtScreen: FC<CrtScreenProps> = ({
+  palette,
+  className,
+  children,
+  ...props
+}) => (
+  <div className={cn(screenVariants({ palette, className }))} {...props}>
+    <div className={contentVariants({ palette })}>{children}</div>
+  </div>
+);
