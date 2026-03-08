@@ -23,7 +23,7 @@ export const TabBar: FC<TabBarProps> = ({
           aria-selected={isActive}
           role="tab"
           className={cn(
-            'flex-1 border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors',
+            'flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors',
             {
               'crt-glow-amber border-amber-text text-amber-text': isActive,
               'text-amber-dim hover:text-amber-text border-transparent':
