@@ -59,6 +59,9 @@ export default defineConfig([
     plugins: { markdown },
     language: 'markdown/gfm',
     extends: [markdown.configs.recommended],
+    rules: {
+      'markdown/fenced-code-language': 0,
+    },
   },
   {
     files: ['**/*.css'],
