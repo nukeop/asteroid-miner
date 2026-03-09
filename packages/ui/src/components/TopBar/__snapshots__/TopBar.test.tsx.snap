@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TopBar > (Snapshot) matches snapshot 1`] = `
+<header
+  class="border-amber-dim bg-amber-screen flex h-10 items-center border-b px-4"
+>
+  <span
+    class="crt-glow-amber font-heading text-amber-bright text-xs tracking-widest uppercase"
+  >
+    Kuiper Industrial
+  </span>
+  <span
+    class="text-amber-dim flex-1 text-center text-xs tracking-wide"
+  >
+    Day 47
+  </span>
+  <span
+    class="crt-glow-amber text-amber-text text-sm tracking-wide"
+  >
+    12,450 CR
+  </span>
+</header>
+`;

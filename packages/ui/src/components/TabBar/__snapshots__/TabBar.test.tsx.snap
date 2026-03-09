@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TabBar > (Snapshot) renders correctly 1`] = `
+<nav
+  class="border-amber-dim bg-amber-screen flex border-b"
+>
+  <button
+    aria-selected="true"
+    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow-amber border-amber-text text-amber-text"
+    role="tab"
+    type="button"
+  >
+    [
+    1
+    :
+    Map
+    ]
+  </button>
+  <button
+    aria-selected="false"
+    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+    role="tab"
+    type="button"
+  >
+    [
+    2
+    :
+    Company
+    ]
+  </button>
+  <button
+    aria-selected="false"
+    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+    role="tab"
+    type="button"
+  >
+    [
+    3
+    :
+    Market
+    ]
+  </button>
+  <button
+    aria-selected="false"
+    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+    role="tab"
+    type="button"
+  >
+    [
+    4
+    :
+    Missions
+    ]
+  </button>
+  <button
+    aria-selected="false"
+    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+    role="tab"
+    type="button"
+  >
+    [
+    5
+    :
+    Hiring
+    ]
+  </button>
+  <button
+    aria-selected="false"
+    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+    role="tab"
+    type="button"
+  >
+    [
+    6
+    :
+    Rivals
+    ]
+  </button>
+</nav>
+`;

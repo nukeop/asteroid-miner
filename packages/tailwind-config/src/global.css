@@ -64,7 +64,7 @@
   }
 
   * {
-    user-select: text;
+    user-select: none;
   }
 
   ::-webkit-scrollbar {

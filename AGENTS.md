@@ -79,6 +79,7 @@ CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
 - Each component directory has: `ComponentName.tsx`, `ComponentName.test.tsx`, `index.ts` (barrel re-export).
 - Export chain: component `index.ts` > `components/index.ts` > `src/index.ts`.
 - Use `cn()` from `../../utils` for class merging (`clsx` + `tailwind-merge`).
+- Use `cn` object syntax for conditional classes: `cn('base', { 'active-class': isActive })`. No ternaries or `&&` for applying classes.
 - Generic components (like DataTable) use `function` declarations instead of `FC` to support type parameters.
 - Named exports only, no default exports.
 
@@ -108,6 +109,7 @@ CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
 
 - Test behavior, not implementation details.
 - Use snapshots (1-2 per component) to cover CSS/DOM structure. Don't assert on CSS classes.
+- Snapshot tests: prefix test title with `(Snapshot)`. Don't prefix non-snapshot tests.
 - Consolidate related assertions into fewer tests.
 
 ## i18n
