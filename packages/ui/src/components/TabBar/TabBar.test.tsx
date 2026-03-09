@@ -1,41 +1,44 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
+import { renderWithRouter } from '../../test/router-utils';
 import { TabBar } from './TabBar';
-import type { TabBarLabels } from './types';
+import type { TabDefinition } from './types';
 
-const labels: TabBarLabels = {
-  map: 'Map',
-  company: 'Company',
-  market: 'Market',
-  missions: 'Missions',
-  hiring: 'Hiring',
-  rivals: 'Rivals',
-};
+const tabs: TabDefinition[] = [
+  { id: 'map', label: 'Map', shortcut: '1', to: '/map' },
+  { id: 'company', label: 'Company', shortcut: '2', to: '/company' },
+  { id: 'market', label: 'Market', shortcut: '3', to: '/market' },
+  { id: 'missions', label: 'Missions', shortcut: '4', to: '/missions' },
+  { id: 'hiring', label: 'Hiring', shortcut: '5', to: '/hiring' },
+  { id: 'rivals', label: 'Rivals', shortcut: '6', to: '/rivals' },
+];
+
+const tabRoutes = tabs.map((t) => t.to);
 
 describe('TabBar', () => {
-  it('renders all six tabs', () => {
-    render(<TabBar activeTab="map" onTabChange={() => {}} labels={labels} />);
+  it('renders all six tabs', async () => {
+    await renderWithRouter(<TabBar tabs={tabs} />, { routes: tabRoutes });
 
-    const tabs = screen.getAllByRole('tab');
-    expect(tabs).toHaveLength(6);
+    expect(screen.getAllByRole('tab')).toHaveLength(6);
   });
 
-  it('fires onTabChange with the correct tab id', async () => {
-    const onTabChange = vi.fn();
-    render(
-      <TabBar activeTab="map" onTabChange={onTabChange} labels={labels} />,
-    );
+  it('navigates when a tab is clicked', async () => {
+    const { router } = await renderWithRouter(<TabBar tabs={tabs} />, {
+      initialLocation: '/map',
+      routes: tabRoutes,
+    });
 
     await userEvent.click(screen.getByRole('tab', { name: /market/i }));
-    expect(onTabChange).toHaveBeenCalledWith('market');
+    expect(router.state.location.pathname).toBe('/market');
   });
 
-  it('marks the active tab as selected', () => {
-    render(
-      <TabBar activeTab="missions" onTabChange={() => {}} labels={labels} />,
-    );
+  it('marks the active tab as selected', async () => {
+    await renderWithRouter(<TabBar tabs={tabs} />, {
+      initialLocation: '/missions',
+      routes: tabRoutes,
+    });
 
     expect(screen.getByRole('tab', { name: /missions/i })).toHaveAttribute(
       'aria-selected',
@@ -47,10 +50,11 @@ describe('TabBar', () => {
     );
   });
 
-  it('(Snapshot) renders correctly', () => {
-    const { container } = render(
-      <TabBar activeTab="map" onTabChange={() => {}} labels={labels} />,
-    );
-    expect(container.firstChild).toMatchSnapshot();
+  it('(Snapshot) renders correctly', async () => {
+    await renderWithRouter(<TabBar tabs={tabs} />, {
+      initialLocation: '/map',
+      routes: tabRoutes,
+    });
+    expect(screen.getByRole('navigation')).toMatchSnapshot();
   });
 });

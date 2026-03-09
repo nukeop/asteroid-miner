@@ -4,77 +4,103 @@ exports[`TabBar > (Snapshot) renders correctly 1`] = `
 <nav
   class="border-amber-dim bg-amber-screen flex border-b"
 >
-  <button
-    aria-selected="true"
-    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow-amber border-amber-text text-amber-text"
-    role="tab"
-    type="button"
+  <a
+    aria-current="page"
+    class="flex-1 active"
+    data-status="active"
+    href="/map"
   >
-    [
-    1
-    :
-    Map
-    ]
-  </button>
-  <button
-    aria-selected="false"
-    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
-    role="tab"
-    type="button"
+    <span
+      aria-selected="true"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow-amber border-amber-text text-amber-text"
+      role="tab"
+    >
+      [
+      1
+      :
+      Map
+      ]
+    </span>
+  </a>
+  <a
+    class="flex-1"
+    href="/company"
   >
-    [
-    2
-    :
-    Company
-    ]
-  </button>
-  <button
-    aria-selected="false"
-    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
-    role="tab"
-    type="button"
+    <span
+      aria-selected="false"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      role="tab"
+    >
+      [
+      2
+      :
+      Company
+      ]
+    </span>
+  </a>
+  <a
+    class="flex-1"
+    href="/market"
   >
-    [
-    3
-    :
-    Market
-    ]
-  </button>
-  <button
-    aria-selected="false"
-    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
-    role="tab"
-    type="button"
+    <span
+      aria-selected="false"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      role="tab"
+    >
+      [
+      3
+      :
+      Market
+      ]
+    </span>
+  </a>
+  <a
+    class="flex-1"
+    href="/missions"
   >
-    [
-    4
-    :
-    Missions
-    ]
-  </button>
-  <button
-    aria-selected="false"
-    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
-    role="tab"
-    type="button"
+    <span
+      aria-selected="false"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      role="tab"
+    >
+      [
+      4
+      :
+      Missions
+      ]
+    </span>
+  </a>
+  <a
+    class="flex-1"
+    href="/hiring"
   >
-    [
-    5
-    :
-    Hiring
-    ]
-  </button>
-  <button
-    aria-selected="false"
-    class="flex-1 cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
-    role="tab"
-    type="button"
+    <span
+      aria-selected="false"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      role="tab"
+    >
+      [
+      5
+      :
+      Hiring
+      ]
+    </span>
+  </a>
+  <a
+    class="flex-1"
+    href="/rivals"
   >
-    [
-    6
-    :
-    Rivals
-    ]
-  </button>
+    <span
+      aria-selected="false"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      role="tab"
+    >
+      [
+      6
+      :
+      Rivals
+      ]
+    </span>
+  </a>
 </nav>
 `;
