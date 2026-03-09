@@ -3,10 +3,13 @@
     "save": "Save",
     "load": "Load",
     "newGame": "New Game",
+    "preferences": "Preferences",
+    "exit": "Exit",
     "tick": "Tick",
     "day": "Day {{count}}",
     "credits": "{{amount}} CR"
   },
+  "title": "Asteroid Miner",
   "tabs": {
     "map": "Map",
     "company": "Company",

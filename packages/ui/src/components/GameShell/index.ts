@@ -1,5 +1,1 @@
-export {
-  GameShell,
-  type GameShellLabels,
-  type GameShellProps,
-} from './GameShell';
+export { GameShell, type GameShellProps } from './GameShell';

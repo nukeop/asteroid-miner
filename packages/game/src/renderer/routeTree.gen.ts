@@ -10,11 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PreferencesRouteImport } from './routes/preferences'
+import { Route as GameRouteImport } from './routes/game'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GameMapRouteImport } from './routes/game/map'
 
 const PreferencesRoute = PreferencesRouteImport.update({
   id: '/preferences',
   path: '/preferences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GameRoute = GameRouteImport.update({
+  id: '/game',
+  path: '/game',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,30 +29,42 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GameMapRoute = GameMapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => GameRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
+  '/game/map': typeof GameMapRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
+  '/game/map': typeof GameMapRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
+  '/game/map': typeof GameMapRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/preferences'
+  fullPaths: '/' | '/game' | '/preferences' | '/game/map'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/preferences'
-  id: '__root__' | '/' | '/preferences'
+  to: '/' | '/game' | '/preferences' | '/game/map'
+  id: '__root__' | '/' | '/game' | '/preferences' | '/game/map'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GameRoute: typeof GameRouteWithChildren
   PreferencesRoute: typeof PreferencesRoute
 }
 
@@ -58,6 +77,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PreferencesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/game': {
+      id: '/game'
+      path: '/game'
+      fullPath: '/game'
+      preLoaderRoute: typeof GameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -65,11 +91,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/game/map': {
+      id: '/game/map'
+      path: '/map'
+      fullPath: '/game/map'
+      preLoaderRoute: typeof GameMapRouteImport
+      parentRoute: typeof GameRoute
+    }
   }
 }
 
+interface GameRouteChildren {
+  GameMapRoute: typeof GameMapRoute
+}
+
+const GameRouteChildren: GameRouteChildren = {
+  GameMapRoute: GameMapRoute,
+}
+
+const GameRouteWithChildren = GameRoute._addFileChildren(GameRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GameRoute: GameRouteWithChildren,
   PreferencesRoute: PreferencesRoute,
 }
 export const routeTree = rootRouteImport
