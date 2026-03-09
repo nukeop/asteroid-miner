@@ -19,7 +19,10 @@ export default defineConfig({
   renderer: {
     plugins: [
       react(),
-      tanstackRouter(),
+      tanstackRouter({
+        routesDirectory: './src/renderer/routes',
+        generatedRouteTree: './src/renderer/routeTree.gen.ts',
+      }),
       tailwindcss(),
       wasm(),
       topLevelAwait(),
