@@ -1,2 +1,2 @@
 export { TabBar } from './TabBar';
-export type { TabBarLabels, TabBarProps, TabId } from './types';
+export type { TabBarProps, TabDefinition } from './types';
