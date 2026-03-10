@@ -1,0 +1,58 @@
+name: Coverage
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            packages/simulation/target
+          key: cargo-cov-${{ runner.os }}-${{ hashFiles('packages/simulation/Cargo.lock') }}
+          restore-keys: |
+            cargo-cov-${{ runner.os }}-
+
+      - name: Install cargo-llvm-cov
+        uses: taiki-e/install-action@cargo-llvm-cov
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate Rust coverage
+        run: cargo llvm-cov --lcov --output-path rust-lcov.info --manifest-path packages/simulation/Cargo.toml
+
+      - name: Generate TypeScript coverage
+        run: pnpm test:coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: rust-lcov.info,./packages/*/coverage/lcov.info
+          flags: unittests
+          fail_ci_if_error: true
