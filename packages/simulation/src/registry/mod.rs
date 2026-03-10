@@ -53,3 +53,6 @@ where
         Self::new()
     }
 }
+
+#[cfg(test)]
+mod registry_test;

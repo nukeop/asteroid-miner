@@ -47,3 +47,6 @@ impl GameState {
         }
     }
 }
+
+#[cfg(test)]
+mod world_test;
