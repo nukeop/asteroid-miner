@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Data Pack Manifest",
+  "description": "Manifest format for Asteroid Miner data packs. The base game, DLCs, and community mods all use this format. Place a manifest.json at the root of your data pack folder.",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "version",
+    "type",
+    "description",
+    "author",
+    "game_version"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Path or URL to the JSON Schema for this file. Used by editors for validation and autocompletion."
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this data pack. Use lowercase letters, numbers, underscores, and dots. Must be unique across all loaded packs.",
+      "pattern": "^[a-z][a-z0-9_.]*$",
+      "minLength": 1,
+      "maxLength": 100,
+      "examples": ["base", "deep_core", "better_drills"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable display name shown in the mod browser and load order screen.",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of this data pack in semver format (MAJOR.MINOR.PATCH). Bump this when you release updates so the game can detect changes.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["0.1.0", "1.0.0", "2.3.1"]
+    },
+    "type": {
+      "type": "string",
+      "description": "What kind of data pack this is. \"base\" is the core game data (only one allowed). \"dlc\" is official expansion content. \"mod\" is community-created content.",
+      "enum": ["base", "dlc", "mod"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Short summary of what this pack contains or changes. Shown in the mod browser."
+    },
+    "author": {
+      "type": "string",
+      "description": "Who made this pack."
+    },
+    "game_version": {
+      "type": "string",
+      "description": "Minimum game version this pack requires. The game will refuse to load packs that target a newer version than what's installed.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["0.1.0", "1.0.0"]
+    },
+    "tags": {
+      "type": "array",
+      "description": "Categories for filtering in the mod browser. Use short, descriptive tags like \"gameplay\", \"balance\", \"cosmetic\", \"qol\".",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Other data packs this pack depends on or conflicts with. Each entry is a string with the format: \"[prefix] pack_id [operator version]\". No prefix means a hard requirement (the pack won't load without it). Prefix \"?\" means optional (affects load order if the other pack is present, ignored if missing). Prefix \"!\" means incompatible (the game refuses to load both). You can add a version constraint with an operator (>=, <=, >, <, =) followed by a semver version.",
+      "default": [],
+      "items": {
+        "type": "string",
+        "pattern": "^(!|\\?)?\\s*[a-z][a-z0-9_.]*(\\s*(>=|<=|>|<|=)\\s*\\d+\\.\\d+\\.\\d+)?$",
+        "examples": [
+          "base >= 1.0.0",
+          "? deep_core",
+          "! other_drill_overhaul",
+          "? some_mod >= 1.0.0"
+        ]
+      }
+    }
+  }
+}

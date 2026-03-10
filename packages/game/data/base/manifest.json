@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema/manifest.schema.json",
   "id": "base",
   "name": "Asteroid Miner",
   "version": "0.1.0",
