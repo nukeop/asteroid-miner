@@ -14,20 +14,8 @@ mod tests {
                 id: SkillId("mining".into()),
                 name: "Mining".into(),
                 description: "Hit rocks".into(),
-                max_level: 20,
                 xp_base: 100,
                 xp_growth: 1.5,
-            },
-        );
-
-        defs.dispositions.register(
-            DispositionId("loyalty".into()),
-            DispositionDef {
-                id: DispositionId("loyalty".into()),
-                name: "Loyalty".into(),
-                description: "Sticks with you".into(),
-                low_label: "Mercenary".into(),
-                high_label: "Ride or die".into(),
             },
         );
 
@@ -42,7 +30,6 @@ mod tests {
                     op: ModifierOp::Flat,
                     value: 2.0,
                 }],
-                disposition_modifiers: vec![],
                 custom_effects: vec![],
             },
         );
@@ -57,7 +44,6 @@ mod tests {
                     id: SkillId("mining".into()),
                     amount: 2,
                 }],
-                disposition_bonuses: vec![],
             },
         );
 
@@ -71,7 +57,6 @@ mod tests {
                     id: SkillId("mining".into()),
                     amount: 4,
                 }],
-                disposition_bonuses: vec![],
             },
         );
 
@@ -81,9 +66,6 @@ mod tests {
     fn create_kowalski(state: &mut GameState) -> PawnId {
         let mut skills = HashMap::new();
         skills.insert(SkillId("mining".into()), SkillState::with_level(8));
-
-        let mut dispositions = HashMap::new();
-        dispositions.insert(DispositionId("loyalty".into()), DispositionState::new(4));
 
         state.pawns.insert(Pawn {
             id: PawnId::default(),
@@ -96,7 +78,6 @@ mod tests {
             career: CareerId("belt_miner".into()),
             traits: vec![TraitId("strongman".into())],
             skills,
-            dispositions,
         })
     }
 
@@ -109,7 +90,6 @@ mod tests {
         assert_eq!(pawn.first_name, "Jan");
         assert_eq!(pawn.last_name, "Kowalski");
         assert_eq!(pawn.skills[&SkillId("mining".into())].level, 8);
-        assert_eq!(pawn.dispositions[&DispositionId("loyalty".into())].value, 4);
         assert_eq!(pawn.traits.len(), 1);
     }
 

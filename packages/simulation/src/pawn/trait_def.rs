@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-use super::types::{DispositionId, SkillId, TraitId};
+use super::types::{SkillId, TraitId};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TraitDef {
@@ -9,7 +9,6 @@ pub struct TraitDef {
     pub name: String,
     pub description: String,
     pub skill_modifiers: Vec<SkillModifier>,
-    pub disposition_modifiers: Vec<DispositionModifier>,
     pub custom_effects: Vec<CustomEffect>,
 }
 
@@ -22,13 +21,6 @@ pub enum ModifierOp {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SkillModifier {
     pub skill: SkillId,
-    pub op: ModifierOp,
-    pub value: f32,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DispositionModifier {
-    pub disposition: DispositionId,
     pub op: ModifierOp,
     pub value: f32,
 }

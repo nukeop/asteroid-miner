@@ -8,7 +8,6 @@ mod tests {
             id: SkillId("mining".into()),
             name: "Mining".into(),
             description: "Hit rocks".into(),
-            max_level: 20,
             xp_base: 100,
             xp_growth: 1.5,
         }
@@ -23,7 +22,6 @@ mod tests {
         assert!(reg.contains(&id));
         assert_eq!(reg.get(&id).unwrap().name, "Mining");
         assert_eq!(reg.get(&id).unwrap().description, "Hit rocks");
-        assert_eq!(reg.get(&id).unwrap().max_level, 20);
         assert_eq!(reg.get(&id).unwrap().xp_base, 100);
         assert_eq!(reg.get(&id).unwrap().xp_growth, 1.5);
         assert_eq!(reg.len(), 1);

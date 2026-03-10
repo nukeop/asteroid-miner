@@ -7,7 +7,6 @@ pub struct SkillDef {
     pub id: SkillId,
     pub name: String,
     pub description: String,
-    pub max_level: u8,
     pub xp_base: u32,
     pub xp_growth: f32,
 }

@@ -7,7 +7,6 @@ mod tests {
             id: SkillId("mining".into()),
             name: "Mining".into(),
             description: "Hit rocks, get ore".into(),
-            max_level: 20,
             xp_base: 100,
             xp_growth: 1.5,
         }

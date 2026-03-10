@@ -7,7 +7,6 @@ use crate::registry::Registry;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Definitions {
     pub skills: Registry<SkillId, SkillDef>,
-    pub dispositions: Registry<DispositionId, DispositionDef>,
     pub traits: Registry<TraitId, TraitDef>,
     pub origins: Registry<OriginId, OriginDef>,
     pub careers: Registry<CareerId, CareerDef>,
@@ -17,7 +16,6 @@ impl Definitions {
     pub fn new() -> Self {
         Self {
             skills: Registry::new(),
-            dispositions: Registry::new(),
             traits: Registry::new(),
             origins: Registry::new(),
             careers: Registry::new(),

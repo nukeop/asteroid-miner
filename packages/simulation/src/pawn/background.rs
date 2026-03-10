@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use super::types::{CareerId, DispositionId, OriginId, SkillId};
+use super::types::{CareerId, OriginId, SkillId};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StartingBonus<Id> {
@@ -14,7 +14,6 @@ pub struct OriginDef {
     pub name: String,
     pub description: String,
     pub skill_bonuses: Vec<StartingBonus<SkillId>>,
-    pub disposition_bonuses: Vec<StartingBonus<DispositionId>>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -23,5 +22,4 @@ pub struct CareerDef {
     pub name: String,
     pub description: String,
     pub skill_bonuses: Vec<StartingBonus<SkillId>>,
-    pub disposition_bonuses: Vec<StartingBonus<DispositionId>>,
 }

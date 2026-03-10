@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Trait Definitions",
+  "description": "Defines pawn traits that modify skills or trigger custom gameplay effects. A pawn can have multiple traits assigned at creation or gained during play.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "description": "A single trait definition.",
+    "required": ["id", "name", "description"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for this trait.",
+        "pattern": "^[a-z][a-z0-9_]*$",
+        "examples": ["steady_hand", "deep_sleeper", "born_pilot"]
+      },
+      "name": {
+        "type": "string",
+        "description": "Display name shown on the pawn's trait list.",
+        "minLength": 1
+      },
+      "description": {
+        "type": "string",
+        "description": "Flavor text explaining what this trait does. Shown in tooltips."
+      },
+      "skill_modifiers": {
+        "type": "array",
+        "description": "Adjustments this trait applies to a pawn's effective skill levels.",
+        "default": [],
+        "items": { "$ref": "#/$defs/SkillModifier" }
+      },
+      "custom_effects": {
+        "type": "array",
+        "description": "Scripted effects that don't fit the modifier system. Each entry names a handler function and passes arbitrary parameters to it.",
+        "default": [],
+        "items": { "$ref": "#/$defs/CustomEffect" }
+      }
+    }
+  },
+  "$defs": {
+    "ModifierOp": {
+      "type": "string",
+      "description": "How the modifier value is applied. \"Flat\" adds a fixed amount. \"Factor\" multiplies by the value.",
+      "enum": ["Flat", "Factor"]
+    },
+    "SkillModifier": {
+      "type": "object",
+      "description": "A modifier applied to a specific skill.",
+      "required": ["skill", "op", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "type": "string",
+          "description": "The skill ID this modifier targets.",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "op": {
+          "$ref": "#/$defs/ModifierOp",
+          "description": "Whether this modifier adds a flat bonus or multiplies."
+        },
+        "value": {
+          "type": "number",
+          "description": "The modifier amount. For Flat, added directly. For Factor, used as a multiplier (e.g. 1.2 = +20%).",
+          "examples": [2.0, -1.0, 1.5]
+        }
+      }
+    },
+    "CustomEffect": {
+      "type": "object",
+      "description": "A scripted effect with a named handler and free-form parameters.",
+      "required": ["handler", "params"],
+      "additionalProperties": false,
+      "properties": {
+        "handler": {
+          "type": "string",
+          "description": "Name of the effect handler function that processes this effect.",
+          "minLength": 1,
+          "examples": ["reduce_food_consumption", "immune_to_vacuum"]
+        },
+        "params": {
+          "type": "object",
+          "description": "Arbitrary key-value parameters passed to the handler. Structure depends on the handler.",
+          "additionalProperties": true,
+          "examples": [
+            { "factor": 0.8 },
+            { "duration_hours": 24, "severity": "mild" }
+          ]
+        }
+      }
+    }
+  }
+}

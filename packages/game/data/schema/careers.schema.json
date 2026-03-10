@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Career Definitions",
+  "description": "Defines pawn careers: what they did professionally before appearing in the game. Each career grants starting skill bonuses during pawn generation.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "description": "A single career definition.",
+    "required": ["id", "name", "description"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for this career.",
+        "pattern": "^[a-z][a-z0-9_]*$",
+        "examples": ["belt_miner", "navy_pilot", "field_medic"]
+      },
+      "name": {
+        "type": "string",
+        "description": "Display name shown during crew recruitment and on the pawn info screen.",
+        "minLength": 1
+      },
+      "description": {
+        "type": "string",
+        "description": "Backstory text describing what this person did for a living."
+      },
+      "skill_bonuses": {
+        "type": "array",
+        "description": "Starting skill level bonuses granted by this career.",
+        "default": [],
+        "items": { "$ref": "#/$defs/SkillBonus" }
+      }
+    }
+  },
+  "$defs": {
+    "SkillBonus": {
+      "type": "object",
+      "description": "A starting bonus applied to a specific skill.",
+      "required": ["id", "amount"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The skill ID to apply the bonus to.",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "amount": {
+          "type": "integer",
+          "description": "Number of skill levels to add (positive) or subtract (negative).",
+          "examples": [1, 2, -1]
+        }
+      }
+    }
+  }
+}
