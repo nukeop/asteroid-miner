@@ -1,3 +1,5 @@
+pub mod pawn;
+
 use wasm_bindgen::prelude::*;
 
 fn ping_json() -> String {
