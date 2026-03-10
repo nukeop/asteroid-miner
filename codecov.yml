@@ -1,0 +1,62 @@
+codecov:
+  require_ci_to_pass: true
+
+coverage:
+  precision: 2
+  round: down
+  range: 60..100
+
+  status:
+    project:
+      default:
+        target: 60%
+        threshold: 2%
+    patch:
+      default:
+        target: 70%
+        threshold: 0%
+        only_pulls: true
+
+comment:
+  layout: 'condensed_header, diff, flags, components, condensed_files, condensed_footer'
+  require_changes: true
+
+github_checks:
+  annotations: true
+
+flag_management:
+  default_rules:
+    carryforward: true
+
+component_management:
+  default_rules:
+    statuses:
+      - type: project
+        target: 60%
+        informational: true
+      - type: patch
+        target: 70%
+        only_pulls: true
+        informational: true
+  individual_components:
+    - component_id: simulation
+      name: Simulation (Rust)
+      paths:
+        - 'packages/simulation/src/**'
+    - component_id: ui
+      name: UI Library
+      paths:
+        - 'packages/ui/src/**'
+
+ignore:
+  - 'packages/storybook/**'
+  - 'packages/tailwind-config/**'
+  - 'packages/eslint-config/**'
+  - 'packages/game/**'
+  - 'packages/mod-sdk/**'
+  - 'packages/simulation/pkg/**'
+  - '**/__snapshots__/**'
+  - '**/*.snap'
+  - '**/dist/**'
+  - '**/*.d.ts'
+  - 'plans/**'
