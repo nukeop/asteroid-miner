@@ -1,4 +1,5 @@
 pub mod pawn;
+pub mod registry;
 
 use wasm_bindgen::prelude::*;
 
