@@ -1,3 +1,4 @@
+pub mod data_pack;
 pub mod pawn;
 pub mod registry;
 pub mod world;

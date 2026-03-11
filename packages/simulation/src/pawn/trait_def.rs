@@ -8,7 +8,9 @@ pub struct TraitDef {
     pub id: TraitId,
     pub name: String,
     pub description: String,
+    #[serde(default)]
     pub skill_modifiers: Vec<SkillModifier>,
+    #[serde(default)]
     pub custom_effects: Vec<CustomEffect>,
 }
 

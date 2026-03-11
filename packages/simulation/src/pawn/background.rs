@@ -13,6 +13,7 @@ pub struct OriginDef {
     pub id: OriginId,
     pub name: String,
     pub description: String,
+    #[serde(default)]
     pub skill_bonuses: Vec<StartingBonus<SkillId>>,
 }
 
@@ -21,5 +22,6 @@ pub struct CareerDef {
     pub id: CareerId,
     pub name: String,
     pub description: String,
+    #[serde(default)]
     pub skill_bonuses: Vec<StartingBonus<SkillId>>,
 }
