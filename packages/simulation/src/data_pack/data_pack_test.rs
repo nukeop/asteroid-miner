@@ -26,12 +26,17 @@ mod tests {
 
     #[test]
     fn parse_valid_manifest() {
-        let json = include_str!("../../../game/data/base/manifest.json");
-        let manifest = parse_manifest(json).unwrap();
+        let json = manifest_json(r#"{}"#);
+        let manifest = parse_manifest(&json).unwrap();
 
-        assert_eq!(manifest.id, "base");
-        assert_eq!(manifest.pack_type, PackType::Base);
-        assert_eq!(manifest.version, "0.1.0");
+        assert_eq!(manifest.id, "test");
+        assert_eq!(manifest.name, "Test Pack");
+        assert_eq!(manifest.pack_type, PackType::Mod);
+        assert_eq!(manifest.version, "1.0.0");
+        assert_eq!(manifest.game_version, "1.0.0");
+        assert_eq!(manifest.author, "tester");
+        assert_eq!(manifest.description, "A test pack");
+        assert!(manifest.tags.is_empty());
         assert!(manifest.dependencies.is_empty());
     }
 

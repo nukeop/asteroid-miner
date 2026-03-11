@@ -4,7 +4,7 @@
   "name": "Asteroid Miner",
   "version": "0.1.0",
   "type": "base",
-  "description": "Base game data pack. Defines all core skills, dispositions, traits, origins, and careers.",
+  "description": "Base game data pack. Defines all core skills, traits, origins, and careers.",
   "author": "Asteroid Miner Team",
   "game_version": "0.1.0",
   "tags": [],

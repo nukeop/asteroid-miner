@@ -1,0 +1,89 @@
+[
+  {
+    "id": "strongman",
+    "name": "Strongman",
+    "description": "Built like a loader mech and twice as stubborn.",
+    "skill_modifiers": [
+      { "skill": "mining", "op": "Flat", "value": 2 },
+      { "skill": "construction", "op": "Flat", "value": 1 }
+    ]
+  },
+  {
+    "id": "cocky",
+    "name": "Cocky",
+    "description": "Talks a big game, and sometimes that's half the job.",
+    "skill_modifiers": [{ "skill": "negotiation", "op": "Flat", "value": 1 }]
+  },
+  {
+    "id": "blue_collar",
+    "name": "Blue Collar",
+    "description": "Grew up with grease under the fingernails and rock dust in the lungs.",
+    "custom_effects": [
+      {
+        "handler": "work_speed_bonus",
+        "params": { "tasks": ["mining", "engineering"], "bonus": 4 }
+      }
+    ]
+  },
+  {
+    "id": "bookworm",
+    "name": "Bookworm",
+    "description": "Reads technical manuals for fun on long hauls.",
+    "skill_modifiers": [
+      { "skill": "research", "op": "Flat", "value": 2 },
+      { "skill": "materials_science", "op": "Flat", "value": 1 },
+      { "skill": "mining", "op": "Flat", "value": -1 }
+    ]
+  },
+  {
+    "id": "natural_leader",
+    "name": "Natural Leader",
+    "description": "Crew shuts up and listens when this one talks.",
+    "skill_modifiers": [{ "skill": "leadership", "op": "Flat", "value": 3 }]
+  },
+  {
+    "id": "loner",
+    "name": "Loner",
+    "description": "Works best when everyone else is somewhere far away.",
+    "custom_effects": [
+      { "handler": "solo_skill_bonus", "params": { "bonus": 1 } }
+    ]
+  },
+  {
+    "id": "quick_learner",
+    "name": "Quick Learner",
+    "description": "Picks things up fast, forgets them just as quick if you're unlucky.",
+    "custom_effects": [
+      { "handler": "xp_gain_modifier", "params": { "factor": 1.3 } }
+    ]
+  },
+  {
+    "id": "veteran_spacer",
+    "name": "Veteran Spacer",
+    "description": "Three tours on the belt and still has all ten fingers.",
+    "skill_modifiers": [
+      { "skill": "piloting", "op": "Flat", "value": 1 },
+      { "skill": "navigation", "op": "Flat", "value": 1 }
+    ]
+  },
+  {
+    "id": "reckless",
+    "name": "Reckless",
+    "description": "Safety briefings go in one ear and out the airlock.",
+    "custom_effects": [
+      {
+        "handler": "work_speed_bonus",
+        "params": { "condition": "dangerous", "bonus": 2 }
+      },
+      { "handler": "accident_chance_modifier", "params": { "factor": 1.5 } }
+    ]
+  },
+  {
+    "id": "penny_pincher",
+    "name": "Penny Pincher",
+    "description": "Counts every credit twice and never buys a round.",
+    "custom_effects": [
+      { "handler": "salary_modifier", "params": { "factor": 0.85 } }
+    ]
+  }
+]

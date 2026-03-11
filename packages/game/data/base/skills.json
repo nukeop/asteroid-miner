@@ -1,0 +1,93 @@
+[
+  {
+    "id": "mining",
+    "name": "Mining",
+    "description": "Ore extraction, drill operation, excavation speed and yield.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "geology",
+    "name": "Geology",
+    "description": "Surveying, resource identification, deposit quality assessment.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "refining",
+    "name": "Refining",
+    "description": "Ore processing, smelting, material purification.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "engineering",
+    "name": "Engineering",
+    "description": "Repair, maintenance, fabrication, mechanical and electrical systems.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "computing",
+    "name": "Computing",
+    "description": "Programming, data analysis, drone software, ship computer systems.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "piloting",
+    "name": "Piloting",
+    "description": "Ship handling, docking, EVA maneuvering.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "navigation",
+    "name": "Navigation",
+    "description": "Route planning, astrogation, orbital mechanics calculations.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "medicine",
+    "name": "Medicine",
+    "description": "Treating injuries, crew health maintenance, emergency triage.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "research",
+    "name": "Research",
+    "description": "R&D, experimentation, technology development.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "materials_science",
+    "name": "Materials Science",
+    "description": "Metallurgy, chemistry, material properties and applications.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "negotiation",
+    "name": "Negotiation",
+    "description": "Trade deals, contract terms, price haggling.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "leadership",
+    "name": "Leadership",
+    "description": "Crew coordination, morale management, operational efficiency.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "construction",
+    "name": "Construction",
+    "description": "Station assembly, ship building, mining rig construction, structural work.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  }
+]

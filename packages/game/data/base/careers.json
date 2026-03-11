@@ -1,0 +1,65 @@
+[
+  {
+    "id": "belt_miner",
+    "name": "Belt Miner",
+    "description": "Spent years cracking rock in the outer belts, running double shifts on aging drill rigs for outfits that barely kept the air filters clean.",
+    "skill_bonuses": [
+      { "id": "mining", "amount": 4 },
+      { "id": "geology", "amount": 2 }
+    ]
+  },
+  {
+    "id": "navy_pilot",
+    "name": "Navy Pilot",
+    "description": "Flew patrol routes for the Terran Navy before mustering out. Knew every transit corridor in the system by heart and could dock a frigate half-asleep.",
+    "skill_bonuses": [
+      { "id": "piloting", "amount": 4 },
+      { "id": "navigation", "amount": 2 }
+    ]
+  },
+  {
+    "id": "corporate_accountant",
+    "name": "Corporate Accountant",
+    "description": "Worked the books for a mid-tier mining conglomerate. Got real good at finding the margins nobody else saw and talking contractors into lower rates.",
+    "skill_bonuses": [
+      { "id": "negotiation", "amount": 3 },
+      { "id": "computing", "amount": 2 }
+    ]
+  },
+  {
+    "id": "dock_worker",
+    "name": "Dock Worker",
+    "description": "Loaded and unloaded cargo at orbital stations, welded hull plates between shifts, and learned how ships were put together by taking them apart.",
+    "skill_bonuses": [
+      { "id": "construction", "amount": 3 },
+      { "id": "engineering", "amount": 2 }
+    ]
+  },
+  {
+    "id": "smuggler",
+    "name": "Smuggler",
+    "description": "Ran unlicensed freight through contested lanes, staying one step ahead of customs patrols. Had a talent for talking past inspectors when the flying didn't work.",
+    "skill_bonuses": [
+      { "id": "piloting", "amount": 3 },
+      { "id": "negotiation", "amount": 2 }
+    ]
+  },
+  {
+    "id": "field_medic",
+    "name": "Field Medic",
+    "description": "Patched up miners and rig workers at remote extraction sites where the nearest hospital was a three-day burn away. Learned to keep a crew calm when things went bad.",
+    "skill_bonuses": [
+      { "id": "medicine", "amount": 4 },
+      { "id": "leadership", "amount": 1 }
+    ]
+  },
+  {
+    "id": "research_assistant",
+    "name": "Research Assistant",
+    "description": "Ran assays and sample analysis for a corporate R&D lab, cataloguing mineral compositions from core samples that field crews hauled back by the crate.",
+    "skill_bonuses": [
+      { "id": "research", "amount": 3 },
+      { "id": "materials_science", "amount": 2 }
+    ]
+  }
+]
