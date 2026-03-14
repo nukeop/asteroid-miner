@@ -23,4 +23,24 @@ export function registerIpcHandlers(ipcMain: IpcMain) {
       return { ok: false, data: null };
     }
   });
+
+  ipcMain.handle('load-data-pack', async (_event, packPath: string) => {
+    try {
+      const [manifest, skills, traits, origins, careers] = await Promise.all([
+        readFile(join(packPath, 'manifest.json'), 'utf-8'),
+        readFile(join(packPath, 'skills.json'), 'utf-8'),
+        readFile(join(packPath, 'traits.json'), 'utf-8'),
+        readFile(join(packPath, 'origins.json'), 'utf-8'),
+        readFile(join(packPath, 'careers.json'), 'utf-8'),
+      ]);
+      return { ok: true, data: { manifest, skills, traits, origins, careers } };
+    } catch (e) {
+      return { ok: false, error: String(e) };
+    }
+  });
+
+  // TODO: handle production resource path
+  ipcMain.handle('get-base-data-path', () => {
+    return join(app.getAppPath(), 'data', 'base');
+  });
 }

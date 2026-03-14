@@ -3,21 +3,25 @@ pub mod pawn;
 pub mod registry;
 pub mod world;
 
+use serde::Deserialize;
 use wasm_bindgen::prelude::*;
 use world::Definitions;
 
-fn load_data_pack_inner(
-    manifest_json: &str,
-    skills_json: &str,
-    traits_json: &str,
-    origins_json: &str,
-    careers_json: &str,
-) -> Result<Definitions, String> {
-    data_pack::parse_manifest(manifest_json).map_err(|e| e.to_string())?;
-    let skills = data_pack::load_skills(skills_json).map_err(|e| e.to_string())?;
-    let traits = data_pack::load_traits(traits_json).map_err(|e| e.to_string())?;
-    let origins = data_pack::load_origins(origins_json).map_err(|e| e.to_string())?;
-    let careers = data_pack::load_careers(careers_json).map_err(|e| e.to_string())?;
+#[derive(Deserialize)]
+struct DataPackFiles {
+    manifest: String,
+    skills: String,
+    traits: String,
+    origins: String,
+    careers: String,
+}
+
+fn load_data_pack_inner(files: &DataPackFiles) -> Result<Definitions, String> {
+    data_pack::parse_manifest(&files.manifest).map_err(|e| e.to_string())?;
+    let skills = data_pack::load_skills(&files.skills).map_err(|e| e.to_string())?;
+    let traits = data_pack::load_traits(&files.traits).map_err(|e| e.to_string())?;
+    let origins = data_pack::load_origins(&files.origins).map_err(|e| e.to_string())?;
+    let careers = data_pack::load_careers(&files.careers).map_err(|e| e.to_string())?;
 
     let mut defs = Definitions::new();
     data_pack::load_into_definitions(&mut defs, skills, traits, origins, careers);
@@ -25,20 +29,9 @@ fn load_data_pack_inner(
 }
 
 #[wasm_bindgen]
-pub fn load_data_pack(
-    manifest_json: &str,
-    skills_json: &str,
-    traits_json: &str,
-    origins_json: &str,
-    careers_json: &str,
-) -> Result<JsValue, String> {
-    let defs = load_data_pack_inner(
-        manifest_json,
-        skills_json,
-        traits_json,
-        origins_json,
-        careers_json,
-    )?;
+pub fn load_data_pack(files: JsValue) -> Result<JsValue, String> {
+    let files: DataPackFiles = serde_wasm_bindgen::from_value(files).map_err(|e| e.to_string())?;
+    let defs = load_data_pack_inner(&files)?;
     serde_wasm_bindgen::to_value(&defs).map_err(|e| e.to_string())
 }
 
@@ -69,7 +62,14 @@ mod tests {
             "skill_bonuses": [{"id": "mining", "amount": 2}]
         }]"#;
 
-        let defs = load_data_pack_inner(manifest, skills, traits, origins, careers).unwrap();
+        let files = DataPackFiles {
+            manifest: manifest.into(),
+            skills: skills.into(),
+            traits: traits.into(),
+            origins: origins.into(),
+            careers: careers.into(),
+        };
+        let defs = load_data_pack_inner(&files).unwrap();
 
         let skill = defs
             .skills
@@ -125,7 +125,14 @@ mod tests {
         let origins = "[]";
         let careers = "[]";
 
-        let result = load_data_pack_inner(manifest, bad_skills, traits, origins, careers);
+        let files = DataPackFiles {
+            manifest: manifest.into(),
+            skills: bad_skills.into(),
+            traits: traits.into(),
+            origins: origins.into(),
+            careers: careers.into(),
+        };
+        let result = load_data_pack_inner(&files);
 
         assert!(result.is_err());
         assert!(result.unwrap_err().contains("JSON error"));
