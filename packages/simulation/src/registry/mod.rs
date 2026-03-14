@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use std::hash::Hash;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(transparent)]
 pub struct Registry<K, V>
 where
     K: Eq + Hash,

@@ -4,32 +4,130 @@ pub mod registry;
 pub mod world;
 
 use wasm_bindgen::prelude::*;
+use world::Definitions;
 
-fn ping_json() -> String {
-    let response = serde_json::json!({
-        "status": "ok",
-        "engine": "asteroid-miner-simulation",
-        "version": env!("CARGO_PKG_VERSION"),
-    });
+fn load_data_pack_inner(
+    manifest_json: &str,
+    skills_json: &str,
+    traits_json: &str,
+    origins_json: &str,
+    careers_json: &str,
+) -> Result<Definitions, String> {
+    data_pack::parse_manifest(manifest_json).map_err(|e| e.to_string())?;
+    let skills = data_pack::load_skills(skills_json).map_err(|e| e.to_string())?;
+    let traits = data_pack::load_traits(traits_json).map_err(|e| e.to_string())?;
+    let origins = data_pack::load_origins(origins_json).map_err(|e| e.to_string())?;
+    let careers = data_pack::load_careers(careers_json).map_err(|e| e.to_string())?;
 
-    serde_json::to_string(&response).expect("serialization should not fail")
+    let mut defs = Definitions::new();
+    data_pack::load_into_definitions(&mut defs, skills, traits, origins, careers);
+    Ok(defs)
 }
 
 #[wasm_bindgen]
-pub fn ping() -> String {
-    ping_json()
+pub fn load_data_pack(
+    manifest_json: &str,
+    skills_json: &str,
+    traits_json: &str,
+    origins_json: &str,
+    careers_json: &str,
+) -> Result<JsValue, String> {
+    let defs = load_data_pack_inner(
+        manifest_json,
+        skills_json,
+        traits_json,
+        origins_json,
+        careers_json,
+    )?;
+    serde_wasm_bindgen::to_value(&defs).map_err(|e| e.to_string())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::pawn::{CareerId, OriginId, SkillId, TraitId};
 
     #[test]
-    fn ping_returns_valid_json() {
-        let json_str = ping_json();
-        let parsed: serde_json::Value = serde_json::from_str(&json_str).unwrap();
+    fn load_data_pack_parses_definitions_from_json() {
+        let manifest = r#"{
+            "id": "test", "name": "Test", "version": "1.0.0",
+            "type": "base", "description": "test", "author": "test",
+            "game_version": "0.1.0"
+        }"#;
+        let skills = r#"[{"id": "mining", "name": "Mining", "description": "Dig rocks", "xp_base": 100, "xp_growth": 1.5}]"#;
+        let traits = r#"[{
+            "id": "tough", "name": "Tough", "description": "Hard to kill",
+            "skill_modifiers": [{"skill": "mining", "op": "Flat", "value": 5}],
+            "custom_effects": [{"handler": "test_handler", "params": {"strength": 2}}]
+        }]"#;
+        let origins = r#"[{
+            "id": "belter", "name": "Belter", "description": "Born in the belt",
+            "skill_bonuses": [{"id": "mining", "amount": 3}]
+        }]"#;
+        let careers = r#"[{
+            "id": "miner", "name": "Miner", "description": "Digs for a living",
+            "skill_bonuses": [{"id": "mining", "amount": 2}]
+        }]"#;
 
-        assert_eq!(parsed["status"], "ok");
-        assert_eq!(parsed["engine"], "asteroid-miner-simulation");
+        let defs = load_data_pack_inner(manifest, skills, traits, origins, careers).unwrap();
+
+        let skill = defs
+            .skills
+            .get(&SkillId("mining".into()))
+            .expect("mining skill should exist");
+        assert_eq!(skill.id.0, "mining");
+        assert_eq!(skill.name, "Mining");
+        assert_eq!(skill.description, "Dig rocks");
+        assert_eq!(skill.xp_base, 100);
+        assert_eq!(skill.xp_growth, 1.5);
+
+        let tr = defs
+            .traits
+            .get(&TraitId("tough".into()))
+            .expect("tough trait should exist");
+        assert_eq!(tr.id.0, "tough");
+        assert_eq!(tr.name, "Tough");
+        assert_eq!(tr.description, "Hard to kill");
+        assert_eq!(tr.skill_modifiers[0].skill.0, "mining");
+        assert_eq!(tr.skill_modifiers[0].value, 5.0);
+        assert_eq!(tr.custom_effects[0].handler, "test_handler");
+
+        let origin = defs
+            .origins
+            .get(&OriginId("belter".into()))
+            .expect("belter origin should exist");
+        assert_eq!(origin.id.0, "belter");
+        assert_eq!(origin.name, "Belter");
+        assert_eq!(origin.description, "Born in the belt");
+        assert_eq!(origin.skill_bonuses[0].id.0, "mining");
+        assert_eq!(origin.skill_bonuses[0].amount, 3);
+
+        let career = defs
+            .careers
+            .get(&CareerId("miner".into()))
+            .expect("miner career should exist");
+        assert_eq!(career.id.0, "miner");
+        assert_eq!(career.name, "Miner");
+        assert_eq!(career.description, "Digs for a living");
+        assert_eq!(career.skill_bonuses[0].id.0, "mining");
+        assert_eq!(career.skill_bonuses[0].amount, 2);
+    }
+
+    #[test]
+    fn load_data_pack_returns_error_on_invalid_json() {
+        let manifest = r#"{
+            "id": "test", "name": "Test", "version": "1.0.0",
+            "type": "base", "description": "test", "author": "test",
+            "game_version": "0.1.0"
+        }"#;
+        let bad_skills = "not valid json [[[";
+        let traits = "[]";
+        let origins = "[]";
+        let careers = "[]";
+
+        let result = load_data_pack_inner(manifest, bad_skills, traits, origins, careers);
+
+        assert!(result.is_err());
+        assert!(result.unwrap_err().contains("JSON error"));
     }
 }
