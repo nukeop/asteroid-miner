@@ -3,7 +3,7 @@ pub mod pawn;
 pub mod registry;
 pub mod world;
 
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
 use world::Definitions;
 
@@ -32,7 +32,8 @@ fn load_data_pack_inner(files: &DataPackFiles) -> Result<Definitions, String> {
 pub fn load_data_pack(files: JsValue) -> Result<JsValue, String> {
     let files: DataPackFiles = serde_wasm_bindgen::from_value(files).map_err(|e| e.to_string())?;
     let defs = load_data_pack_inner(&files)?;
-    serde_wasm_bindgen::to_value(&defs).map_err(|e| e.to_string())
+    let serializer = serde_wasm_bindgen::Serializer::new().serialize_maps_as_objects(true);
+    defs.serialize(&serializer).map_err(|e| e.to_string())
 }
 
 #[cfg(test)]

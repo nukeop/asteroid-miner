@@ -20,6 +20,22 @@
     "rivals": "Rivals",
     "data": "Data"
   },
+  "data": {
+    "title": "Data Browser",
+    "skills": "Skills",
+    "traits": "Traits",
+    "origins": "Origins",
+    "careers": "Careers",
+    "columns": {
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "xpBase": "XP Base",
+      "xpGrowth": "XP Growth",
+      "effects": "Effects",
+      "bonuses": "Bonuses"
+    }
+  },
   "placeholder": {
     "selectTab": "Select a tab to begin."
   }

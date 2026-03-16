@@ -1,19 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { useTranslation } from '@asteroid-miner/i18n';
+import { PlaceholderView } from '../../views/PlaceholderView';
 
 export const Route = createFileRoute('/game/missions')({
-  component: MissionsView,
+  component: () => <PlaceholderView tabKey="tabs.missions" />,
 });
-
-function MissionsView() {
-  const { t } = useTranslation();
-
-  return (
-    <div className="flex h-full items-center justify-center">
-      <span className="font-heading text-amber-dim text-2xl tracking-widest uppercase">
-        {t('tabs.missions')}
-      </span>
-    </div>
-  );
-}

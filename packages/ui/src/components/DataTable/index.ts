@@ -4,3 +4,4 @@ export type {
   DataTableFeatures,
   DataTableProps,
 } from './types';
+export type { ColumnDef } from '@tanstack/react-table';

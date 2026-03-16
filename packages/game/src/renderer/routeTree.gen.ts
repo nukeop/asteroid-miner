@@ -17,6 +17,7 @@ import { Route as GameMissionsRouteImport } from './routes/game/missions'
 import { Route as GameMarketRouteImport } from './routes/game/market'
 import { Route as GameMapRouteImport } from './routes/game/map'
 import { Route as GameHiringRouteImport } from './routes/game/hiring'
+import { Route as GameDataRouteImport } from './routes/game/data'
 import { Route as GameCompanyRouteImport } from './routes/game/company'
 
 const PreferencesRoute = PreferencesRouteImport.update({
@@ -59,6 +60,11 @@ const GameHiringRoute = GameHiringRouteImport.update({
   path: '/hiring',
   getParentRoute: () => GameRoute,
 } as any)
+const GameDataRoute = GameDataRouteImport.update({
+  id: '/data',
+  path: '/data',
+  getParentRoute: () => GameRoute,
+} as any)
 const GameCompanyRoute = GameCompanyRouteImport.update({
   id: '/company',
   path: '/company',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
   '/game/company': typeof GameCompanyRoute
+  '/game/data': typeof GameDataRoute
   '/game/hiring': typeof GameHiringRoute
   '/game/map': typeof GameMapRoute
   '/game/market': typeof GameMarketRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
   '/game/company': typeof GameCompanyRoute
+  '/game/data': typeof GameDataRoute
   '/game/hiring': typeof GameHiringRoute
   '/game/map': typeof GameMapRoute
   '/game/market': typeof GameMarketRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
   '/game/company': typeof GameCompanyRoute
+  '/game/data': typeof GameDataRoute
   '/game/hiring': typeof GameHiringRoute
   '/game/map': typeof GameMapRoute
   '/game/market': typeof GameMarketRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/game'
     | '/preferences'
     | '/game/company'
+    | '/game/data'
     | '/game/hiring'
     | '/game/map'
     | '/game/market'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/game'
     | '/preferences'
     | '/game/company'
+    | '/game/data'
     | '/game/hiring'
     | '/game/map'
     | '/game/market'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/game'
     | '/preferences'
     | '/game/company'
+    | '/game/data'
     | '/game/hiring'
     | '/game/map'
     | '/game/market'
@@ -199,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GameHiringRouteImport
       parentRoute: typeof GameRoute
     }
+    '/game/data': {
+      id: '/game/data'
+      path: '/data'
+      fullPath: '/game/data'
+      preLoaderRoute: typeof GameDataRouteImport
+      parentRoute: typeof GameRoute
+    }
     '/game/company': {
       id: '/game/company'
       path: '/company'
@@ -211,6 +230,7 @@ declare module '@tanstack/react-router' {
 
 interface GameRouteChildren {
   GameCompanyRoute: typeof GameCompanyRoute
+  GameDataRoute: typeof GameDataRoute
   GameHiringRoute: typeof GameHiringRoute
   GameMapRoute: typeof GameMapRoute
   GameMarketRoute: typeof GameMarketRoute
@@ -220,6 +240,7 @@ interface GameRouteChildren {
 
 const GameRouteChildren: GameRouteChildren = {
   GameCompanyRoute: GameCompanyRoute,
+  GameDataRoute: GameDataRoute,
   GameHiringRoute: GameHiringRoute,
   GameMapRoute: GameMapRoute,
   GameMarketRoute: GameMarketRoute,
