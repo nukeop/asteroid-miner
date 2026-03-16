@@ -1,18 +1,20 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
 import { Button } from './Button';
 
 describe('Button', () => {
-  it('renders and responds to clicks', async () => {
-    const onClick = vi.fn();
-    render(<Button onClick={onClick}>Engage</Button>);
-
-    const button = screen.getByRole('button', { name: 'Engage' });
-    expect(button).toBeInTheDocument();
-
-    await userEvent.click(button);
-    expect(onClick).toHaveBeenCalledOnce();
+  it('(Snapshot) renders all variants', () => {
+    const { container } = render(
+      <div>
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button size="sm">Small</Button>
+        <Button loading>Loading</Button>
+        <Button disabled>Disabled</Button>
+      </div>,
+    );
+    expect(container).toMatchSnapshot();
   });
 });

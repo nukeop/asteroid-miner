@@ -8,7 +8,7 @@ Core loop: Scout > Acquire rights > Crew a ship > Mine > Sell > Reinvest.
 
 Desktop app targeting Steam (Mac, Linux). Built on Electron.
 
-**Status:** Early development, "dancing skeleton" stage. The architecture works end-to-end (Electron boots, React renders, Rust compiles to WASM, IPC handles save/load, Storybook renders components), but no game systems exist yet. The WASM module only exposes `ping()`. The game's `stores/` and `components/` directories are empty.
+**Status:** Early development, "dancing skeleton" stage. The architecture works end-to-end (Electron boots, React renders, Rust compiles to WASM, IPC handles save/load, Storybook renders components), but no game systems exist yet.
 
 ## Monorepo structure
 
@@ -54,7 +54,11 @@ The game package imports `@asteroid-miner/ui`, `@asteroid-miner/i18n`, `@asteroi
 - **ESLint 10** flat config + **Prettier** with import sorting and Tailwind class sorting
 - **Husky** pre-commit hook runs lint-staged (`eslint --fix` on staged files)
 
-State management (Zustand + Immer) is planned but not yet implemented.
+## State management
+
+- **TanStack React Query** for all async state (loading, error, caching). Never track loading/error manually with `useState`.
+- **Zustand** for synchronous global state that needs to be accessed outside React (e.g., game loop reading definitions). Keep stores thin.
+- Extract async logic into custom hooks (e.g., `useNewGame`), not inline in route components.
 
 ## Development workflow
 
@@ -122,6 +126,14 @@ All UI strings go through `@asteroid-miner/i18n`. Never hardcode user-facing tex
 - **Preload** (`packages/game/src/preload/`): Exposes `electronAPI` with `saveGame`/`loadGame` via `contextBridge`.
 - **Renderer** (`packages/game/src/renderer/`): React SPA. Imports WASM module, initializes i18n.
 - IPC channels: `save-game` (writes JSON to userData), `load-game` (reads it back).
+
+## Renderer structure
+
+- **Routes** (`routes/`): Only route definitions (`createFileRoute` + `component` reference). No component bodies.
+- **Views** (`views/`): Actual page/layout components rendered by routes.
+- **Hooks** (`hooks/`): Custom hooks for async logic (e.g., `useNewGame`). Keep route components thin.
+- **Stores** (`stores/`): Zustand stores and React Query options.
+- Define components with `FC`: `export const MyComponent: FC<Props> = ({ ... }) => { ... }`. Not `function MyComponent() { ... }`.
 
 ## Simulation (Rust/WASM)
 

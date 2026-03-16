@@ -14,14 +14,20 @@ export default defineConfig({
   preload: {
     build: {
       externalizeDeps: true,
+      rollupOptions: {
+        output: {
+          format: 'cjs',
+          entryFileNames: '[name].js',
+        },
+      },
     },
   },
   renderer: {
     plugins: [
       react(),
       tanstackRouter({
-        routesDirectory: './src/renderer/routes',
-        generatedRouteTree: './src/renderer/routeTree.gen.ts',
+        routesDirectory: './routes',
+        generatedRouteTree: './routeTree.gen.ts',
       }),
       tailwindcss(),
       wasm(),

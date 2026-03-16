@@ -2,6 +2,7 @@
   "common": {
     "save": "Save",
     "load": "Load",
+    "loading": "Loading...",
     "newGame": "New Game",
     "preferences": "Preferences",
     "exit": "Exit",
@@ -16,7 +17,8 @@
     "market": "Market",
     "missions": "Missions",
     "hiring": "Hiring",
-    "rivals": "Rivals"
+    "rivals": "Rivals",
+    "data": "Data"
   },
   "placeholder": {
     "selectTab": "Select a tab to begin."

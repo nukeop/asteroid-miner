@@ -15,49 +15,15 @@ const meta: Meta<typeof Button> = {
       control: 'select',
       options: ['sm', 'md'],
     },
+    loading: {
+      control: 'boolean',
+    },
   },
 };
 
 export default meta;
 
 type Story = StoryObj<typeof Button>;
-
-export const Primary: Story = {
-  args: {
-    children: 'Engage',
-    variant: 'primary',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    children: 'Cancel',
-    variant: 'secondary',
-  },
-};
-
-export const Ghost: Story = {
-  args: {
-    children: 'Options',
-    variant: 'ghost',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    children: 'Tick',
-    variant: 'primary',
-    size: 'sm',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    children: 'Offline',
-    variant: 'primary',
-    disabled: true,
-  },
-};
 
 export const AllVariants: Story = {
   render: () => (
@@ -87,6 +53,17 @@ export const AllVariants: Story = {
         </Button>
         <Button variant="ghost" disabled>
           Disabled
+        </Button>
+      </div>
+      <div className="flex items-center gap-3">
+        <Button variant="primary" loading>
+          Primary
+        </Button>
+        <Button variant="secondary" loading>
+          Secondary
+        </Button>
+        <Button variant="ghost" loading>
+          Ghost
         </Button>
       </div>
     </div>

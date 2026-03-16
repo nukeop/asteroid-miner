@@ -1,10 +1,11 @@
 import { cva, type VariantProps } from 'class-variance-authority';
+import { LoaderCircleIcon } from 'lucide-react';
 import { forwardRef, type ButtonHTMLAttributes } from 'react';
 
 import { cn } from '../../utils';
 
 const buttonVariants = cva(
-  'border-border inline-flex cursor-pointer items-center justify-center border font-mono text-sm tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50',
+  'border-border inline-flex cursor-pointer items-center justify-center gap-2 border font-mono text-sm tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -28,16 +29,27 @@ const buttonVariants = cva(
 );
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants>;
+  VariantProps<typeof buttonVariants> & {
+    loading?: boolean;
+  };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  (
+    { className, variant, size, loading, disabled, children, ...props },
+    ref,
+  ) => {
     return (
       <button
         ref={ref}
         className={cn(buttonVariants({ variant, size, className }))}
+        disabled={disabled || loading}
         {...props}
-      />
+      >
+        {loading && (
+          <LoaderCircleIcon className="animate-spin" size={14} aria-hidden />
+        )}
+        {children}
+      </button>
     );
   },
 );

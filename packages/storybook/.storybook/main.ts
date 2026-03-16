@@ -7,6 +7,9 @@ const config: StorybookConfig = {
   docs: {
     defaultName: 'Docs',
   },
+  core: {
+    disableTelemetry: true,
+  },
   async viteFinal(config) {
     const { mergeConfig } = await import('vite');
 
