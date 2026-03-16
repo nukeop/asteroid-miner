@@ -191,9 +191,9 @@ mod tests {
                 "xp_growth": 1.5
             },
             {
-                "id": "piloting",
-                "name": "Piloting",
-                "description": "Ship handling",
+                "id": "cosmonautics",
+                "name": "Cosmonautics",
+                "description": "Ship handling and EVA",
                 "xp_base": 120,
                 "xp_growth": 1.4
             }
@@ -202,7 +202,7 @@ mod tests {
         assert_eq!(skills.len(), 2);
         assert_eq!(skills[0].id, SkillId("mining".into()));
         assert_eq!(skills[0].name, "Mining");
-        assert_eq!(skills[1].id, SkillId("piloting".into()));
+        assert_eq!(skills[1].id, SkillId("cosmonautics".into()));
         assert_eq!(skills[1].xp_base, 120);
     }
 

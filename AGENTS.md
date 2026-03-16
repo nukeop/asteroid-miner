@@ -2,9 +2,9 @@
 
 ## What this project is
 
-A management simulation game: "Football Manager meets Dwarf Fortress in space." You run an asteroid mining company in a contested planetary system. Blue-collar space industry tone: worn-out ships, overworked crews, tight margins, corporate rivalry.
+A management simulation game: "Football Manager meets Dwarf Fortress in space, but Soviet." You run a small private asteroid mining company in a star system ruled by Stalin (no explanation how). Soviet space communism: brutalist stations, diesel-burning spaceships, five-year plans, quota fulfillment, and dark absurdist comedy. 90s post-Soviet aesthetic meets space industry. The tone is the gap between propaganda and reality.
 
-Core loop: Scout > Acquire rights > Crew a ship > Mine > Sell > Reinvest.
+Core loop: Scout > Acquire rights (bureaucracy, bribes) > Crew a ship > Mine > Fulfill quota / Sell surplus > Reinvest.
 
 Desktop app targeting Steam (Mac, Linux). Built on Electron.
 

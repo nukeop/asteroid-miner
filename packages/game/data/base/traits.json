@@ -2,7 +2,7 @@
   {
     "id": "strongman",
     "name": "Strongman",
-    "description": "Built like a loader mech and twice as stubborn.",
+    "description": "Built like a KrAZ truck and twice as stubborn.",
     "skill_modifiers": [
       { "skill": "mining", "op": "Flat", "value": 2 },
       { "skill": "construction", "op": "Flat", "value": 1 }
@@ -12,7 +12,7 @@
     "id": "cocky",
     "name": "Cocky",
     "description": "Talks a big game, and sometimes that's half the job.",
-    "skill_modifiers": [{ "skill": "negotiation", "op": "Flat", "value": 1 }]
+    "skill_modifiers": [{ "skill": "blat", "op": "Flat", "value": 1 }]
   },
   {
     "id": "blue_collar",
@@ -58,11 +58,11 @@
     ]
   },
   {
-    "id": "veteran_spacer",
-    "name": "Veteran Spacer",
+    "id": "veteran_cosmonaut",
+    "name": "Veteran Cosmonaut",
     "description": "Three tours on the belt and still has all ten fingers.",
     "skill_modifiers": [
-      { "skill": "piloting", "op": "Flat", "value": 1 },
+      { "skill": "cosmonautics", "op": "Flat", "value": 1 },
       { "skill": "navigation", "op": "Flat", "value": 1 }
     ]
   },
@@ -81,9 +81,18 @@
   {
     "id": "penny_pincher",
     "name": "Penny Pincher",
-    "description": "Counts every credit twice and never buys a round.",
+    "description": "Counts every kopek twice and never buys a round.",
     "custom_effects": [
       { "handler": "salary_modifier", "params": { "factor": 0.85 } }
+    ]
+  },
+  {
+    "id": "party_member",
+    "name": "Party Member",
+    "description": "Card-carrying member of the Party.",
+    "skill_modifiers": [
+      { "skill": "bureaucracy", "op": "Flat", "value": 2 },
+      { "skill": "blat", "op": "Flat", "value": 2 }
     ]
   }
 ]

@@ -1,11 +1,11 @@
 [
   {
     "id": "core_world",
-    "name": "Core-world City Kid",
-    "description": "Grew up in the stacked housing blocks of a major inner-system city, where the net was fast and the air was recycled. Spent more time behind screens than under open sky.",
+    "name": "Central Station Kid",
+    "description": "Grew up in the stacked housing blocks of a major orbital station, where the heating worked most days. Spent more time behind terminals than under open sky.",
     "skill_bonuses": [
-      { "id": "computing", "amount": 2 },
-      { "id": "negotiation", "amount": 1 }
+      { "id": "cybernetics", "amount": 2 },
+      { "id": "blat", "amount": 1 }
     ]
   },
   {
@@ -19,8 +19,8 @@
   },
   {
     "id": "orbital_station",
-    "name": "Orbital Station Upbringing",
-    "description": "Born and raised on a spinning station that never stopped creaking. Every wall was a conduit, every floor panel hid wiring, and someone was always fixing something.",
+    "name": "Orbital Kombinat",
+    "description": "Born and raised on a spinning industrial kombinat that never stopped creaking.",
     "skill_bonuses": [
       { "id": "engineering", "amount": 2 },
       { "id": "navigation", "amount": 1 }
@@ -28,8 +28,8 @@
   },
   {
     "id": "frontier",
-    "name": "Frontier Settlement",
-    "description": "Grew up in a prefab settlement on a barely-surveyed world where the supply runs came late and everyone pulled double duty. You learned a bit of everything or you were dead weight.",
+    "name": "Frontier Outpost",
+    "description": "Grew up in a prefab settlement on a barely-surveyed rock.",
     "skill_bonuses": [
       { "id": "construction", "amount": 1 },
       { "id": "mining", "amount": 1 },
@@ -37,21 +37,21 @@
     ]
   },
   {
-    "id": "merchant_fleet",
-    "name": "Merchant Fleet Child",
-    "description": "Spent childhood aboard a string of cargo haulers running freight between stations. The ships smelled like engine grease and recycled coffee, and the crew rotated every few months.",
+    "id": "transport_fleet",
+    "name": "Transport Fleet Child",
+    "description": "Spent childhood aboard a string of state cargo haulers running freight between stations.",
     "skill_bonuses": [
-      { "id": "piloting", "amount": 2 },
-      { "id": "negotiation", "amount": 1 }
+      { "id": "cosmonautics", "amount": 2 },
+      { "id": "blat", "amount": 1 }
     ]
   },
   {
     "id": "research_outpost",
     "name": "Research Outpost",
-    "description": "Raised at a remote survey outpost staffed by a skeleton crew of tired scientists. The equipment was old, the grants were thin, and the nearest school was a two-month transit away.",
+    "description": "Raised at a remote research station staffed by a skeleton crew of tired scientists.",
     "skill_bonuses": [
       { "id": "research", "amount": 2 },
-      { "id": "computing", "amount": 1 }
+      { "id": "cybernetics", "amount": 1 }
     ]
   }
 ]

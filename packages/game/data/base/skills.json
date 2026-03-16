@@ -2,7 +2,7 @@
   {
     "id": "mining",
     "name": "Mining",
-    "description": "Ore extraction, drill operation, excavation speed and yield.",
+    "description": "Ore extraction, drill operation, excavation.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
@@ -16,77 +16,84 @@
   {
     "id": "refining",
     "name": "Refining",
-    "description": "Ore processing, smelting, material purification.",
+    "description": "Ore processing, smelting, oil distillation, material purification.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
     "id": "engineering",
     "name": "Engineering",
-    "description": "Repair, maintenance, fabrication, mechanical and electrical systems.",
+    "description": "Repair, maintenance, fabrication.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
-    "id": "computing",
-    "name": "Computing",
-    "description": "Programming, data analysis, drone software, ship computer systems.",
+    "id": "cybernetics",
+    "name": "Cybernetics",
+    "description": "Ship computer systems, drone programming, data analysis.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
-    "id": "piloting",
-    "name": "Piloting",
-    "description": "Ship handling, docking, EVA maneuvering.",
+    "id": "cosmonautics",
+    "name": "Cosmonautics",
+    "description": "Ship handling, docking, EVA maneuvering, atmospheric entry.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
     "id": "navigation",
     "name": "Navigation",
-    "description": "Route planning, astrogation, orbital mechanics calculations.",
+    "description": "Route planning, astrogation, orbital mechanics.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
     "id": "medicine",
     "name": "Medicine",
-    "description": "Treating injuries, crew health maintenance, emergency triage.",
+    "description": "Treating injuries, crew health, emergency triage.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
     "id": "research",
     "name": "Research",
-    "description": "R&D, experimentation, technology development.",
+    "description": "Experimentation, technology development.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
     "id": "materials_science",
     "name": "Materials Science",
-    "description": "Metallurgy, chemistry, material properties and applications.",
+    "description": "Material properties, alloy composition, chemical analysis.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
-    "id": "negotiation",
-    "name": "Negotiation",
-    "description": "Trade deals, contract terms, price haggling.",
+    "id": "blat",
+    "name": "Blat",
+    "description": "Connections, favors, bribes, knowing the right people.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
     "id": "leadership",
     "name": "Leadership",
-    "description": "Crew coordination, morale management, operational efficiency.",
+    "description": "Crew coordination, morale management, shift scheduling.",
     "xp_base": 100,
     "xp_growth": 1.5
   },
   {
     "id": "construction",
     "name": "Construction",
-    "description": "Station assembly, ship building, mining rig construction, structural work.",
+    "description": "Station assembly, structural work, hull fabrication.",
+    "xp_base": 100,
+    "xp_growth": 1.5
+  },
+  {
+    "id": "bureaucracy",
+    "name": "Bureaucracy",
+    "description": "Permits, quota reports, mining rights applications, contract bids, regulatory compliance.",
     "xp_base": 100,
     "xp_growth": 1.5
   }
