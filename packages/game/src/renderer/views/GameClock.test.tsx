@@ -11,10 +11,10 @@ describe('Game clock', () => {
     );
   });
 
-  it('advances to the next day when clicking Next Day', async () => {
+  it('advances to the next day when clicking Advance Day', async () => {
     await GameClockWrapper.mount();
 
-    await GameClockWrapper.nextDay.click();
+    await GameClockWrapper.advanceDay.click();
 
     expect(GameClockWrapper.topBarDate).toHaveTextContent(
       '2nd of Yanvar, 2022',
@@ -29,7 +29,7 @@ describe('Game clock', () => {
       '30th of Yanvar, 2022',
     );
 
-    await GameClockWrapper.nextDay.click();
+    await GameClockWrapper.advanceDay.click();
 
     expect(GameClockWrapper.topBarDate).toHaveTextContent(
       '1st of Fevral, 2022',
@@ -44,7 +44,7 @@ describe('Game clock', () => {
       '30th of Dekabr, 2022',
     );
 
-    await GameClockWrapper.nextDay.click();
+    await GameClockWrapper.advanceDay.click();
 
     expect(GameClockWrapper.topBarDate).toHaveTextContent(
       '1st of Yanvar, 2023',

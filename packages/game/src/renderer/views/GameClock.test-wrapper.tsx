@@ -1,6 +1,6 @@
 import { QueryClient } from '@tanstack/react-query';
 import { createMemoryHistory, createRouter } from '@tanstack/react-router';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import '@asteroid-miner/i18n';
@@ -13,6 +13,8 @@ const user = userEvent.setup();
 
 export const GameClockWrapper = {
   async mount() {
+    useGameClockStore.getState().reset();
+
     const history = createMemoryHistory({ initialEntries: ['/game/map'] });
     const router = createRouter({ routeTree, history });
     await router.load();
@@ -24,13 +26,15 @@ export const GameClockWrapper = {
     return screen.getByTestId('top-bar-date');
   },
 
-  nextDay: {
+  advanceDay: {
     async click() {
-      await user.click(screen.getByRole('button', { name: /next day/i }));
+      await user.click(screen.getByRole('button', { name: /advance day/i }));
     },
   },
 
   setTurn(turn: number) {
-    useGameClockStore.setState({ turn });
+    act(() => {
+      useGameClockStore.setState({ turn });
+    });
   },
 };

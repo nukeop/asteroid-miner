@@ -5,20 +5,18 @@ import { forwardRef, type ButtonHTMLAttributes } from 'react';
 import { cn } from '../../utils';
 
 const buttonVariants = cva(
-  'border-border inline-flex cursor-pointer items-center justify-center gap-2 border font-mono text-sm tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex cursor-pointer items-center justify-center gap-2 font-mono text-sm tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        primary:
-          'bg-primary/20 text-primary hover:bg-primary/30 hover:border-primary-hover shadow-sm',
+        primary: 'bg-amber-text text-amber-deep hover:bg-amber-bright',
         secondary:
-          'bg-accent/20 text-accent hover:bg-accent/30 hover:border-accent-hover shadow-sm',
-        ghost:
-          'text-foreground-muted hover:text-foreground hover:bg-surface border-transparent bg-transparent',
+          'border-amber-dim bg-amber-screen text-amber-text hover:bg-amber-dim/30 hover:border-amber-text border',
+        ghost: 'text-amber-dim hover:text-amber-text hover:bg-amber-screen',
       },
       size: {
-        sm: 'h-7 rounded-sm px-3 text-xs',
-        md: 'h-9 rounded-md px-4 text-sm',
+        sm: 'h-7 px-3 text-xs',
+        md: 'h-9 px-4 text-sm',
       },
     },
     defaultVariants: {

@@ -12,13 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PreferencesRouteImport } from './routes/preferences'
 import { Route as GameRouteImport } from './routes/game'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as GameRivalsRouteImport } from './routes/game/rivals'
-import { Route as GameMissionsRouteImport } from './routes/game/missions'
-import { Route as GameMarketRouteImport } from './routes/game/market'
 import { Route as GameMapRouteImport } from './routes/game/map'
-import { Route as GameHiringRouteImport } from './routes/game/hiring'
-import { Route as GameDataRouteImport } from './routes/game/data'
-import { Route as GameCompanyRouteImport } from './routes/game/company'
 
 const PreferencesRoute = PreferencesRouteImport.update({
   id: '/preferences',
@@ -35,39 +29,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GameRivalsRoute = GameRivalsRouteImport.update({
-  id: '/rivals',
-  path: '/rivals',
-  getParentRoute: () => GameRoute,
-} as any)
-const GameMissionsRoute = GameMissionsRouteImport.update({
-  id: '/missions',
-  path: '/missions',
-  getParentRoute: () => GameRoute,
-} as any)
-const GameMarketRoute = GameMarketRouteImport.update({
-  id: '/market',
-  path: '/market',
-  getParentRoute: () => GameRoute,
-} as any)
 const GameMapRoute = GameMapRouteImport.update({
   id: '/map',
   path: '/map',
-  getParentRoute: () => GameRoute,
-} as any)
-const GameHiringRoute = GameHiringRouteImport.update({
-  id: '/hiring',
-  path: '/hiring',
-  getParentRoute: () => GameRoute,
-} as any)
-const GameDataRoute = GameDataRouteImport.update({
-  id: '/data',
-  path: '/data',
-  getParentRoute: () => GameRoute,
-} as any)
-const GameCompanyRoute = GameCompanyRouteImport.update({
-  id: '/company',
-  path: '/company',
   getParentRoute: () => GameRoute,
 } as any)
 
@@ -75,76 +39,27 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
-  '/game/company': typeof GameCompanyRoute
-  '/game/data': typeof GameDataRoute
-  '/game/hiring': typeof GameHiringRoute
   '/game/map': typeof GameMapRoute
-  '/game/market': typeof GameMarketRoute
-  '/game/missions': typeof GameMissionsRoute
-  '/game/rivals': typeof GameRivalsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
-  '/game/company': typeof GameCompanyRoute
-  '/game/data': typeof GameDataRoute
-  '/game/hiring': typeof GameHiringRoute
   '/game/map': typeof GameMapRoute
-  '/game/market': typeof GameMarketRoute
-  '/game/missions': typeof GameMissionsRoute
-  '/game/rivals': typeof GameRivalsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
-  '/game/company': typeof GameCompanyRoute
-  '/game/data': typeof GameDataRoute
-  '/game/hiring': typeof GameHiringRoute
   '/game/map': typeof GameMapRoute
-  '/game/market': typeof GameMarketRoute
-  '/game/missions': typeof GameMissionsRoute
-  '/game/rivals': typeof GameRivalsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/game'
-    | '/preferences'
-    | '/game/company'
-    | '/game/data'
-    | '/game/hiring'
-    | '/game/map'
-    | '/game/market'
-    | '/game/missions'
-    | '/game/rivals'
+  fullPaths: '/' | '/game' | '/preferences' | '/game/map'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/game'
-    | '/preferences'
-    | '/game/company'
-    | '/game/data'
-    | '/game/hiring'
-    | '/game/map'
-    | '/game/market'
-    | '/game/missions'
-    | '/game/rivals'
-  id:
-    | '__root__'
-    | '/'
-    | '/game'
-    | '/preferences'
-    | '/game/company'
-    | '/game/data'
-    | '/game/hiring'
-    | '/game/map'
-    | '/game/market'
-    | '/game/missions'
-    | '/game/rivals'
+  to: '/' | '/game' | '/preferences' | '/game/map'
+  id: '__root__' | '/' | '/game' | '/preferences' | '/game/map'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -176,27 +91,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/game/rivals': {
-      id: '/game/rivals'
-      path: '/rivals'
-      fullPath: '/game/rivals'
-      preLoaderRoute: typeof GameRivalsRouteImport
-      parentRoute: typeof GameRoute
-    }
-    '/game/missions': {
-      id: '/game/missions'
-      path: '/missions'
-      fullPath: '/game/missions'
-      preLoaderRoute: typeof GameMissionsRouteImport
-      parentRoute: typeof GameRoute
-    }
-    '/game/market': {
-      id: '/game/market'
-      path: '/market'
-      fullPath: '/game/market'
-      preLoaderRoute: typeof GameMarketRouteImport
-      parentRoute: typeof GameRoute
-    }
     '/game/map': {
       id: '/game/map'
       path: '/map'
@@ -204,48 +98,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GameMapRouteImport
       parentRoute: typeof GameRoute
     }
-    '/game/hiring': {
-      id: '/game/hiring'
-      path: '/hiring'
-      fullPath: '/game/hiring'
-      preLoaderRoute: typeof GameHiringRouteImport
-      parentRoute: typeof GameRoute
-    }
-    '/game/data': {
-      id: '/game/data'
-      path: '/data'
-      fullPath: '/game/data'
-      preLoaderRoute: typeof GameDataRouteImport
-      parentRoute: typeof GameRoute
-    }
-    '/game/company': {
-      id: '/game/company'
-      path: '/company'
-      fullPath: '/game/company'
-      preLoaderRoute: typeof GameCompanyRouteImport
-      parentRoute: typeof GameRoute
-    }
   }
 }
 
 interface GameRouteChildren {
-  GameCompanyRoute: typeof GameCompanyRoute
-  GameDataRoute: typeof GameDataRoute
-  GameHiringRoute: typeof GameHiringRoute
   GameMapRoute: typeof GameMapRoute
-  GameMarketRoute: typeof GameMarketRoute
-  GameMissionsRoute: typeof GameMissionsRoute
-  GameRivalsRoute: typeof GameRivalsRoute
 }
 
 const GameRouteChildren: GameRouteChildren = {
-  GameCompanyRoute: GameCompanyRoute,
-  GameDataRoute: GameDataRoute,
-  GameHiringRoute: GameHiringRoute,
   GameMapRoute: GameMapRoute,
-  GameMarketRoute: GameMarketRoute,
-  GameMissionsRoute: GameMissionsRoute,
-  GameRivalsRoute: GameRivalsRoute,
 }
 
 const GameRouteWithChildren = GameRoute._addFileChildren(GameRouteChildren)

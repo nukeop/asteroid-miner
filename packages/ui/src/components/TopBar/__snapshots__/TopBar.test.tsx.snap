@@ -2,22 +2,55 @@
 
 exports[`TopBar > (Snapshot) matches snapshot 1`] = `
 <header
-  class="border-amber-dim bg-amber-screen flex h-10 items-center border-b px-4"
+  class="border-amber-dim bg-amber-screen flex h-10 items-center border-b pl-4"
 >
   <span
-    class="crt-glow-amber font-heading text-amber-bright text-xs tracking-widest uppercase"
+    class="font-heading text-amber-text w-48 text-xs tracking-widest uppercase"
   >
     Kuiper Industrial
   </span>
-  <span
-    class="text-amber-dim flex-1 text-center text-xs tracking-wide"
+  <div
+    class="flex flex-1 items-center justify-center gap-3"
   >
-    Day 47
-  </span>
-  <span
-    class="crt-glow-amber text-amber-text text-sm tracking-wide"
-  >
-    12,450 CR
-  </span>
+    <span
+      class="text-amber-text text-sm tracking-wide"
+    >
+      12,450 CR
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-russian-ruble ml-1 inline"
+        fill="none"
+        height="12"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="12"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6 11h8a4 4 0 0 0 0-8H9v18"
+        />
+        <path
+          d="M6 15h8"
+        />
+      </svg>
+    </span>
+    <span
+      class="text-amber-dim"
+    >
+      |
+    </span>
+    <span
+      class="text-amber-text text-sm tracking-wide"
+      data-testid="top-bar-date"
+    >
+      Day 47
+    </span>
+  </div>
+  <button
+    class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright [text-shadow:none] px-4 h-full w-48 rounded-none text-xs"
+  />
 </header>
 `;

@@ -13,8 +13,8 @@
     "dayOrdinal_ordinal_two": "{{count}}nd",
     "dayOrdinal_ordinal_few": "{{count}}rd",
     "dayOrdinal_ordinal_other": "{{count}}th",
-    "nextDay": "Next Day",
-    "credits": "{{amount}} CR",
+    "advanceDay": "Advance Day",
+    "credits": "{{amount}}",
     "months": {
       "1": "Yanvar",
       "2": "Fevral",

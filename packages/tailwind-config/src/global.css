@@ -42,7 +42,7 @@
 
 @layer base {
   body {
-    @apply bg-amber-deep text-amber-text font-sans;
+    @apply bg-amber-deep text-amber-text crt-glow-amber font-sans;
     cursor: default;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

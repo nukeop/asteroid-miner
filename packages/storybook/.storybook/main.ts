@@ -7,6 +7,9 @@ const config: StorybookConfig = {
   docs: {
     defaultName: 'Docs',
   },
+  features: {
+    sidebarOnboardingChecklist: false,
+  },
   core: {
     disableTelemetry: true,
   },
