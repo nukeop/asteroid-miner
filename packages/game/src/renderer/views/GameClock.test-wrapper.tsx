@@ -15,6 +15,7 @@ export const GameClockWrapper = {
   async mount() {
     const history = createMemoryHistory({ initialEntries: ['/game/map'] });
     const router = createRouter({ routeTree, history });
+    await router.load();
 
     render(<App routerProp={router} queryClientProp={new QueryClient()} />);
   },

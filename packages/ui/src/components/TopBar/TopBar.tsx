@@ -29,7 +29,10 @@ export const TopBar: FC<TopBarProps> = ({
       {companyName}
     </span>
 
-    <span className="text-amber-dim flex-1 text-center text-xs tracking-wide">
+    <span
+      data-testid="top-bar-date"
+      className="text-amber-dim flex-1 text-center text-xs tracking-wide"
+    >
       {labels.day}
     </span>
 
