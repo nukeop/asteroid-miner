@@ -85,6 +85,9 @@ importers:
       '@asteroid-miner/i18n':
         specifier: workspace:^
         version: link:../i18n
+      '@asteroid-miner/mod-sdk':
+        specifier: workspace:^
+        version: link:../mod-sdk
       '@asteroid-miner/tailwind-config':
         specifier: workspace:^
         version: link:../tailwind-config
