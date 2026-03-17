@@ -1,5 +1,5 @@
-import type { GameStateHost } from './hosts/GameStateHost';
+import type { GameClockHost } from './hosts/GameClockHost';
 
 export interface ModAPI {
-  gameState: GameStateHost;
+  gameClock: GameClockHost;
 }
