@@ -11,22 +11,14 @@ const tabs: TabDefinition[] = [
   { id: 'company', label: 'Company', shortcut: '2', to: '/company' },
   { id: 'market', label: 'Market', shortcut: '3', to: '/market' },
   { id: 'missions', label: 'Missions', shortcut: '4', to: '/missions' },
-  { id: 'hiring', label: 'Hiring', shortcut: '5', to: '/hiring' },
-  { id: 'rivals', label: 'Rivals', shortcut: '6', to: '/rivals' },
 ];
 
 const tabRoutes = tabs.map((t) => t.to);
 
-const defaultProps = {
-  companyName: 'Kuiper Industrial',
-  topBarLabels: { day: 'Day 47', credits: '12,450 CR' },
-  tabs,
-};
-
 describe('GameShell', () => {
   it('navigates when clicking a tab', async () => {
     const { router } = await renderWithRouter(
-      <GameShell {...defaultProps}>
+      <GameShell topBar={<span>Top bar content</span>} tabs={tabs}>
         <div>page content</div>
       </GameShell>,
       { initialLocation: '/map', routes: tabRoutes },
@@ -38,7 +30,7 @@ describe('GameShell', () => {
 
   it('renders children in the main area', async () => {
     await renderWithRouter(
-      <GameShell {...defaultProps}>
+      <GameShell topBar={<span>Top bar content</span>} tabs={tabs}>
         <div>Star chart goes here</div>
       </GameShell>,
       { initialLocation: '/map', routes: tabRoutes },
@@ -49,7 +41,7 @@ describe('GameShell', () => {
 
   it('(Snapshot) renders with default props', async () => {
     const { container } = await renderWithRouter(
-      <GameShell {...defaultProps}>
+      <GameShell topBar={<span>Top bar content</span>} tabs={tabs}>
         <div>page content</div>
       </GameShell>,
       { initialLocation: '/map', routes: tabRoutes },

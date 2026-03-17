@@ -4,7 +4,7 @@ exports[`Button > (Snapshot) renders all variants 1`] = `
 <div>
   <div>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright [text-shadow:none] h-9 px-4 text-sm"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-9 px-4 text-sm"
     >
       Primary
     </button>
@@ -19,12 +19,12 @@ exports[`Button > (Snapshot) renders all variants 1`] = `
       Ghost
     </button>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright [text-shadow:none] h-7 px-3 text-xs"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-7 px-3 text-xs"
     >
       Small
     </button>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright [text-shadow:none] h-9 px-4 text-sm"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-9 px-4 text-sm"
       disabled=""
     >
       <svg
@@ -47,7 +47,7 @@ exports[`Button > (Snapshot) renders all variants 1`] = `
       Loading
     </button>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright [text-shadow:none] h-9 px-4 text-sm"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-9 px-4 text-sm"
       disabled=""
     >
       Disabled

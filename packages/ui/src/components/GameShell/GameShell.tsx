@@ -3,20 +3,16 @@ import { type ComponentProps, type FC, type ReactNode } from 'react';
 import { cn } from '../../utils';
 import { TabBar } from '../TabBar/TabBar';
 import { type TabDefinition } from '../TabBar/types';
-import { TopBar, type TopBarLabels } from '../TopBar/TopBar';
+import { TopBar } from '../TopBar/TopBar';
 
 export type GameShellProps = {
-  companyName: string;
-  topBarLabels: TopBarLabels;
-  onAdvanceDay: () => void;
+  topBar?: ReactNode;
   tabs?: TabDefinition[];
   children: ReactNode;
 } & Omit<ComponentProps<'div'>, 'children'>;
 
 export const GameShell: FC<GameShellProps> = ({
-  companyName,
-  topBarLabels,
-  onAdvanceDay,
+  topBar,
   tabs,
   children,
   className,
@@ -30,11 +26,7 @@ export const GameShell: FC<GameShellProps> = ({
     {...props}
   >
     <div className="relative z-3 flex flex-col">
-      <TopBar
-        companyName={companyName}
-        labels={topBarLabels}
-        onAdvanceDay={onAdvanceDay}
-      />
+      <TopBar>{topBar}</TopBar>
       {tabs && <TabBar tabs={tabs} />}
     </div>
 
