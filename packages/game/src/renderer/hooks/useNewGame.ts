@@ -1,17 +1,15 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
+import { useCallback } from 'react';
 
-import { dataPackQueryOptions } from '../stores';
+import { useGameClockStore } from '../stores/useGameClockStore';
 
 export function useNewGame() {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  return useMutation({
-    mutationFn: async () => {
-      const basePath = await window.electronAPI.getBaseDataPath();
-      await queryClient.fetchQuery(dataPackQueryOptions(basePath));
-    },
-    onSuccess: () => navigate({ to: '/game/map' }),
-  });
+  const startNewGame = useCallback(() => {
+    useGameClockStore.getState().reset();
+    navigate({ to: '/game/map' });
+  }, [navigate]);
+
+  return { startNewGame };
 }
