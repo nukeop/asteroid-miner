@@ -1,119 +1,157 @@
+---
+description: How game systems expose functionality to mods.
+---
+
 # Host pattern
 
 How game systems expose functionality to mods.
 
 ## Modding SDK layers
 
-Hosts are the main way the game exposes functionality to mods. Each host represents a game system and provides methods to read and mutate that system's state.
+Every game system the mod SDK supports follows the same three-layer structure:
 
-**mod-sdk** defines host types and the `ModAPI` interface.
+1. **Host type** - the contract (mod-sdk, no implementation)
+2. **API class** - what mods actually call (mod-sdk, wraps the host)
+3. **Host implementation** - bridges the API to game internals (game package)
 
-**game** implements each host as a factory function that delegates to Zustand stores. `createModAPI()` assembles all hosts into a `ModAPI` object. A mod receives this object in its `onLoad`/`onUnload` hooks.
+Mods call methods on an API class (e.g. `api.gameClock.getTurn()`), which holds a private reference to the host and delegates to it. Mods never touch a host directly.
 
-## Example host: GameClock
+## The three layers
 
-| File                                                | Purpose                                           |
-| --------------------------------------------------- | ------------------------------------------------- |
-| `packages/mod-sdk/src/hosts/GameClockHost.ts`       | Type definition                                   |
-| `packages/mod-sdk/src/ModAPI.ts`                    | `gameClock: GameClockHost`                        |
-| `packages/game/src/renderer/hosts/gameClockHost.ts` | Implementation (delegates to `useGameClockStore`) |
-| `packages/game/src/renderer/hosts/createModAPI.ts`  | Assembles all hosts into a `ModAPI`               |
+### 1. Host type (`packages/mod-sdk/src/hosts/`)
 
-The host is a plain object. Each method calls `useGameClockStore.getState()` to read or mutate the store. `subscribe` wraps Zustand's `.subscribe()`.
+A TypeScript `type` with no implementation. Defines what the game must provide for a domain.
 
-## Adding a new host
-
-Example: adding a `CrewHost`.
-
-### 1. Define the type in mod-sdk
-
-Create `packages/mod-sdk/src/hosts/CrewHost.ts`:
-
-```ts
-export type CrewHost = {
-  getCrewMembers(): CrewMember[];
-  hireCrewMember(id: string): void;
-  subscribe(listener: (crew: CrewMember[]) => void): () => void;
+```typescript
+// hosts/GameClockHost.ts
+export type GameClockHost = {
+  getTurn(): number;
+  advanceDay(): void;
+  subscribe(listener: (turn: number) => void): () => void;
 };
 ```
 
-### 2. Add it to ModAPI
+### 2. API class (`packages/mod-sdk/src/api/`)
 
-In `packages/mod-sdk/src/ModAPI.ts`:
+The surface mods interact with. Holds an optional reference to the host and guards every call with `#withHost`, which throws if the host isn't present.
 
-```ts
-import type { CrewHost } from './hosts/CrewHost';
-import type { GameClockHost } from './hosts/GameClockHost';
+```typescript
+// api/GameClockAPI.ts
+export class GameClockAPI {
+  #host?: GameClockHost;
 
-export interface ModAPI {
-  GameClock: GameClockHost;
-  Crew: CrewHost;
+  constructor(host?: GameClockHost) {
+    this.#host = host;
+  }
+
+  #withHost<T>(fn: (host: GameClockHost) => T): T {
+    if (!this.#host) {
+      throw new Error('GameClock host not available');
+    }
+    return fn(this.#host);
+  }
+
+  getTurn() {
+    return this.#withHost((h) => h.getTurn());
+  }
 }
 ```
 
-### 3. Export it from the barrel
+All API classes are assembled into `ModAPI` in `packages/mod-sdk/src/ModAPI.ts`, which is what mods receive as their `api` object.
 
-In `packages/mod-sdk/src/index.ts`:
+### 3. Host implementation (`packages/game/src/renderer/hosts/`)
 
-```ts
-export type { CrewHost } from './hosts/CrewHost';
+Lives in the game package. Implements the host interface and bridges it to whatever backs the domain - a Zustand store, a provider registry, an Electron API, etc.
+
+```typescript
+// hosts/gameClockHost.ts
+import type { GameClockHost } from '@asteroid-miner/mod-sdk';
+
+import { useGameClockStore } from '../stores/useGameClockStore';
+
+export const createGameClockHost = (): GameClockHost => ({
+  getTurn: () => useGameClockStore.getState().turn,
+  advanceDay: () => useGameClockStore.getState().advanceDay(),
+  subscribe: (listener) =>
+    useGameClockStore.subscribe((state) => listener(state.turn)),
+});
+
+export const gameClockHost = createGameClockHost();
 ```
 
-### 4. Implement the host in the game package
+The singleton is passed into `ModAPI` by `createModAPI` (`packages/game/src/renderer/hosts/createModAPI.ts`) when a mod loads.
 
-Create `packages/game/src/renderer/hosts/crewHost.ts`:
+## Adding a new domain
 
-```ts
+Example: adding a `CrewHost`.
+
+### SDK side
+
+**1.** Create `packages/mod-sdk/src/hosts/CrewHost.ts`:
+
+```typescript
+export type CrewHost = {
+  getMembers(): CrewMember[];
+  hire(id: string): void;
+  subscribe(listener: (members: CrewMember[]) => void): () => void;
+};
+```
+
+**2.** Create `packages/mod-sdk/src/api/CrewAPI.ts` following the `GameClockAPI` pattern exactly.
+
+**3.** Add to `ModAPI` in `packages/mod-sdk/src/ModAPI.ts`:
+
+```typescript
+import { CrewAPI } from './api/CrewAPI';
+import { GameClockAPI } from './api/GameClockAPI';
+import type { CrewHost } from './hosts/CrewHost';
+
+export class ModAPI {
+  readonly gameClock: GameClockAPI;
+  readonly crew: CrewAPI;
+
+  constructor(opts?: { gameClockHost?: GameClockHost; crewHost?: CrewHost }) {
+    this.gameClock = new GameClockAPI(opts?.gameClockHost);
+    this.crew = new CrewAPI(opts?.crewHost);
+  }
+}
+```
+
+**4.** Export from `packages/mod-sdk/src/index.ts`:
+
+```typescript
+export type { CrewHost } from './hosts/CrewHost';
+export { CrewAPI } from './api/CrewAPI';
+```
+
+### Game side
+
+**5.** Create `packages/game/src/renderer/hosts/crewHost.ts`:
+
+```typescript
 import type { CrewHost } from '@asteroid-miner/mod-sdk';
 
 import { useCrewStore } from '../stores/useCrewStore';
 
 export const createCrewHost = (): CrewHost => ({
-  getCrewMembers: () => useCrewStore.getState().members,
-  hireCrewMember: (id) => useCrewStore.getState().hire(id),
+  getMembers: () => useCrewStore.getState().members,
+  hire: (id) => useCrewStore.getState().hire(id),
   subscribe: (listener) =>
     useCrewStore.subscribe((state) => listener(state.members)),
 });
+
+export const crewHost = createCrewHost();
 ```
 
-### 5. Connect it to createModAPI
+**6.** Wire into `createModAPI`:
 
-In `packages/game/src/renderer/hosts/createModAPI.ts`:
+```typescript
+import { crewHost } from './crewHost';
+import { gameClockHost } from './gameClockHost';
 
-```ts
-import { createCrewHost } from './crewHost';
-import { createGameClockHost } from './gameClockHost';
-
-export const createModAPI = (): ModAPI => ({
-  GameClock: createGameClockHost(),
-  Crew: createCrewHost(),
-});
+export const createModAPI = () =>
+  new ModAPI({
+    gameClockHost,
+    crewHost,
+  });
 ```
-
-TypeScript enforces completeness: if `ModAPI` lists a host and `createModAPI` doesn't provide it, the build fails.
-
-## How mods receive the API
-
-A mod implements the `Mod` interface from the SDK:
-
-```ts
-const myMod: Mod = {
-  manifest: {
-    name: 'my-mod',
-    version: '1.0.0',
-    description: '...',
-    author: '...',
-  },
-  onLoad(api) {
-    const turn = api.gameClock.getTurn();
-    api.gameClock.subscribe((turn) => {
-      /* react to day changes */
-    });
-  },
-  onUnload(api) {
-    /* cleanup */
-  },
-};
-```
-
-The game calls `createModAPI()` once per mod and passes the result to `onLoad`. The mod loader that does this doesn't exist yet.

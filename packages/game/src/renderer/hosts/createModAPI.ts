@@ -1,7 +1,8 @@
-import type { ModAPI } from '@asteroid-miner/mod-sdk';
+import { ModAPI } from '@asteroid-miner/mod-sdk';
 
-import { createGameClockHost } from './gameClockHost';
+import { gameClockHost } from './gameClockHost';
 
-export const createModAPI = (): ModAPI => ({
-  gameClock: createGameClockHost(),
-});
+export const createModAPI = () =>
+  new ModAPI({
+    gameClockHost,
+  });

@@ -10,3 +10,5 @@ export const createGameClockHost = (): GameClockHost => ({
   subscribe: (listener) =>
     useGameClockStore.subscribe((state) => listener(state.turn)),
 });
+
+export const gameClockHost = createGameClockHost();
