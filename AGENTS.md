@@ -112,9 +112,14 @@ CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
 ## Testing conventions
 
 - Test behavior, not implementation details.
+- E2E tests from the user's perspective. No unit tests on thin wrappers or pass-through layers.
+- Tests can only perform actions the user can perform: click buttons, type text, read what's on screen.
+- Setup methods are allowed to touch internals.
+- Assert on user-visible text, not on element contents.
 - Use snapshots (1-2 per component) to cover CSS/DOM structure. Don't assert on CSS classes.
 - Snapshot tests: prefix test title with `(Snapshot)`. Don't prefix non-snapshot tests.
 - Consolidate related assertions into fewer tests.
+- Test wrappers live next to the view they test: `MyView.test-wrapper.tsx`.
 
 ## i18n
 
