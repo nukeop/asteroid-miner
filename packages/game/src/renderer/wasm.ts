@@ -1,4 +1,5 @@
-import init, { load_data_pack } from '../../../simulation/pkg';
+import init, { load_data_pack } from '@wasm';
+
 import type { Definitions } from './stores/useDefinitionsStore';
 
 let initialized = false;
