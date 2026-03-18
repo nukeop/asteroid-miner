@@ -178,12 +178,40 @@ pub fn load_careers(json: &str) -> Result<Vec<CareerDef>, DataPackError> {
     Ok(serde_json::from_str(json)?)
 }
 
+pub fn load_tags(json: &str) -> Result<Vec<TagDef>, DataPackError> {
+    Ok(serde_json::from_str(json)?)
+}
+
+pub fn load_resources(json: &str) -> Result<Vec<ResourceDef>, DataPackError> {
+    Ok(serde_json::from_str(json)?)
+}
+
+pub fn load_formations(json: &str) -> Result<Vec<FormationDef>, DataPackError> {
+    let formations: Vec<FormationDef> = serde_json::from_str(json)?;
+    for f in &formations {
+        f.validate().map_err(DataPackError::InvalidManifest)?;
+    }
+    Ok(formations)
+}
+
+pub fn load_asteroid_types(json: &str) -> Result<Vec<AsteroidTypeDef>, DataPackError> {
+    let types: Vec<AsteroidTypeDef> = serde_json::from_str(json)?;
+    for t in &types {
+        t.validate().map_err(DataPackError::InvalidManifest)?;
+    }
+    Ok(types)
+}
+
 pub fn load_into_definitions(
     defs: &mut Definitions,
     skills: Vec<SkillDef>,
     traits: Vec<TraitDef>,
     origins: Vec<OriginDef>,
     careers: Vec<CareerDef>,
+    tags: Vec<TagDef>,
+    resources: Vec<ResourceDef>,
+    formations: Vec<FormationDef>,
+    asteroid_types: Vec<AsteroidTypeDef>,
 ) {
     for skill in skills {
         let key = skill.id.clone();
@@ -200,5 +228,21 @@ pub fn load_into_definitions(
     for career in careers {
         let key = career.id.clone();
         defs.careers.register(key, career);
+    }
+    for tag in tags {
+        let key = tag.id.clone();
+        defs.tags.register(key, tag);
+    }
+    for resource in resources {
+        let key = resource.id.clone();
+        defs.resources.register(key, resource);
+    }
+    for formation in formations {
+        let key = formation.id.clone();
+        defs.formations.register(key, formation);
+    }
+    for asteroid_type in asteroid_types {
+        let key = asteroid_type.id.clone();
+        defs.asteroid_types.register(key, asteroid_type);
     }
 }

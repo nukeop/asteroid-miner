@@ -10,6 +10,10 @@ pub struct Definitions {
     pub traits: Registry<TraitId, TraitDef>,
     pub origins: Registry<OriginId, OriginDef>,
     pub careers: Registry<CareerId, CareerDef>,
+    pub tags: Registry<TagId, TagDef>,
+    pub resources: Registry<ResourceId, ResourceDef>,
+    pub formations: Registry<FormationId, FormationDef>,
+    pub asteroid_types: Registry<AsteroidTypeId, AsteroidTypeDef>,
 }
 
 impl Definitions {
@@ -19,6 +23,10 @@ impl Definitions {
             traits: Registry::new(),
             origins: Registry::new(),
             careers: Registry::new(),
+            tags: Registry::new(),
+            resources: Registry::new(),
+            formations: Registry::new(),
+            asteroid_types: Registry::new(),
         }
     }
 }

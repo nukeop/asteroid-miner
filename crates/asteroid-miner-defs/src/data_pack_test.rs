@@ -225,65 +225,152 @@ mod tests {
     fn load_into_definitions_populates_registries() {
         let mut defs = Definitions::new();
 
-        let skills = vec![SkillDef {
-            id: SkillId("mining".into()),
-            name_key: "skill.mining.name".into(),
-            description_key: "skill.mining.description".into(),
-            xp_base: 100,
-            xp_growth: 1.5,
-        }];
-        let traits = vec![TraitDef {
-            id: TraitId("tough".into()),
-            name_key: "trait.tough.name".into(),
-            description_key: "trait.tough.description".into(),
-            skill_modifiers: vec![],
-            custom_effects: vec![],
-        }];
-        let origins = vec![OriginDef {
-            id: OriginId("belter".into()),
-            name_key: "origin.belter.name".into(),
-            description_key: "origin.belter.description".into(),
-            skill_bonuses: vec![],
-        }];
-        let careers = vec![CareerDef {
-            id: CareerId("miner".into()),
-            name_key: "career.miner.name".into(),
-            description_key: "career.miner.description".into(),
-            skill_bonuses: vec![],
-        }];
-
-        load_into_definitions(&mut defs, skills, traits, origins, careers);
+        load_into_definitions(
+            &mut defs,
+            vec![SkillDef {
+                id: SkillId("mining".into()),
+                name_key: "skill.mining.name".into(),
+                description_key: "skill.mining.description".into(),
+                xp_base: 100,
+                xp_growth: 1.5,
+            }],
+            vec![TraitDef {
+                id: TraitId("tough".into()),
+                name_key: "trait.tough.name".into(),
+                description_key: "trait.tough.description".into(),
+                skill_modifiers: vec![],
+                custom_effects: vec![],
+            }],
+            vec![OriginDef {
+                id: OriginId("belter".into()),
+                name_key: "origin.belter.name".into(),
+                description_key: "origin.belter.description".into(),
+                skill_bonuses: vec![],
+            }],
+            vec![CareerDef {
+                id: CareerId("miner".into()),
+                name_key: "career.miner.name".into(),
+                description_key: "career.miner.description".into(),
+                skill_bonuses: vec![],
+            }],
+            vec![TagDef {
+                id: TagId("fuel".into()),
+                name_key: "tag.fuel.name".into(),
+            }],
+            vec![ResourceDef {
+                id: ResourceId("coal".into()),
+                name_key: "resource.coal.name".into(),
+                description_key: "resource.coal.description".into(),
+                tags: vec![TagId("fuel".into())],
+            }],
+            vec![FormationDef {
+                id: FormationId("coal_sandstone".into()),
+                name_key: "formation.coal_sandstone.name".into(),
+                description_key: "formation.coal_sandstone.description".into(),
+                matrix_resource: ResourceId("sandstone".into()),
+                embedded_resources: vec![EmbeddedResource {
+                    resource: ResourceId("coal".into()),
+                    probability: 1.0,
+                    min_grade: 0.02,
+                    max_grade: 0.10,
+                }],
+            }],
+            vec![AsteroidTypeDef {
+                id: AsteroidTypeId("c_type".into()),
+                name_key: "asteroid_type.c_type.name".into(),
+                description_key: "asteroid_type.c_type.description".into(),
+                mass_classes: vec![MassClass {
+                    id: "s".into(),
+                    name_key: "mass_class.s.name".into(),
+                    min_mass: 5000.0,
+                    max_mass: 50000.0,
+                    max_sites: 1,
+                }],
+                formations: vec![WeightedFormation {
+                    formation: FormationId("coal_sandstone".into()),
+                    weight: 5.0,
+                    depth_bonus: 0.0,
+                }],
+            }],
+        );
 
         assert_eq!(defs.skills.len(), 1);
         assert_eq!(defs.traits.len(), 1);
         assert_eq!(defs.origins.len(), 1);
         assert_eq!(defs.careers.len(), 1);
+        assert_eq!(defs.tags.len(), 1);
+        assert_eq!(defs.resources.len(), 1);
+        assert_eq!(defs.formations.len(), 1);
+        assert_eq!(defs.asteroid_types.len(), 1);
 
-        let skill = defs.skills.get(&SkillId("mining".into())).unwrap();
-        assert_eq!(skill.name_key, "skill.mining.name");
+        assert_eq!(
+            defs.skills.get(&SkillId("mining".into())).unwrap().name_key,
+            "skill.mining.name"
+        );
+        assert_eq!(
+            defs.tags.get(&TagId("fuel".into())).unwrap().name_key,
+            "tag.fuel.name"
+        );
+        assert_eq!(
+            defs.resources.get(&ResourceId("coal".into())).unwrap().tags[0],
+            TagId("fuel".into())
+        );
+        assert_eq!(
+            defs.formations
+                .get(&FormationId("coal_sandstone".into()))
+                .unwrap()
+                .matrix_resource,
+            ResourceId("sandstone".into())
+        );
+        assert_eq!(
+            defs.asteroid_types
+                .get(&AsteroidTypeId("c_type".into()))
+                .unwrap()
+                .mass_classes[0]
+                .max_sites,
+            1
+        );
     }
 
     #[test]
     fn load_overwrites_existing_definitions() {
         let mut defs = Definitions::new();
 
-        let first = vec![SkillDef {
-            id: SkillId("mining".into()),
-            name_key: "skill.mining.name".into(),
-            description_key: "skill.mining.description".into(),
-            xp_base: 100,
-            xp_growth: 1.5,
-        }];
-        load_into_definitions(&mut defs, first, vec![], vec![], vec![]);
+        load_into_definitions(
+            &mut defs,
+            vec![SkillDef {
+                id: SkillId("mining".into()),
+                name_key: "skill.mining.name".into(),
+                description_key: "skill.mining.description".into(),
+                xp_base: 100,
+                xp_growth: 1.5,
+            }],
+            vec![],
+            vec![],
+            vec![],
+            vec![],
+            vec![],
+            vec![],
+            vec![],
+        );
 
-        let second = vec![SkillDef {
-            id: SkillId("mining".into()),
-            name_key: "skill.mining.name.v2".into(),
-            description_key: "skill.mining.description.v2".into(),
-            xp_base: 200,
-            xp_growth: 1.8,
-        }];
-        load_into_definitions(&mut defs, second, vec![], vec![], vec![]);
+        load_into_definitions(
+            &mut defs,
+            vec![SkillDef {
+                id: SkillId("mining".into()),
+                name_key: "skill.mining.name.v2".into(),
+                description_key: "skill.mining.description.v2".into(),
+                xp_base: 200,
+                xp_growth: 1.8,
+            }],
+            vec![],
+            vec![],
+            vec![],
+            vec![],
+            vec![],
+            vec![],
+            vec![],
+        );
 
         assert_eq!(defs.skills.len(), 1);
         let skill = defs.skills.get(&SkillId("mining".into())).unwrap();
