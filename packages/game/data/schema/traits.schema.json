@@ -6,7 +6,7 @@
   "items": {
     "type": "object",
     "description": "A single trait definition.",
-    "required": ["id", "name", "description"],
+    "required": ["id", "name_key", "description_key"],
     "additionalProperties": false,
     "properties": {
       "id": {
@@ -15,14 +15,14 @@
         "pattern": "^[a-z][a-z0-9_]*$",
         "examples": ["steady_hand", "deep_sleeper", "born_pilot"]
       },
-      "name": {
+      "name_key": {
         "type": "string",
-        "description": "Display name shown on the pawn's trait list.",
+        "description": "i18n key for the display name shown on the pawn's trait list.",
         "minLength": 1
       },
-      "description": {
+      "description_key": {
         "type": "string",
-        "description": "Flavor text explaining what this trait does. Shown in tooltips."
+        "description": "i18n key for the flavor text explaining what this trait does. Shown in tooltips."
       },
       "skill_modifiers": {
         "type": "array",

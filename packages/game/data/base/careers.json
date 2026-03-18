@@ -1,8 +1,8 @@
 [
   {
     "id": "belt_miner",
-    "name": "Belt Miner",
-    "description": "Spent years cracking rock in the outer belts, running double shifts on aging drill rigs for outfits that barely kept the air filters clean.",
+    "name_key": "career.belt_miner.name",
+    "description_key": "career.belt_miner.description",
     "skill_bonuses": [
       { "id": "mining", "amount": 4 },
       { "id": "geology", "amount": 2 }
@@ -10,8 +10,8 @@
   },
   {
     "id": "military_cosmonaut",
-    "name": "Military Cosmonaut",
-    "description": "Flew patrol routes for the People's Space Fleet.",
+    "name_key": "career.military_cosmonaut.name",
+    "description_key": "career.military_cosmonaut.description",
     "skill_bonuses": [
       { "id": "cosmonautics", "amount": 4 },
       { "id": "navigation", "amount": 2 }
@@ -19,8 +19,8 @@
   },
   {
     "id": "planning_clerk",
-    "name": "Planning Clerk",
-    "description": "Worked the books for a regional planning office.",
+    "name_key": "career.planning_clerk.name",
+    "description_key": "career.planning_clerk.description",
     "skill_bonuses": [
       { "id": "bureaucracy", "amount": 3 },
       { "id": "cybernetics", "amount": 2 }
@@ -28,8 +28,8 @@
   },
   {
     "id": "dock_worker",
-    "name": "Dock Worker",
-    "description": "Loaded and unloaded cargo at orbital stations, welded hull plates between shifts, and learned how ships were put together by taking them apart.",
+    "name_key": "career.dock_worker.name",
+    "description_key": "career.dock_worker.description",
     "skill_bonuses": [
       { "id": "construction", "amount": 3 },
       { "id": "engineering", "amount": 2 }
@@ -37,8 +37,8 @@
   },
   {
     "id": "smuggler",
-    "name": "Smuggler",
-    "description": "Ran unlicensed freight through restricted lanes, staying one step ahead of state patrols.",
+    "name_key": "career.smuggler.name",
+    "description_key": "career.smuggler.description",
     "skill_bonuses": [
       { "id": "cosmonautics", "amount": 3 },
       { "id": "blat", "amount": 2 }
@@ -46,8 +46,8 @@
   },
   {
     "id": "field_medic",
-    "name": "Feldsher",
-    "description": "Patched up miners and rig workers at remote extraction sites.",
+    "name_key": "career.field_medic.name",
+    "description_key": "career.field_medic.description",
     "skill_bonuses": [
       { "id": "medicine", "amount": 4 },
       { "id": "leadership", "amount": 1 }
@@ -55,8 +55,8 @@
   },
   {
     "id": "research_assistant",
-    "name": "Laboratory Technician",
-    "description": "Ran assays and sample analysis for a state research institute, cataloguing mineral compositions from core samples that field crews hauled back by the crate.",
+    "name_key": "career.research_assistant.name",
+    "description_key": "career.research_assistant.description",
     "skill_bonuses": [
       { "id": "research", "amount": 3 },
       { "id": "materials_science", "amount": 2 }
@@ -64,8 +64,8 @@
   },
   {
     "id": "apparatchik",
-    "name": "Apparatchik",
-    "description": "Spent years in the state apparatus, pushing paper and building connections.",
+    "name_key": "career.apparatchik.name",
+    "description_key": "career.apparatchik.description",
     "skill_bonuses": [
       { "id": "blat", "amount": 4 },
       { "id": "bureaucracy", "amount": 2 }

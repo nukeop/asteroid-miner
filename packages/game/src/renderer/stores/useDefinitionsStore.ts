@@ -2,8 +2,8 @@ import { create } from 'zustand';
 
 type SkillDef = {
   id: string;
-  name: string;
-  description: string;
+  name_key: string;
+  description_key: string;
   xp_base: number;
   xp_growth: number;
 };
@@ -21,8 +21,8 @@ type CustomEffect = {
 
 type TraitDef = {
   id: string;
-  name: string;
-  description: string;
+  name_key: string;
+  description_key: string;
   skill_modifiers: SkillModifier[];
   custom_effects: CustomEffect[];
 };
@@ -34,15 +34,15 @@ type StartingBonus = {
 
 type OriginDef = {
   id: string;
-  name: string;
-  description: string;
+  name_key: string;
+  description_key: string;
   skill_bonuses: StartingBonus[];
 };
 
 type CareerDef = {
   id: string;
-  name: string;
-  description: string;
+  name_key: string;
+  description_key: string;
   skill_bonuses: StartingBonus[];
 };
 

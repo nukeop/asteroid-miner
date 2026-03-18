@@ -6,7 +6,7 @@
   "items": {
     "type": "object",
     "description": "A single origin definition.",
-    "required": ["id", "name", "description"],
+    "required": ["id", "name_key", "description_key"],
     "additionalProperties": false,
     "properties": {
       "id": {
@@ -15,14 +15,14 @@
         "pattern": "^[a-z][a-z0-9_]*$",
         "examples": ["belt_colony", "core_world", "frontier"]
       },
-      "name": {
+      "name_key": {
         "type": "string",
-        "description": "Display name shown during crew recruitment and on the pawn info screen.",
+        "description": "i18n key for the display name shown during crew recruitment and on the pawn info screen.",
         "minLength": 1
       },
-      "description": {
+      "description_key": {
         "type": "string",
-        "description": "Backstory text describing where this person grew up."
+        "description": "i18n key for the backstory text describing where this person grew up."
       },
       "skill_bonuses": {
         "type": "array",

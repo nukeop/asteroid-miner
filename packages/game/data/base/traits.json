@@ -1,8 +1,8 @@
 [
   {
     "id": "strongman",
-    "name": "Strongman",
-    "description": "Built like a KrAZ truck and twice as stubborn.",
+    "name_key": "trait.strongman.name",
+    "description_key": "trait.strongman.description",
     "skill_modifiers": [
       { "skill": "mining", "op": "Flat", "value": 2 },
       { "skill": "construction", "op": "Flat", "value": 1 }
@@ -10,14 +10,14 @@
   },
   {
     "id": "cocky",
-    "name": "Cocky",
-    "description": "Talks a big game, and sometimes that's half the job.",
+    "name_key": "trait.cocky.name",
+    "description_key": "trait.cocky.description",
     "skill_modifiers": [{ "skill": "blat", "op": "Flat", "value": 1 }]
   },
   {
     "id": "blue_collar",
-    "name": "Blue Collar",
-    "description": "Grew up with grease under the fingernails and rock dust in the lungs.",
+    "name_key": "trait.blue_collar.name",
+    "description_key": "trait.blue_collar.description",
     "custom_effects": [
       {
         "handler": "work_speed_bonus",
@@ -27,8 +27,8 @@
   },
   {
     "id": "bookworm",
-    "name": "Bookworm",
-    "description": "Reads technical manuals for fun on long hauls.",
+    "name_key": "trait.bookworm.name",
+    "description_key": "trait.bookworm.description",
     "skill_modifiers": [
       { "skill": "research", "op": "Flat", "value": 2 },
       { "skill": "materials_science", "op": "Flat", "value": 1 },
@@ -37,30 +37,30 @@
   },
   {
     "id": "natural_leader",
-    "name": "Natural Leader",
-    "description": "Crew shuts up and listens when this one talks.",
+    "name_key": "trait.natural_leader.name",
+    "description_key": "trait.natural_leader.description",
     "skill_modifiers": [{ "skill": "leadership", "op": "Flat", "value": 3 }]
   },
   {
     "id": "loner",
-    "name": "Loner",
-    "description": "Works best when everyone else is somewhere far away.",
+    "name_key": "trait.loner.name",
+    "description_key": "trait.loner.description",
     "custom_effects": [
       { "handler": "solo_skill_bonus", "params": { "bonus": 1 } }
     ]
   },
   {
     "id": "quick_learner",
-    "name": "Quick Learner",
-    "description": "Picks things up fast, forgets them just as quick if you're unlucky.",
+    "name_key": "trait.quick_learner.name",
+    "description_key": "trait.quick_learner.description",
     "custom_effects": [
       { "handler": "xp_gain_modifier", "params": { "factor": 1.3 } }
     ]
   },
   {
     "id": "veteran_cosmonaut",
-    "name": "Veteran Cosmonaut",
-    "description": "Three tours on the belt and still has all ten fingers.",
+    "name_key": "trait.veteran_cosmonaut.name",
+    "description_key": "trait.veteran_cosmonaut.description",
     "skill_modifiers": [
       { "skill": "cosmonautics", "op": "Flat", "value": 1 },
       { "skill": "navigation", "op": "Flat", "value": 1 }
@@ -68,8 +68,8 @@
   },
   {
     "id": "reckless",
-    "name": "Reckless",
-    "description": "Safety briefings go in one ear and out the airlock.",
+    "name_key": "trait.reckless.name",
+    "description_key": "trait.reckless.description",
     "custom_effects": [
       {
         "handler": "work_speed_bonus",
@@ -80,16 +80,16 @@
   },
   {
     "id": "penny_pincher",
-    "name": "Penny Pincher",
-    "description": "Counts every kopek twice and never buys a round.",
+    "name_key": "trait.penny_pincher.name",
+    "description_key": "trait.penny_pincher.description",
     "custom_effects": [
       { "handler": "salary_modifier", "params": { "factor": 0.85 } }
     ]
   },
   {
     "id": "party_member",
-    "name": "Party Member",
-    "description": "Card-carrying member of the Party.",
+    "name_key": "trait.party_member.name",
+    "description_key": "trait.party_member.description",
     "skill_modifiers": [
       { "skill": "bureaucracy", "op": "Flat", "value": 2 },
       { "skill": "blat", "op": "Flat", "value": 2 }

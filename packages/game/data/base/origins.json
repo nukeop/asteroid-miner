@@ -1,8 +1,8 @@
 [
   {
     "id": "core_world",
-    "name": "Central Station Kid",
-    "description": "Grew up in the stacked housing blocks of a major orbital station, where the heating worked most days. Spent more time behind terminals than under open sky.",
+    "name_key": "origin.core_world.name",
+    "description_key": "origin.core_world.description",
     "skill_bonuses": [
       { "id": "cybernetics", "amount": 2 },
       { "id": "blat", "amount": 1 }
@@ -10,8 +10,8 @@
   },
   {
     "id": "belt_colony",
-    "name": "Belt Colony Brat",
-    "description": "Raised on a hollowed-out rock somewhere in the main belt, where kids learned to patch suits before they learned to read. The colony ran on shift work and stubbornness.",
+    "name_key": "origin.belt_colony.name",
+    "description_key": "origin.belt_colony.description",
     "skill_bonuses": [
       { "id": "mining", "amount": 2 },
       { "id": "engineering", "amount": 1 }
@@ -19,8 +19,8 @@
   },
   {
     "id": "orbital_station",
-    "name": "Orbital Kombinat",
-    "description": "Born and raised on a spinning industrial kombinat that never stopped creaking.",
+    "name_key": "origin.orbital_station.name",
+    "description_key": "origin.orbital_station.description",
     "skill_bonuses": [
       { "id": "engineering", "amount": 2 },
       { "id": "navigation", "amount": 1 }
@@ -28,8 +28,8 @@
   },
   {
     "id": "frontier",
-    "name": "Frontier Outpost",
-    "description": "Grew up in a prefab settlement on a barely-surveyed rock.",
+    "name_key": "origin.frontier.name",
+    "description_key": "origin.frontier.description",
     "skill_bonuses": [
       { "id": "construction", "amount": 1 },
       { "id": "mining", "amount": 1 },
@@ -38,8 +38,8 @@
   },
   {
     "id": "transport_fleet",
-    "name": "Transport Fleet Child",
-    "description": "Spent childhood aboard a string of state cargo haulers running freight between stations.",
+    "name_key": "origin.transport_fleet.name",
+    "description_key": "origin.transport_fleet.description",
     "skill_bonuses": [
       { "id": "cosmonautics", "amount": 2 },
       { "id": "blat", "amount": 1 }
@@ -47,8 +47,8 @@
   },
   {
     "id": "research_outpost",
-    "name": "Research Outpost",
-    "description": "Raised at a remote research station staffed by a skeleton crew of tired scientists.",
+    "name_key": "origin.research_outpost.name",
+    "description_key": "origin.research_outpost.description",
     "skill_bonuses": [
       { "id": "research", "amount": 2 },
       { "id": "cybernetics", "amount": 1 }
