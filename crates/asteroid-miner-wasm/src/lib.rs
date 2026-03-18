@@ -40,8 +40,8 @@ mod tests {
     #[test]
     fn load_data_pack_parses_definitions_from_json() {
         let manifest = r#"{
-            "id": "test", "name": "Test", "version": "1.0.0",
-            "type": "base", "description": "test", "author": "test",
+            "id": "test", "name_key": "pack.test.name", "version": "1.0.0",
+            "type": "base", "description_key": "pack.test.description", "author": "test",
             "game_version": "0.1.0"
         }"#;
         let skills = r#"[{"id": "mining", "name_key": "skill.mining.name", "description_key": "skill.mining.description", "xp_base": 100, "xp_growth": 1.5}]"#;
@@ -113,8 +113,8 @@ mod tests {
     #[test]
     fn load_data_pack_returns_error_on_invalid_json() {
         let manifest = r#"{
-            "id": "test", "name": "Test", "version": "1.0.0",
-            "type": "base", "description": "test", "author": "test",
+            "id": "test", "name_key": "pack.test.name", "version": "1.0.0",
+            "type": "base", "description_key": "pack.test.description", "author": "test",
             "game_version": "0.1.0"
         }"#;
         let bad_skills = "not valid json [[[";

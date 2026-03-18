@@ -1,10 +1,10 @@
 {
   "$schema": "../schema/manifest.schema.json",
   "id": "base",
-  "name": "Asteroid Miner",
+  "name_key": "pack.base.name",
   "version": "0.1.0",
   "type": "base",
-  "description": "Base game data pack. Defines all core skills, traits, origins, and careers.",
+  "description_key": "pack.base.description",
   "author": "Asteroid Miner Team",
   "game_version": "0.1.0",
   "tags": [],

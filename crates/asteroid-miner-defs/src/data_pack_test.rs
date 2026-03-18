@@ -7,10 +7,10 @@ mod tests {
     fn manifest_json(overrides: &str) -> String {
         let base = r#"{
             "id": "test",
-            "name": "Test Pack",
+            "name_key": "pack.test.name",
             "version": "1.0.0",
             "type": "mod",
-            "description": "A test pack",
+            "description_key": "pack.test.description",
             "author": "tester",
             "game_version": "1.0.0"
         }"#;
@@ -29,12 +29,12 @@ mod tests {
         let manifest = parse_manifest(&json).unwrap();
 
         assert_eq!(manifest.id, "test");
-        assert_eq!(manifest.name, "Test Pack");
+        assert_eq!(manifest.name_key, "pack.test.name");
         assert_eq!(manifest.pack_type, PackType::Mod);
         assert_eq!(manifest.version, "1.0.0");
         assert_eq!(manifest.game_version, "1.0.0");
         assert_eq!(manifest.author, "tester");
-        assert_eq!(manifest.description, "A test pack");
+        assert_eq!(manifest.description_key, "pack.test.description");
         assert!(manifest.tags.is_empty());
         assert!(manifest.dependencies.is_empty());
     }
@@ -87,10 +87,10 @@ mod tests {
     fn parse_manifest_rejects_unknown_type() {
         let json = r#"{
             "id": "test",
-            "name": "Test",
+            "name_key": "pack.test.name",
             "version": "1.0.0",
             "type": "expansion",
-            "description": "test",
+            "description_key": "pack.test.description",
             "author": "test",
             "game_version": "1.0.0"
         }"#;

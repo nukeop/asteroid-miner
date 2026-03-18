@@ -11,11 +11,11 @@ pub struct Manifest {
     #[serde(rename = "$schema", default, skip_serializing)]
     pub schema: Option<String>,
     pub id: String,
-    pub name: String,
+    pub name_key: String,
     pub version: String,
     #[serde(rename = "type")]
     pub pack_type: PackType,
-    pub description: String,
+    pub description_key: String,
     pub author: String,
     pub game_version: String,
     #[serde(default)]
