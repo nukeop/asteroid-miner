@@ -1,0 +1,11 @@
+[package]
+name = "asteroid-miner-world"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+asteroid-miner-types = { path = "../asteroid-miner-types" }
+asteroid-miner-defs = { path = "../asteroid-miner-defs" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+slotmap = { workspace = true }

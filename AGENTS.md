@@ -123,11 +123,11 @@ CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
 
 ## i18n
 
-All UI strings go through `@asteroid-miner/i18n`. Never hardcode user-facing text.
+All UI strings go through `@asteroid-miner/i18n`. NEVER hardcode user-facing text.
 
 ## Strings
 
-All user-facing strings go through i18n, no hardcoded UI text.
+All user-facing strings go through i18n, NO hardcoded UI text.
 If a new component in the ui package needs labels and other kinds of localized text, it should accept a `labels` prop with the relevant strings. The prop should have its own type defined. Refer to `packages/ui/src/components/TopBar/TopBar.tsx` for an example.
 
 ## Electron architecture
