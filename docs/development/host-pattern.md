@@ -143,7 +143,7 @@ export const createCrewHost = (): CrewHost => ({
 export const crewHost = createCrewHost();
 ```
 
-**6.** Wire into `createModAPI`:
+**6.** Connect to `createModAPI`:
 
 ```typescript
 import { crewHost } from './crewHost';
