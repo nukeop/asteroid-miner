@@ -14,6 +14,14 @@ pub struct MassClass {
 pub struct WeightedFormation {
     pub formation: FormationId,
     pub weight: f32,
+    #[serde(default)]
+    pub depth_bonus: f32,
+}
+
+impl WeightedFormation {
+    pub fn effective_weight(&self, depth: u32) -> f32 {
+        (self.weight + self.depth_bonus * depth as f32).max(0.0)
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

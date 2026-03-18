@@ -7,8 +7,8 @@ mod tests {
     fn make_skill_def() -> SkillDef {
         SkillDef {
             id: SkillId("mining".into()),
-            name: "Mining".into(),
-            description: "Hit rocks, get ore".into(),
+            name_key: "skill.mining.name".into(),
+            description_key: "skill.mining.description".into(),
             xp_base: 100,
             xp_growth: 1.5,
         }

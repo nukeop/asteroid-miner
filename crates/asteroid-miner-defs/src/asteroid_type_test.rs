@@ -31,6 +31,7 @@ mod tests {
         WeightedFormation {
             formation: FormationId("coal_bearing_sandstone".into()),
             weight: 5.0,
+            depth_bonus: 0.0,
         }
     }
 
@@ -86,6 +87,7 @@ mod tests {
         let formation = WeightedFormation {
             formation: FormationId("bad".into()),
             weight: 0.0,
+            depth_bonus: 0.0,
         };
         let at = make_asteroid_type(vec![small_class()], vec![formation]);
         assert_eq!(
@@ -99,11 +101,49 @@ mod tests {
         let formation = WeightedFormation {
             formation: FormationId("bad".into()),
             weight: -1.0,
+            depth_bonus: 0.0,
         };
         let at = make_asteroid_type(vec![small_class()], vec![formation]);
         assert_eq!(
             at.validate().unwrap_err(),
             "Asteroid type 'test_type': formation 'bad' has weight -1 (must be positive)"
         );
+    }
+
+    #[test]
+    fn effective_weight_increases_with_depth() {
+        let wf = WeightedFormation {
+            formation: FormationId("rare_core".into()),
+            weight: 2.0,
+            depth_bonus: 3.0,
+        };
+        assert_eq!(wf.effective_weight(0), 2.0);
+        assert_eq!(wf.effective_weight(1), 5.0);
+        assert_eq!(wf.effective_weight(2), 8.0);
+        assert_eq!(wf.effective_weight(3), 11.0);
+    }
+
+    #[test]
+    fn effective_weight_decreases_with_depth() {
+        let wf = WeightedFormation {
+            formation: FormationId("surface_rock".into()),
+            weight: 8.0,
+            depth_bonus: -2.0,
+        };
+        assert_eq!(wf.effective_weight(0), 8.0);
+        assert_eq!(wf.effective_weight(1), 6.0);
+        assert_eq!(wf.effective_weight(3), 2.0);
+        assert_eq!(wf.effective_weight(4), 0.0);
+        assert_eq!(wf.effective_weight(5), 0.0);
+    }
+
+    #[test]
+    fn effective_weight_floors_at_zero() {
+        let wf = WeightedFormation {
+            formation: FormationId("test".into()),
+            weight: 1.0,
+            depth_bonus: -5.0,
+        };
+        assert_eq!(wf.effective_weight(1), 0.0);
     }
 }

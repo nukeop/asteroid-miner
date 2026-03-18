@@ -44,18 +44,18 @@ mod tests {
             "type": "base", "description": "test", "author": "test",
             "game_version": "0.1.0"
         }"#;
-        let skills = r#"[{"id": "mining", "name": "Mining", "description": "Dig rocks", "xp_base": 100, "xp_growth": 1.5}]"#;
+        let skills = r#"[{"id": "mining", "name_key": "skill.mining.name", "description_key": "skill.mining.description", "xp_base": 100, "xp_growth": 1.5}]"#;
         let traits = r#"[{
-            "id": "tough", "name": "Tough", "description": "Hard to kill",
+            "id": "tough", "name_key": "trait.tough.name", "description_key": "trait.tough.description",
             "skill_modifiers": [{"skill": "mining", "op": "Flat", "value": 5}],
             "custom_effects": [{"handler": "test_handler", "params": {"strength": 2}}]
         }]"#;
         let origins = r#"[{
-            "id": "belter", "name": "Belter", "description": "Born in the belt",
+            "id": "belter", "name_key": "origin.belter.name", "description_key": "origin.belter.description",
             "skill_bonuses": [{"id": "mining", "amount": 3}]
         }]"#;
         let careers = r#"[{
-            "id": "miner", "name": "Miner", "description": "Digs for a living",
+            "id": "miner", "name_key": "career.miner.name", "description_key": "career.miner.description",
             "skill_bonuses": [{"id": "mining", "amount": 2}]
         }]"#;
 
@@ -73,8 +73,8 @@ mod tests {
             .get(&SkillId("mining".into()))
             .expect("mining skill should exist");
         assert_eq!(skill.id.0, "mining");
-        assert_eq!(skill.name, "Mining");
-        assert_eq!(skill.description, "Dig rocks");
+        assert_eq!(skill.name_key, "skill.mining.name");
+        assert_eq!(skill.description_key, "skill.mining.description");
         assert_eq!(skill.xp_base, 100);
         assert_eq!(skill.xp_growth, 1.5);
 
@@ -83,8 +83,8 @@ mod tests {
             .get(&TraitId("tough".into()))
             .expect("tough trait should exist");
         assert_eq!(tr.id.0, "tough");
-        assert_eq!(tr.name, "Tough");
-        assert_eq!(tr.description, "Hard to kill");
+        assert_eq!(tr.name_key, "trait.tough.name");
+        assert_eq!(tr.description_key, "trait.tough.description");
         assert_eq!(tr.skill_modifiers[0].skill.0, "mining");
         assert_eq!(tr.skill_modifiers[0].value, 5.0);
         assert_eq!(tr.custom_effects[0].handler, "test_handler");
@@ -94,8 +94,8 @@ mod tests {
             .get(&OriginId("belter".into()))
             .expect("belter origin should exist");
         assert_eq!(origin.id.0, "belter");
-        assert_eq!(origin.name, "Belter");
-        assert_eq!(origin.description, "Born in the belt");
+        assert_eq!(origin.name_key, "origin.belter.name");
+        assert_eq!(origin.description_key, "origin.belter.description");
         assert_eq!(origin.skill_bonuses[0].id.0, "mining");
         assert_eq!(origin.skill_bonuses[0].amount, 3);
 
@@ -104,8 +104,8 @@ mod tests {
             .get(&CareerId("miner".into()))
             .expect("miner career should exist");
         assert_eq!(career.id.0, "miner");
-        assert_eq!(career.name, "Miner");
-        assert_eq!(career.description, "Digs for a living");
+        assert_eq!(career.name_key, "career.miner.name");
+        assert_eq!(career.description_key, "career.miner.description");
         assert_eq!(career.skill_bonuses[0].id.0, "mining");
         assert_eq!(career.skill_bonuses[0].amount, 2);
     }

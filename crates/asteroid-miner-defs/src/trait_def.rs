@@ -5,8 +5,8 @@ use std::collections::HashMap;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TraitDef {
     pub id: TraitId,
-    pub name: String,
-    pub description: String,
+    pub name_key: String,
+    pub description_key: String,
     #[serde(default)]
     pub skill_modifiers: Vec<SkillModifier>,
     #[serde(default)]

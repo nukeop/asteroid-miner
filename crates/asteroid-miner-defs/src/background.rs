@@ -10,8 +10,8 @@ pub struct StartingBonus<Id> {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OriginDef {
     pub id: OriginId,
-    pub name: String,
-    pub description: String,
+    pub name_key: String,
+    pub description_key: String,
     #[serde(default)]
     pub skill_bonuses: Vec<StartingBonus<SkillId>>,
 }
@@ -19,8 +19,8 @@ pub struct OriginDef {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CareerDef {
     pub id: CareerId,
-    pub name: String,
-    pub description: String,
+    pub name_key: String,
+    pub description_key: String,
     #[serde(default)]
     pub skill_bonuses: Vec<StartingBonus<SkillId>>,
 }

@@ -4,8 +4,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SkillDef {
     pub id: SkillId,
-    pub name: String,
-    pub description: String,
+    pub name_key: String,
+    pub description_key: String,
     pub xp_base: u32,
     pub xp_growth: f32,
 }

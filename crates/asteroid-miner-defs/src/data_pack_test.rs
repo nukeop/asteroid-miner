@@ -184,15 +184,15 @@ mod tests {
         let json = r#"[
             {
                 "id": "mining",
-                "name": "Mining",
-                "description": "Rock-breaking proficiency",
+                "name_key": "skill.mining.name",
+                "description_key": "skill.mining.description",
                 "xp_base": 100,
                 "xp_growth": 1.5
             },
             {
                 "id": "cosmonautics",
-                "name": "Cosmonautics",
-                "description": "Ship handling and EVA",
+                "name_key": "skill.cosmonautics.name",
+                "description_key": "skill.cosmonautics.description",
                 "xp_base": 120,
                 "xp_growth": 1.4
             }
@@ -200,7 +200,7 @@ mod tests {
         let skills = load_skills(json).unwrap();
         assert_eq!(skills.len(), 2);
         assert_eq!(skills[0].id, SkillId("mining".into()));
-        assert_eq!(skills[0].name, "Mining");
+        assert_eq!(skills[0].name_key, "skill.mining.name");
         assert_eq!(skills[1].id, SkillId("cosmonautics".into()));
         assert_eq!(skills[1].xp_base, 120);
     }
@@ -210,8 +210,8 @@ mod tests {
         let json = r#"[
             {
                 "id": "tough",
-                "name": "Tough",
-                "description": "Hard to kill"
+                "name_key": "trait.tough.name",
+                "description_key": "trait.tough.description"
             }
         ]"#;
         let traits = load_traits(json).unwrap();
@@ -227,28 +227,28 @@ mod tests {
 
         let skills = vec![SkillDef {
             id: SkillId("mining".into()),
-            name: "Mining".into(),
-            description: "Dig rocks".into(),
+            name_key: "skill.mining.name".into(),
+            description_key: "skill.mining.description".into(),
             xp_base: 100,
             xp_growth: 1.5,
         }];
         let traits = vec![TraitDef {
             id: TraitId("tough".into()),
-            name: "Tough".into(),
-            description: "Hard to kill".into(),
+            name_key: "trait.tough.name".into(),
+            description_key: "trait.tough.description".into(),
             skill_modifiers: vec![],
             custom_effects: vec![],
         }];
         let origins = vec![OriginDef {
             id: OriginId("belter".into()),
-            name: "Belter".into(),
-            description: "Born in the belt".into(),
+            name_key: "origin.belter.name".into(),
+            description_key: "origin.belter.description".into(),
             skill_bonuses: vec![],
         }];
         let careers = vec![CareerDef {
             id: CareerId("miner".into()),
-            name: "Miner".into(),
-            description: "Professional rock breaker".into(),
+            name_key: "career.miner.name".into(),
+            description_key: "career.miner.description".into(),
             skill_bonuses: vec![],
         }];
 
@@ -260,7 +260,7 @@ mod tests {
         assert_eq!(defs.careers.len(), 1);
 
         let skill = defs.skills.get(&SkillId("mining".into())).unwrap();
-        assert_eq!(skill.name, "Mining");
+        assert_eq!(skill.name_key, "skill.mining.name");
     }
 
     #[test]
@@ -269,8 +269,8 @@ mod tests {
 
         let first = vec![SkillDef {
             id: SkillId("mining".into()),
-            name: "Mining v1".into(),
-            description: "Old".into(),
+            name_key: "skill.mining.name".into(),
+            description_key: "skill.mining.description".into(),
             xp_base: 100,
             xp_growth: 1.5,
         }];
@@ -278,8 +278,8 @@ mod tests {
 
         let second = vec![SkillDef {
             id: SkillId("mining".into()),
-            name: "Mining v2".into(),
-            description: "New".into(),
+            name_key: "skill.mining.name.v2".into(),
+            description_key: "skill.mining.description.v2".into(),
             xp_base: 200,
             xp_growth: 1.8,
         }];
@@ -287,7 +287,7 @@ mod tests {
 
         assert_eq!(defs.skills.len(), 1);
         let skill = defs.skills.get(&SkillId("mining".into())).unwrap();
-        assert_eq!(skill.name, "Mining v2");
+        assert_eq!(skill.name_key, "skill.mining.name.v2");
         assert_eq!(skill.xp_base, 200);
     }
 }
