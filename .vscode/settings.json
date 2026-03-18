@@ -35,5 +35,6 @@
       "fileMatch": ["packages/game/data/*/careers.json"],
       "url": "./packages/game/data/schema/careers.schema.json"
     }
-  ]
+  ],
+  "rustTestExplorer.rootCargoManifestFilePath": "./Cargo.toml"
 }
