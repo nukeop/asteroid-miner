@@ -13,7 +13,7 @@ export const AdvanceDayButton: FC = () => {
     <Button
       variant="primary"
       onClick={advanceDay}
-      className="h-full w-48 rounded-none text-xs"
+      className="h-full w-48 rounded-none text-xs [-webkit-app-region:no-drag]"
     >
       {t('common.advanceDay')}
     </Button>
