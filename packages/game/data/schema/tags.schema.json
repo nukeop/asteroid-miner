@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tag Definitions",
+  "description": "Tags for categorizing resources and other game objects.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "description": "A single tag definition.",
+    "required": ["id", "name_key"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for this tag."
+      },
+      "name_key": {
+        "type": "string",
+        "description": "i18n key for the display name."
+      }
+    }
+  }
+}

@@ -11,18 +11,16 @@
     "properties": {
       "id": {
         "type": "string",
-        "description": "Unique identifier for this skill. Referenced by traits, origins, and careers.",
-        "pattern": "^[a-z][a-z0-9_]*$",
+        "description": "Unique identifier for this skill.",
         "examples": ["drilling", "navigation", "geology"]
       },
       "name_key": {
         "type": "string",
-        "description": "i18n key for the display name shown in the crew roster and skill tooltips.",
-        "minLength": 1
+        "description": "i18n key for the display name."
       },
       "description_key": {
         "type": "string",
-        "description": "i18n key for the flavor text explaining what this skill represents and how it affects gameplay."
+        "description": "i18n key for the description."
       },
       "xp_base": {
         "type": "integer",

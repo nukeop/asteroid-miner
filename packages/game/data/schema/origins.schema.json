@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Origin Definitions",
-  "description": "Defines pawn origins: where they grew up before appearing in the game. Each origin grants starting skill bonuses during pawn generation.",
+  "description": "Defines pawn origins: where they grew up before appearing in the game.",
   "type": "array",
   "items": {
     "type": "object",
@@ -12,17 +12,15 @@
       "id": {
         "type": "string",
         "description": "Unique identifier for this origin.",
-        "pattern": "^[a-z][a-z0-9_]*$",
         "examples": ["belt_colony", "core_world", "frontier"]
       },
       "name_key": {
         "type": "string",
-        "description": "i18n key for the display name shown during crew recruitment and on the pawn info screen.",
-        "minLength": 1
+        "description": "i18n key for the display name."
       },
       "description_key": {
         "type": "string",
-        "description": "i18n key for the backstory text describing where this person grew up."
+        "description": "i18n key for the description."
       },
       "skill_bonuses": {
         "type": "array",
@@ -41,8 +39,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "The skill ID to apply the bonus to.",
-          "pattern": "^[a-z][a-z0-9_]*$"
+          "description": "The skill ID to apply the bonus to."
         },
         "amount": {
           "type": "integer",

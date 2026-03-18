@@ -22,7 +22,7 @@
       },
       "description_key": {
         "type": "string",
-        "description": "i18n key for the flavor text explaining what this trait does. Shown in tooltips."
+        "description": "i18n key for the description."
       },
       "skill_modifiers": {
         "type": "array",

@@ -16,21 +16,16 @@
   "properties": {
     "$schema": {
       "type": "string",
-      "description": "Path or URL to the JSON Schema for this file. Used by editors for validation and autocompletion."
+      "description": "Path or URL to the JSON Schema for this file."
     },
     "id": {
       "type": "string",
-      "description": "Unique identifier for this data pack. Use lowercase letters, numbers, underscores, and dots. Must be unique across all loaded packs.",
-      "pattern": "^[a-z][a-z0-9_.]*$",
-      "minLength": 1,
-      "maxLength": 100,
+      "description": "Unique identifier for this data pack. Must be unique across all loaded packs.",
       "examples": ["base", "deep_core", "better_drills"]
     },
     "name": {
       "type": "string",
-      "description": "Human-readable display name shown in the mod browser and load order screen.",
-      "minLength": 1,
-      "maxLength": 100
+      "description": "Human-readable display name shown in the mod browser and load order screen."
     },
     "version": {
       "type": "string",
@@ -40,12 +35,12 @@
     },
     "type": {
       "type": "string",
-      "description": "What kind of data pack this is. \"base\" is the core game data (only one allowed). \"dlc\" is official expansion content. \"mod\" is community-created content.",
+      "description": "What kind of data pack this is. \"base\" is the core game data. \"dlc\" is official expansion content. \"mod\" is community-created content.",
       "enum": ["base", "dlc", "mod"]
     },
     "description": {
       "type": "string",
-      "description": "Short summary of what this pack contains or changes. Shown in the mod browser."
+      "description": "Description."
     },
     "author": {
       "type": "string",
@@ -53,13 +48,13 @@
     },
     "game_version": {
       "type": "string",
-      "description": "Minimum game version this pack requires. The game will refuse to load packs that target a newer version than what's installed.",
+      "description": "Minimum game version this pack requires.",
       "pattern": "^\\d+\\.\\d+\\.\\d+$",
       "examples": ["0.1.0", "1.0.0"]
     },
     "tags": {
       "type": "array",
-      "description": "Categories for filtering in the mod browser. Use short, descriptive tags like \"gameplay\", \"balance\", \"cosmetic\", \"qol\".",
+      "description": "Categories for filtering in the mod browser.",
       "default": [],
       "items": {
         "type": "string"
