@@ -42,7 +42,7 @@ component_management:
     - component_id: simulation
       name: Simulation (Rust)
       paths:
-        - 'packages/simulation/src/**'
+        - 'crates/*/src/**'
     - component_id: ui
       name: UI Library
       paths:
@@ -54,7 +54,7 @@ ignore:
   - 'packages/eslint-config/**'
   - 'packages/game/**'
   - 'packages/mod-sdk/**'
-  - 'packages/simulation/pkg/**'
+  - 'crates/asteroid-miner-wasm/pkg/**'
   - '**/__snapshots__/**'
   - '**/*.snap'
   - '**/dist/**'

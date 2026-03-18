@@ -36,8 +36,8 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
             ~/.cargo/bin/wasm-pack
-            packages/simulation/target
-          key: cargo-${{ runner.os }}-${{ hashFiles('packages/simulation/Cargo.lock') }}
+            target
+          key: cargo-${{ runner.os }}-${{ hashFiles('Cargo.lock') }}
           restore-keys: |
             cargo-${{ runner.os }}-
 
@@ -50,4 +50,4 @@ jobs:
       - run: pnpm type-check
       - run: pnpm build
       - run: pnpm test
-      - run: cargo test --manifest-path packages/simulation/Cargo.toml
+      - run: cargo test --workspace
