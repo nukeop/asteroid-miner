@@ -8,6 +8,8 @@ interface DataPackFiles {
   resources: string;
   formations: string;
   asteroid_types: string;
+  ship_modules: string;
+  machines: string;
 }
 
 interface ElectronAPI {
