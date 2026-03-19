@@ -18,6 +18,10 @@ export function parseDataPack(files: {
   traits: string;
   origins: string;
   careers: string;
+  tags: string;
+  resources: string;
+  formations: string;
+  asteroid_types: string;
 }): Definitions {
   return load_data_pack(files) as Definitions;
 }
