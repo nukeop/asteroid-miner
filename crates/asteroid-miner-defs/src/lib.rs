@@ -7,6 +7,7 @@ pub mod machine;
 pub mod name_pool;
 pub mod registry;
 pub mod resource;
+pub mod scenario;
 pub mod ship_module;
 pub mod skill;
 pub mod trait_def;
@@ -20,6 +21,7 @@ pub use machine::*;
 pub use name_pool::*;
 pub use registry::Registry;
 pub use resource::*;
+pub use scenario::*;
 pub use ship_module::*;
 pub use skill::*;
 pub use trait_def::*;
@@ -32,5 +34,7 @@ mod data_pack_test;
 mod formation_test;
 #[cfg(test)]
 mod machine_test;
+#[cfg(test)]
+mod scenario_test;
 #[cfg(test)]
 mod skill_test;
