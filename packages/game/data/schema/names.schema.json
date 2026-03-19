@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Name Pool",
+  "description": "Name arrays for crew generation.",
+  "type": "object",
+  "required": [
+    "male_first",
+    "female_first",
+    "male_middle",
+    "female_middle",
+    "male_last",
+    "female_last"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "male_first": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "female_first": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "male_middle": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "female_middle": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "male_last": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "female_last": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  }
+}

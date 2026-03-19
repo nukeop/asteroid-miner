@@ -27,14 +27,4 @@ pub use skill::*;
 pub use trait_def::*;
 
 #[cfg(test)]
-mod asteroid_type_test;
-#[cfg(test)]
-mod data_pack_test;
-#[cfg(test)]
-mod formation_test;
-#[cfg(test)]
-mod machine_test;
-#[cfg(test)]
-mod scenario_test;
-#[cfg(test)]
-mod skill_test;
+mod tests;

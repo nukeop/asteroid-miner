@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scenario Definitions",
+  "description": "Starting scenarios that define initial game conditions.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name_key", "description_key", "crew"],
+    "additionalProperties": false,
+    "properties": {
+      "id": { "type": "string" },
+      "name_key": { "type": "string" },
+      "description_key": { "type": "string" },
+      "crew": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": ["sex", "age", "skills"],
+          "additionalProperties": false,
+          "properties": {
+            "origins_whitelist": {
+              "type": "array",
+              "items": { "type": "string" },
+              "default": []
+            },
+            "careers_whitelist": {
+              "type": "array",
+              "items": { "type": "string" },
+              "default": []
+            },
+            "sex": {
+              "oneOf": [{ "enum": ["Male", "Female"] }, { "type": "null" }]
+            },
+            "age": {
+              "type": "array",
+              "items": { "type": "integer", "minimum": 0 },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "skills": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": { "type": "integer", "minimum": 0 },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

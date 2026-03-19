@@ -138,5 +138,23 @@
       "name": "Basic Scanning Rig",
       "description": "Analyzes asteroid composition."
     }
+  },
+  "origin": {
+    "civilian": {
+      "name": "Civilian",
+      "description": "No specialized background."
+    }
+  },
+  "career": {
+    "civilian": {
+      "name": "Civilian",
+      "description": "No specialized training."
+    }
+  },
+  "scenario": {
+    "starting": {
+      "name": "Starting Scenario",
+      "description": "Starting scenario."
+    }
   }
 }
