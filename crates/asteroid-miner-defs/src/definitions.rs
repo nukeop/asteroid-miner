@@ -16,6 +16,8 @@ pub struct Definitions {
     pub asteroid_types: Registry<AsteroidTypeId, AsteroidTypeDef>,
     pub ship_modules: Registry<ShipModuleId, ShipModuleDef>,
     pub machines: Registry<MachineId, MachineDef>,
+    pub scenarios: Registry<ScenarioId, ScenarioDef>,
+    pub name_pool: NamePool,
 }
 
 impl Definitions {
@@ -31,6 +33,8 @@ impl Definitions {
             asteroid_types: Registry::new(),
             ship_modules: Registry::new(),
             machines: Registry::new(),
+            scenarios: Registry::new(),
+            name_pool: NamePool::default(),
         }
     }
 }

@@ -214,6 +214,18 @@ pub fn load_machines(json: &str) -> Result<Vec<MachineDef>, DataPackError> {
     Ok(machines)
 }
 
+pub fn load_name_pool(json: &str) -> Result<NamePool, DataPackError> {
+    Ok(serde_json::from_str(json)?)
+}
+
+pub fn load_scenarios(json: &str, defs: &Definitions) -> Result<Vec<ScenarioDef>, DataPackError> {
+    let scenarios: Vec<ScenarioDef> = serde_json::from_str(json)?;
+    for s in &scenarios {
+        s.validate(defs).map_err(DataPackError::InvalidManifest)?;
+    }
+    Ok(scenarios)
+}
+
 pub fn load_into_definitions(
     defs: &mut Definitions,
     skills: Vec<SkillDef>,
@@ -226,6 +238,7 @@ pub fn load_into_definitions(
     asteroid_types: Vec<AsteroidTypeDef>,
     ship_modules: Vec<ShipModuleDef>,
     machines: Vec<MachineDef>,
+    name_pool: NamePool,
 ) {
     for skill in skills {
         let key = skill.id.clone();
@@ -266,5 +279,13 @@ pub fn load_into_definitions(
     for machine in machines {
         let key = machine.id().clone();
         defs.machines.register(key, machine);
+    }
+    defs.name_pool = name_pool;
+}
+
+pub fn register_scenarios(defs: &mut Definitions, scenarios: Vec<ScenarioDef>) {
+    for scenario in scenarios {
+        let key = scenario.id.clone();
+        defs.scenarios.register(key, scenario);
     }
 }
