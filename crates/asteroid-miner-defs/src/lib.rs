@@ -3,6 +3,7 @@ pub mod background;
 pub mod data_pack;
 pub mod definitions;
 pub mod formation;
+pub mod machine;
 pub mod registry;
 pub mod resource;
 pub mod ship_module;
@@ -14,6 +15,7 @@ pub use background::*;
 pub use data_pack::*;
 pub use definitions::*;
 pub use formation::*;
+pub use machine::*;
 pub use registry::Registry;
 pub use resource::*;
 pub use ship_module::*;
@@ -26,5 +28,7 @@ mod asteroid_type_test;
 mod data_pack_test;
 #[cfg(test)]
 mod formation_test;
+#[cfg(test)]
+mod machine_test;
 #[cfg(test)]
 mod skill_test;
