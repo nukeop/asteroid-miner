@@ -58,5 +58,41 @@
   },
   "placeholder": {
     "selectTab": "Select a tab to begin."
+  },
+  "pack": {
+    "base": {
+      "name": "Asteroid Miner",
+      "description": "Base game data."
+    }
+  },
+  "tag": {
+    "fuel": { "name": "Fuel" }
+  },
+  "resource": {
+    "coal": {
+      "name": "Coal",
+      "description": "Combustible sedimentary rock."
+    },
+    "sandstone": {
+      "name": "Sandstone",
+      "description": "Compacted sand."
+    }
+  },
+  "formation": {
+    "coal_bearing_sandstone": {
+      "name": "Coal-Bearing Sandstone",
+      "description": "Sandstone with coal seams."
+    }
+  },
+  "asteroid_type": {
+    "c_type": {
+      "name": "C-Type (Carbonaceous)",
+      "description": "Carbon-rich asteroid."
+    }
+  },
+  "mass_class": {
+    "s": { "name": "Small" },
+    "m": { "name": "Medium" },
+    "l": { "name": "Large" }
   }
 }

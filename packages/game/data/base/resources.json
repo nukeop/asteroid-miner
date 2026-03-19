@@ -9,6 +9,6 @@
     "id": "sandstone",
     "name_key": "resource.sandstone.name",
     "description_key": "resource.sandstone.description",
-    "tags": ["construction"]
+    "tags": []
   }
 ]
