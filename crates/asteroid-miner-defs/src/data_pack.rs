@@ -202,6 +202,18 @@ pub fn load_asteroid_types(json: &str) -> Result<Vec<AsteroidTypeDef>, DataPackE
     Ok(types)
 }
 
+pub fn load_ship_modules(json: &str) -> Result<Vec<ShipModuleDef>, DataPackError> {
+    Ok(serde_json::from_str(json)?)
+}
+
+pub fn load_machines(json: &str) -> Result<Vec<MachineDef>, DataPackError> {
+    let machines: Vec<MachineDef> = serde_json::from_str(json)?;
+    for m in &machines {
+        m.validate().map_err(DataPackError::InvalidManifest)?;
+    }
+    Ok(machines)
+}
+
 pub fn load_into_definitions(
     defs: &mut Definitions,
     skills: Vec<SkillDef>,
@@ -212,6 +224,8 @@ pub fn load_into_definitions(
     resources: Vec<ResourceDef>,
     formations: Vec<FormationDef>,
     asteroid_types: Vec<AsteroidTypeDef>,
+    ship_modules: Vec<ShipModuleDef>,
+    machines: Vec<MachineDef>,
 ) {
     for skill in skills {
         let key = skill.id.clone();
@@ -244,5 +258,13 @@ pub fn load_into_definitions(
     for asteroid_type in asteroid_types {
         let key = asteroid_type.id.clone();
         defs.asteroid_types.register(key, asteroid_type);
+    }
+    for module in ship_modules {
+        let key = module.id().clone();
+        defs.ship_modules.register(key, module);
+    }
+    for machine in machines {
+        let key = machine.id().clone();
+        defs.machines.register(key, machine);
     }
 }

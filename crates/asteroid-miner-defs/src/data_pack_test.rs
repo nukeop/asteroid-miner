@@ -292,6 +292,21 @@ mod tests {
                     depth_bonus: 0.0,
                 }],
             }],
+            vec![ShipModuleDef::Engine {
+                id: ShipModuleId("engine_basic".into()),
+                name_key: "ship_module.engine_basic.name".into(),
+                description_key: "ship_module.engine_basic.description".into(),
+                speed: 1.5,
+                fuel_efficiency: 0.8,
+            }],
+            vec![MachineDef::MiningRig {
+                id: MachineId("mining_rig_basic".into()),
+                name_key: "machine.mining_rig_basic.name".into(),
+                description_key: "machine.mining_rig_basic.description".into(),
+                hopper_capacity: 100.0,
+                max_extraction_rate: 100.0,
+                crew_slots: 2,
+            }],
         );
 
         assert_eq!(defs.skills.len(), 1);
@@ -302,6 +317,8 @@ mod tests {
         assert_eq!(defs.resources.len(), 1);
         assert_eq!(defs.formations.len(), 1);
         assert_eq!(defs.asteroid_types.len(), 1);
+        assert_eq!(defs.ship_modules.len(), 1);
+        assert_eq!(defs.machines.len(), 1);
 
         assert_eq!(
             defs.skills.get(&SkillId("mining".into())).unwrap().name_key,
@@ -330,6 +347,38 @@ mod tests {
                 .max_sites,
             1
         );
+        match defs
+            .ship_modules
+            .get(&ShipModuleId("engine_basic".into()))
+            .unwrap()
+        {
+            ShipModuleDef::Engine {
+                speed,
+                fuel_efficiency,
+                ..
+            } => {
+                assert_eq!(*speed, 1.5);
+                assert_eq!(*fuel_efficiency, 0.8);
+            }
+            other => panic!("Expected Engine, got {:?}", other),
+        }
+        match defs
+            .machines
+            .get(&MachineId("mining_rig_basic".into()))
+            .unwrap()
+        {
+            MachineDef::MiningRig {
+                hopper_capacity,
+                max_extraction_rate,
+                crew_slots,
+                ..
+            } => {
+                assert_eq!(*hopper_capacity, 100.0);
+                assert_eq!(*max_extraction_rate, 100.0);
+                assert_eq!(*crew_slots, 2);
+            }
+            other => panic!("Expected MiningRig, got {:?}", other),
+        }
     }
 
     #[test]
@@ -352,6 +401,8 @@ mod tests {
             vec![],
             vec![],
             vec![],
+            vec![],
+            vec![],
         );
 
         load_into_definitions(
@@ -363,6 +414,8 @@ mod tests {
                 xp_base: 200,
                 xp_growth: 1.8,
             }],
+            vec![],
+            vec![],
             vec![],
             vec![],
             vec![],

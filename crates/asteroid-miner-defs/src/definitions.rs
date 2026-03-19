@@ -14,6 +14,8 @@ pub struct Definitions {
     pub resources: Registry<ResourceId, ResourceDef>,
     pub formations: Registry<FormationId, FormationDef>,
     pub asteroid_types: Registry<AsteroidTypeId, AsteroidTypeDef>,
+    pub ship_modules: Registry<ShipModuleId, ShipModuleDef>,
+    pub machines: Registry<MachineId, MachineDef>,
 }
 
 impl Definitions {
@@ -27,6 +29,8 @@ impl Definitions {
             resources: Registry::new(),
             formations: Registry::new(),
             asteroid_types: Registry::new(),
+            ship_modules: Registry::new(),
+            machines: Registry::new(),
         }
     }
 }
