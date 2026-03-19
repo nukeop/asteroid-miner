@@ -93,6 +93,45 @@ export type AsteroidTypeDef = {
   formations: WeightedFormation[];
 };
 
+type ShipModuleBase = {
+  id: string;
+  name_key: string;
+  description_key: string;
+};
+
+export type ShipModuleDef =
+  | (ShipModuleBase & { category: 'bridge' })
+  | (ShipModuleBase & { category: 'reactor' })
+  | (ShipModuleBase & {
+      category: 'engine';
+      speed: number;
+      fuel_efficiency: number;
+    })
+  | (ShipModuleBase & { category: 'fuel_tank'; capacity: number })
+  | (ShipModuleBase & { category: 'crew_quarters' })
+  | (ShipModuleBase & { category: 'cargo_bay'; capacity: number })
+  | (ShipModuleBase & { category: 'scanner'; sensitivity: number })
+  | (ShipModuleBase & { category: 'machine_bay' });
+
+type MachineBase = {
+  id: string;
+  name_key: string;
+  description_key: string;
+};
+
+export type MachineDef =
+  | (MachineBase & {
+      category: 'mining_rig';
+      hopper_capacity: number;
+      max_extraction_rate: number;
+      crew_slots: number;
+    })
+  | (MachineBase & {
+      category: 'scanning_rig';
+      accuracy: number;
+      crew_slots: number;
+    });
+
 export type Definitions = {
   skills: Record<string, SkillDef>;
   traits: Record<string, TraitDef>;
@@ -102,4 +141,6 @@ export type Definitions = {
   resources: Record<string, ResourceDef>;
   formations: Record<string, FormationDef>;
   asteroid_types: Record<string, AsteroidTypeDef>;
+  ship_modules: Record<string, ShipModuleDef>;
+  machines: Record<string, MachineDef>;
 };
