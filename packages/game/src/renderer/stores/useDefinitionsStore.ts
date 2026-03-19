@@ -46,11 +46,64 @@ type CareerDef = {
   skill_bonuses: StartingBonus[];
 };
 
+type TagDef = {
+  id: string;
+  name_key: string;
+};
+
+type ResourceDef = {
+  id: string;
+  name_key: string;
+  description_key: string;
+  tags: string[];
+};
+
+type EmbeddedResource = {
+  resource: string;
+  probability: number;
+  min_grade: number;
+  max_grade: number;
+};
+
+type FormationDef = {
+  id: string;
+  name_key: string;
+  description_key: string;
+  matrix_resource: string;
+  embedded_resources: EmbeddedResource[];
+};
+
+type MassClass = {
+  id: string;
+  name_key: string;
+  min_mass: number;
+  max_mass: number;
+  max_sites: number;
+};
+
+type WeightedFormation = {
+  formation: string;
+  weight: number;
+  depth_bonus: number;
+};
+
+type AsteroidTypeDef = {
+  id: string;
+  name_key: string;
+  description_key: string;
+  mass_classes: MassClass[];
+  formations: WeightedFormation[];
+};
+
 export type Definitions = {
   skills: Record<string, SkillDef>;
   traits: Record<string, TraitDef>;
   origins: Record<string, OriginDef>;
   careers: Record<string, CareerDef>;
+  tags: Record<string, TagDef>;
+  resources: Record<string, ResourceDef>;
+  formations: Record<string, FormationDef>;
+  asteroid_types: Record<string, AsteroidTypeDef>;
 };
 
 type DefinitionsState = {

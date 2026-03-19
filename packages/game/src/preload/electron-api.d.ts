@@ -4,6 +4,10 @@ interface DataPackFiles {
   traits: string;
   origins: string;
   careers: string;
+  tags: string;
+  resources: string;
+  formations: string;
+  asteroid_types: string;
 }
 
 interface ElectronAPI {
