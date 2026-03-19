@@ -1,0 +1,55 @@
+[
+  {
+    "id": "bridge_basic",
+    "category": "bridge",
+    "name_key": "ship_module.bridge_basic.name",
+    "description_key": "ship_module.bridge_basic.description"
+  },
+  {
+    "id": "reactor_basic",
+    "category": "reactor",
+    "name_key": "ship_module.reactor_basic.name",
+    "description_key": "ship_module.reactor_basic.description"
+  },
+  {
+    "id": "engine_basic",
+    "category": "engine",
+    "name_key": "ship_module.engine_basic.name",
+    "description_key": "ship_module.engine_basic.description",
+    "speed": 1.0,
+    "fuel_efficiency": 1.0
+  },
+  {
+    "id": "fuel_tank_basic",
+    "category": "fuel_tank",
+    "name_key": "ship_module.fuel_tank_basic.name",
+    "description_key": "ship_module.fuel_tank_basic.description",
+    "capacity": 500.0
+  },
+  {
+    "id": "crew_quarters_basic",
+    "category": "crew_quarters",
+    "name_key": "ship_module.crew_quarters_basic.name",
+    "description_key": "ship_module.crew_quarters_basic.description"
+  },
+  {
+    "id": "cargo_bay_small",
+    "category": "cargo_bay",
+    "name_key": "ship_module.cargo_bay_small.name",
+    "description_key": "ship_module.cargo_bay_small.description",
+    "capacity": 1000.0
+  },
+  {
+    "id": "scanner_basic",
+    "category": "scanner",
+    "name_key": "ship_module.scanner_basic.name",
+    "description_key": "ship_module.scanner_basic.description",
+    "sensitivity": 10.0
+  },
+  {
+    "id": "machine_bay_basic",
+    "category": "machine_bay",
+    "name_key": "ship_module.machine_bay_basic.name",
+    "description_key": "ship_module.machine_bay_basic.description"
+  }
+]
