@@ -5,6 +5,7 @@ pub mod definitions;
 pub mod formation;
 pub mod registry;
 pub mod resource;
+pub mod ship_module;
 pub mod skill;
 pub mod trait_def;
 
@@ -15,6 +16,7 @@ pub use definitions::*;
 pub use formation::*;
 pub use registry::Registry;
 pub use resource::*;
+pub use ship_module::*;
 pub use skill::*;
 pub use trait_def::*;
 
