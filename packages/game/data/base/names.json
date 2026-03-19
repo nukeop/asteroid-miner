@@ -1,0 +1,8 @@
+{
+  "male_first": ["Ivan"],
+  "female_first": ["Olga"],
+  "male_middle": ["Ivanovich"],
+  "female_middle": ["Ivanovna"],
+  "male_last": ["Petrov"],
+  "female_last": ["Petrova"]
+}

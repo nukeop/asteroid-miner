@@ -70,5 +70,11 @@
       { "id": "blat", "amount": 4 },
       { "id": "bureaucracy", "amount": 2 }
     ]
+  },
+  {
+    "id": "civilian",
+    "name_key": "career.civilian.name",
+    "description_key": "career.civilian.description",
+    "skill_bonuses": []
   }
 ]

@@ -38,6 +38,8 @@ export function registerIpcHandlers(ipcMain: IpcMain) {
         asteroid_types,
         ship_modules,
         machines,
+        names,
+        scenarios,
       ] = await Promise.all([
         readFile(join(packPath, 'manifest.json'), 'utf-8'),
         readFile(join(packPath, 'skills.json'), 'utf-8'),
@@ -50,6 +52,8 @@ export function registerIpcHandlers(ipcMain: IpcMain) {
         readFile(join(packPath, 'asteroid_types.json'), 'utf-8'),
         readFile(join(packPath, 'ship_modules.json'), 'utf-8'),
         readFile(join(packPath, 'machines.json'), 'utf-8'),
+        readFile(join(packPath, 'names.json'), 'utf-8'),
+        readFile(join(packPath, 'scenarios.json'), 'utf-8'),
       ]);
       return {
         ok: true,
@@ -65,6 +69,8 @@ export function registerIpcHandlers(ipcMain: IpcMain) {
           asteroid_types,
           ship_modules,
           machines,
+          names,
+          scenarios,
         },
       };
     } catch (e) {

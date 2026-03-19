@@ -15,6 +15,8 @@ struct DataPackFiles {
     asteroid_types: String,
     ship_modules: String,
     machines: String,
+    names: String,
+    scenarios: String,
 }
 
 fn load_data_pack_inner(files: &DataPackFiles) -> Result<Definitions, String> {
@@ -29,6 +31,7 @@ fn load_data_pack_inner(files: &DataPackFiles) -> Result<Definitions, String> {
     let asteroid_types = load_asteroid_types(&files.asteroid_types).map_err(|e| e.to_string())?;
     let ship_modules = load_ship_modules(&files.ship_modules).map_err(|e| e.to_string())?;
     let machines = load_machines(&files.machines).map_err(|e| e.to_string())?;
+    let name_pool = load_name_pool(&files.names).map_err(|e| e.to_string())?;
 
     let mut defs = Definitions::new();
     load_into_definitions(
@@ -43,7 +46,12 @@ fn load_data_pack_inner(files: &DataPackFiles) -> Result<Definitions, String> {
         asteroid_types,
         ship_modules,
         machines,
+        name_pool,
     );
+
+    let scenarios = load_scenarios(&files.scenarios, &defs).map_err(|e| e.to_string())?;
+    register_scenarios(&mut defs, scenarios);
+
     Ok(defs)
 }
 
@@ -101,6 +109,8 @@ mod tests {
             }]"#.into(),
             ship_modules: r#"[{"id": "bridge_basic", "category": "bridge", "name_key": "ship_module.bridge_basic.name", "description_key": "ship_module.bridge_basic.description"}]"#.into(),
             machines: r#"[{"id": "mining_rig_basic", "category": "mining_rig", "name_key": "machine.mining_rig_basic.name", "description_key": "machine.mining_rig_basic.description", "hopper_capacity": 100, "max_extraction_rate": 100, "crew_slots": 2}]"#.into(),
+            names: r#"{"male_first": ["Ivan"], "female_first": ["Olga"], "male_middle": ["Ivanovich"], "female_middle": ["Ivanovna"], "male_last": ["Petrov"], "female_last": ["Petrova"]}"#.into(),
+            scenarios: r#"[{"id": "test", "name_key": "scenario.test.name", "description_key": "scenario.test.description", "crew": [{"sex": null, "age": [25, 40], "skills": {"mining": [5, 5]}}]}]"#.into(),
         }
     }
 

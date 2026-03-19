@@ -10,6 +10,8 @@ interface DataPackFiles {
   asteroid_types: string;
   ship_modules: string;
   machines: string;
+  names: string;
+  scenarios: string;
 }
 
 interface ElectronAPI {

@@ -53,5 +53,11 @@
       { "id": "research", "amount": 2 },
       { "id": "cybernetics", "amount": 1 }
     ]
+  },
+  {
+    "id": "civilian",
+    "name_key": "origin.civilian.name",
+    "description_key": "origin.civilian.description",
+    "skill_bonuses": []
   }
 ]
