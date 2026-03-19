@@ -94,5 +94,49 @@
     "s": { "name": "Small" },
     "m": { "name": "Medium" },
     "l": { "name": "Large" }
+  },
+  "ship_module": {
+    "bridge_basic": {
+      "name": "Basic Bridge",
+      "description": "Standard command bridge."
+    },
+    "reactor_basic": {
+      "name": "Basic Reactor",
+      "description": "Standard ship reactor."
+    },
+    "engine_basic": {
+      "name": "Basic Engine",
+      "description": "Standard propulsion engine."
+    },
+    "fuel_tank_basic": {
+      "name": "Basic Fuel Tank",
+      "description": "Standard fuel storage."
+    },
+    "crew_quarters_basic": {
+      "name": "Basic Crew Quarters",
+      "description": "Standard crew berth."
+    },
+    "cargo_bay_small": {
+      "name": "Small Cargo Bay",
+      "description": "Cargo hold, 1000t capacity."
+    },
+    "scanner_basic": {
+      "name": "Basic Scanner",
+      "description": "Ship-mounted spectral scanner."
+    },
+    "machine_bay_basic": {
+      "name": "Basic Machine Bay",
+      "description": "Bay for one deployable machine."
+    }
+  },
+  "machine": {
+    "mining_rig_basic": {
+      "name": "Basic Mining Rig",
+      "description": "Extracts rock from asteroid surface."
+    },
+    "scanning_rig_basic": {
+      "name": "Basic Scanning Rig",
+      "description": "Analyzes asteroid composition."
+    }
   }
 }
