@@ -132,6 +132,30 @@ export type MachineDef =
       crew_slots: number;
     });
 
+export type CrewTemplate = {
+  origins_whitelist: string[];
+  careers_whitelist: string[];
+  sex: 'Male' | 'Female' | null;
+  age: [number, number];
+  skills: Record<string, [number, number]>;
+};
+
+export type ScenarioDef = {
+  id: string;
+  name_key: string;
+  description_key: string;
+  crew: CrewTemplate[];
+};
+
+export type NamePool = {
+  male_first: string[];
+  female_first: string[];
+  male_middle: string[];
+  female_middle: string[];
+  male_last: string[];
+  female_last: string[];
+};
+
 export type Definitions = {
   skills: Record<string, SkillDef>;
   traits: Record<string, TraitDef>;
@@ -143,4 +167,6 @@ export type Definitions = {
   asteroid_types: Record<string, AsteroidTypeDef>;
   ship_modules: Record<string, ShipModuleDef>;
   machines: Record<string, MachineDef>;
+  scenarios: Record<string, ScenarioDef>;
+  name_pool: NamePool;
 };
