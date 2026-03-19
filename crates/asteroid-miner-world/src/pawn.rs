@@ -8,6 +8,7 @@ use crate::SkillState;
 pub struct Pawn {
     pub id: PawnId,
     pub first_name: String,
+    pub middle_name: String,
     pub last_name: String,
     pub nickname: Option<String>,
     pub age: u16,

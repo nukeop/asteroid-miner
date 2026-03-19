@@ -20,4 +20,11 @@ impl GameState {
             turn: 0,
         }
     }
+
+    pub fn add_pawn(&mut self, mut pawn: Pawn) -> PawnId {
+        self.pawns.insert_with_key(|key| {
+            pawn.id = key;
+            pawn
+        })
+    }
 }
