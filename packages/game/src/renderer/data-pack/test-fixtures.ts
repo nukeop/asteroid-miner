@@ -11,51 +11,53 @@ export function testFiles(): DataPackFiles {
       author: 'test',
       gameVersion: '0.1.0',
     }),
-    skills: JSON.stringify([
-      {
+    skills: JSON.stringify({
+      mining: {
         id: 'mining',
         nameKey: 'skill.mining.name',
         descriptionKey: 'skill.mining.description',
         xpBase: 100,
         xpGrowth: 1.5,
       },
-    ]),
-    traits: JSON.stringify([
-      {
+    }),
+    traits: JSON.stringify({
+      tough: {
         id: 'tough',
         nameKey: 'trait.tough.name',
         descriptionKey: 'trait.tough.description',
         skillModifiers: [{ skill: 'mining', op: 'Flat', value: 5 }],
         customEffects: [{ handler: 'test_handler', params: { strength: 2 } }],
       },
-    ]),
-    origins: JSON.stringify([
-      {
+    }),
+    origins: JSON.stringify({
+      belter: {
         id: 'belter',
         nameKey: 'origin.belter.name',
         descriptionKey: 'origin.belter.description',
         skillBonuses: [{ id: 'mining', amount: 3 }],
       },
-    ]),
-    careers: JSON.stringify([
-      {
+    }),
+    careers: JSON.stringify({
+      miner: {
         id: 'miner',
         nameKey: 'career.miner.name',
         descriptionKey: 'career.miner.description',
         skillBonuses: [{ id: 'mining', amount: 2 }],
       },
-    ]),
-    tags: JSON.stringify([{ id: 'fuel', nameKey: 'tag.fuel.name' }]),
-    resources: JSON.stringify([
-      {
+    }),
+    tags: JSON.stringify({
+      fuel: { id: 'fuel', nameKey: 'tag.fuel.name' },
+    }),
+    resources: JSON.stringify({
+      coal: {
         id: 'coal',
         nameKey: 'resource.coal.name',
         descriptionKey: 'resource.coal.description',
         tags: ['fuel'],
       },
-    ]),
-    formations: JSON.stringify([
-      {
+    }),
+    formations: JSON.stringify({
+      coal_sandstone: {
         id: 'coal_sandstone',
         nameKey: 'formation.coal_sandstone.name',
         descriptionKey: 'formation.coal_sandstone.description',
@@ -69,9 +71,9 @@ export function testFiles(): DataPackFiles {
           },
         ],
       },
-    ]),
-    asteroidTypes: JSON.stringify([
-      {
+    }),
+    asteroidTypes: JSON.stringify({
+      c_type: {
         id: 'c_type',
         nameKey: 'asteroid_type.c_type.name',
         descriptionKey: 'asteroid_type.c_type.description',
@@ -86,17 +88,17 @@ export function testFiles(): DataPackFiles {
         ],
         formations: [{ formation: 'coal_sandstone', weight: 5 }],
       },
-    ]),
-    shipModules: JSON.stringify([
-      {
+    }),
+    shipModules: JSON.stringify({
+      bridge_basic: {
         id: 'bridge_basic',
         category: 'bridge',
         nameKey: 'ship_module.bridge_basic.name',
         descriptionKey: 'ship_module.bridge_basic.description',
       },
-    ]),
-    machines: JSON.stringify([
-      {
+    }),
+    machines: JSON.stringify({
+      mining_rig_basic: {
         id: 'mining_rig_basic',
         category: 'miningRig',
         nameKey: 'machine.mining_rig_basic.name',
@@ -105,7 +107,7 @@ export function testFiles(): DataPackFiles {
         maxExtractionRate: 100,
         crewSlots: 2,
       },
-    ]),
+    }),
     names: JSON.stringify({
       maleFirst: ['Ivan'],
       femaleFirst: ['Olga'],
@@ -114,13 +116,13 @@ export function testFiles(): DataPackFiles {
       maleLast: ['Petrov'],
       femaleLast: ['Petrova'],
     }),
-    scenarios: JSON.stringify([
-      {
+    scenarios: JSON.stringify({
+      test: {
         id: 'test',
         nameKey: 'scenario.test.name',
         descriptionKey: 'scenario.test.description',
         crew: [{ sex: null, age: [25, 40], skills: { mining: [5, 5] } }],
       },
-    ]),
+    }),
   };
 }

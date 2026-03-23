@@ -21,8 +21,8 @@ export type TraitDef = {
   id: string;
   nameKey: string;
   descriptionKey: string;
-  skillModifiers: SkillModifier[];
-  customEffects: CustomEffect[];
+  skillModifiers?: SkillModifier[];
+  customEffects?: CustomEffect[];
 };
 
 export type StartingBonus = {
@@ -82,7 +82,7 @@ export type MassClass = {
 export type WeightedFormation = {
   formation: string;
   weight: number;
-  depthBonus: number;
+  depthBonus?: number;
 };
 
 export type AsteroidTypeDef = {
@@ -133,8 +133,8 @@ export type MachineDef =
     });
 
 export type CrewTemplate = {
-  originsWhitelist: string[];
-  careersWhitelist: string[];
+  originsWhitelist?: string[];
+  careersWhitelist?: string[];
   sex: 'Male' | 'Female' | null;
   age: [number, number];
   skills: Record<string, [number, number]>;

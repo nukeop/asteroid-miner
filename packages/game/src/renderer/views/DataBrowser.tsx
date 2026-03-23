@@ -47,8 +47,10 @@ export const DataBrowser: FC = () => {
         header: t('data.columns.effects'),
         accessorFn: (row) =>
           [
-            ...row.skillModifiers.map((m) => `${m.op} ${m.skill} ${m.value}`),
-            ...row.customEffects.map((e) => e.handler),
+            ...(row.skillModifiers ?? []).map(
+              (m) => `${m.op} ${m.skill} ${m.value}`,
+            ),
+            ...(row.customEffects ?? []).map((e) => e.handler),
           ].join(', ') || '\u2014',
       },
     ],
