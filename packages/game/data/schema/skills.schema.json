@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Skill Definitions",
-  "description": "Defines the skills that pawns can learn and improve. Each skill has an XP curve controlled by xp_base and xp_growth: XP for level N = xp_base * xp_growth^(N-1).",
-  "type": "array",
-  "items": {
+  "description": "Defines the skills that pawns can learn and improve. Each skill has an XP curve controlled by xpBase and xpGrowth: XP for level N = xpBase * xpGrowth^(N-1).",
+  "type": "object",
+  "additionalProperties": {
     "type": "object",
     "description": "A single skill definition.",
-    "required": ["id", "name_key", "description_key", "xp_base", "xp_growth"],
+    "required": ["id", "nameKey", "descriptionKey", "xpBase", "xpGrowth"],
     "additionalProperties": false,
     "properties": {
       "id": {
@@ -14,20 +14,20 @@
         "description": "Unique identifier for this skill.",
         "examples": ["drilling", "navigation", "geology"]
       },
-      "name_key": {
+      "nameKey": {
         "type": "string",
         "description": "i18n key for the display name."
       },
-      "description_key": {
+      "descriptionKey": {
         "type": "string",
         "description": "i18n key for the description."
       },
-      "xp_base": {
+      "xpBase": {
         "type": "integer",
-        "description": "XP required to reach level 1. Higher levels multiply this by xp_growth.",
+        "description": "XP required to reach level 1. Higher levels multiply this by xpGrowth.",
         "minimum": 1
       },
-      "xp_growth": {
+      "xpGrowth": {
         "type": "number",
         "description": "Multiplier applied per level for the XP curve. Must be greater than 1.0 or XP requirements stay flat across levels.",
         "exclusiveMinimum": 1.0,

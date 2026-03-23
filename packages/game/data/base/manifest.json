@@ -1,12 +1,12 @@
 {
   "$schema": "../schema/manifest.schema.json",
   "id": "base",
-  "name_key": "pack.base.name",
+  "nameKey": "pack.base.name",
   "version": "0.1.0",
   "type": "base",
-  "description_key": "pack.base.description",
+  "descriptionKey": "pack.base.description",
   "author": "Asteroid Miner Team",
-  "game_version": "0.1.0",
+  "gameVersion": "0.1.0",
   "tags": [],
   "dependencies": []
 }

@@ -1,63 +1,63 @@
-[
-  {
+{
+  "core_world": {
     "id": "core_world",
-    "name_key": "origin.core_world.name",
-    "description_key": "origin.core_world.description",
-    "skill_bonuses": [
+    "nameKey": "origin.core_world.name",
+    "descriptionKey": "origin.core_world.description",
+    "skillBonuses": [
       { "id": "cybernetics", "amount": 2 },
       { "id": "blat", "amount": 1 }
     ]
   },
-  {
+  "belt_colony": {
     "id": "belt_colony",
-    "name_key": "origin.belt_colony.name",
-    "description_key": "origin.belt_colony.description",
-    "skill_bonuses": [
+    "nameKey": "origin.belt_colony.name",
+    "descriptionKey": "origin.belt_colony.description",
+    "skillBonuses": [
       { "id": "mining", "amount": 2 },
       { "id": "engineering", "amount": 1 }
     ]
   },
-  {
+  "orbital_station": {
     "id": "orbital_station",
-    "name_key": "origin.orbital_station.name",
-    "description_key": "origin.orbital_station.description",
-    "skill_bonuses": [
+    "nameKey": "origin.orbital_station.name",
+    "descriptionKey": "origin.orbital_station.description",
+    "skillBonuses": [
       { "id": "engineering", "amount": 2 },
       { "id": "navigation", "amount": 1 }
     ]
   },
-  {
+  "frontier": {
     "id": "frontier",
-    "name_key": "origin.frontier.name",
-    "description_key": "origin.frontier.description",
-    "skill_bonuses": [
+    "nameKey": "origin.frontier.name",
+    "descriptionKey": "origin.frontier.description",
+    "skillBonuses": [
       { "id": "construction", "amount": 1 },
       { "id": "mining", "amount": 1 },
       { "id": "medicine", "amount": 1 }
     ]
   },
-  {
+  "transport_fleet": {
     "id": "transport_fleet",
-    "name_key": "origin.transport_fleet.name",
-    "description_key": "origin.transport_fleet.description",
-    "skill_bonuses": [
+    "nameKey": "origin.transport_fleet.name",
+    "descriptionKey": "origin.transport_fleet.description",
+    "skillBonuses": [
       { "id": "cosmonautics", "amount": 2 },
       { "id": "blat", "amount": 1 }
     ]
   },
-  {
+  "research_outpost": {
     "id": "research_outpost",
-    "name_key": "origin.research_outpost.name",
-    "description_key": "origin.research_outpost.description",
-    "skill_bonuses": [
+    "nameKey": "origin.research_outpost.name",
+    "descriptionKey": "origin.research_outpost.description",
+    "skillBonuses": [
       { "id": "research", "amount": 2 },
       { "id": "cybernetics", "amount": 1 }
     ]
   },
-  {
+  "civilian": {
     "id": "civilian",
-    "name_key": "origin.civilian.name",
-    "description_key": "origin.civilian.description",
-    "skill_bonuses": []
+    "nameKey": "origin.civilian.name",
+    "descriptionKey": "origin.civilian.description",
+    "skillBonuses": []
   }
-]
+}

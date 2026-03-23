@@ -1,6 +1,6 @@
-[
-  {
+{
+  "fuel": {
     "id": "fuel",
-    "name_key": "tag.fuel.name"
+    "nameKey": "tag.fuel.name"
   }
-]
+}

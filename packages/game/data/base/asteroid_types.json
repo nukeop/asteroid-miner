@@ -1,31 +1,31 @@
-[
-  {
+{
+  "c_type": {
     "id": "c_type",
-    "name_key": "asteroid_type.c_type.name",
-    "description_key": "asteroid_type.c_type.description",
-    "mass_classes": [
+    "nameKey": "asteroid_type.c_type.name",
+    "descriptionKey": "asteroid_type.c_type.description",
+    "massClasses": [
       {
         "id": "s",
-        "name_key": "mass_class.s.name",
-        "min_mass": 5000,
-        "max_mass": 50000,
-        "max_sites": 1
+        "nameKey": "mass_class.s.name",
+        "minMass": 5000,
+        "maxMass": 50000,
+        "maxSites": 1
       },
       {
         "id": "m",
-        "name_key": "mass_class.m.name",
-        "min_mass": 50000,
-        "max_mass": 200000,
-        "max_sites": 2
+        "nameKey": "mass_class.m.name",
+        "minMass": 50000,
+        "maxMass": 200000,
+        "maxSites": 2
       },
       {
         "id": "l",
-        "name_key": "mass_class.l.name",
-        "min_mass": 200000,
-        "max_mass": 1000000,
-        "max_sites": 4
+        "nameKey": "mass_class.l.name",
+        "minMass": 200000,
+        "maxMass": 1000000,
+        "maxSites": 4
       }
     ],
     "formations": [{ "formation": "coal_bearing_sandstone", "weight": 5 }]
   }
-]
+}

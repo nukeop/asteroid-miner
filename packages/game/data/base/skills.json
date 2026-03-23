@@ -1,100 +1,100 @@
-[
-  {
+{
+  "mining": {
     "id": "mining",
-    "name_key": "skill.mining.name",
-    "description_key": "skill.mining.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.mining.name",
+    "descriptionKey": "skill.mining.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "geology": {
     "id": "geology",
-    "name_key": "skill.geology.name",
-    "description_key": "skill.geology.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.geology.name",
+    "descriptionKey": "skill.geology.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "refining": {
     "id": "refining",
-    "name_key": "skill.refining.name",
-    "description_key": "skill.refining.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.refining.name",
+    "descriptionKey": "skill.refining.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "engineering": {
     "id": "engineering",
-    "name_key": "skill.engineering.name",
-    "description_key": "skill.engineering.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.engineering.name",
+    "descriptionKey": "skill.engineering.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "cybernetics": {
     "id": "cybernetics",
-    "name_key": "skill.cybernetics.name",
-    "description_key": "skill.cybernetics.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.cybernetics.name",
+    "descriptionKey": "skill.cybernetics.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "cosmonautics": {
     "id": "cosmonautics",
-    "name_key": "skill.cosmonautics.name",
-    "description_key": "skill.cosmonautics.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.cosmonautics.name",
+    "descriptionKey": "skill.cosmonautics.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "navigation": {
     "id": "navigation",
-    "name_key": "skill.navigation.name",
-    "description_key": "skill.navigation.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.navigation.name",
+    "descriptionKey": "skill.navigation.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "medicine": {
     "id": "medicine",
-    "name_key": "skill.medicine.name",
-    "description_key": "skill.medicine.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.medicine.name",
+    "descriptionKey": "skill.medicine.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "research": {
     "id": "research",
-    "name_key": "skill.research.name",
-    "description_key": "skill.research.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.research.name",
+    "descriptionKey": "skill.research.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "materials_science": {
     "id": "materials_science",
-    "name_key": "skill.materials_science.name",
-    "description_key": "skill.materials_science.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.materials_science.name",
+    "descriptionKey": "skill.materials_science.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "blat": {
     "id": "blat",
-    "name_key": "skill.blat.name",
-    "description_key": "skill.blat.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.blat.name",
+    "descriptionKey": "skill.blat.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "leadership": {
     "id": "leadership",
-    "name_key": "skill.leadership.name",
-    "description_key": "skill.leadership.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.leadership.name",
+    "descriptionKey": "skill.leadership.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "construction": {
     "id": "construction",
-    "name_key": "skill.construction.name",
-    "description_key": "skill.construction.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.construction.name",
+    "descriptionKey": "skill.construction.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "bureaucracy": {
     "id": "bureaucracy",
-    "name_key": "skill.bureaucracy.name",
-    "description_key": "skill.bureaucracy.description",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.bureaucracy.name",
+    "descriptionKey": "skill.bureaucracy.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   }
-]
+}

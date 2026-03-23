@@ -4,41 +4,41 @@
   "description": "Name arrays for crew generation.",
   "type": "object",
   "required": [
-    "male_first",
-    "female_first",
-    "male_middle",
-    "female_middle",
-    "male_last",
-    "female_last"
+    "maleFirst",
+    "femaleFirst",
+    "maleMiddle",
+    "femaleMiddle",
+    "maleLast",
+    "femaleLast"
   ],
   "additionalProperties": false,
   "properties": {
-    "male_first": {
+    "maleFirst": {
       "type": "array",
       "items": { "type": "string" },
       "minItems": 1
     },
-    "female_first": {
+    "femaleFirst": {
       "type": "array",
       "items": { "type": "string" },
       "minItems": 1
     },
-    "male_middle": {
+    "maleMiddle": {
       "type": "array",
       "items": { "type": "string" },
       "minItems": 1
     },
-    "female_middle": {
+    "femaleMiddle": {
       "type": "array",
       "items": { "type": "string" },
       "minItems": 1
     },
-    "male_last": {
+    "maleLast": {
       "type": "array",
       "items": { "type": "string" },
       "minItems": 1
     },
-    "female_last": {
+    "femaleLast": {
       "type": "array",
       "items": { "type": "string" },
       "minItems": 1

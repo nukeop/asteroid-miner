@@ -2,11 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Origin Definitions",
   "description": "Defines pawn origins: where they grew up before appearing in the game.",
-  "type": "array",
-  "items": {
+  "type": "object",
+  "additionalProperties": {
     "type": "object",
     "description": "A single origin definition.",
-    "required": ["id", "name_key", "description_key"],
+    "required": ["id", "nameKey", "descriptionKey"],
     "additionalProperties": false,
     "properties": {
       "id": {
@@ -14,15 +14,15 @@
         "description": "Unique identifier for this origin.",
         "examples": ["belt_colony", "core_world", "frontier"]
       },
-      "name_key": {
+      "nameKey": {
         "type": "string",
         "description": "i18n key for the display name."
       },
-      "description_key": {
+      "descriptionKey": {
         "type": "string",
         "description": "i18n key for the description."
       },
-      "skill_bonuses": {
+      "skillBonuses": {
         "type": "array",
         "description": "Starting skill level bonuses granted by this origin.",
         "default": [],

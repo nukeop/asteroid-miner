@@ -1,12 +1,12 @@
-[
-  {
+{
+  "starting": {
     "id": "starting",
-    "name_key": "scenario.starting.name",
-    "description_key": "scenario.starting.description",
+    "nameKey": "scenario.starting.name",
+    "descriptionKey": "scenario.starting.description",
     "crew": [
       {
-        "origins_whitelist": ["civilian"],
-        "careers_whitelist": ["civilian"],
+        "originsWhitelist": ["civilian"],
+        "careersWhitelist": ["civilian"],
         "sex": null,
         "age": [25, 40],
         "skills": {
@@ -16,8 +16,8 @@
         }
       },
       {
-        "origins_whitelist": ["civilian"],
-        "careers_whitelist": ["civilian"],
+        "originsWhitelist": ["civilian"],
+        "careersWhitelist": ["civilian"],
         "sex": null,
         "age": [25, 40],
         "skills": {
@@ -27,8 +27,8 @@
         }
       },
       {
-        "origins_whitelist": ["civilian"],
-        "careers_whitelist": ["civilian"],
+        "originsWhitelist": ["civilian"],
+        "careersWhitelist": ["civilian"],
         "sex": null,
         "age": [28, 45],
         "skills": {
@@ -39,4 +39,4 @@
       }
     ]
   }
-]
+}

@@ -1,80 +1,80 @@
-[
-  {
+{
+  "belt_miner": {
     "id": "belt_miner",
-    "name_key": "career.belt_miner.name",
-    "description_key": "career.belt_miner.description",
-    "skill_bonuses": [
+    "nameKey": "career.belt_miner.name",
+    "descriptionKey": "career.belt_miner.description",
+    "skillBonuses": [
       { "id": "mining", "amount": 4 },
       { "id": "geology", "amount": 2 }
     ]
   },
-  {
+  "military_cosmonaut": {
     "id": "military_cosmonaut",
-    "name_key": "career.military_cosmonaut.name",
-    "description_key": "career.military_cosmonaut.description",
-    "skill_bonuses": [
+    "nameKey": "career.military_cosmonaut.name",
+    "descriptionKey": "career.military_cosmonaut.description",
+    "skillBonuses": [
       { "id": "cosmonautics", "amount": 4 },
       { "id": "navigation", "amount": 2 }
     ]
   },
-  {
+  "planning_clerk": {
     "id": "planning_clerk",
-    "name_key": "career.planning_clerk.name",
-    "description_key": "career.planning_clerk.description",
-    "skill_bonuses": [
+    "nameKey": "career.planning_clerk.name",
+    "descriptionKey": "career.planning_clerk.description",
+    "skillBonuses": [
       { "id": "bureaucracy", "amount": 3 },
       { "id": "cybernetics", "amount": 2 }
     ]
   },
-  {
+  "dock_worker": {
     "id": "dock_worker",
-    "name_key": "career.dock_worker.name",
-    "description_key": "career.dock_worker.description",
-    "skill_bonuses": [
+    "nameKey": "career.dock_worker.name",
+    "descriptionKey": "career.dock_worker.description",
+    "skillBonuses": [
       { "id": "construction", "amount": 3 },
       { "id": "engineering", "amount": 2 }
     ]
   },
-  {
+  "smuggler": {
     "id": "smuggler",
-    "name_key": "career.smuggler.name",
-    "description_key": "career.smuggler.description",
-    "skill_bonuses": [
+    "nameKey": "career.smuggler.name",
+    "descriptionKey": "career.smuggler.description",
+    "skillBonuses": [
       { "id": "cosmonautics", "amount": 3 },
       { "id": "blat", "amount": 2 }
     ]
   },
-  {
+  "field_medic": {
     "id": "field_medic",
-    "name_key": "career.field_medic.name",
-    "description_key": "career.field_medic.description",
-    "skill_bonuses": [
+    "nameKey": "career.field_medic.name",
+    "descriptionKey": "career.field_medic.description",
+    "skillBonuses": [
       { "id": "medicine", "amount": 4 },
       { "id": "leadership", "amount": 1 }
     ]
   },
-  {
+  "research_assistant": {
     "id": "research_assistant",
-    "name_key": "career.research_assistant.name",
-    "description_key": "career.research_assistant.description",
-    "skill_bonuses": [
+    "nameKey": "career.research_assistant.name",
+    "descriptionKey": "career.research_assistant.description",
+    "skillBonuses": [
       { "id": "research", "amount": 3 },
       { "id": "materials_science", "amount": 2 }
     ]
   },
-  {
+  "apparatchik": {
     "id": "apparatchik",
-    "name_key": "career.apparatchik.name",
-    "description_key": "career.apparatchik.description",
-    "skill_bonuses": [
+    "nameKey": "career.apparatchik.name",
+    "descriptionKey": "career.apparatchik.description",
+    "skillBonuses": [
       { "id": "blat", "amount": 4 },
       { "id": "bureaucracy", "amount": 2 }
     ]
   },
-  {
+  "civilian": {
     "id": "civilian",
-    "name_key": "career.civilian.name",
-    "description_key": "career.civilian.description",
-    "skill_bonuses": []
+    "nameKey": "career.civilian.name",
+    "descriptionKey": "career.civilian.description",
+    "skillBonuses": []
   }
-]
+}

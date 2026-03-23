@@ -5,12 +5,12 @@
   "type": "object",
   "required": [
     "id",
-    "name_key",
+    "nameKey",
     "version",
     "type",
-    "description_key",
+    "descriptionKey",
     "author",
-    "game_version"
+    "gameVersion"
   ],
   "additionalProperties": false,
   "properties": {
@@ -23,7 +23,7 @@
       "description": "Unique identifier for this data pack. Must be unique across all loaded packs.",
       "examples": ["base", "deep_core", "better_drills"]
     },
-    "name_key": {
+    "nameKey": {
       "type": "string",
       "description": "i18n key for the display name."
     },
@@ -38,7 +38,7 @@
       "description": "What kind of data pack this is. \"base\" is the core game data. \"dlc\" is official expansion content. \"mod\" is community-created content.",
       "enum": ["base", "dlc", "mod"]
     },
-    "description_key": {
+    "descriptionKey": {
       "type": "string",
       "description": "i18n key for the description."
     },
@@ -46,7 +46,7 @@
       "type": "string",
       "description": "Who made this pack."
     },
-    "game_version": {
+    "gameVersion": {
       "type": "string",
       "description": "Minimum game version this pack requires.",
       "pattern": "^\\d+\\.\\d+\\.\\d+$",

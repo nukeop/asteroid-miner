@@ -2,22 +2,22 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Resource Definitions",
   "description": "Mineable and tradeable resources.",
-  "type": "array",
-  "items": {
+  "type": "object",
+  "additionalProperties": {
     "type": "object",
     "description": "A single resource definition.",
-    "required": ["id", "name_key", "description_key"],
+    "required": ["id", "nameKey", "descriptionKey"],
     "additionalProperties": false,
     "properties": {
       "id": {
         "type": "string",
         "description": "Unique identifier for this resource."
       },
-      "name_key": {
+      "nameKey": {
         "type": "string",
         "description": "i18n key for the display name."
       },
-      "description_key": {
+      "descriptionKey": {
         "type": "string",
         "description": "i18n key for the description."
       },

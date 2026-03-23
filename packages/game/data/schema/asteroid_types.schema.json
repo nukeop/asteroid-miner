@@ -2,15 +2,15 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Asteroid Type Definitions",
   "description": "Top-level asteroid classifications.",
-  "type": "array",
-  "items": {
+  "type": "object",
+  "additionalProperties": {
     "type": "object",
     "description": "A single asteroid type definition.",
     "required": [
       "id",
-      "name_key",
-      "description_key",
-      "mass_classes",
+      "nameKey",
+      "descriptionKey",
+      "massClasses",
       "formations"
     ],
     "additionalProperties": false,
@@ -19,42 +19,42 @@
         "type": "string",
         "description": "Unique identifier for this asteroid type."
       },
-      "name_key": {
+      "nameKey": {
         "type": "string",
         "description": "i18n key for the display name."
       },
-      "description_key": {
+      "descriptionKey": {
         "type": "string",
         "description": "i18n key for the description."
       },
-      "mass_classes": {
+      "massClasses": {
         "type": "array",
         "description": "Size categories for this asteroid type. Must have at least one entry.",
         "minItems": 1,
         "items": {
           "type": "object",
-          "required": ["id", "name_key", "min_mass", "max_mass", "max_sites"],
+          "required": ["id", "nameKey", "minMass", "maxMass", "maxSites"],
           "additionalProperties": false,
           "properties": {
             "id": {
               "type": "string",
               "description": "Identifier for this mass class within the asteroid type."
             },
-            "name_key": {
+            "nameKey": {
               "type": "string",
               "description": "i18n key for the display name."
             },
-            "min_mass": {
+            "minMass": {
               "type": "number",
               "description": "Minimum total mass in tons.",
               "minimum": 0
             },
-            "max_mass": {
+            "maxMass": {
               "type": "number",
               "description": "Maximum total mass in tons.",
               "minimum": 0
             },
-            "max_sites": {
+            "maxSites": {
               "type": "integer",
               "description": "Maximum number of mining sites.",
               "minimum": 1,
@@ -81,9 +81,9 @@
               "description": "Base weight. Must be positive.",
               "exclusiveMinimum": 0
             },
-            "depth_bonus": {
+            "depthBonus": {
               "type": "number",
-              "description": "Added to weight per site depth level (0 = outermost). Effective weight = weight + depth_bonus * depth. Formations with effective weight <= 0 are excluded at that depth.",
+              "description": "Added to weight per site depth level (0 = outermost). Effective weight = weight + depthBonus * depth. Formations with effective weight <= 0 are excluded at that depth.",
               "default": 0
             }
           }

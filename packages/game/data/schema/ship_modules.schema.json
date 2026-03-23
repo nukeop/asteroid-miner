@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Ship Module Definitions",
   "description": "Components that can be installed on a ship. Each module has a category that determines its fields.",
-  "type": "array",
-  "items": {
+  "type": "object",
+  "additionalProperties": {
     "discriminator": {
       "propertyName": "category"
     },
@@ -11,15 +11,15 @@
       {
         "type": "object",
         "description": "Command bridge. Mandatory, one per ship.",
-        "required": ["id", "name_key", "description_key", "category"],
+        "required": ["id", "nameKey", "descriptionKey", "category"],
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "description": "Unique identifier." },
-          "name_key": {
+          "nameKey": {
             "type": "string",
             "description": "i18n key for the display name."
           },
-          "description_key": {
+          "descriptionKey": {
             "type": "string",
             "description": "i18n key for the description."
           },
@@ -29,15 +29,15 @@
       {
         "type": "object",
         "description": "Ship reactor. Mandatory, one per ship.",
-        "required": ["id", "name_key", "description_key", "category"],
+        "required": ["id", "nameKey", "descriptionKey", "category"],
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "description": "Unique identifier." },
-          "name_key": {
+          "nameKey": {
             "type": "string",
             "description": "i18n key for the display name."
           },
-          "description_key": {
+          "descriptionKey": {
             "type": "string",
             "description": "i18n key for the description."
           },
@@ -49,20 +49,20 @@
         "description": "Propulsion engine.",
         "required": [
           "id",
-          "name_key",
-          "description_key",
+          "nameKey",
+          "descriptionKey",
           "category",
           "speed",
-          "fuel_efficiency"
+          "fuelEfficiency"
         ],
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "description": "Unique identifier." },
-          "name_key": {
+          "nameKey": {
             "type": "string",
             "description": "i18n key for the display name."
           },
-          "description_key": {
+          "descriptionKey": {
             "type": "string",
             "description": "i18n key for the description."
           },
@@ -72,7 +72,7 @@
             "description": "Ship speed.",
             "exclusiveMinimum": 0
           },
-          "fuel_efficiency": {
+          "fuelEfficiency": {
             "type": "number",
             "description": "Fuel efficiency rating.",
             "exclusiveMinimum": 0
@@ -82,25 +82,19 @@
       {
         "type": "object",
         "description": "Fuel storage tank.",
-        "required": [
-          "id",
-          "name_key",
-          "description_key",
-          "category",
-          "capacity"
-        ],
+        "required": ["id", "nameKey", "descriptionKey", "category", "capacity"],
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "description": "Unique identifier." },
-          "name_key": {
+          "nameKey": {
             "type": "string",
             "description": "i18n key for the display name."
           },
-          "description_key": {
+          "descriptionKey": {
             "type": "string",
             "description": "i18n key for the description."
           },
-          "category": { "const": "fuel_tank" },
+          "category": { "const": "fuelTank" },
           "capacity": {
             "type": "number",
             "description": "Fuel capacity in tonnes.",
@@ -111,43 +105,37 @@
       {
         "type": "object",
         "description": "Crew quarters. Houses one crew member.",
-        "required": ["id", "name_key", "description_key", "category"],
+        "required": ["id", "nameKey", "descriptionKey", "category"],
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "description": "Unique identifier." },
-          "name_key": {
+          "nameKey": {
             "type": "string",
             "description": "i18n key for the display name."
           },
-          "description_key": {
+          "descriptionKey": {
             "type": "string",
             "description": "i18n key for the description."
           },
-          "category": { "const": "crew_quarters" }
+          "category": { "const": "crewQuarters" }
         }
       },
       {
         "type": "object",
         "description": "Cargo hold for mined resources.",
-        "required": [
-          "id",
-          "name_key",
-          "description_key",
-          "category",
-          "capacity"
-        ],
+        "required": ["id", "nameKey", "descriptionKey", "category", "capacity"],
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "description": "Unique identifier." },
-          "name_key": {
+          "nameKey": {
             "type": "string",
             "description": "i18n key for the display name."
           },
-          "description_key": {
+          "descriptionKey": {
             "type": "string",
             "description": "i18n key for the description."
           },
-          "category": { "const": "cargo_bay" },
+          "category": { "const": "cargoBay" },
           "capacity": {
             "type": "number",
             "description": "Cargo capacity in tonnes.",
@@ -160,19 +148,19 @@
         "description": "Ship-mounted spectral scanner for asteroid discovery.",
         "required": [
           "id",
-          "name_key",
-          "description_key",
+          "nameKey",
+          "descriptionKey",
           "category",
           "sensitivity"
         ],
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "description": "Unique identifier." },
-          "name_key": {
+          "nameKey": {
             "type": "string",
             "description": "i18n key for the display name."
           },
-          "description_key": {
+          "descriptionKey": {
             "type": "string",
             "description": "i18n key for the description."
           },
@@ -187,19 +175,19 @@
       {
         "type": "object",
         "description": "Bay that holds one deployable machine.",
-        "required": ["id", "name_key", "description_key", "category"],
+        "required": ["id", "nameKey", "descriptionKey", "category"],
         "additionalProperties": false,
         "properties": {
           "id": { "type": "string", "description": "Unique identifier." },
-          "name_key": {
+          "nameKey": {
             "type": "string",
             "description": "i18n key for the display name."
           },
-          "description_key": {
+          "descriptionKey": {
             "type": "string",
             "description": "i18n key for the description."
           },
-          "category": { "const": "machine_bay" }
+          "category": { "const": "machineBay" }
         }
       }
     ]
