@@ -1,16 +1,16 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { parseDataPack } from '../wasm';
+import { loadDataPack } from '../data-pack';
 import { useDefinitionsStore } from './useDefinitionsStore';
 
-async function loadDataPack(packPath: string) {
+async function loadDefinitions(packPath: string) {
   const result = await window.electronAPI.loadDataPack(packPath);
 
   if (!result.ok || !result.data) {
     throw new Error(result.error ?? 'Failed to load data pack');
   }
 
-  const definitions = parseDataPack(result.data);
+  const definitions = loadDataPack(result.data);
   useDefinitionsStore.getState().setDefinitions(definitions);
   return definitions;
 }
@@ -18,7 +18,7 @@ async function loadDataPack(packPath: string) {
 export function dataPackQueryOptions(packPath: string) {
   return queryOptions({
     queryKey: ['dataPack', packPath],
-    queryFn: () => loadDataPack(packPath),
+    queryFn: () => loadDefinitions(packPath),
     staleTime: Infinity,
     retry: false,
   });

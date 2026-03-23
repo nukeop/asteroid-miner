@@ -31,8 +31,8 @@ export const DataBrowser: FC = () => {
       { accessorKey: 'id', header: t('data.columns.id') },
       { accessorKey: 'name', header: t('data.columns.name') },
       { accessorKey: 'description', header: t('data.columns.description') },
-      { accessorKey: 'xp_base', header: t('data.columns.xpBase') },
-      { accessorKey: 'xp_growth', header: t('data.columns.xpGrowth') },
+      { accessorKey: 'xpBase', header: t('data.columns.xpBase') },
+      { accessorKey: 'xpGrowth', header: t('data.columns.xpGrowth') },
     ],
     [t],
   );
@@ -47,8 +47,8 @@ export const DataBrowser: FC = () => {
         header: t('data.columns.effects'),
         accessorFn: (row) =>
           [
-            ...row.skill_modifiers.map((m) => `${m.op} ${m.skill} ${m.value}`),
-            ...row.custom_effects.map((e) => e.handler),
+            ...row.skillModifiers.map((m) => `${m.op} ${m.skill} ${m.value}`),
+            ...row.customEffects.map((e) => e.handler),
           ].join(', ') || '\u2014',
       },
     ],
@@ -66,7 +66,7 @@ export const DataBrowser: FC = () => {
         id: 'bonuses',
         header: t('data.columns.bonuses'),
         accessorFn: (row) =>
-          row.skill_bonuses
+          row.skillBonuses
             .map((b) => `${b.id} ${b.amount > 0 ? '+' : ''}${b.amount}`)
             .join(', ') || '\u2014',
       },

@@ -7,8 +7,8 @@ interface DataPackFiles {
   tags: string;
   resources: string;
   formations: string;
-  asteroid_types: string;
-  ship_modules: string;
+  asteroidTypes: string;
+  shipModules: string;
   machines: string;
   names: string;
   scenarios: string;
