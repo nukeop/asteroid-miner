@@ -15,6 +15,7 @@
   "dependencies": {
     "@asteroid-miner/i18n": "workspace:^",
     "@asteroid-miner/mod-sdk": "workspace:^",
+    "@asteroid-miner/model": "workspace:^",
     "@asteroid-miner/tailwind-config": "workspace:^",
     "@asteroid-miner/ui": "workspace:^",
     "@tanstack/react-query": "^5.90.21",

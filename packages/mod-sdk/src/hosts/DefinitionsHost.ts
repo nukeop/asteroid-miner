@@ -1,4 +1,4 @@
-import type { Definitions } from '../definitions';
+import type { Definitions } from '@asteroid-miner/model';
 
 export type DefinitionsHost = {
   getDefinitions(): Definitions | null;

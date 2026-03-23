@@ -1,4 +1,5 @@
-import type { Definitions } from '../definitions';
+import type { Definitions } from '@asteroid-miner/model';
+
 import type { DefinitionsHost } from '../hosts/DefinitionsHost';
 
 export class DefinitionsAPI {

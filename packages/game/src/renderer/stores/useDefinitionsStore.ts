@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import type { Definitions } from '@asteroid-miner/mod-sdk';
+import type { Definitions } from '@asteroid-miner/model';
 
 export type { Definitions };
 

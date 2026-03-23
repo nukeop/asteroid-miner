@@ -4,4 +4,4 @@ export { DefinitionsAPI } from './api/DefinitionsAPI';
 export { GameClockAPI } from './api/GameClockAPI';
 export { ModAPI } from './ModAPI';
 export type { Mod, ModManifest } from './types';
-export type * from './definitions';
+export type * from '@asteroid-miner/model';
