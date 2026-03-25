@@ -26,28 +26,8 @@ jobs:
           node-version: 22
           cache: pnpm
 
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: wasm32-unknown-unknown
-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            ~/.cargo/bin/wasm-pack
-            target
-          key: cargo-${{ runner.os }}-${{ hashFiles('Cargo.lock') }}
-          restore-keys: |
-            cargo-${{ runner.os }}-
-
-      - name: Install wasm-pack
-        run: command -v wasm-pack || cargo install wasm-pack
-
       - run: pnpm install
-      - run: pnpm build:wasm
       - run: pnpm lint
       - run: pnpm type-check
       - run: pnpm build
       - run: pnpm test
-      - run: cargo test --workspace

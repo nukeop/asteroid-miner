@@ -16,10 +16,6 @@
   ],
   "json.schemas": [
     {
-      "fileMatch": ["packages/game/data/*/manifest.json"],
-      "url": "./packages/game/data/schema/manifest.schema.json"
-    },
-    {
       "fileMatch": ["packages/game/data/*/skills.json"],
       "url": "./packages/game/data/schema/skills.schema.json"
     },
@@ -35,6 +31,5 @@
       "fileMatch": ["packages/game/data/*/careers.json"],
       "url": "./packages/game/data/schema/careers.schema.json"
     }
-  ],
-  "rustTestExplorer.rootCargoManifestFilePath": "./Cargo.toml"
+  ]
 }

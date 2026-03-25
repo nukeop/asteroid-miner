@@ -2,10 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "out",
-    "rootDir": "src",
-    "paths": {
-      "@wasm": ["../../crates/asteroid-miner-wasm/pkg"]
-    }
+    "rootDir": "src"
   },
   "include": ["src"]
 }

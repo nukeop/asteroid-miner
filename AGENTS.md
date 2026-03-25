@@ -8,32 +8,24 @@ Core loop: Scout > Acquire rights (bureaucracy, bribes) > Crew a ship > Mine > F
 
 Desktop app targeting Steam (Mac, Linux). Built on Electron.
 
-**Status:** Early development, "dancing skeleton" stage. The architecture works end-to-end (Electron boots, React renders, Rust compiles to WASM, IPC handles save/load, Storybook renders components), but no game systems exist yet.
+**Status:** Early development, "dancing skeleton" stage. The architecture works end-to-end (Electron boots, React renders, IPC handles save/load, Storybook renders components), but no game systems exist yet.
 
 ## Monorepo structure
 
-pnpm workspaces for TypeScript packages, Cargo workspace for Rust crates.
+pnpm workspaces for TypeScript packages.
 
 ### TypeScript packages (`packages/`)
 
 | Package                    | Purpose                                                                          |
 | -------------------------- | -------------------------------------------------------------------------------- |
 | `packages/game`            | Main Electron app. electron-vite for unified main/preload/renderer builds.       |
+| `packages/model`           | Core game types and models. Shared across game and mod-sdk.                      |
 | `packages/ui`              | Shared React component library. Vite library mode, ES module output.             |
 | `packages/storybook`       | Storybook 10. Stories live here, not co-located with components.                 |
 | `packages/tailwind-config` | Shared Tailwind v4 CSS-first config. No build step. Entry: `src/global.css`.     |
 | `packages/eslint-config`   | Shared ESLint flat config. Re-exported by root `eslint.config.ts`.               |
 | `packages/i18n`            | i18next + react-i18next wrapper. All UI strings go through this.                 |
 | `packages/mod-sdk`         | Modding SDK. Dependency-inversion host pattern. Pure TS interfaces. Publishable. |
-
-### Rust crates (`crates/`)
-
-| Crate                  | Purpose                                                                          |
-| ---------------------- | -------------------------------------------------------------------------------- |
-| `asteroid-miner-types` | Shared ID newtypes, enums, primitives used across all Rust crates.               |
-| `asteroid-miner-defs`  | Definition structs (\*Def), Registry, Definitions, data pack loading/validation. |
-| `asteroid-miner-world` | Runtime game state: GameState, Pawn, and future instance types.                  |
-| `asteroid-miner-wasm`  | WASM boundary glue. This is the crate that wasm-pack builds.                     |
 
 ### Dependency flow
 
@@ -44,19 +36,17 @@ eslint-config  tailwind-config    i18n
      ui <───── storybook         game
      |                             |
      v                             v
-   game <──── wasm (WASM)      mod-sdk
-
-types → defs → world → wasm
+   game                        mod-sdk
+     |                             |
+     v                             v
+   model <──────────────────── model
 ```
-
-The game package imports the WASM module via a Vite alias (`@wasm` -> `crates/asteroid-miner-wasm/pkg`).
 
 ## Tech stack
 
 - **TypeScript 5.9**, target ES2022, `moduleResolution: bundler`, strict mode
 - **React 19** with automatic JSX runtime
 - **Electron 40** via **electron-vite 5**
-- **Rust** (edition 2024) for the simulation engine, compiled to WASM via `wasm-pack --target web`
 - **Vite 7** for all builds. Library packages use Vite library mode + `vite-plugin-dts`
 - **Tailwind CSS v4**, CSS-first config (no JS config file). Colors in OKLCH.
 - **cva** (class-variance-authority) for component variants
@@ -74,18 +64,22 @@ The game package imports the WASM module via a Vite alias (`@wasm` -> `crates/as
 
 ## Development workflow
 
-| Command                       | What it does                                                                  |
-| ----------------------------- | ----------------------------------------------------------------------------- |
-| `pnpm dev`                    | `electron-vite dev` with hot reload                                           |
-| `pnpm build`                  | Turbo build across all packages                                               |
-| `pnpm build:wasm`             | `wasm-pack build` the simulation crate. **Must run before `dev` or `build`.** |
-| `pnpm test`                   | Turbo test across all packages                                                |
-| `pnpm test:rust`              | `cargo test` across all Rust crates                                           |
-| `pnpm lint` / `pnpm lint:fix` | ESLint across all packages                                                    |
-| `pnpm type-check`             | Turbo type-check across all packages                                          |
-| `pnpm storybook`              | Storybook on port 6006                                                        |
+| Command                       | What it does                         |
+| ----------------------------- | ------------------------------------ |
+| `pnpm dev`                    | `electron-vite dev` with hot reload  |
+| `pnpm build`                  | Turbo build across all packages      |
+| `pnpm test`                   | Turbo test across all packages       |
+| `pnpm lint` / `pnpm lint:fix` | ESLint across all packages           |
+| `pnpm type-check`             | Turbo type-check across all packages |
+| `pnpm storybook`              | Storybook on port 6006               |
 
-CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
+CI runs on push/PR to `master`: lint > type-check > build > test.
+
+## Data packs
+
+Data packs are node packages. The base game, DLCs, and mods all use the same format. Each pack has a `package.json` with an `asteroidMiner` field declaring its type, game version, and which data files it includes. The IPC handler reads only the declared files.
+
+Types for data packs live in `@asteroid-miner/model`: `DataPackManifest`, `DataPackMeta`, `DataPackFiles`, `DataFileName`.
 
 ## UI components
 
@@ -146,8 +140,8 @@ If a new component in the ui package needs labels and other kinds of localized t
 
 - **Main process** (`packages/game/src/main/`): Creates BrowserWindow, registers IPC handlers.
 - **Preload** (`packages/game/src/preload/`): Exposes `electronAPI` with `saveGame`/`loadGame` via `contextBridge`.
-- **Renderer** (`packages/game/src/renderer/`): React SPA. Imports WASM module, initializes i18n.
-- IPC channels: `save-game` (writes JSON to userData), `load-game` (reads it back).
+- **Renderer** (`packages/game/src/renderer/`): React SPA, initializes i18n.
+- IPC channels: `save-game` (writes JSON to userData), `load-game` (reads it back), `load-data-pack` (reads a data pack from disk).
 
 ## Renderer structure
 
@@ -156,16 +150,6 @@ If a new component in the ui package needs labels and other kinds of localized t
 - **Hooks** (`hooks/`): Custom hooks for async logic (e.g., `useNewGame`). Keep route components thin.
 - **Stores** (`stores/`): Zustand stores and React Query options.
 - Define components with `FC`: `export const MyComponent: FC<Props> = ({ ... }) => { ... }`. Not `function MyComponent() { ... }`.
-
-## Simulation (Rust/WASM)
-
-- Cargo workspace at the repo root with four crates in `crates/`.
-- `asteroid-miner-types`: shared ID newtypes and enums.
-- `asteroid-miner-defs`: definition structs, Registry, Definitions, data pack loading.
-- `asteroid-miner-world`: runtime game state (GameState, Pawn).
-- `asteroid-miner-wasm`: WASM boundary glue, compiled via `wasm-pack --target web`.
-- WASM output goes to `crates/asteroid-miner-wasm/pkg/`, imported by the game renderer via `@wasm` Vite alias.
-- Uses `wasm-bindgen`, `serde`, `serde-wasm-bindgen` for JS interop.
 
 ## Mod SDK
 
