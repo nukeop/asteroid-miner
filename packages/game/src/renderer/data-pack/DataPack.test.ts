@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { loadDataPack } from './load-data-pack';
+import { DataPack } from './DataPack';
 import { testFiles } from './test-fixtures';
 
-describe('loadDataPack', () => {
+describe('DataPack', () => {
   it('(Snapshot) parses definitions from JSON files', () => {
-    const defs = loadDataPack(testFiles());
+    const pack = new DataPack(testFiles());
 
-    expect(defs).toMatchSnapshot();
+    expect(pack.definitions).toMatchSnapshot();
   });
 });

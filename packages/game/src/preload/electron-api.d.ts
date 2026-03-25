@@ -1,18 +1,4 @@
-interface DataPackFiles {
-  manifest: string;
-  skills: string;
-  traits: string;
-  origins: string;
-  careers: string;
-  tags: string;
-  resources: string;
-  formations: string;
-  asteroidTypes: string;
-  shipModules: string;
-  machines: string;
-  names: string;
-  scenarios: string;
-}
+import type { DataPackFiles } from '@asteroid-miner/model';
 
 interface ElectronAPI {
   saveGame: (data: string) => Promise<{ ok: boolean }>;

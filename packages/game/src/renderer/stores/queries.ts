@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { loadDataPack } from '../data-pack';
+import { DataPack } from '../data-pack/DataPack';
 import { useDefinitionsStore } from './useDefinitionsStore';
 
 async function loadDefinitions(packPath: string) {
@@ -10,9 +10,9 @@ async function loadDefinitions(packPath: string) {
     throw new Error(result.error ?? 'Failed to load data pack');
   }
 
-  const definitions = loadDataPack(result.data);
-  useDefinitionsStore.getState().setDefinitions(definitions);
-  return definitions;
+  const pack = new DataPack(result.data);
+  useDefinitionsStore.getState().setDefinitions(pack.definitions);
+  return pack.definitions;
 }
 
 export function dataPackQueryOptions(packPath: string) {

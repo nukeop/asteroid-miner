@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`loadDataPack > (Snapshot) parses definitions from JSON files 1`] = `
+exports[`DataPack > (Snapshot) parses definitions from JSON files 1`] = `
 {
   "asteroidTypes": {
     "c_type": {

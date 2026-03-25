@@ -1,15 +1,32 @@
-import type { DataPackFiles } from './load-data-pack';
+import type { DataPackFiles } from './DataPack';
 
 export function testFiles(): DataPackFiles {
   return {
     manifest: JSON.stringify({
-      id: 'test',
-      nameKey: 'pack.test.name',
+      name: '@asteroid-miner/test-data',
       version: '1.0.0',
-      type: 'base',
-      descriptionKey: 'pack.test.description',
+      description: 'Test data pack',
       author: 'test',
-      gameVersion: '0.1.0',
+      asteroidMiner: {
+        type: 'base',
+        gameVersion: '0.1.0',
+        nameKey: 'pack.test.name',
+        descriptionKey: 'pack.test.description',
+        files: [
+          'skills',
+          'traits',
+          'origins',
+          'careers',
+          'tags',
+          'resources',
+          'formations',
+          'asteroidTypes',
+          'shipModules',
+          'machines',
+          'names',
+          'scenarios',
+        ],
+      },
     }),
     skills: JSON.stringify({
       mining: {
