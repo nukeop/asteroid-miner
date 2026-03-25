@@ -117,7 +117,7 @@ Types for data packs live in `@asteroid-miner/model`: `DataPackManifest`, `DataP
 
 ## Testing conventions
 
-- Test behavior, not implementation details.
+- Test behavior, not implementation details. This means we don't do unit tests or small integration tests with mocks.
 - E2E tests from the user's perspective. No unit tests on thin wrappers or pass-through layers.
 - Tests can only perform actions the user can perform: click buttons, type text, read what's on screen.
 - Setup methods are allowed to touch internals.
@@ -126,6 +126,7 @@ Types for data packs live in `@asteroid-miner/model`: `DataPackManifest`, `DataP
 - Snapshot tests: prefix test title with `(Snapshot)`. Don't prefix non-snapshot tests.
 - Consolidate related assertions into fewer tests.
 - Test wrappers live next to the view they test: `MyView.test-wrapper.tsx`.
+- Mocking is only acceptable for external dependencies, like I/O or network requests.
 
 ## i18n
 
