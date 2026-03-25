@@ -1,15 +1,6 @@
-import { useNavigate } from '@tanstack/react-router';
-import { useCallback } from 'react';
-
-import { useGameClockStore } from '../stores/useGameClockStore';
+import { useNewGameWizard } from './newGameWizard';
 
 export function useNewGame() {
-  const navigate = useNavigate();
-
-  const startNewGame = useCallback(() => {
-    useGameClockStore.getState().reset();
-    navigate({ to: '/game/map' });
-  }, [navigate]);
-
-  return { startNewGame };
+  const { start } = useNewGameWizard();
+  return { startNewGame: start };
 }
