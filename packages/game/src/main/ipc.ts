@@ -3,11 +3,7 @@ import { join } from 'path';
 
 import { app, type IpcMain } from 'electron';
 
-import type {
-  DataFileName,
-  DataPackFiles,
-  DataPackManifest,
-} from '@asteroid-miner/model';
+import type { DataFileName, DataPackManifest } from '@asteroid-miner/model';
 
 function getSavePath(): string {
   return join(app.getPath('userData'), 'saves', 'save.json');
@@ -28,45 +24,41 @@ async function readDataFiles(
 
 export function registerIpcHandlers(ipcMain: IpcMain) {
   ipcMain.handle('save-game', async (_event, data: string) => {
-    const savePath = getSavePath();
-    await mkdir(join(savePath, '..'), { recursive: true });
-    await writeFile(savePath, data, 'utf-8');
-    return { ok: true };
+    try {
+      const savePath = getSavePath();
+      await mkdir(join(savePath, '..'), { recursive: true });
+      await writeFile(savePath, data, 'utf-8');
+      return { ok: true, data: undefined };
+    } catch (e) {
+      return { ok: false, error: String(e) };
+    }
   });
 
   ipcMain.handle('load-game', async () => {
     try {
       const data = await readFile(getSavePath(), 'utf-8');
       return { ok: true, data };
-    } catch {
-      return { ok: false, data: null };
+    } catch (e) {
+      return { ok: false, error: String(e) };
     }
   });
 
-  ipcMain.handle(
-    'load-data-pack',
-    async (
-      _event,
-      packPath: string,
-    ): Promise<
-      { ok: true; data: DataPackFiles } | { ok: false; error: string }
-    > => {
-      try {
-        const manifestRaw = await readFile(
-          join(packPath, 'package.json'),
-          'utf-8',
-        );
-        const manifest: DataPackManifest = JSON.parse(manifestRaw);
-        const dataFiles = await readDataFiles(
-          packPath,
-          manifest.asteroidMiner.files,
-        );
-        return { ok: true, data: { manifest: manifestRaw, ...dataFiles } };
-      } catch (e) {
-        return { ok: false, error: String(e) };
-      }
-    },
-  );
+  ipcMain.handle('load-data-pack', async (_event, packPath: string) => {
+    try {
+      const manifestRaw = await readFile(
+        join(packPath, 'package.json'),
+        'utf-8',
+      );
+      const manifest: DataPackManifest = JSON.parse(manifestRaw);
+      const dataFiles = await readDataFiles(
+        packPath,
+        manifest.asteroidMiner.files,
+      );
+      return { ok: true, data: { manifest: manifestRaw, ...dataFiles } };
+    } catch (e) {
+      return { ok: false, error: String(e) };
+    }
+  });
 
   // TODO: handle production resource path
   ipcMain.handle('get-base-data-path', () => {
