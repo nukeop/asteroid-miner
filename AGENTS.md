@@ -137,6 +137,10 @@ All UI strings go through `@asteroid-miner/i18n`. NEVER hardcode user-facing tex
 All user-facing strings go through i18n, NO hardcoded UI text.
 If a new component in the ui package needs labels and other kinds of localized text, it should accept a `labels` prop with the relevant strings. The prop should have its own type defined. Refer to `packages/ui/src/components/TopBar/TopBar.tsx` for an example.
 
+## Utilities
+
+Prefer `lodash-es` over hand-rolled utility functions. If lodash has a function that does what you need (`sample`, `random`, `mapValues`, `isEmpty`, `groupBy`, etc.), use it instead of writing a custom one-liner.
+
 ## Electron architecture
 
 - **Main process** (`packages/game/src/main/`): Creates BrowserWindow, registers IPC handlers.

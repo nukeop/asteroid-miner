@@ -1,0 +1,56 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`New scenario > (Snapshot) scenario selection shows available scenarios 1`] = `
+<div
+  class="flex h-screen flex-col"
+  data-testid="scenario-selection"
+>
+  <div
+    class="flex-1 overflow-hidden"
+  >
+    <div
+      class="flex h-full"
+    >
+      <div
+        class="border-amber-dim w-64 overflow-y-auto border-r p-4"
+      >
+        <div
+          class="cursor-pointer p-2 bg-amber-dim text-amber-bright"
+          data-testid="scenario-name"
+        >
+          Starting Scenario
+        </div>
+      </div>
+      <div
+        class="flex-1 overflow-y-auto p-6"
+      >
+        <h2
+          class="font-heading text-amber-bright mb-4 text-2xl"
+        >
+          Starting Scenario
+        </h2>
+        <p
+          class="text-amber-text"
+          data-testid="scenario-description"
+        >
+          Starting scenario.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="border-amber-dim flex justify-between border-t p-4"
+  >
+    <button
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 border-amber-dim bg-amber-screen text-amber-text hover:bg-amber-dim/30 hover:border-amber-text border h-9 px-4 text-sm"
+    >
+      Back
+    </button>
+    <button
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-9 px-4 text-sm"
+    >
+      Next
+    </button>
+  </div>
+</div>
+`;
