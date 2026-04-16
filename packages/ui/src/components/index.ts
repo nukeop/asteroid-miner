@@ -2,6 +2,7 @@ export * from './Button';
 export * from './CrtScreen';
 export * from './DataTable';
 export * from './GameShell';
+export * from './Input';
 export * from './SkillBars';
 export * from './StatBar';
 export * from './TabBar';
