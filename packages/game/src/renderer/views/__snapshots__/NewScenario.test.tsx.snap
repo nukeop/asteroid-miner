@@ -128,7 +128,7 @@ exports[`New scenario > (Snapshot) crew review shows generated crew from the sce
             class="flex-2/3"
           >
             <div
-              class="grid gap-x-6 gap-y-1 max-w-60"
+              class="grid gap-x-6 gap-y-1 max-w-80"
               style="grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));"
             >
               <div
