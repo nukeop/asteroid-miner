@@ -220,7 +220,12 @@
       "origin": "Origin",
       "career": "Career",
       "backstory": "Backstory",
-      "teamSkills": "Team Skills"
+      "teamSkills": "Team Skills",
+      "firstName": "First name",
+      "middleName": "Patronymic",
+      "lastName": "Last name",
+      "nickname": "Nickname",
+      "unnamed": "(unnamed)"
     }
   },
   "scenario": {

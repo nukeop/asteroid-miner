@@ -1,10 +1,11 @@
 import { useCallback, type FC } from 'react';
 
 import { useTranslation } from '@asteroid-miner/i18n';
-import { Button, SkillBars, WizardLayout } from '@asteroid-miner/ui';
+import { Button, Input, SkillBars, WizardLayout } from '@asteroid-miner/ui';
 
 import { useNewGameWizard } from '../../../hooks/newGameWizard';
 import { useCrewReview } from '../../../hooks/useCrewReview';
+import { useGameStateStore } from '../../../stores/useGameStateStore';
 
 export const CrewStep: FC = () => {
   const { t } = useTranslation();
@@ -19,11 +20,21 @@ export const CrewStep: FC = () => {
     reroll,
     resetGame,
   } = useCrewReview();
+  const updateCrewMemberName = useGameStateStore((s) => s.updateCrewMemberName);
 
   const handleBack = useCallback(() => {
     resetGame();
     back();
   }, [resetGame, back]);
+
+  const updateName = (
+    field: 'firstName' | 'middleName' | 'lastName' | 'nickname',
+    value: string,
+  ) => {
+    if (selectedPawn) {
+      updateCrewMemberName(selectedPawn.id, { [field]: value });
+    }
+  };
 
   return (
     <WizardLayout
@@ -38,27 +49,58 @@ export const CrewStep: FC = () => {
       onNext={next}
     >
       <div className="border-amber-dim w-64 overflow-y-auto border-r p-4">
-        {crewList.map((member, index) => (
-          <button
-            type="button"
-            key={member.id}
-            data-testid="crew-list-name"
-            className={`block w-full cursor-pointer p-2 text-left ${member.isSelected ? 'bg-amber-dim text-amber-bright' : 'text-amber-text'}`}
-            onClick={() => selectCrewMember(index)}
-          >
-            {member.pawn.firstName} {member.pawn.lastName}
-          </button>
-        ))}
+        {crewList.map((member, index) => {
+          const fullName =
+            `${member.pawn.firstName} ${member.pawn.lastName}`.trim();
+          return (
+            <button
+              type="button"
+              key={member.id}
+              data-testid="crew-list-name"
+              className={`block w-full cursor-pointer p-2 text-left ${member.isSelected ? 'bg-amber-dim text-amber-bright' : 'text-amber-text'}`}
+              onClick={() => selectCrewMember(index)}
+            >
+              {fullName || (
+                <span className="italic opacity-50">
+                  {t('newGame.crewReview.unnamed')}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
 
       <div className="flex flex-1 flex-col">
         <div className="flex-1 overflow-y-auto p-6" data-testid="crew-detail">
           {selectedPawn && defs && (
             <>
-              <div className="mb-1 flex items-center justify-between">
-                <h2 className="font-heading text-amber-bright text-2xl">
-                  {selectedPawn.firstName} {selectedPawn.middleName}
-                </h2>
+              <div className="mb-4 flex items-start justify-between gap-4">
+                <div className="grid flex-1 grid-cols-4 gap-3">
+                  <Input
+                    value={selectedPawn.firstName}
+                    onChange={(e) => updateName('firstName', e.target.value)}
+                    placeholder={t('newGame.crewReview.firstName')}
+                    aria-label={t('newGame.crewReview.firstName')}
+                  />
+                  <Input
+                    value={selectedPawn.middleName}
+                    onChange={(e) => updateName('middleName', e.target.value)}
+                    placeholder={t('newGame.crewReview.middleName')}
+                    aria-label={t('newGame.crewReview.middleName')}
+                  />
+                  <Input
+                    value={selectedPawn.lastName}
+                    onChange={(e) => updateName('lastName', e.target.value)}
+                    placeholder={t('newGame.crewReview.lastName')}
+                    aria-label={t('newGame.crewReview.lastName')}
+                  />
+                  <Input
+                    value={selectedPawn.nickname ?? ''}
+                    onChange={(e) => updateName('nickname', e.target.value)}
+                    placeholder={t('newGame.crewReview.nickname')}
+                    aria-label={t('newGame.crewReview.nickname')}
+                  />
+                </div>
                 <Button variant="secondary" onClick={reroll}>
                   {t('newGame.crewReview.reroll')}
                 </Button>
@@ -97,7 +139,7 @@ export const CrewStep: FC = () => {
                 </div>
 
                 <div className="flex-2/3">
-                  <SkillBars skills={skills} className="max-w-60" />
+                  <SkillBars skills={skills} className="max-w-80" />
                 </div>
               </div>
             </>

@@ -21,12 +21,12 @@ type GameStateStore = {
   rerollCrewMember: (templateIndex: number) => void;
   updateCrewMemberName: (
     pawnId: string,
-    names: {
+    names: Partial<{
       firstName: string;
       middleName: string;
       lastName: string;
       nickname: string;
-    },
+    }>,
   ) => void;
 };
 
@@ -87,13 +87,7 @@ export const useGameStateStore = create<GameStateStore>()((set, get) => ({
         ...state,
         crew: {
           ...state.crew,
-          [pawnId]: {
-            ...state.crew[pawnId],
-            firstName: names.firstName,
-            middleName: names.middleName,
-            lastName: names.lastName,
-            nickname: names.nickname || null,
-          },
+          [pawnId]: { ...state.crew[pawnId], ...names },
         },
       },
     });

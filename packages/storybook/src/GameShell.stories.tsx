@@ -56,11 +56,6 @@ type Story = StoryObj<typeof GameShell>;
 
 export const GameView: Story = {
   args: {
-    companyName: 'Kuiper Industrial',
-    topBarLabels: {
-      day: 'Day 47',
-      credits: '12,450 CR',
-    },
     tabs,
     children: (
       <h1 className="flex h-full items-center justify-center text-2xl">Body</h1>
