@@ -130,7 +130,7 @@ Types for data packs live in `@asteroid-miner/model`: `DataPackManifest`, `DataP
 
 ## i18n
 
-All UI strings go through `@asteroid-miner/i18n`. NEVER hardcode user-facing text.
+All UI strings go through `@asteroid-miner/i18n`. NEVER hardcode user-facing text. NEVER pass fallback strings to `t()` (e.g. `t('key', 'Fallback')`). Fallbacks hide missing translations. An untranslated key showing up in the UI is a visible bug, which is what we want.
 
 ## Strings
 

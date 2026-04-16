@@ -34,7 +34,7 @@ export const WizardLayout: FC<WizardLayoutProps> = ({
     className={cn('flex h-screen flex-col', className)}
     data-testid={dataTestId}
   >
-    <div className="flex-1 overflow-hidden">{children}</div>
+    <div className="flex w-full flex-1 overflow-hidden">{children}</div>
 
     <div className="border-amber-dim flex justify-between border-t p-4">
       <Button variant="secondary" onClick={onBack}>

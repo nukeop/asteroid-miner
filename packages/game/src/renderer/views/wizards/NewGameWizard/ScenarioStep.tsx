@@ -1,29 +1,38 @@
-import { type FC } from 'react';
+import { useCallback, type FC } from 'react';
 
 import { useTranslation } from '@asteroid-miner/i18n';
 import { WizardLayout } from '@asteroid-miner/ui';
 
 import { useNewGameWizard } from '../../../hooks/newGameWizard';
 import { useScenarioSelection } from '../../../hooks/useScenarioSelection';
+import { useGameStateStore } from '../../../stores/useGameStateStore';
 
 export const ScenarioStep: FC = () => {
   const { t } = useTranslation();
   const { scenarioList, selectedId, selected, selectScenario } =
     useScenarioSelection();
   const { isLastStep, next, back } = useNewGameWizard();
+  const initGame = useGameStateStore((s) => s.initGame);
+
+  const handleNext = useCallback(() => {
+    if (selectedId) {
+      initGame(selectedId);
+      next();
+    }
+  }, [selectedId, initGame, next]);
 
   return (
     <WizardLayout
       data-testid="scenario-selection"
       labels={{
-        back: t('common.back', 'Back'),
-        next: t('common.next', 'Next'),
-        finish: t('common.start', 'Start'),
+        back: t('common.back'),
+        next: t('common.next'),
+        finish: t('common.start'),
       }}
       isLastStep={isLastStep}
       nextDisabled={!selectedId}
       onBack={back}
-      onNext={next}
+      onNext={handleNext}
     >
       <div className="flex h-full">
         <div className="border-amber-dim w-64 overflow-y-auto border-r p-4">

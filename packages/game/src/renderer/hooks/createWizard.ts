@@ -6,7 +6,8 @@ type WizardConfig<TState> = {
   routes: string[];
   initialState: TState;
   onExit?: string;
-  onFinish: (state: TState) => void;
+  onFinishRoute: string;
+  onFinish?: (state: TState) => void;
 };
 
 type WizardStore<TState> = {
@@ -19,7 +20,13 @@ type WizardStore<TState> = {
 };
 
 export function createWizard<TState>(config: WizardConfig<TState>) {
-  const { routes, initialState, onExit = '/', onFinish } = config;
+  const {
+    routes,
+    initialState,
+    onExit = '/',
+    onFinishRoute,
+    onFinish,
+  } = config;
 
   const useStore = create<WizardStore<TState>>()((set) => ({
     stepIndex: 0,
@@ -48,8 +55,9 @@ export function createWizard<TState>(config: WizardConfig<TState>) {
     const next = useCallback(() => {
       const { stepIndex, state } = useStore.getState();
       if (isLastStep) {
-        onFinish(state);
+        onFinish?.(state);
         useStore.getState().reset();
+        navigate({ to: onFinishRoute });
       } else {
         useStore.getState().advance();
         navigate({ to: routes[stepIndex + 1] });
