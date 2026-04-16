@@ -1,76 +1,76 @@
-[
-  {
+{
+  "strongman": {
     "id": "strongman",
-    "name": "Strongman",
-    "description": "Built like a KrAZ truck and twice as stubborn.",
-    "skill_modifiers": [
+    "nameKey": "trait.strongman.name",
+    "descriptionKey": "trait.strongman.description",
+    "skillModifiers": [
       { "skill": "mining", "op": "Flat", "value": 2 },
       { "skill": "construction", "op": "Flat", "value": 1 }
     ]
   },
-  {
+  "cocky": {
     "id": "cocky",
-    "name": "Cocky",
-    "description": "Talks a big game, and sometimes that's half the job.",
-    "skill_modifiers": [{ "skill": "blat", "op": "Flat", "value": 1 }]
+    "nameKey": "trait.cocky.name",
+    "descriptionKey": "trait.cocky.description",
+    "skillModifiers": [{ "skill": "blat", "op": "Flat", "value": 1 }]
   },
-  {
+  "blue_collar": {
     "id": "blue_collar",
-    "name": "Blue Collar",
-    "description": "Grew up with grease under the fingernails and rock dust in the lungs.",
-    "custom_effects": [
+    "nameKey": "trait.blue_collar.name",
+    "descriptionKey": "trait.blue_collar.description",
+    "customEffects": [
       {
         "handler": "work_speed_bonus",
         "params": { "tasks": ["mining", "engineering"], "bonus": 4 }
       }
     ]
   },
-  {
+  "bookworm": {
     "id": "bookworm",
-    "name": "Bookworm",
-    "description": "Reads technical manuals for fun on long hauls.",
-    "skill_modifiers": [
+    "nameKey": "trait.bookworm.name",
+    "descriptionKey": "trait.bookworm.description",
+    "skillModifiers": [
       { "skill": "research", "op": "Flat", "value": 2 },
       { "skill": "materials_science", "op": "Flat", "value": 1 },
       { "skill": "mining", "op": "Flat", "value": -1 }
     ]
   },
-  {
+  "natural_leader": {
     "id": "natural_leader",
-    "name": "Natural Leader",
-    "description": "Crew shuts up and listens when this one talks.",
-    "skill_modifiers": [{ "skill": "leadership", "op": "Flat", "value": 3 }]
+    "nameKey": "trait.natural_leader.name",
+    "descriptionKey": "trait.natural_leader.description",
+    "skillModifiers": [{ "skill": "leadership", "op": "Flat", "value": 3 }]
   },
-  {
+  "loner": {
     "id": "loner",
-    "name": "Loner",
-    "description": "Works best when everyone else is somewhere far away.",
-    "custom_effects": [
+    "nameKey": "trait.loner.name",
+    "descriptionKey": "trait.loner.description",
+    "customEffects": [
       { "handler": "solo_skill_bonus", "params": { "bonus": 1 } }
     ]
   },
-  {
+  "quick_learner": {
     "id": "quick_learner",
-    "name": "Quick Learner",
-    "description": "Picks things up fast, forgets them just as quick if you're unlucky.",
-    "custom_effects": [
+    "nameKey": "trait.quick_learner.name",
+    "descriptionKey": "trait.quick_learner.description",
+    "customEffects": [
       { "handler": "xp_gain_modifier", "params": { "factor": 1.3 } }
     ]
   },
-  {
+  "veteran_cosmonaut": {
     "id": "veteran_cosmonaut",
-    "name": "Veteran Cosmonaut",
-    "description": "Three tours on the belt and still has all ten fingers.",
-    "skill_modifiers": [
+    "nameKey": "trait.veteran_cosmonaut.name",
+    "descriptionKey": "trait.veteran_cosmonaut.description",
+    "skillModifiers": [
       { "skill": "cosmonautics", "op": "Flat", "value": 1 },
       { "skill": "navigation", "op": "Flat", "value": 1 }
     ]
   },
-  {
+  "reckless": {
     "id": "reckless",
-    "name": "Reckless",
-    "description": "Safety briefings go in one ear and out the airlock.",
-    "custom_effects": [
+    "nameKey": "trait.reckless.name",
+    "descriptionKey": "trait.reckless.description",
+    "customEffects": [
       {
         "handler": "work_speed_bonus",
         "params": { "condition": "dangerous", "bonus": 2 }
@@ -78,21 +78,21 @@
       { "handler": "accident_chance_modifier", "params": { "factor": 1.5 } }
     ]
   },
-  {
+  "penny_pincher": {
     "id": "penny_pincher",
-    "name": "Penny Pincher",
-    "description": "Counts every kopek twice and never buys a round.",
-    "custom_effects": [
+    "nameKey": "trait.penny_pincher.name",
+    "descriptionKey": "trait.penny_pincher.description",
+    "customEffects": [
       { "handler": "salary_modifier", "params": { "factor": 0.85 } }
     ]
   },
-  {
+  "party_member": {
     "id": "party_member",
-    "name": "Party Member",
-    "description": "Card-carrying member of the Party.",
-    "skill_modifiers": [
+    "nameKey": "trait.party_member.name",
+    "descriptionKey": "trait.party_member.description",
+    "skillModifiers": [
       { "skill": "bureaucracy", "op": "Flat", "value": 2 },
       { "skill": "blat", "op": "Flat", "value": 2 }
     ]
   }
-]
+}

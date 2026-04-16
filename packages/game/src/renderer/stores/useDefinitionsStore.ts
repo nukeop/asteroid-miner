@@ -1,57 +1,10 @@
 import { create } from 'zustand';
 
-type SkillDef = {
-  id: string;
-  name: string;
-  description: string;
-  xp_base: number;
-  xp_growth: number;
-};
+import type { Definitions } from '@asteroid-miner/model';
 
-type SkillModifier = {
-  skill: string;
-  op: 'Flat' | 'Factor';
-  value: number;
-};
+import { DataPack } from '../data-pack/DataPack';
 
-type CustomEffect = {
-  handler: string;
-  params: Record<string, unknown>;
-};
-
-type TraitDef = {
-  id: string;
-  name: string;
-  description: string;
-  skill_modifiers: SkillModifier[];
-  custom_effects: CustomEffect[];
-};
-
-type StartingBonus = {
-  id: string;
-  amount: number;
-};
-
-type OriginDef = {
-  id: string;
-  name: string;
-  description: string;
-  skill_bonuses: StartingBonus[];
-};
-
-type CareerDef = {
-  id: string;
-  name: string;
-  description: string;
-  skill_bonuses: StartingBonus[];
-};
-
-export type Definitions = {
-  skills: Record<string, SkillDef>;
-  traits: Record<string, TraitDef>;
-  origins: Record<string, OriginDef>;
-  careers: Record<string, CareerDef>;
-};
+export type { Definitions };
 
 type DefinitionsState = {
   definitions: Definitions | null;
@@ -62,3 +15,15 @@ export const useDefinitionsStore = create<DefinitionsState>()((set) => ({
   definitions: null,
   setDefinitions: (defs) => set({ definitions: defs }),
 }));
+
+export async function initializeDefinitionsStore() {
+  const packPath = await window.electronAPI.getBaseDataPath();
+  const result = await window.electronAPI.loadDataPack(packPath);
+
+  if (!result.ok) {
+    throw new Error(result.error);
+  }
+
+  const pack = new DataPack(result.data);
+  useDefinitionsStore.getState().setDefinitions(pack.definitions);
+}

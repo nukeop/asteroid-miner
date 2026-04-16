@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Asteroid Type Definitions",
+  "description": "Top-level asteroid classifications.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "description": "A single asteroid type definition.",
+    "required": [
+      "id",
+      "nameKey",
+      "descriptionKey",
+      "massClasses",
+      "formations"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for this asteroid type."
+      },
+      "nameKey": {
+        "type": "string",
+        "description": "i18n key for the display name."
+      },
+      "descriptionKey": {
+        "type": "string",
+        "description": "i18n key for the description."
+      },
+      "massClasses": {
+        "type": "array",
+        "description": "Size categories for this asteroid type. Must have at least one entry.",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": ["id", "nameKey", "minMass", "maxMass", "maxSites"],
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Identifier for this mass class within the asteroid type."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "minMass": {
+              "type": "number",
+              "description": "Minimum total mass in tons.",
+              "minimum": 0
+            },
+            "maxMass": {
+              "type": "number",
+              "description": "Maximum total mass in tons.",
+              "minimum": 0
+            },
+            "maxSites": {
+              "type": "integer",
+              "description": "Maximum number of mining sites.",
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        }
+      },
+      "formations": {
+        "type": "array",
+        "description": "Weighted formation list. Weights are relative. Must have at least one entry.",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": ["formation", "weight"],
+          "additionalProperties": false,
+          "properties": {
+            "formation": {
+              "type": "string",
+              "description": "Formation ID."
+            },
+            "weight": {
+              "type": "number",
+              "description": "Base weight. Must be positive.",
+              "exclusiveMinimum": 0
+            },
+            "depthBonus": {
+              "type": "number",
+              "description": "Added to weight per site depth level (0 = outermost). Effective weight = weight + depthBonus * depth. Formations with effective weight <= 0 are excluded at that depth.",
+              "default": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

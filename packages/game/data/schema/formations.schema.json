@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Formation Definitions",
+  "description": "Geological formations made of matrix rock and embedded resources.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "description": "A formation definition.",
+    "required": ["id", "nameKey", "descriptionKey", "matrixResource"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for this formation."
+      },
+      "nameKey": {
+        "type": "string",
+        "description": "i18n key for the display name."
+      },
+      "descriptionKey": {
+        "type": "string",
+        "description": "i18n key for the description."
+      },
+      "matrixResource": {
+        "type": "string",
+        "description": "Resource ID for the matrix rock."
+      },
+      "embeddedResources": {
+        "type": "array",
+        "description": "Resources mixed into the matrix rock. Sum of all maxGrade values must be <= 1.0.",
+        "default": [],
+        "items": {
+          "type": "object",
+          "required": ["resource", "probability", "minGrade", "maxGrade"],
+          "additionalProperties": false,
+          "properties": {
+            "resource": {
+              "type": "string",
+              "description": "Resource ID."
+            },
+            "probability": {
+              "type": "number",
+              "description": "Chance this resource appears in a generated site (0.0 to 1.0).",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "minGrade": {
+              "type": "number",
+              "description": "Minimum fraction of site mass this resource can occupy.",
+              "minimum": 0.0
+            },
+            "maxGrade": {
+              "type": "number",
+              "description": "Maximum fraction of site mass this resource can occupy.",
+              "minimum": 0.0
+            }
+          }
+        }
+      }
+    }
+  }
+}

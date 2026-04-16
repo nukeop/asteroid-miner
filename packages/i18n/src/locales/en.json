@@ -5,6 +5,9 @@
     "loading": "Loading...",
     "newGame": "New Game",
     "preferences": "Preferences",
+    "back": "Back",
+    "next": "Next",
+    "start": "Start",
     "exit": "Exit",
     "tick": "Tick",
     "day": "Day {{count}}",
@@ -58,5 +61,177 @@
   },
   "placeholder": {
     "selectTab": "Select a tab to begin."
+  },
+  "pack": {
+    "base": {
+      "name": "Asteroid Miner",
+      "description": "Base game data."
+    }
+  },
+  "tag": {
+    "fuel": { "name": "Fuel" }
+  },
+  "resource": {
+    "coal": {
+      "name": "Coal",
+      "description": "Combustible sedimentary rock."
+    },
+    "sandstone": {
+      "name": "Sandstone",
+      "description": "Compacted sand."
+    }
+  },
+  "formation": {
+    "coal_bearing_sandstone": {
+      "name": "Coal-Bearing Sandstone",
+      "description": "Sandstone with coal seams."
+    }
+  },
+  "asteroid_type": {
+    "c_type": {
+      "name": "C-Type (Carbonaceous)",
+      "description": "Carbon-rich asteroid."
+    }
+  },
+  "mass_class": {
+    "s": { "name": "Small" },
+    "m": { "name": "Medium" },
+    "l": { "name": "Large" }
+  },
+  "ship_module": {
+    "bridge_basic": {
+      "name": "Basic Bridge",
+      "description": "Standard command bridge."
+    },
+    "reactor_basic": {
+      "name": "Basic Reactor",
+      "description": "Standard ship reactor."
+    },
+    "engine_basic": {
+      "name": "Basic Engine",
+      "description": "Standard propulsion engine."
+    },
+    "fuel_tank_basic": {
+      "name": "Basic Fuel Tank",
+      "description": "Standard fuel storage."
+    },
+    "crew_quarters_basic": {
+      "name": "Basic Crew Quarters",
+      "description": "Standard crew berth."
+    },
+    "cargo_bay_small": {
+      "name": "Small Cargo Bay",
+      "description": "Cargo hold, 1000t capacity."
+    },
+    "scanner_basic": {
+      "name": "Basic Scanner",
+      "description": "Ship-mounted spectral scanner."
+    },
+    "machine_bay_basic": {
+      "name": "Basic Machine Bay",
+      "description": "Bay for one deployable machine."
+    }
+  },
+  "machine": {
+    "mining_rig_basic": {
+      "name": "Basic Mining Rig",
+      "description": "Extracts rock from asteroid surface."
+    },
+    "scanning_rig_basic": {
+      "name": "Basic Scanning Rig",
+      "description": "Analyzes asteroid composition."
+    }
+  },
+  "skill": {
+    "mining": { "name": "Mining", "description": "Extracting ore from rock." },
+    "geology": {
+      "name": "Geology",
+      "description": "Reading rock composition and structure."
+    },
+    "refining": {
+      "name": "Refining",
+      "description": "Processing raw ore into usable materials."
+    },
+    "engineering": {
+      "name": "Engineering",
+      "description": "Maintaining and repairing equipment."
+    },
+    "cybernetics": {
+      "name": "Cybernetics",
+      "description": "Operating and interfacing with computer systems."
+    },
+    "cosmonautics": {
+      "name": "Cosmonautics",
+      "description": "Piloting and EVA operations."
+    },
+    "navigation": {
+      "name": "Navigation",
+      "description": "Plotting courses and reading star charts."
+    },
+    "medicine": {
+      "name": "Medicine",
+      "description": "Treating injuries and illness."
+    },
+    "research": {
+      "name": "Research",
+      "description": "Conducting experiments and analyzing data."
+    },
+    "materials_science": {
+      "name": "Materials Science",
+      "description": "Understanding material properties and alloys."
+    },
+    "blat": {
+      "name": "Blat",
+      "description": "Knowing the right people and pulling the right strings."
+    },
+    "leadership": {
+      "name": "Leadership",
+      "description": "Keeping crew morale up and coordinating work."
+    },
+    "construction": {
+      "name": "Construction",
+      "description": "Building and assembling structures."
+    },
+    "bureaucracy": {
+      "name": "Bureaucracy",
+      "description": "Navigating paperwork, permits, and quotas."
+    }
+  },
+  "origin": {
+    "civilian": {
+      "name": "Civilian",
+      "description": "No specialized background."
+    }
+  },
+  "career": {
+    "civilian": {
+      "name": "Civilian",
+      "description": "No specialized training."
+    }
+  },
+  "newGame": {
+    "crewReview": {
+      "reroll": "Reroll",
+      "age": "age",
+      "male": "Male",
+      "female": "Female",
+      "traits": "Traits",
+      "noTraits": "None",
+      "origin": "Origin",
+      "career": "Career",
+      "backstory": "Backstory",
+      "teamSkills": "Team Skills",
+      "firstName": "First name",
+      "middleName": "Patronymic",
+      "lastName": "Last name",
+      "nickname": "Nickname",
+      "unnamed": "(unnamed)"
+    }
+  },
+  "scenario": {
+    "starting": {
+      "name": "Starting Scenario",
+      "description": "Starting scenario."
+    }
   }
 }

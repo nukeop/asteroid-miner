@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Machine Definitions",
+  "description": "Deployable equipment that operates at a fixed location. Transported in ship machine bays.",
+  "type": "object",
+  "additionalProperties": {
+    "discriminator": {
+      "propertyName": "category"
+    },
+    "oneOf": [
+      {
+        "type": "object",
+        "description": "Mining rig deployed to extract rock.",
+        "required": [
+          "id",
+          "nameKey",
+          "descriptionKey",
+          "category",
+          "hopperCapacity",
+          "maxExtractionRate",
+          "crewSlots"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "description": "Unique identifier." },
+          "nameKey": {
+            "type": "string",
+            "description": "i18n key for the display name."
+          },
+          "descriptionKey": {
+            "type": "string",
+            "description": "i18n key for the description."
+          },
+          "category": { "const": "miningRig" },
+          "hopperCapacity": {
+            "type": "number",
+            "description": "Hopper capacity in tonnes.",
+            "exclusiveMinimum": 0
+          },
+          "maxExtractionRate": {
+            "type": "number",
+            "description": "Maximum extraction rate.",
+            "exclusiveMinimum": 0
+          },
+          "crewSlots": {
+            "type": "integer",
+            "description": "Number of crew that can operate this rig.",
+            "minimum": 1
+          }
+        }
+      },
+      {
+        "type": "object",
+        "description": "Scanning rig deployed on an asteroid for detailed composition analysis.",
+        "required": [
+          "id",
+          "nameKey",
+          "descriptionKey",
+          "category",
+          "accuracy",
+          "crewSlots"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "description": "Unique identifier." },
+          "nameKey": {
+            "type": "string",
+            "description": "i18n key for the display name."
+          },
+          "descriptionKey": {
+            "type": "string",
+            "description": "i18n key for the description."
+          },
+          "category": { "const": "scanningRig" },
+          "accuracy": {
+            "type": "number",
+            "description": "Survey accuracy (0.0, 1.0].",
+            "exclusiveMinimum": 0,
+            "maximum": 1.0
+          },
+          "crewSlots": {
+            "type": "integer",
+            "description": "Number of crew that can operate this rig.",
+            "minimum": 1
+          }
+        }
+      }
+    ]
+  }
+}

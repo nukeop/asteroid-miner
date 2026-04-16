@@ -1,74 +1,80 @@
-[
-  {
+{
+  "belt_miner": {
     "id": "belt_miner",
-    "name": "Belt Miner",
-    "description": "Spent years cracking rock in the outer belts, running double shifts on aging drill rigs for outfits that barely kept the air filters clean.",
-    "skill_bonuses": [
+    "nameKey": "career.belt_miner.name",
+    "descriptionKey": "career.belt_miner.description",
+    "skillBonuses": [
       { "id": "mining", "amount": 4 },
       { "id": "geology", "amount": 2 }
     ]
   },
-  {
+  "military_cosmonaut": {
     "id": "military_cosmonaut",
-    "name": "Military Cosmonaut",
-    "description": "Flew patrol routes for the People's Space Fleet.",
-    "skill_bonuses": [
+    "nameKey": "career.military_cosmonaut.name",
+    "descriptionKey": "career.military_cosmonaut.description",
+    "skillBonuses": [
       { "id": "cosmonautics", "amount": 4 },
       { "id": "navigation", "amount": 2 }
     ]
   },
-  {
+  "planning_clerk": {
     "id": "planning_clerk",
-    "name": "Planning Clerk",
-    "description": "Worked the books for a regional planning office.",
-    "skill_bonuses": [
+    "nameKey": "career.planning_clerk.name",
+    "descriptionKey": "career.planning_clerk.description",
+    "skillBonuses": [
       { "id": "bureaucracy", "amount": 3 },
       { "id": "cybernetics", "amount": 2 }
     ]
   },
-  {
+  "dock_worker": {
     "id": "dock_worker",
-    "name": "Dock Worker",
-    "description": "Loaded and unloaded cargo at orbital stations, welded hull plates between shifts, and learned how ships were put together by taking them apart.",
-    "skill_bonuses": [
+    "nameKey": "career.dock_worker.name",
+    "descriptionKey": "career.dock_worker.description",
+    "skillBonuses": [
       { "id": "construction", "amount": 3 },
       { "id": "engineering", "amount": 2 }
     ]
   },
-  {
+  "smuggler": {
     "id": "smuggler",
-    "name": "Smuggler",
-    "description": "Ran unlicensed freight through restricted lanes, staying one step ahead of state patrols.",
-    "skill_bonuses": [
+    "nameKey": "career.smuggler.name",
+    "descriptionKey": "career.smuggler.description",
+    "skillBonuses": [
       { "id": "cosmonautics", "amount": 3 },
       { "id": "blat", "amount": 2 }
     ]
   },
-  {
+  "field_medic": {
     "id": "field_medic",
-    "name": "Feldsher",
-    "description": "Patched up miners and rig workers at remote extraction sites.",
-    "skill_bonuses": [
+    "nameKey": "career.field_medic.name",
+    "descriptionKey": "career.field_medic.description",
+    "skillBonuses": [
       { "id": "medicine", "amount": 4 },
       { "id": "leadership", "amount": 1 }
     ]
   },
-  {
+  "research_assistant": {
     "id": "research_assistant",
-    "name": "Laboratory Technician",
-    "description": "Ran assays and sample analysis for a state research institute, cataloguing mineral compositions from core samples that field crews hauled back by the crate.",
-    "skill_bonuses": [
+    "nameKey": "career.research_assistant.name",
+    "descriptionKey": "career.research_assistant.description",
+    "skillBonuses": [
       { "id": "research", "amount": 3 },
       { "id": "materials_science", "amount": 2 }
     ]
   },
-  {
+  "apparatchik": {
     "id": "apparatchik",
-    "name": "Apparatchik",
-    "description": "Spent years in the state apparatus, pushing paper and building connections.",
-    "skill_bonuses": [
+    "nameKey": "career.apparatchik.name",
+    "descriptionKey": "career.apparatchik.description",
+    "skillBonuses": [
       { "id": "blat", "amount": 4 },
       { "id": "bureaucracy", "amount": 2 }
     ]
+  },
+  "civilian": {
+    "id": "civilian",
+    "nameKey": "career.civilian.name",
+    "descriptionKey": "career.civilian.description",
+    "skillBonuses": []
   }
-]
+}

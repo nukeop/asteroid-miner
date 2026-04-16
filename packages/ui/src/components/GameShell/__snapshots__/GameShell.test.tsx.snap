@@ -12,7 +12,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
       class="relative z-3 flex flex-col"
     >
       <header
-        class="border-amber-dim bg-amber-screen flex h-10 items-center border-b pl-4"
+        class="border-amber-dim bg-amber-screen flex h-10 items-center border-b pl-4 [-webkit-app-region:drag]"
       >
         <span>
           Top bar content

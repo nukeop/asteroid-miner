@@ -8,18 +8,20 @@ Core loop: Scout > Acquire rights (bureaucracy, bribes) > Crew a ship > Mine > F
 
 Desktop app targeting Steam (Mac, Linux). Built on Electron.
 
-**Status:** Early development, "dancing skeleton" stage. The architecture works end-to-end (Electron boots, React renders, Rust compiles to WASM, IPC handles save/load, Storybook renders components), but no game systems exist yet.
+**Status:** Early development, "dancing skeleton" stage. The architecture works end-to-end (Electron boots, React renders, IPC handles save/load, Storybook renders components), but no game systems exist yet.
 
 ## Monorepo structure
 
-pnpm workspaces + Turborepo. 8 packages total:
+pnpm workspaces for TypeScript packages.
+
+### TypeScript packages (`packages/`)
 
 | Package                    | Purpose                                                                          |
 | -------------------------- | -------------------------------------------------------------------------------- |
 | `packages/game`            | Main Electron app. electron-vite for unified main/preload/renderer builds.       |
+| `packages/model`           | Core game types and models. Shared across game and mod-sdk.                      |
 | `packages/ui`              | Shared React component library. Vite library mode, ES module output.             |
 | `packages/storybook`       | Storybook 10. Stories live here, not co-located with components.                 |
-| `packages/simulation`      | Rust simulation engine, compiles to WASM via wasm-pack.                          |
 | `packages/tailwind-config` | Shared Tailwind v4 CSS-first config. No build step. Entry: `src/global.css`.     |
 | `packages/eslint-config`   | Shared ESLint flat config. Re-exported by root `eslint.config.ts`.               |
 | `packages/i18n`            | i18next + react-i18next wrapper. All UI strings go through this.                 |
@@ -34,17 +36,17 @@ eslint-config  tailwind-config    i18n
      ui <───── storybook         game
      |                             |
      v                             v
-   game <──── simulation (WASM) mod-sdk
+   game                        mod-sdk
+     |                             |
+     v                             v
+   model <──────────────────── model
 ```
-
-The game package imports `@asteroid-miner/ui`, `@asteroid-miner/i18n`, `@asteroid-miner/tailwind-config`, and the simulation WASM module via relative path (`../simulation/pkg/`).
 
 ## Tech stack
 
 - **TypeScript 5.9**, target ES2022, `moduleResolution: bundler`, strict mode
 - **React 19** with automatic JSX runtime
 - **Electron 40** via **electron-vite 5**
-- **Rust** (edition 2024) for the simulation engine, compiled to WASM via `wasm-pack --target web`
 - **Vite 7** for all builds. Library packages use Vite library mode + `vite-plugin-dts`
 - **Tailwind CSS v4**, CSS-first config (no JS config file). Colors in OKLCH.
 - **cva** (class-variance-authority) for component variants
@@ -62,18 +64,22 @@ The game package imports `@asteroid-miner/ui`, `@asteroid-miner/i18n`, `@asteroi
 
 ## Development workflow
 
-| Command                       | What it does                                                                  |
-| ----------------------------- | ----------------------------------------------------------------------------- |
-| `pnpm dev`                    | `electron-vite dev` with hot reload                                           |
-| `pnpm build`                  | Turbo build across all packages                                               |
-| `pnpm build:wasm`             | `wasm-pack build` the simulation crate. **Must run before `dev` or `build`.** |
-| `pnpm test`                   | Turbo test across all packages                                                |
-| `pnpm test:rust`              | `cargo test` on the simulation crate                                          |
-| `pnpm lint` / `pnpm lint:fix` | ESLint across all packages                                                    |
-| `pnpm type-check`             | Turbo type-check across all packages                                          |
-| `pnpm storybook`              | Storybook on port 6006                                                        |
+| Command                       | What it does                         |
+| ----------------------------- | ------------------------------------ |
+| `pnpm dev`                    | `electron-vite dev` with hot reload  |
+| `pnpm build`                  | Turbo build across all packages      |
+| `pnpm test`                   | Turbo test across all packages       |
+| `pnpm lint` / `pnpm lint:fix` | ESLint across all packages           |
+| `pnpm type-check`             | Turbo type-check across all packages |
+| `pnpm storybook`              | Storybook on port 6006               |
 
-CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
+CI runs on push/PR to `master`: lint > type-check > build > test.
+
+## Data packs
+
+Data packs are node packages. The base game, DLCs, and mods all use the same format. Each pack has a `package.json` with an `asteroidMiner` field declaring its type, game version, and which data files it includes. The IPC handler reads only the declared files.
+
+Types for data packs live in `@asteroid-miner/model`: `DataPackManifest`, `DataPackMeta`, `DataPackFiles`, `DataFileName`.
 
 ## UI components
 
@@ -111,7 +117,7 @@ CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
 
 ## Testing conventions
 
-- Test behavior, not implementation details.
+- Test behavior, not implementation details. This means we don't do unit tests or small integration tests with mocks.
 - E2E tests from the user's perspective. No unit tests on thin wrappers or pass-through layers.
 - Tests can only perform actions the user can perform: click buttons, type text, read what's on screen.
 - Setup methods are allowed to touch internals.
@@ -120,22 +126,27 @@ CI runs on push/PR to `master`: lint > type-check > build > test > cargo test.
 - Snapshot tests: prefix test title with `(Snapshot)`. Don't prefix non-snapshot tests.
 - Consolidate related assertions into fewer tests.
 - Test wrappers live next to the view they test: `MyView.test-wrapper.tsx`.
+- Mocking is only acceptable for external dependencies, like I/O or network requests.
 
 ## i18n
 
-All UI strings go through `@asteroid-miner/i18n`. Never hardcode user-facing text.
+All UI strings go through `@asteroid-miner/i18n`. NEVER hardcode user-facing text. NEVER pass fallback strings to `t()` (e.g. `t('key', 'Fallback')`). Fallbacks hide missing translations. An untranslated key showing up in the UI is a visible bug, which is what we want.
 
 ## Strings
 
-All user-facing strings go through i18n, no hardcoded UI text.
+All user-facing strings go through i18n, NO hardcoded UI text.
 If a new component in the ui package needs labels and other kinds of localized text, it should accept a `labels` prop with the relevant strings. The prop should have its own type defined. Refer to `packages/ui/src/components/TopBar/TopBar.tsx` for an example.
+
+## Utilities
+
+Prefer `lodash-es` over hand-rolled utility functions. If lodash has a function that does what you need (`sample`, `random`, `mapValues`, `isEmpty`, `groupBy`, etc.), use it instead of writing a custom one-liner.
 
 ## Electron architecture
 
 - **Main process** (`packages/game/src/main/`): Creates BrowserWindow, registers IPC handlers.
 - **Preload** (`packages/game/src/preload/`): Exposes `electronAPI` with `saveGame`/`loadGame` via `contextBridge`.
-- **Renderer** (`packages/game/src/renderer/`): React SPA. Imports WASM module, initializes i18n.
-- IPC channels: `save-game` (writes JSON to userData), `load-game` (reads it back).
+- **Renderer** (`packages/game/src/renderer/`): React SPA, initializes i18n.
+- IPC channels: `save-game` (writes JSON to userData), `load-game` (reads it back), `load-data-pack` (reads a data pack from disk).
 
 ## Renderer structure
 
@@ -144,12 +155,6 @@ If a new component in the ui package needs labels and other kinds of localized t
 - **Hooks** (`hooks/`): Custom hooks for async logic (e.g., `useNewGame`). Keep route components thin.
 - **Stores** (`stores/`): Zustand stores and React Query options.
 - Define components with `FC`: `export const MyComponent: FC<Props> = ({ ... }) => { ... }`. Not `function MyComponent() { ... }`.
-
-## Simulation (Rust/WASM)
-
-- Crate at `packages/simulation/`, compiled via `wasm-pack --target web`.
-- Output goes to `packages/simulation/pkg/`, imported by the game renderer.
-- Uses `wasm-bindgen`, `serde`, `serde-wasm-bindgen` for JS interop.
 
 ## Mod SDK
 

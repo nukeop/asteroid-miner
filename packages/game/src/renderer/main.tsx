@@ -5,9 +5,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { App } from './App';
-import { initWasm } from './wasm';
+import { initializeDefinitionsStore } from './stores/useDefinitionsStore';
 
-await initWasm();
+initializeDefinitionsStore();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

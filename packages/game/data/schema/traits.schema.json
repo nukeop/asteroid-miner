@@ -2,11 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Trait Definitions",
   "description": "Defines pawn traits that modify skills or trigger custom gameplay effects. A pawn can have multiple traits assigned at creation or gained during play.",
-  "type": "array",
-  "items": {
+  "type": "object",
+  "additionalProperties": {
     "type": "object",
     "description": "A single trait definition.",
-    "required": ["id", "name", "description"],
+    "required": ["id", "nameKey", "descriptionKey"],
     "additionalProperties": false,
     "properties": {
       "id": {
@@ -15,22 +15,22 @@
         "pattern": "^[a-z][a-z0-9_]*$",
         "examples": ["steady_hand", "deep_sleeper", "born_pilot"]
       },
-      "name": {
+      "nameKey": {
         "type": "string",
-        "description": "Display name shown on the pawn's trait list.",
+        "description": "i18n key for the display name shown on the pawn's trait list.",
         "minLength": 1
       },
-      "description": {
+      "descriptionKey": {
         "type": "string",
-        "description": "Flavor text explaining what this trait does. Shown in tooltips."
+        "description": "i18n key for the description."
       },
-      "skill_modifiers": {
+      "skillModifiers": {
         "type": "array",
         "description": "Adjustments this trait applies to a pawn's effective skill levels.",
         "default": [],
         "items": { "$ref": "#/$defs/SkillModifier" }
       },
-      "custom_effects": {
+      "customEffects": {
         "type": "array",
         "description": "Scripted effects that don't fit the modifier system. Each entry names a handler function and passes arbitrary parameters to it.",
         "default": [],

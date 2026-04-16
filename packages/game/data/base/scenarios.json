@@ -1,0 +1,42 @@
+{
+  "starting": {
+    "id": "starting",
+    "nameKey": "scenario.starting.name",
+    "descriptionKey": "scenario.starting.description",
+    "crew": [
+      {
+        "originsWhitelist": ["civilian"],
+        "careersWhitelist": ["civilian"],
+        "sex": null,
+        "age": [25, 40],
+        "skills": {
+          "mining": [6, 6],
+          "geology": [2, 2],
+          "cosmonautics": [1, 1]
+        }
+      },
+      {
+        "originsWhitelist": ["civilian"],
+        "careersWhitelist": ["civilian"],
+        "sex": null,
+        "age": [25, 40],
+        "skills": {
+          "geology": [5, 5],
+          "cosmonautics": [2, 2],
+          "navigation": [1, 1]
+        }
+      },
+      {
+        "originsWhitelist": ["civilian"],
+        "careersWhitelist": ["civilian"],
+        "sex": null,
+        "age": [28, 45],
+        "skills": {
+          "cosmonautics": [6, 6],
+          "navigation": [4, 4],
+          "engineering": [1, 1]
+        }
+      }
+    ]
+  }
+}

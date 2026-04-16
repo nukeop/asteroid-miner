@@ -1,30 +1,28 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Career Definitions",
-  "description": "Defines pawn careers: what they did professionally before appearing in the game. Each career grants starting skill bonuses during pawn generation.",
-  "type": "array",
-  "items": {
+  "description": "Defines pawn careers: what they did professionally before appearing in the game.",
+  "type": "object",
+  "additionalProperties": {
     "type": "object",
     "description": "A single career definition.",
-    "required": ["id", "name", "description"],
+    "required": ["id", "nameKey", "descriptionKey"],
     "additionalProperties": false,
     "properties": {
       "id": {
         "type": "string",
         "description": "Unique identifier for this career.",
-        "pattern": "^[a-z][a-z0-9_]*$",
         "examples": ["belt_miner", "navy_pilot", "field_medic"]
       },
-      "name": {
+      "nameKey": {
         "type": "string",
-        "description": "Display name shown during crew recruitment and on the pawn info screen.",
-        "minLength": 1
+        "description": "i18n key for the display name."
       },
-      "description": {
+      "descriptionKey": {
         "type": "string",
-        "description": "Backstory text describing what this person did for a living."
+        "description": "i18n key for the description."
       },
-      "skill_bonuses": {
+      "skillBonuses": {
         "type": "array",
         "description": "Starting skill level bonuses granted by this career.",
         "default": [],
@@ -41,8 +39,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "The skill ID to apply the bonus to.",
-          "pattern": "^[a-z][a-z0-9_]*$"
+          "description": "The skill ID to apply the bonus to."
         },
         "amount": {
           "type": "integer",

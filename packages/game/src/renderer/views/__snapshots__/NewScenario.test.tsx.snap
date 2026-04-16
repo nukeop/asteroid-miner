@@ -1,0 +1,454 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`New scenario > (Snapshot) crew review shows generated crew from the scenario 1`] = `
+<div
+  class="flex h-screen flex-col"
+  data-testid="crew-review"
+>
+  <div
+    class="flex w-full flex-1 overflow-hidden"
+  >
+    <div
+      class="border-amber-dim w-64 overflow-y-auto border-r p-4"
+    >
+      <button
+        class="block w-full cursor-pointer p-2 text-left bg-amber-dim text-amber-bright"
+        data-testid="crew-list-name"
+        type="button"
+      >
+        Ivan Petrov
+      </button>
+      <button
+        class="block w-full cursor-pointer p-2 text-left text-amber-text"
+        data-testid="crew-list-name"
+        type="button"
+      >
+        Olga Petrova
+      </button>
+      <button
+        class="block w-full cursor-pointer p-2 text-left text-amber-text"
+        data-testid="crew-list-name"
+        type="button"
+      >
+        Boris Smirnov
+      </button>
+    </div>
+    <div
+      class="flex flex-1 flex-col"
+    >
+      <div
+        class="flex-1 overflow-y-auto p-6"
+        data-testid="crew-detail"
+      >
+        <div
+          class="mb-4 flex items-start justify-between gap-4"
+        >
+          <div
+            class="grid flex-1 grid-cols-4 gap-3"
+          >
+            <input
+              aria-label="First name"
+              class="bg-amber-deep text-amber-text border-amber-dim placeholder:text-amber-dim focus:border-amber-text w-full border px-3 font-mono transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50 h-9 text-sm"
+              placeholder="First name"
+              value="Ivan"
+            />
+            <input
+              aria-label="Patronymic"
+              class="bg-amber-deep text-amber-text border-amber-dim placeholder:text-amber-dim focus:border-amber-text w-full border px-3 font-mono transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50 h-9 text-sm"
+              placeholder="Patronymic"
+              value="Ivanovich"
+            />
+            <input
+              aria-label="Last name"
+              class="bg-amber-deep text-amber-text border-amber-dim placeholder:text-amber-dim focus:border-amber-text w-full border px-3 font-mono transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50 h-9 text-sm"
+              placeholder="Last name"
+              value="Petrov"
+            />
+            <input
+              aria-label="Nickname"
+              class="bg-amber-deep text-amber-text border-amber-dim placeholder:text-amber-dim focus:border-amber-text w-full border px-3 font-mono transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50 h-9 text-sm"
+              placeholder="Nickname"
+              value=""
+            />
+          </div>
+          <button
+            class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 border-amber-dim bg-amber-screen text-amber-text hover:bg-amber-dim/30 hover:border-amber-text border h-9 px-4 text-sm"
+          >
+            Reroll
+          </button>
+        </div>
+        <p
+          class="text-amber-text/70 mb-6"
+        >
+          Male
+           
+          civilian
+          , 
+          age
+           
+          30
+        </p>
+        <div
+          class="flex w-full flex-row"
+        >
+          <div
+            class="flex flex-1/3 flex-col gap-4"
+          >
+            <div
+              class="flex flex-col gap-1"
+            >
+              <h2>
+                Backstory
+              </h2>
+              <div>
+                Origin
+                :
+                Civilian
+              </div>
+              <div>
+                Career
+                :
+                Civilian
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-1"
+            >
+              <h2>
+                Traits
+              </h2>
+              <p
+                class="text-amber-text text-sm"
+              >
+                None
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex-2/3"
+          >
+            <div
+              class="grid gap-x-6 gap-y-1 max-w-80"
+              style="grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));"
+            >
+              <div
+                class="flex items-center gap-3"
+              >
+                <span
+                  class="text-amber-text w-36 shrink-0 text-sm"
+                >
+                  Mining
+                </span>
+                <div
+                  class="bg-amber-deep border-amber-text h-6 flex-1 border"
+                >
+                  <div
+                    class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                    style="width: 30%;"
+                  >
+                    <span
+                      class="pl-1 text-amber-screen"
+                    >
+                      6
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex items-center gap-3"
+              >
+                <span
+                  class="text-amber-text w-36 shrink-0 text-sm"
+                >
+                  Geology
+                </span>
+                <div
+                  class="bg-amber-deep border-amber-text h-6 flex-1 border"
+                >
+                  <div
+                    class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                    style="width: 10%;"
+                  >
+                    <span
+                      class="pl-1 text-amber-screen"
+                    >
+                      2
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex items-center gap-3"
+              >
+                <span
+                  class="text-amber-text w-36 shrink-0 text-sm"
+                >
+                  Cosmonautics
+                </span>
+                <div
+                  class="bg-amber-deep border-amber-text h-6 flex-1 border"
+                >
+                  <div
+                    class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                    style="width: 5%;"
+                  >
+                    <span
+                      class="pl-1 text-amber-screen"
+                    >
+                      1
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex items-center gap-3"
+              >
+                <span
+                  class="text-amber-text w-36 shrink-0 text-sm"
+                >
+                  Navigation
+                </span>
+                <div
+                  class="bg-amber-deep border-amber-text h-6 flex-1 border"
+                >
+                  <div
+                    class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                    style="width: 0%;"
+                  >
+                    <span
+                      class="pl-1"
+                    >
+                      0
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex items-center gap-3"
+              >
+                <span
+                  class="text-amber-text w-36 shrink-0 text-sm"
+                >
+                  Engineering
+                </span>
+                <div
+                  class="bg-amber-deep border-amber-text h-6 flex-1 border"
+                >
+                  <div
+                    class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                    style="width: 0%;"
+                  >
+                    <span
+                      class="pl-1"
+                    >
+                      0
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="border-amber-dim w-full border-t p-6"
+      >
+        <h2
+          class="text-amber-bright mb-4"
+        >
+          Team Skills
+        </h2>
+        <div
+          class="grid gap-x-6 gap-y-1"
+          style="grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));"
+        >
+          <div
+            class="flex items-center gap-3"
+          >
+            <span
+              class="text-amber-text w-36 shrink-0 text-sm"
+            >
+              Mining
+            </span>
+            <div
+              class="bg-amber-deep border-amber-text h-6 flex-1 border"
+            >
+              <div
+                class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                style="width: 30%;"
+              >
+                <span
+                  class="pl-1 text-amber-screen"
+                >
+                  6
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-3"
+          >
+            <span
+              class="text-amber-text w-36 shrink-0 text-sm"
+            >
+              Geology
+            </span>
+            <div
+              class="bg-amber-deep border-amber-text h-6 flex-1 border"
+            >
+              <div
+                class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                style="width: 25%;"
+              >
+                <span
+                  class="pl-1 text-amber-screen"
+                >
+                  5
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-3"
+          >
+            <span
+              class="text-amber-text w-36 shrink-0 text-sm"
+            >
+              Cosmonautics
+            </span>
+            <div
+              class="bg-amber-deep border-amber-text h-6 flex-1 border"
+            >
+              <div
+                class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                style="width: 30%;"
+              >
+                <span
+                  class="pl-1 text-amber-screen"
+                >
+                  6
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-3"
+          >
+            <span
+              class="text-amber-text w-36 shrink-0 text-sm"
+            >
+              Navigation
+            </span>
+            <div
+              class="bg-amber-deep border-amber-text h-6 flex-1 border"
+            >
+              <div
+                class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                style="width: 20%;"
+              >
+                <span
+                  class="pl-1 text-amber-screen"
+                >
+                  4
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-3"
+          >
+            <span
+              class="text-amber-text w-36 shrink-0 text-sm"
+            >
+              Engineering
+            </span>
+            <div
+              class="bg-amber-deep border-amber-text h-6 flex-1 border"
+            >
+              <div
+                class="bg-amber-text border-amber-screen flex h-full items-center justify-start border-t-2 border-b-2 border-l-2"
+                style="width: 5%;"
+              >
+                <span
+                  class="pl-1 text-amber-screen"
+                >
+                  1
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="border-amber-dim flex justify-between border-t p-4"
+  >
+    <button
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 border-amber-dim bg-amber-screen text-amber-text hover:bg-amber-dim/30 hover:border-amber-text border h-9 px-4 text-sm"
+    >
+      Back
+    </button>
+    <button
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-9 px-4 text-sm"
+    >
+      Start
+    </button>
+  </div>
+</div>
+`;
+
+exports[`New scenario > (Snapshot) scenario selection shows available scenarios 1`] = `
+<div
+  class="flex h-screen flex-col"
+  data-testid="scenario-selection"
+>
+  <div
+    class="flex w-full flex-1 overflow-hidden"
+  >
+    <div
+      class="flex h-full"
+    >
+      <div
+        class="border-amber-dim w-64 overflow-y-auto border-r p-4"
+      >
+        <div
+          class="cursor-pointer p-2 bg-amber-dim text-amber-bright"
+          data-testid="scenario-name"
+        >
+          Starting Scenario
+        </div>
+      </div>
+      <div
+        class="flex-1 overflow-y-auto p-6"
+      >
+        <h2
+          class="font-heading text-amber-bright mb-4 text-2xl"
+        >
+          Starting Scenario
+        </h2>
+        <p
+          class="text-amber-text"
+          data-testid="scenario-description"
+        >
+          Starting scenario.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="border-amber-dim flex justify-between border-t p-4"
+  >
+    <button
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 border-amber-dim bg-amber-screen text-amber-text hover:bg-amber-dim/30 hover:border-amber-text border h-9 px-4 text-sm"
+    >
+      Back
+    </button>
+    <button
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-9 px-4 text-sm"
+    >
+      Next
+    </button>
+  </div>
+</div>
+`;

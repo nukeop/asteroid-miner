@@ -1,100 +1,100 @@
-[
-  {
+{
+  "mining": {
     "id": "mining",
-    "name": "Mining",
-    "description": "Ore extraction, drill operation, excavation.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.mining.name",
+    "descriptionKey": "skill.mining.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "geology": {
     "id": "geology",
-    "name": "Geology",
-    "description": "Surveying, resource identification, deposit quality assessment.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.geology.name",
+    "descriptionKey": "skill.geology.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "refining": {
     "id": "refining",
-    "name": "Refining",
-    "description": "Ore processing, smelting, oil distillation, material purification.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.refining.name",
+    "descriptionKey": "skill.refining.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "engineering": {
     "id": "engineering",
-    "name": "Engineering",
-    "description": "Repair, maintenance, fabrication.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.engineering.name",
+    "descriptionKey": "skill.engineering.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "cybernetics": {
     "id": "cybernetics",
-    "name": "Cybernetics",
-    "description": "Ship computer systems, drone programming, data analysis.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.cybernetics.name",
+    "descriptionKey": "skill.cybernetics.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "cosmonautics": {
     "id": "cosmonautics",
-    "name": "Cosmonautics",
-    "description": "Ship handling, docking, EVA maneuvering, atmospheric entry.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.cosmonautics.name",
+    "descriptionKey": "skill.cosmonautics.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "navigation": {
     "id": "navigation",
-    "name": "Navigation",
-    "description": "Route planning, astrogation, orbital mechanics.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.navigation.name",
+    "descriptionKey": "skill.navigation.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "medicine": {
     "id": "medicine",
-    "name": "Medicine",
-    "description": "Treating injuries, crew health, emergency triage.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.medicine.name",
+    "descriptionKey": "skill.medicine.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "research": {
     "id": "research",
-    "name": "Research",
-    "description": "Experimentation, technology development.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.research.name",
+    "descriptionKey": "skill.research.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "materials_science": {
     "id": "materials_science",
-    "name": "Materials Science",
-    "description": "Material properties, alloy composition, chemical analysis.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.materials_science.name",
+    "descriptionKey": "skill.materials_science.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "blat": {
     "id": "blat",
-    "name": "Blat",
-    "description": "Connections, favors, bribes, knowing the right people.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.blat.name",
+    "descriptionKey": "skill.blat.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "leadership": {
     "id": "leadership",
-    "name": "Leadership",
-    "description": "Crew coordination, morale management, shift scheduling.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.leadership.name",
+    "descriptionKey": "skill.leadership.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "construction": {
     "id": "construction",
-    "name": "Construction",
-    "description": "Station assembly, structural work, hull fabrication.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.construction.name",
+    "descriptionKey": "skill.construction.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   },
-  {
+  "bureaucracy": {
     "id": "bureaucracy",
-    "name": "Bureaucracy",
-    "description": "Permits, quota reports, mining rights applications, contract bids, regulatory compliance.",
-    "xp_base": 100,
-    "xp_growth": 1.5
+    "nameKey": "skill.bureaucracy.name",
+    "descriptionKey": "skill.bureaucracy.description",
+    "xpBase": 100,
+    "xpGrowth": 1.5
   }
-]
+}

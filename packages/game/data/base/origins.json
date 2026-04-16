@@ -1,57 +1,63 @@
-[
-  {
+{
+  "core_world": {
     "id": "core_world",
-    "name": "Central Station Kid",
-    "description": "Grew up in the stacked housing blocks of a major orbital station, where the heating worked most days. Spent more time behind terminals than under open sky.",
-    "skill_bonuses": [
+    "nameKey": "origin.core_world.name",
+    "descriptionKey": "origin.core_world.description",
+    "skillBonuses": [
       { "id": "cybernetics", "amount": 2 },
       { "id": "blat", "amount": 1 }
     ]
   },
-  {
+  "belt_colony": {
     "id": "belt_colony",
-    "name": "Belt Colony Brat",
-    "description": "Raised on a hollowed-out rock somewhere in the main belt, where kids learned to patch suits before they learned to read. The colony ran on shift work and stubbornness.",
-    "skill_bonuses": [
+    "nameKey": "origin.belt_colony.name",
+    "descriptionKey": "origin.belt_colony.description",
+    "skillBonuses": [
       { "id": "mining", "amount": 2 },
       { "id": "engineering", "amount": 1 }
     ]
   },
-  {
+  "orbital_station": {
     "id": "orbital_station",
-    "name": "Orbital Kombinat",
-    "description": "Born and raised on a spinning industrial kombinat that never stopped creaking.",
-    "skill_bonuses": [
+    "nameKey": "origin.orbital_station.name",
+    "descriptionKey": "origin.orbital_station.description",
+    "skillBonuses": [
       { "id": "engineering", "amount": 2 },
       { "id": "navigation", "amount": 1 }
     ]
   },
-  {
+  "frontier": {
     "id": "frontier",
-    "name": "Frontier Outpost",
-    "description": "Grew up in a prefab settlement on a barely-surveyed rock.",
-    "skill_bonuses": [
+    "nameKey": "origin.frontier.name",
+    "descriptionKey": "origin.frontier.description",
+    "skillBonuses": [
       { "id": "construction", "amount": 1 },
       { "id": "mining", "amount": 1 },
       { "id": "medicine", "amount": 1 }
     ]
   },
-  {
+  "transport_fleet": {
     "id": "transport_fleet",
-    "name": "Transport Fleet Child",
-    "description": "Spent childhood aboard a string of state cargo haulers running freight between stations.",
-    "skill_bonuses": [
+    "nameKey": "origin.transport_fleet.name",
+    "descriptionKey": "origin.transport_fleet.description",
+    "skillBonuses": [
       { "id": "cosmonautics", "amount": 2 },
       { "id": "blat", "amount": 1 }
     ]
   },
-  {
+  "research_outpost": {
     "id": "research_outpost",
-    "name": "Research Outpost",
-    "description": "Raised at a remote research station staffed by a skeleton crew of tired scientists.",
-    "skill_bonuses": [
+    "nameKey": "origin.research_outpost.name",
+    "descriptionKey": "origin.research_outpost.description",
+    "skillBonuses": [
       { "id": "research", "amount": 2 },
       { "id": "cybernetics", "amount": 1 }
     ]
+  },
+  "civilian": {
+    "id": "civilian",
+    "nameKey": "origin.civilian.name",
+    "descriptionKey": "origin.civilian.description",
+    "skillBonuses": []
   }
-]
+}

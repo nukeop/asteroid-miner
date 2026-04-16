@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PreferencesRouteImport } from './routes/preferences'
 import { Route as GameRouteImport } from './routes/game'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NewGameScenarioRouteImport } from './routes/new-game/scenario'
+import { Route as NewGameCrewRouteImport } from './routes/new-game/crew'
 import { Route as GameMapRouteImport } from './routes/game/map'
 
 const PreferencesRoute = PreferencesRouteImport.update({
@@ -29,6 +31,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewGameScenarioRoute = NewGameScenarioRouteImport.update({
+  id: '/new-game/scenario',
+  path: '/new-game/scenario',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewGameCrewRoute = NewGameCrewRouteImport.update({
+  id: '/new-game/crew',
+  path: '/new-game/crew',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GameMapRoute = GameMapRouteImport.update({
   id: '/map',
   path: '/map',
@@ -40,12 +52,16 @@ export interface FileRoutesByFullPath {
   '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
   '/game/map': typeof GameMapRoute
+  '/new-game/crew': typeof NewGameCrewRoute
+  '/new-game/scenario': typeof NewGameScenarioRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
   '/game/map': typeof GameMapRoute
+  '/new-game/crew': typeof NewGameCrewRoute
+  '/new-game/scenario': typeof NewGameScenarioRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,19 +69,42 @@ export interface FileRoutesById {
   '/game': typeof GameRouteWithChildren
   '/preferences': typeof PreferencesRoute
   '/game/map': typeof GameMapRoute
+  '/new-game/crew': typeof NewGameCrewRoute
+  '/new-game/scenario': typeof NewGameScenarioRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/game' | '/preferences' | '/game/map'
+  fullPaths:
+    | '/'
+    | '/game'
+    | '/preferences'
+    | '/game/map'
+    | '/new-game/crew'
+    | '/new-game/scenario'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/game' | '/preferences' | '/game/map'
-  id: '__root__' | '/' | '/game' | '/preferences' | '/game/map'
+  to:
+    | '/'
+    | '/game'
+    | '/preferences'
+    | '/game/map'
+    | '/new-game/crew'
+    | '/new-game/scenario'
+  id:
+    | '__root__'
+    | '/'
+    | '/game'
+    | '/preferences'
+    | '/game/map'
+    | '/new-game/crew'
+    | '/new-game/scenario'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GameRoute: typeof GameRouteWithChildren
   PreferencesRoute: typeof PreferencesRoute
+  NewGameCrewRoute: typeof NewGameCrewRoute
+  NewGameScenarioRoute: typeof NewGameScenarioRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -89,6 +128,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new-game/scenario': {
+      id: '/new-game/scenario'
+      path: '/new-game/scenario'
+      fullPath: '/new-game/scenario'
+      preLoaderRoute: typeof NewGameScenarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new-game/crew': {
+      id: '/new-game/crew'
+      path: '/new-game/crew'
+      fullPath: '/new-game/crew'
+      preLoaderRoute: typeof NewGameCrewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/game/map': {
@@ -115,6 +168,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GameRoute: GameRouteWithChildren,
   PreferencesRoute: PreferencesRoute,
+  NewGameCrewRoute: NewGameCrewRoute,
+  NewGameScenarioRoute: NewGameScenarioRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
