@@ -8,7 +8,7 @@ const meta: Meta<typeof CrtScreen> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className="bg-amber-deep p-8">
+      <div className="bg-crt-bg p-8">
         <Story />
       </div>
     ),
@@ -22,7 +22,7 @@ export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-8">
       <div className="grid grid-cols-2 gap-6">
-        <CrtScreen palette="amber">
+        <CrtScreen>
           <h3 className="mb-2 text-lg">Amber / System Status</h3>
           <p className="mb-2">Drill array: ONLINE</p>
           <p className="mb-2">Refinery: 78% capacity</p>
@@ -30,14 +30,16 @@ export const AllVariants: Story = {
           <p>Crew: 24 active, 8 resting</p>
         </CrtScreen>
 
-        <CrtScreen palette="green">
-          <h3 className="mb-2 text-lg">Green / Proximity Alert</h3>
-          <p className="mb-2">
-            Unregistered vessel detected in Sector 7-G. Transponder query
-            returned no match.
-          </p>
-          <p>Recommend activating perimeter drones.</p>
-        </CrtScreen>
+        <div data-theme="green">
+          <CrtScreen>
+            <h3 className="mb-2 text-lg">Green / Proximity Alert</h3>
+            <p className="mb-2">
+              Unregistered vessel detected in Sector 7-G. Transponder query
+              returned no match.
+            </p>
+            <p>Recommend activating perimeter drones.</p>
+          </CrtScreen>
+        </div>
       </div>
 
       <CrtScreen>

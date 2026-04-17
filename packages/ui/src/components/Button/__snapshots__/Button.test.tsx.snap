@@ -4,27 +4,27 @@ exports[`Button > (Snapshot) renders all variants 1`] = `
 <div>
   <div>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-9 px-4 text-sm"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-crt-text text-crt-bg hover:bg-crt-bright h-9 px-4 text-sm"
     >
       Primary
     </button>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 border-amber-dim bg-amber-screen text-amber-text hover:bg-amber-dim/30 hover:border-amber-text border h-9 px-4 text-sm"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 border-crt-muted bg-crt-surface text-crt-text hover:bg-crt-muted/30 hover:border-crt-text border h-9 px-4 text-sm"
     >
       Secondary
     </button>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 text-amber-dim hover:text-amber-text hover:bg-amber-screen h-9 px-4 text-sm"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 text-crt-muted hover:text-crt-text hover:bg-crt-surface h-9 px-4 text-sm"
     >
       Ghost
     </button>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-7 px-3 text-xs"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-crt-text text-crt-bg hover:bg-crt-bright h-7 px-3 text-xs"
     >
       Small
     </button>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-9 px-4 text-sm"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-crt-text text-crt-bg hover:bg-crt-bright h-9 px-4 text-sm"
       disabled=""
     >
       <svg
@@ -47,7 +47,7 @@ exports[`Button > (Snapshot) renders all variants 1`] = `
       Loading
     </button>
     <button
-      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-amber-text text-amber-deep hover:bg-amber-bright h-9 px-4 text-sm"
+      class="inline-flex cursor-pointer items-center justify-center gap-2 font-mono tracking-wide uppercase transition-colors disabled:pointer-events-none disabled:opacity-50 bg-crt-text text-crt-bg hover:bg-crt-bright h-9 px-4 text-sm"
       disabled=""
     >
       Disabled

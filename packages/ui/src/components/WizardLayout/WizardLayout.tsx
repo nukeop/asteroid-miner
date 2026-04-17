@@ -36,7 +36,7 @@ export const WizardLayout: FC<WizardLayoutProps> = ({
   >
     <div className="flex w-full flex-1 overflow-hidden">{children}</div>
 
-    <div className="border-amber-dim flex justify-between border-t p-4">
+    <div className="border-crt-muted flex justify-between border-t p-4">
       <Button variant="secondary" onClick={onBack}>
         {labels.back}
       </Button>

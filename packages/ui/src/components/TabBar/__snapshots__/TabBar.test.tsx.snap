@@ -2,7 +2,7 @@
 
 exports[`TabBar > (Snapshot) renders correctly 1`] = `
 <nav
-  class="border-amber-dim bg-amber-screen flex border-b"
+  class="border-crt-muted bg-crt-surface flex border-b"
 >
   <a
     aria-current="page"
@@ -12,7 +12,7 @@ exports[`TabBar > (Snapshot) renders correctly 1`] = `
   >
     <span
       aria-selected="true"
-      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow-amber border-amber-text text-amber-text"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow border-crt-text text-crt-text"
       role="tab"
     >
       [
@@ -28,7 +28,7 @@ exports[`TabBar > (Snapshot) renders correctly 1`] = `
   >
     <span
       aria-selected="false"
-      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-crt-muted hover:text-crt-text border-transparent"
       role="tab"
     >
       [
@@ -44,7 +44,7 @@ exports[`TabBar > (Snapshot) renders correctly 1`] = `
   >
     <span
       aria-selected="false"
-      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-crt-muted hover:text-crt-text border-transparent"
       role="tab"
     >
       [
@@ -60,7 +60,7 @@ exports[`TabBar > (Snapshot) renders correctly 1`] = `
   >
     <span
       aria-selected="false"
-      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-crt-muted hover:text-crt-text border-transparent"
       role="tab"
     >
       [
@@ -76,7 +76,7 @@ exports[`TabBar > (Snapshot) renders correctly 1`] = `
   >
     <span
       aria-selected="false"
-      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-crt-muted hover:text-crt-text border-transparent"
       role="tab"
     >
       [
@@ -92,7 +92,7 @@ exports[`TabBar > (Snapshot) renders correctly 1`] = `
   >
     <span
       aria-selected="false"
-      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+      class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-crt-muted hover:text-crt-text border-transparent"
       role="tab"
     >
       [

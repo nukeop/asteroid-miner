@@ -9,7 +9,7 @@ export type TopBarProps = {
 export const TopBar: FC<TopBarProps> = ({ children, className, ...props }) => (
   <header
     className={cn(
-      'border-amber-dim bg-amber-screen flex h-10 items-center border-b pl-4 [-webkit-app-region:drag]',
+      'border-crt-muted bg-crt-surface flex h-10 items-center border-b pl-4 [-webkit-app-region:drag]',
       className,
     )}
     {...props}

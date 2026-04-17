@@ -20,7 +20,7 @@ export const GameShell: FC<GameShellProps> = ({
 }) => (
   <div
     className={cn(
-      'crt-scanlines crt-flicker crt-vignette bg-amber-deep relative flex h-screen flex-col overflow-hidden',
+      'crt-scanlines crt-flicker crt-vignette bg-crt-bg relative flex h-screen flex-col overflow-hidden',
       className,
     )}
     {...props}

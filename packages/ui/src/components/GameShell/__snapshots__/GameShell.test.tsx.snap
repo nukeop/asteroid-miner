@@ -6,20 +6,20 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
     /map
   </div>
   <div
-    class="crt-scanlines crt-flicker crt-vignette bg-amber-deep relative flex h-screen flex-col overflow-hidden"
+    class="crt-scanlines crt-flicker crt-vignette bg-crt-bg relative flex h-screen flex-col overflow-hidden"
   >
     <div
       class="relative z-3 flex flex-col"
     >
       <header
-        class="border-amber-dim bg-amber-screen flex h-10 items-center border-b pl-4 [-webkit-app-region:drag]"
+        class="border-crt-muted bg-crt-surface flex h-10 items-center border-b pl-4 [-webkit-app-region:drag]"
       >
         <span>
           Top bar content
         </span>
       </header>
       <nav
-        class="border-amber-dim bg-amber-screen flex border-b"
+        class="border-crt-muted bg-crt-surface flex border-b"
       >
         <a
           aria-current="page"
@@ -29,7 +29,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
         >
           <span
             aria-selected="true"
-            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow-amber border-amber-text text-amber-text"
+            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow border-crt-text text-crt-text"
             role="tab"
           >
             [
@@ -45,7 +45,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
         >
           <span
             aria-selected="false"
-            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-crt-muted hover:text-crt-text border-transparent"
             role="tab"
           >
             [
@@ -61,7 +61,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
         >
           <span
             aria-selected="false"
-            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-crt-muted hover:text-crt-text border-transparent"
             role="tab"
           >
             [
@@ -77,7 +77,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
         >
           <span
             aria-selected="false"
-            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-amber-dim hover:text-amber-text border-transparent"
+            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors text-crt-muted hover:text-crt-text border-transparent"
             role="tab"
           >
             [

@@ -127,7 +127,7 @@ type Story = StoryObj<typeof DataTable<Asteroid>>;
 
 export const Default: Story = {
   render: () => (
-    <div className="bg-amber-deep p-8">
+    <div className="bg-crt-bg p-8">
       <CrtScreen>
         <DataTable
           data={sampleData}
@@ -141,7 +141,7 @@ export const Default: Story = {
 
 export const NoHeader: Story = {
   render: () => (
-    <div className="bg-amber-deep p-8">
+    <div className="bg-crt-bg p-8">
       <CrtScreen>
         <DataTable
           data={sampleData.slice(0, 4)}
@@ -156,7 +156,7 @@ export const NoHeader: Story = {
 
 export const Virtualized: Story = {
   render: () => (
-    <div className="bg-amber-deep p-8">
+    <div className="bg-crt-bg p-8">
       <CrtScreen>
         <DataTable
           data={largeDataset}

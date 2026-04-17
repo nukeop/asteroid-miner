@@ -11,24 +11,16 @@
 @source '../../storybook/src';
 
 @theme {
-  /* === Amber CRT palette (primary) === */
-  --color-amber-text: oklch(0.8124 0.1704 76.4); /* #FFB000 */
-  --color-amber-bright: oklch(0.8652 0.1768 90.4); /* #FFCC00 */
-  --color-amber-dim: oklch(0.3834 0.0748 65.6); /* #5E3A10 */
-  --color-amber-glow: oklch(0.9066 0.1697 97.7); /* #FFE040 */
-  --color-amber-flare: oklch(0.7505 0.1791 58.3); /* #FF8C00 */
-  --color-amber-deep: oklch(0.1324 0.0156 42.5); /* #0D0604 */
-  --color-amber-screen: oklch(0.1763 0.0371 75.5); /* #1A0E00 */
+  --color-crt-bg: oklch(0.13 0.016 42.5);
+  --color-crt-surface: oklch(0.18 0.037 75.5);
+  --color-crt-muted: oklch(0.38 0.075 65.6);
+  --color-crt-text: oklch(0.81 0.17 76.4);
+  --color-crt-bright: oklch(0.87 0.177 90.4);
+  --color-crt-glow: oklch(0.91 0.17 97.7);
 
-  /* === Green CRT palette (secondary) === */
-  --color-green-text: oklch(0.8716 0.2785 142.7); /* #33FF33 */
-  --color-green-bright: oklch(0.8867 0.2344 143.3); /* #66FF66 */
-  --color-green-afterglow: oklch(0.6394 0.2176 142.5); /* #00AA00 */
-  --color-green-dim: oklch(0.3156 0.0949 142.9); /* #0A3D0A */
-  --color-green-screen: oklch(0.2011 0.0314 144.3); /* #0D1A0D */
-  --color-green-deep: oklch(0.1577 0.0106 145.1); /* #0A0E0A */
-
-  --color-danger: oklch(0.65 0.2 25);
+  --color-crt-danger: oklch(0.65 0.2 25);
+  --color-crt-warning: oklch(0.75 0.18 58.3);
+  --color-crt-success: oklch(0.65 0.18 142);
 
   --font-sans: 'Share Tech Mono', ui-monospace, monospace;
   --font-mono: 'Share Tech Mono', ui-monospace, monospace;
@@ -41,8 +33,20 @@
 }
 
 @layer base {
+  [data-theme='green'] {
+    --color-crt-bg: oklch(0.16 0.011 145.1);
+    --color-crt-surface: oklch(0.2 0.031 144.3);
+    --color-crt-muted: oklch(0.32 0.095 142.9);
+    --color-crt-text: oklch(0.87 0.279 142.7);
+    --color-crt-bright: oklch(0.89 0.234 143.3);
+    --color-crt-glow: oklch(0.64 0.218 142.5);
+    --color-crt-danger: oklch(0.65 0.2 25);
+    --color-crt-warning: oklch(0.75 0.18 58.3);
+    --color-crt-success: oklch(0.78 0.12 200);
+  }
+
   body {
-    @apply bg-amber-deep text-amber-text crt-glow-amber font-sans;
+    @apply bg-crt-bg text-crt-text crt-glow font-sans;
     cursor: default;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -73,14 +77,14 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-amber-deep;
+    @apply bg-crt-bg;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-amber-dim rounded-sm;
+    @apply bg-crt-muted rounded-sm;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-amber-text;
+    @apply bg-crt-text;
   }
 }

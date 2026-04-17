@@ -27,12 +27,8 @@
   box-shadow: inset 0 0 80px 20px rgba(0, 0, 0, 0.6);
 }
 
-@utility crt-glow-amber {
-  text-shadow: 0 0 6px var(--color-amber-glow);
-}
-
-@utility crt-glow-green {
-  text-shadow: 0 0 6px var(--color-green-bright);
+@utility crt-glow {
+  text-shadow: 0 0 6px var(--color-crt-glow);
 }
 
 @keyframes crt-flicker {

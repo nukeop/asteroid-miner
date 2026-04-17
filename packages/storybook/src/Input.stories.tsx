@@ -19,7 +19,7 @@ const Row = ({
   children: React.ReactNode;
 }) => (
   <div className="flex flex-col gap-2">
-    <div className="text-amber-text text-xs tracking-wide uppercase">
+    <div className="text-crt-text text-xs tracking-wide uppercase">
       {caption}
     </div>
     {children}

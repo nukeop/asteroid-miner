@@ -14,19 +14,19 @@ export const ConnectedTopBar: FC = () => {
 
   return (
     <>
-      <span className="font-heading text-amber-text w-48 text-xs tracking-widest uppercase">
+      <span className="font-heading text-crt-text w-48 text-xs tracking-widest uppercase">
         Test
       </span>
 
       <div className="flex flex-1 items-center justify-center gap-3">
-        <span className="text-amber-text text-sm tracking-wide">
+        <span className="text-crt-text text-sm tracking-wide">
           {t('common.credits', { amount: '10,000' })}
           <RussianRubleIcon size={12} className="ml-1 inline" />
         </span>
-        <span className="text-amber-dim">|</span>
+        <span className="text-crt-muted">|</span>
         <span
           data-testid="top-bar-date"
-          className="text-amber-text text-sm tracking-wide"
+          className="text-crt-text text-sm tracking-wide"
         >
           {t('common.date', {
             dayOrdinal: t('common.dayOrdinal', {

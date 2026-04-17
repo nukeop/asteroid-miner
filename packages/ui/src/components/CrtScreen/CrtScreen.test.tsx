@@ -9,16 +9,16 @@ describe('CrtScreen', () => {
     expect(screen.getByText('Drill status: ONLINE')).toBeInTheDocument();
   });
 
-  it('matches snapshot for amber palette', () => {
-    const { container } = render(
-      <CrtScreen palette="amber">Amber content</CrtScreen>,
-    );
+  it('(Snapshot) default rendering', () => {
+    const { container } = render(<CrtScreen>Phosphor content</CrtScreen>);
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('matches snapshot for green palette', () => {
+  it('(Snapshot) green theme rendering', () => {
     const { container } = render(
-      <CrtScreen palette="green">Green content</CrtScreen>,
+      <div data-theme="green">
+        <CrtScreen>Green phosphor content</CrtScreen>
+      </div>,
     );
     expect(container.firstChild).toMatchSnapshot();
   });

@@ -48,7 +48,7 @@ export const CrewStep: FC = () => {
       onBack={handleBack}
       onNext={next}
     >
-      <div className="border-amber-dim w-64 overflow-y-auto border-r p-4">
+      <div className="border-crt-muted w-64 overflow-y-auto border-r p-4">
         {crewList.map((member, index) => {
           const fullName =
             `${member.pawn.firstName} ${member.pawn.lastName}`.trim();
@@ -57,7 +57,7 @@ export const CrewStep: FC = () => {
               type="button"
               key={member.id}
               data-testid="crew-list-name"
-              className={`block w-full cursor-pointer p-2 text-left ${member.isSelected ? 'bg-amber-dim text-amber-bright' : 'text-amber-text'}`}
+              className={`block w-full cursor-pointer p-2 text-left ${member.isSelected ? 'bg-crt-muted text-crt-bright' : 'text-crt-text'}`}
               onClick={() => selectCrewMember(index)}
             >
               {fullName || (
@@ -106,7 +106,7 @@ export const CrewStep: FC = () => {
                 </Button>
               </div>
 
-              <p className="text-amber-text/70 mb-6">
+              <p className="text-crt-text/70 mb-6">
                 {selectedPawn.sex === 'Male'
                   ? t('newGame.crewReview.male')
                   : t('newGame.crewReview.female')}{' '}
@@ -130,7 +130,7 @@ export const CrewStep: FC = () => {
                   </div>
                   <div className="flex flex-col gap-1">
                     <h2>{t('newGame.crewReview.traits')}</h2>
-                    <p className="text-amber-text text-sm">
+                    <p className="text-crt-text text-sm">
                       {selectedPawn.traits.length > 0
                         ? selectedPawn.traits.join(', ')
                         : t('newGame.crewReview.noTraits')}
@@ -145,8 +145,8 @@ export const CrewStep: FC = () => {
             </>
           )}
         </div>
-        <div className="border-amber-dim w-full border-t p-6">
-          <h2 className="text-amber-bright mb-4">
+        <div className="border-crt-muted w-full border-t p-6">
+          <h2 className="text-crt-bright mb-4">
             {t('newGame.crewReview.teamSkills')}
           </h2>
           <SkillBars skills={teamSkills} />

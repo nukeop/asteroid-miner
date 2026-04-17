@@ -19,7 +19,7 @@ export function TableHeader<T extends RowData>({
         <tr
           key={headerGroup.id}
           role="row"
-          className={cn('bg-amber-text text-amber-screen', classes?.headerRow)}
+          className={cn('bg-crt-text text-crt-surface', classes?.headerRow)}
         >
           {headerGroup.headers.map((header) => (
             <HeaderCell

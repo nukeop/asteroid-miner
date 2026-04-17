@@ -4,7 +4,7 @@ import { forwardRef, type InputHTMLAttributes } from 'react';
 import { cn } from '../../utils';
 
 const inputVariants = cva(
-  'bg-amber-deep text-amber-text border-amber-dim placeholder:text-amber-dim focus:border-amber-text w-full border px-3 font-mono transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+  'bg-crt-bg text-crt-text border-crt-muted placeholder:text-crt-muted focus:border-crt-text w-full border px-3 font-mono transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       size: {
