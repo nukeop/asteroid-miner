@@ -16,6 +16,6 @@ export const CrtScreen: FC<CrtScreenProps> = ({
     )}
     {...props}
   >
-    <div className="crt-glow relative z-1 p-4 blur-[0.3px]">{children}</div>
+    <div className="relative z-1 p-4 blur-[0.3px]">{children}</div>
   </div>
 );

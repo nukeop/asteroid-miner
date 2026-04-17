@@ -29,7 +29,7 @@ exports[`GameShell > (Snapshot) renders with default props 1`] = `
         >
           <span
             aria-selected="true"
-            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors crt-glow border-crt-text text-crt-text"
+            class="block cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wide uppercase transition-colors border-crt-text text-crt-text"
             role="tab"
           >
             [

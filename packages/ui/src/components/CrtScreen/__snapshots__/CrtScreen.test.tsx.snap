@@ -5,7 +5,7 @@ exports[`CrtScreen > (Snapshot) default rendering 1`] = `
   class="crt-scanlines crt-flicker crt-vignette bg-crt-surface text-crt-text relative overflow-hidden rounded-lg"
 >
   <div
-    class="crt-glow relative z-1 p-4 blur-[0.3px]"
+    class="relative z-1 p-4 blur-[0.3px]"
   >
     Phosphor content
   </div>
@@ -20,7 +20,7 @@ exports[`CrtScreen > (Snapshot) green theme rendering 1`] = `
     class="crt-scanlines crt-flicker crt-vignette bg-crt-surface text-crt-text relative overflow-hidden rounded-lg"
   >
     <div
-      class="crt-glow relative z-1 p-4 blur-[0.3px]"
+      class="relative z-1 p-4 blur-[0.3px]"
     >
       Green phosphor content
     </div>
