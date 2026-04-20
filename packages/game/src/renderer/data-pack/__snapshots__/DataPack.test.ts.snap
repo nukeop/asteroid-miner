@@ -174,5 +174,6 @@ exports[`DataPack > (Snapshot) parses definitions from JSON files 1`] = `
       ],
     },
   },
+  "zones": {},
 }
 `;

@@ -6,7 +6,7 @@ import type {
   Definitions,
   FormationDef,
   MachineDef,
-  NamePool,
+  NamePoolDef,
   OriginDef,
   ResourceDef,
   ScenarioDef,
@@ -18,7 +18,7 @@ import type {
 
 export type { DataPackFiles };
 
-const emptyNamePool: NamePool = {
+const emptyNamePool: NamePoolDef = {
   maleFirst: [],
   femaleFirst: [],
   maleMiddle: [],
@@ -46,6 +46,7 @@ export class DataPack {
       shipModules: DataPack.parse<ShipModuleDef>(files.shipModules),
       machines: DataPack.parse<MachineDef>(files.machines),
       scenarios: DataPack.parse<ScenarioDef>(files.scenarios),
+      zones: {},
       namePool: files.names ? JSON.parse(files.names) : emptyNamePool,
     };
   }

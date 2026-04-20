@@ -57,9 +57,8 @@ export const DataBrowser: FC = () => {
     [t],
   );
 
-  const backgroundColumns = useMemo<
-    ColumnDef<(typeof origins)[number], unknown>[]
-  >(
+  type BackgroundRow = (typeof origins)[number] | (typeof careers)[number];
+  const backgroundColumns = useMemo<ColumnDef<BackgroundRow, unknown>[]>(
     () => [
       { accessorKey: 'id', header: t('data.columns.id') },
       { accessorKey: 'name', header: t('data.columns.name') },
