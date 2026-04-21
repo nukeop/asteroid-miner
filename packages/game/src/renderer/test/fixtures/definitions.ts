@@ -112,12 +112,16 @@ export const testDefinitions: Definitions = {
       ],
     },
   },
-  namePool: {
-    maleFirst: ['Ivan'],
-    femaleFirst: ['Olga'],
-    maleMiddle: ['Ivanovich'],
-    femaleMiddle: ['Ivanovna'],
-    maleLast: ['Petrov'],
-    femaleLast: ['Petrova'],
+  namePools: {
+    'base:default': {
+      type: 'namePool',
+      id: 'base:default',
+      maleFirst: ['Ivan'],
+      femaleFirst: ['Olga'],
+      maleMiddle: ['Ivanovich'],
+      femaleMiddle: ['Ivanovna'],
+      maleLast: ['Petrov'],
+      femaleLast: ['Petrova'],
+    },
   },
 };

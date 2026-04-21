@@ -52,14 +52,17 @@ export const CrewTemplateDefSchema = z.object({
 });
 export type CrewTemplateDef = z.infer<typeof CrewTemplateDefSchema>;
 
-export type NamePoolDef = {
-  maleFirst: string[];
-  femaleFirst: string[];
-  maleMiddle: string[];
-  femaleMiddle: string[];
-  maleLast: string[];
-  femaleLast: string[];
-};
+export const NamePoolDefSchema = z.object({
+  type: z.literal('namePool'),
+  id: z.string(),
+  maleFirst: z.array(z.string()).min(1),
+  femaleFirst: z.array(z.string()).min(1),
+  maleMiddle: z.array(z.string()).min(1),
+  femaleMiddle: z.array(z.string()).min(1),
+  maleLast: z.array(z.string()).min(1),
+  femaleLast: z.array(z.string()).min(1),
+});
+export type NamePoolDef = z.infer<typeof NamePoolDefSchema>;
 
 export const SkillDefSchema = z.object({
   type: z.literal('skill'),
@@ -247,6 +250,7 @@ export const AnyDefSchema = z.discriminatedUnion('type', [
   MachineDefSchema,
   ScenarioDefSchema,
   ZoneDefSchema,
+  NamePoolDefSchema,
 ]);
 export type AnyDef = z.infer<typeof AnyDefSchema>;
 
@@ -263,5 +267,5 @@ export type Definitions = {
   machines: Record<string, MachineDef>;
   scenarios: Record<string, ScenarioDef>;
   zones: Record<string, ZoneDef>;
-  namePool: NamePoolDef;
+  namePools: Record<string, NamePoolDef>;
 };

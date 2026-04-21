@@ -1,11 +1,9 @@
-import type { DataPackFiles } from '@asteroid-miner/model';
-
-type IpcResult<T = void> = { ok: true; data: T } | { ok: false; error: string };
+import type { DataPack, Result } from '@asteroid-miner/model';
 
 interface ElectronAPI {
-  saveGame: (data: string) => Promise<IpcResult>;
-  loadGame: () => Promise<IpcResult<string>>;
-  loadDataPack: (packPath: string) => Promise<IpcResult<DataPackFiles>>;
+  saveGame: (data: string) => Promise<Result<void, string>>;
+  loadGame: () => Promise<Result<string, string>>;
+  parseDataPack: (path: string) => Promise<DataPack>;
   getBaseDataPath: () => Promise<string>;
 }
 

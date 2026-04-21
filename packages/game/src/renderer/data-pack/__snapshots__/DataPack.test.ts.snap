@@ -64,25 +64,29 @@ exports[`DataPack > (Snapshot) parses definitions from JSON files 1`] = `
       "nameKey": "machine.mining_rig_basic.name",
     },
   },
-  "namePool": {
-    "femaleFirst": [
-      "Olga",
-    ],
-    "femaleLast": [
-      "Petrova",
-    ],
-    "femaleMiddle": [
-      "Ivanovna",
-    ],
-    "maleFirst": [
-      "Ivan",
-    ],
-    "maleLast": [
-      "Petrov",
-    ],
-    "maleMiddle": [
-      "Ivanovich",
-    ],
+  "namePools": {
+    "base:default": {
+      "femaleFirst": [
+        "Olga",
+      ],
+      "femaleLast": [
+        "Petrova",
+      ],
+      "femaleMiddle": [
+        "Ivanovna",
+      ],
+      "id": "base:default",
+      "maleFirst": [
+        "Ivan",
+      ],
+      "maleLast": [
+        "Petrov",
+      ],
+      "maleMiddle": [
+        "Ivanovich",
+      ],
+      "type": "namePool",
+    },
   },
   "origins": {
     "belter": {

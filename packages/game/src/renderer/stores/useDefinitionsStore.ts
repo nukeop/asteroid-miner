@@ -1,8 +1,6 @@
 import { create } from 'zustand';
 
-import type { Definitions } from '@asteroid-miner/model';
-
-import { DataPack } from '../data-pack/DataPack';
+import type { DataPack, Definitions } from '@asteroid-miner/model';
 
 export type { Definitions };
 
@@ -18,12 +16,9 @@ export const useDefinitionsStore = create<DefinitionsState>()((set) => ({
 
 export async function initializeDefinitionsStore() {
   const packPath = await window.electronAPI.getBaseDataPath();
-  const result = await window.electronAPI.loadDataPack(packPath);
+  const pack: DataPack = await window.electronAPI.parseDataPack(packPath);
 
-  if (!result.ok) {
-    throw new Error(result.error);
-  }
-
-  const pack = new DataPack(result.data);
-  useDefinitionsStore.getState().setDefinitions(pack.definitions);
+  // Merge step (stage 2) not implemented yet — pack is parsed but
+  // Definitions construction comes later.
+  void pack;
 }
