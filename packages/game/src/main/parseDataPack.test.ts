@@ -169,7 +169,6 @@ describe('parseDataPack', () => {
       type: 'tag',
       id: 'base:fuel',
       nameKey: 'tag.fuel.name',
-      descriptionKey: 'tag.fuel.description',
     };
     FsMock.setFiles({
       '/fake/pack/package.json': JSON.stringify(validManifest),

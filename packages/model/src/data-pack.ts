@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { AnyDefSchema, type AnyDef } from './definitions';
 import type { Result } from './result';
 
 const SEMVER_REGEX = /^\d+\.\d+\.\d+$/;
@@ -28,8 +29,11 @@ export type DataPackManifestContents = z.infer<
 
 export type DataPackManifest = ParsedJsonFile<DataPackManifestContents>;
 
+export const DataPackDefsFileSchema = z.array(AnyDefSchema);
+export type DataPackDefsFile = AnyDef[];
+
 export type DataPack = {
   path: string;
   manifest: DataPackManifest;
-  files: DataPackFile[];
+  files: ParsedJsonFile<DataPackDefsFile>[];
 };
