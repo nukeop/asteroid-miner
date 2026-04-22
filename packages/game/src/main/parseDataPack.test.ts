@@ -1,30 +1,34 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const readFileMock = vi.fn();
-
 vi.mock('node:fs/promises', () => ({
-  default: { readFile: readFileMock },
-  readFile: readFileMock,
+  default: { readFile: vi.fn() },
+  readFile: vi.fn(),
 }));
 
+const { FsMock } = await import('../test/fs-mock');
 const { parseDataPack } = await import('./parseDataPack');
+
+const validManifest = {
+  name: 'base',
+  dataPack: {
+    files: ['defs/skills.json', 'defs/traits.json'],
+    gameVersion: '0.1.0',
+    nameKey: 'pack.base.name',
+    descriptionKey: 'pack.base.description',
+  },
+};
 
 describe('parseDataPack', () => {
   beforeEach(() => {
-    readFileMock.mockReset();
+    FsMock.reset();
   });
 
   it('parses a valid manifest', async () => {
-    const manifest = {
-      name: 'base',
-      dataPack: {
-        files: ['defs/skills.json', 'defs/traits.json'],
-        gameVersion: '0.1.0',
-        nameKey: 'pack.base.name',
-        descriptionKey: 'pack.base.description',
-      },
-    };
-    readFileMock.mockResolvedValueOnce(JSON.stringify(manifest));
+    FsMock.setFiles({
+      '/fake/pack/package.json': JSON.stringify(validManifest),
+      '/fake/pack/defs/skills.json': '[]',
+      '/fake/pack/defs/traits.json': '[]',
+    });
 
     const pack = await parseDataPack('/fake/pack');
 
@@ -42,7 +46,9 @@ describe('parseDataPack', () => {
   });
 
   it('rejects a manifest missing the dataPack field', async () => {
-    readFileMock.mockResolvedValueOnce(JSON.stringify({ name: 'base' }));
+    FsMock.setFiles({
+      '/fake/pack/package.json': JSON.stringify({ name: 'base' }),
+    });
 
     const pack = await parseDataPack('/fake/pack');
 
@@ -54,16 +60,17 @@ describe('parseDataPack', () => {
   });
 
   it('rejects a manifest whose gameVersion is not semver', async () => {
-    const manifest = {
-      name: 'base',
-      dataPack: {
-        files: [],
-        gameVersion: 'not-a-version',
-        nameKey: 'pack.base.name',
-        descriptionKey: 'pack.base.description',
-      },
-    };
-    readFileMock.mockResolvedValueOnce(JSON.stringify(manifest));
+    FsMock.setFiles({
+      '/fake/pack/package.json': JSON.stringify({
+        name: 'base',
+        dataPack: {
+          files: [],
+          gameVersion: 'not-a-version',
+          nameKey: 'pack.base.name',
+          descriptionKey: 'pack.base.description',
+        },
+      }),
+    });
 
     const pack = await parseDataPack('/fake/pack');
 
@@ -74,16 +81,17 @@ describe('parseDataPack', () => {
   });
 
   it('rejects a manifest whose files field is not a string array', async () => {
-    const manifest = {
-      name: 'base',
-      dataPack: {
-        files: 'defs/skills.json',
-        gameVersion: '0.1.0',
-        nameKey: 'pack.base.name',
-        descriptionKey: 'pack.base.description',
-      },
-    };
-    readFileMock.mockResolvedValueOnce(JSON.stringify(manifest));
+    FsMock.setFiles({
+      '/fake/pack/package.json': JSON.stringify({
+        name: 'base',
+        dataPack: {
+          files: 'defs/skills.json',
+          gameVersion: '0.1.0',
+          nameKey: 'pack.base.name',
+          descriptionKey: 'pack.base.description',
+        },
+      }),
+    });
 
     const pack = await parseDataPack('/fake/pack');
 
@@ -95,7 +103,9 @@ describe('parseDataPack', () => {
   });
 
   it('returns a parse error for malformed JSON', async () => {
-    readFileMock.mockResolvedValueOnce('this is not json');
+    FsMock.setFiles({
+      '/fake/pack/package.json': 'this is not json',
+    });
 
     const pack = await parseDataPack('/fake/pack');
 
@@ -109,7 +119,7 @@ describe('parseDataPack', () => {
     const missingError = Object.assign(new Error('ENOENT: no such file'), {
       code: 'ENOENT',
     });
-    readFileMock.mockRejectedValueOnce(missingError);
+    FsMock.setFileError('/fake/pack/package.json', missingError);
 
     const pack = await parseDataPack('/fake/pack');
 
@@ -118,5 +128,72 @@ describe('parseDataPack', () => {
       ok: false,
       error: 'Could not load file',
     });
+  });
+
+  it('does not attempt to load any files when the manifest cannot be loaded', async () => {
+    FsMock.setFileError('/fake/pack/package.json', new Error('ENOENT'));
+
+    const pack = await parseDataPack('/fake/pack');
+
+    expect(pack.files).toEqual([]);
+  });
+
+  it('does not attempt to load any files when the manifest fails schema validation', async () => {
+    FsMock.setFiles({
+      '/fake/pack/package.json': JSON.stringify({ name: 'base' }),
+    });
+
+    const pack = await parseDataPack('/fake/pack');
+
+    expect(pack.files).toEqual([]);
+  });
+
+  it('parses defs from each file listed in the manifest', async () => {
+    const skill = {
+      type: 'skill',
+      id: 'base:mining',
+      nameKey: 'skill.mining.name',
+      descriptionKey: 'skill.mining.description',
+      xpBase: 100,
+      xpGrowth: 1.5,
+    };
+    const otherSkill = {
+      type: 'skill',
+      id: 'base:piloting',
+      nameKey: 'skill.piloting.name',
+      descriptionKey: 'skill.piloting.description',
+      xpBase: 100,
+      xpGrowth: 1.5,
+    };
+    const tag = {
+      type: 'tag',
+      id: 'base:fuel',
+      nameKey: 'tag.fuel.name',
+      descriptionKey: 'tag.fuel.description',
+    };
+    FsMock.setFiles({
+      '/fake/pack/package.json': JSON.stringify(validManifest),
+      '/fake/pack/defs/skills.json': JSON.stringify([skill, otherSkill]),
+      '/fake/pack/defs/traits.json': JSON.stringify([tag]),
+    });
+
+    const pack = await parseDataPack('/fake/pack');
+
+    expect(pack.files).toEqual([
+      {
+        file: {
+          path: '/fake/pack/defs/skills.json',
+          text: { ok: true, value: JSON.stringify([skill, otherSkill]) },
+        },
+        contents: { ok: true, value: [skill, otherSkill] },
+      },
+      {
+        file: {
+          path: '/fake/pack/defs/traits.json',
+          text: { ok: true, value: JSON.stringify([tag]) },
+        },
+        contents: { ok: true, value: [tag] },
+      },
+    ]);
   });
 });
