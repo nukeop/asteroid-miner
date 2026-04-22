@@ -195,4 +195,45 @@ describe('parseDataPack', () => {
       },
     ]);
   });
+
+  it('surfaces a malformed def file as a per-file error without affecting other files', async () => {
+    FsMock.setFiles({
+      '/fake/pack/package.json': JSON.stringify(validManifest),
+      '/fake/pack/defs/skills.json': 'not valid json',
+      '/fake/pack/defs/traits.json': JSON.stringify([]),
+    });
+
+    const pack = await parseDataPack('/fake/pack');
+
+    expect(pack.files[0]?.contents).toEqual({
+      ok: false,
+      error: 'Invalid JSON',
+    });
+    expect(pack.files[1]?.contents).toEqual({ ok: true, value: [] });
+  });
+
+  it('surfaces a def that fails schema validation as a per-file error', async () => {
+    const badSkill = {
+      type: 'skill',
+      id: 'base:mining',
+      nameKey: 'skill.mining.name',
+      descriptionKey: 'skill.mining.description',
+      xpBase: 'not a number',
+      xpGrowth: 1.5,
+    };
+    FsMock.setFiles({
+      '/fake/pack/package.json': JSON.stringify(validManifest),
+      '/fake/pack/defs/skills.json': JSON.stringify([badSkill]),
+      '/fake/pack/defs/traits.json': JSON.stringify([]),
+    });
+
+    const pack = await parseDataPack('/fake/pack');
+
+    expect(pack.files[0]?.contents).toEqual({
+      ok: false,
+      error:
+        '✖ Invalid input: expected number, received string\n  → at [0].xpBase',
+    });
+    expect(pack.files[1]?.contents).toEqual({ ok: true, value: [] });
+  });
 });
