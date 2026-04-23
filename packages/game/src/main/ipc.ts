@@ -5,7 +5,7 @@ import { app, type IpcMain } from 'electron';
 
 import { err, ok } from '@asteroid-miner/model';
 
-import { parseDataPack } from './parseDataPack';
+import { parseDataPack } from './data-pack/parseDataPack';
 
 function getSavePath(): string {
   return join(app.getPath('userData'), 'saves', 'save.json');

@@ -5,7 +5,7 @@ vi.mock('node:fs/promises', () => ({
   readFile: vi.fn(),
 }));
 
-const { FsMock } = await import('../test/fs-mock');
+const { FsMock } = await import('../../test/fs-mock');
 const { parseDataPack } = await import('./parseDataPack');
 
 const validManifest = {

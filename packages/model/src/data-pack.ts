@@ -16,6 +16,7 @@ export type ParsedJsonFile<T> = {
 };
 
 export const DataPackManifestContentsSchema = z.object({
+  name: z.string(),
   dataPack: z.object({
     files: z.array(z.string()),
     gameVersion: z.string().regex(SEMVER_REGEX, 'must be semver'),

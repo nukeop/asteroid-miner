@@ -6,7 +6,7 @@ import {
   type DataPack,
 } from '@asteroid-miner/model';
 
-import { loadAndParseJson } from './loadAndParseJson';
+import { loadAndParseJson } from '../loadAndParseJson';
 
 const MANIFEST_FILENAME = 'package.json';
 
