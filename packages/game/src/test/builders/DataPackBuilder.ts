@@ -1,4 +1,5 @@
 import {
+  err,
   ok,
   type AnyDef,
   type DataPack,
@@ -6,18 +7,33 @@ import {
   type ParsedJsonFile,
 } from '@asteroid-miner/model';
 
-type DefFile = {
-  filename: string;
-  defs: AnyDef[];
-};
+type OkVirtualFile = { filename: string; kind: 'ok'; defs: AnyDef[] };
+type FailedVirtualFile = { filename: string; kind: 'failed'; error: string };
+type VirtualFile = OkVirtualFile | FailedVirtualFile;
+
+const isOkFile = (file: VirtualFile): file is OkVirtualFile =>
+  file.kind === 'ok';
 
 export class DataPackBuilder {
   private name = 'test-pack';
+  private nameKey = 'pack.test.name';
+  private descriptionKey = 'pack.test.description';
   private version = '0.1.0';
-  private defFiles: DefFile[] = [];
+  private files: VirtualFile[] = [];
+  private manifestContentsError: string | null = null;
 
   withName(name: string): this {
     this.name = name;
+    return this;
+  }
+
+  withNameKey(nameKey: string): this {
+    this.nameKey = nameKey;
+    return this;
+  }
+
+  withDescriptionKey(descriptionKey: string): this {
+    this.descriptionKey = descriptionKey;
     return this;
   }
 
@@ -26,44 +42,82 @@ export class DataPackBuilder {
     return this;
   }
 
-  withDefFile(filename: string, defs: AnyDef[]): this {
-    this.defFiles.push({ filename, defs });
+  withDefs(filename: string, defs: AnyDef[]): this {
+    const existing = this.files
+      .filter(isOkFile)
+      .find((file) => file.filename === filename);
+    if (existing) {
+      existing.defs.push(...defs);
+      return this;
+    }
+    this.files.push({ filename, kind: 'ok', defs: [...defs] });
     return this;
   }
 
-  withDefs(defs: AnyDef[]): this {
-    return this.withDefFile('defs/all.json', defs);
+  withFailedDefFile(filename: string, error: string): this {
+    this.files.push({ filename, kind: 'failed', error });
+    return this;
+  }
+
+  withFailedManifestContents(error: string): this {
+    this.manifestContentsError = error;
+    return this;
   }
 
   build(): DataPack {
-    const path = `/fake/packs/${this.name}`;
-    const manifestContents: DataPackManifestContents = {
+    const packPath = `/fake/packs/${this.name}`;
+    const manifestPath = `${packPath}/package.json`;
+    return {
+      path: packPath,
+      manifest: this.buildManifest(manifestPath),
+      files: this.files.map((entry) => this.buildFile(entry, packPath)),
+    };
+  }
+
+  private buildManifest(
+    manifestPath: string,
+  ): ParsedJsonFile<DataPackManifestContents> {
+    if (this.manifestContentsError !== null) {
+      return {
+        file: { path: manifestPath, text: ok('') },
+        contents: err(this.manifestContentsError),
+      };
+    }
+    const contents: DataPackManifestContents = {
       name: this.name,
       dataPack: {
-        files: this.defFiles.map((f) => f.filename),
+        files: this.files.map((entry) => entry.filename),
         gameVersion: this.version,
-        nameKey: `pack.${this.name}.name`,
-        descriptionKey: `pack.${this.name}.description`,
+        nameKey: this.nameKey,
+        descriptionKey: this.descriptionKey,
       },
     };
-
-    const manifestPath = `${path}/package.json`;
-    const manifestText = JSON.stringify(manifestContents, null, 2);
-    const manifest: ParsedJsonFile<DataPackManifestContents> = {
-      file: { path: manifestPath, text: ok(manifestText) },
-      contents: ok(manifestContents),
+    return {
+      file: {
+        path: manifestPath,
+        text: ok(JSON.stringify(contents, null, 2)),
+      },
+      contents: ok(contents),
     };
+  }
 
-    const files: ParsedJsonFile<AnyDef[]>[] = this.defFiles.map(
-      ({ filename, defs }) => ({
-        file: {
-          path: `${path}/${filename}`,
-          text: ok(JSON.stringify(defs, null, 2)),
-        },
-        contents: ok(defs),
-      }),
-    );
-
-    return { path, manifest, files };
+  private buildFile(
+    entry: VirtualFile,
+    packPath: string,
+  ): ParsedJsonFile<AnyDef[]> {
+    const filePath = `${packPath}/${entry.filename}`;
+    if (entry.kind === 'failed') {
+      return {
+        file: { path: filePath, text: ok('') },
+        contents: err(entry.error),
+      };
+    }
+    return {
+      file: {
+        path: filePath,
+        text: ok(JSON.stringify(entry.defs, null, 2)),
+      },
+      contents: ok(entry.defs),
+    };
   }
 }
