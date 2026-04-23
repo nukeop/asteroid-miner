@@ -21,7 +21,7 @@ describe('mergeAndResolve', () => {
         .build(),
     ]);
 
-    expect(result.definitions.skills).toEqual({
+    expect(result.value.skills).toEqual({
       'base:mining': miningSkill,
       'dlc:piloting': pilotingSkill,
     });
@@ -41,7 +41,7 @@ describe('mergeAndResolve', () => {
         .build(),
     ]);
 
-    expect(result.definitions.skills).toEqual({ 'base:mining': secondMining });
+    expect(result.value.skills).toEqual({ 'base:mining': secondMining });
     expect(result.warnings).toEqual([
       "Pack 'base' contains duplicate id 'base:mining'",
     ]);
@@ -58,8 +58,8 @@ describe('mergeAndResolve', () => {
         .build(),
     ]);
 
-    expect(result.definitions.skills).toEqual({ 'base:mining': skill });
-    expect(result.definitions.tags).toEqual({ 'base:fuel': tag });
+    expect(result.value.skills).toEqual({ 'base:mining': skill });
+    expect(result.value.tags).toEqual({ 'base:fuel': tag });
   });
 
   it('loads defs from every file the pack ships', () => {
@@ -74,8 +74,8 @@ describe('mergeAndResolve', () => {
         .build(),
     ]);
 
-    expect(result.definitions.skills).toEqual({ 'base:mining': skill });
-    expect(result.definitions.tags).toEqual({ 'base:fuel': tag });
+    expect(result.value.skills).toEqual({ 'base:mining': skill });
+    expect(result.value.tags).toEqual({ 'base:fuel': tag });
   });
 
   it('reports an error when a pack has a failed def file', () => {
@@ -109,9 +109,7 @@ describe('mergeAndResolve', () => {
         .build(),
     ]);
 
-    expect(result.definitions.skills['base:mining']).toEqual(
-      miningSkillOverride,
-    );
+    expect(result.value.skills['base:mining']).toEqual(miningSkillOverride);
     expect(result.warnings).toEqual([
       "Pack 'dlc' overrides 'base:mining' from pack 'base'",
     ]);
