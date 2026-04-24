@@ -1,12 +1,24 @@
+import { sortBy } from 'lodash-es';
+
 import {
   partition,
   type AnyDef,
   type DataPack,
+  type DataPackType,
   type Definitions,
   type LoadResult,
 } from '@asteroid-miner/model';
 
-import { toLoadedPack } from './toLoadedPack';
+import { toLoadedPack, type LoadedPack } from './toLoadedPack';
+
+const packTypeRank: Record<DataPackType, number> = {
+  base: 0,
+  dlc: 1,
+  mod: 2,
+};
+
+const sortPacks = (packs: LoadedPack[]): LoadedPack[] =>
+  sortBy(packs, [(pack) => packTypeRank[pack.type], (pack) => pack.name]);
 
 type BucketKey = keyof Definitions;
 
@@ -46,8 +58,9 @@ export function mergeAndResolve(packs: DataPack[]): LoadResult<Definitions> {
   const value = emptyDefinitions();
   const warnings: string[] = [];
 
-  const { oks: loadedPacks, errs } = partition(packs.map(toLoadedPack));
+  const { oks: unsortedPacks, errs } = partition(packs.map(toLoadedPack));
   const errors = errs.flat();
+  const loadedPacks = sortPacks(unsortedPacks);
 
   const placements = loadedPacks.flatMap((pack) =>
     pack.files.flatMap((file) =>

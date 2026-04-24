@@ -4,6 +4,7 @@ import {
   partition,
   type AnyDef,
   type DataPack,
+  type DataPackType,
   type ParsedJsonFile,
   type Result,
 } from '@asteroid-miner/model';
@@ -15,6 +16,7 @@ export type LoadedFile = {
 
 export type LoadedPack = {
   name: string;
+  type: DataPackType;
   files: LoadedFile[];
 };
 
@@ -36,10 +38,11 @@ export function toLoadedPack(pack: DataPack): Result<LoadedPack, string[]> {
   }
 
   const name = pack.manifest.contents.value.name;
+  const type = pack.manifest.contents.value.dataPack.type;
 
   const { oks: files, errs } = partition(
     pack.files.map((file) => loadFile(file, name)),
   );
 
-  return errs.length > 0 ? err(errs) : ok({ name, files });
+  return errs.length > 0 ? err(errs) : ok({ name, type, files });
 }
