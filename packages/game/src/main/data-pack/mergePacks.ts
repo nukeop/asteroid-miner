@@ -54,7 +54,7 @@ const emptyDefinitions = (): Definitions => ({
   namePools: {},
 });
 
-export function mergeAndResolve(packs: DataPack[]): LoadResult<Definitions> {
+export function mergePacks(packs: DataPack[]): LoadResult<Definitions> {
   const value = emptyDefinitions();
   const warnings: string[] = [];
 

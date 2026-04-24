@@ -3,14 +3,14 @@ import { describe, expect, it } from 'vitest';
 import { DataPackBuilder } from '../../test/builders/DataPackBuilder';
 import { SkillDefBuilder } from '../../test/builders/SkillDefBuilder';
 import { TagDefBuilder } from '../../test/builders/TagDefBuilder';
-import { mergeAndResolve } from './mergeAndResolve';
+import { mergePacks } from './mergePacks';
 
-describe('mergeAndResolve', () => {
+describe('mergePacks', () => {
   it('merges defs from multiple packs into one bucket keyed by id', () => {
     const miningSkill = new SkillDefBuilder().withId('base:mining').build();
     const pilotingSkill = new SkillDefBuilder().withId('dlc:piloting').build();
 
-    const result = mergeAndResolve([
+    const result = mergePacks([
       new DataPackBuilder()
         .withName('base')
         .withDefs('defs/skills.json', [miningSkill])
@@ -34,7 +34,7 @@ describe('mergeAndResolve', () => {
       .withNameKey('skill.mining.second.name')
       .build();
 
-    const result = mergeAndResolve([
+    const result = mergePacks([
       new DataPackBuilder()
         .withName('base')
         .withDefs('defs/skills.json', [firstMining, secondMining])
@@ -49,7 +49,7 @@ describe('mergeAndResolve', () => {
     const skill = new SkillDefBuilder().withId('base:mining').build();
     const tag = new TagDefBuilder().withId('base:fuel').build();
 
-    const result = mergeAndResolve([
+    const result = mergePacks([
       new DataPackBuilder()
         .withName('base')
         .withDefs('defs/all.json', [skill, tag])
@@ -64,7 +64,7 @@ describe('mergeAndResolve', () => {
     const skill = new SkillDefBuilder().withId('base:mining').build();
     const tag = new TagDefBuilder().withId('base:fuel').build();
 
-    const result = mergeAndResolve([
+    const result = mergePacks([
       new DataPackBuilder()
         .withName('base')
         .withDefs('defs/skills.json', [skill])
@@ -77,7 +77,7 @@ describe('mergeAndResolve', () => {
   });
 
   it('reports an error when a pack has a failed def file', () => {
-    const result = mergeAndResolve([
+    const result = mergePacks([
       new DataPackBuilder()
         .withName('base')
         .withFailedDefFile('defs/skills.json', 'Invalid JSON')
@@ -96,7 +96,7 @@ describe('mergeAndResolve', () => {
       .withNameKey('skill.mining.override.name')
       .build();
 
-    const result = mergeAndResolve([
+    const result = mergePacks([
       new DataPackBuilder()
         .withName('base')
         .withType('base')
@@ -135,7 +135,7 @@ describe('mergeAndResolve', () => {
       .withNameKey('mod-b')
       .build();
 
-    const result = mergeAndResolve([
+    const result = mergePacks([
       new DataPackBuilder()
         .withName('mod-b')
         .withType('mod')
