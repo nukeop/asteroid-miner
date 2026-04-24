@@ -1,0 +1,64 @@
+{
+  "$comment": "This file is generated from Zod schemas in @asteroid-miner/model. Do not edit by hand. Run `pnpm --filter @asteroid-miner/model generate-schemas` to regenerate.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique name for this data pack. Must be unique across all loaded packs."
+    },
+    "dataPack": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "base",
+            "dlc",
+            "mod"
+          ],
+          "description": "What kind of data pack this is. \"base\" is the core game data. \"dlc\" is for official DLCs. \"mod\" is for mods."
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Paths to def files shipped by this pack, relative to the pack root."
+        },
+        "gameVersion": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Minimum game version this pack requires. Semver (MAJOR.MINOR.PATCH).",
+          "examples": [
+            "0.1.0",
+            "1.0.0"
+          ]
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        }
+      },
+      "required": [
+        "type",
+        "files",
+        "gameVersion",
+        "nameKey",
+        "descriptionKey"
+      ],
+      "additionalProperties": false,
+      "description": "Data pack metadata."
+    }
+  },
+  "required": [
+    "name",
+    "dataPack"
+  ],
+  "additionalProperties": false,
+  "description": "Manifest format for data packs. The base game, DLCs, and community mods all use this format."
+}

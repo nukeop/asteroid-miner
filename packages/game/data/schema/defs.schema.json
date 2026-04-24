@@ -1,0 +1,1232 @@
+{
+  "$comment": "This file is generated from Zod schemas in @asteroid-miner/model. Do not edit by hand. Run `pnpm --filter @asteroid-miner/model generate-schemas` to regenerate.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "skill"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this skill.",
+          "examples": [
+            "base:drilling",
+            "base:navigation",
+            "base:geology"
+          ]
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "xpBase": {
+          "type": "number",
+          "description": "XP required to reach level 1. Higher levels multiply this by xpGrowth."
+        },
+        "xpGrowth": {
+          "type": "number",
+          "description": "Multiplier applied per level for the XP curve. Must be greater than 1.0 or XP requirements stay flat across levels.",
+          "examples": [
+            1.3,
+            1.5,
+            2
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey",
+        "descriptionKey",
+        "xpBase",
+        "xpGrowth"
+      ],
+      "additionalProperties": false,
+      "description": "A skill pawns can learn and improve. XP for level N = xpBase * xpGrowth^(N-1)."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "trait"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this trait.",
+          "examples": [
+            "base:steady_hand",
+            "base:deep_sleeper",
+            "base:born_pilot"
+          ]
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name shown on the pawn trait list."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "skillModifiers": {
+          "description": "Adjustments this trait applies to a pawn's effective skill levels.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "skill": {
+                "type": "string",
+                "description": "The skill ID this modifier targets."
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "Flat",
+                  "Factor"
+                ],
+                "description": "How the modifier value is applied. \"Flat\" adds a fixed amount. \"Factor\" multiplies by the value."
+              },
+              "value": {
+                "type": "number",
+                "description": "The modifier amount. For Flat, added directly. For Factor, used as a multiplier (e.g. 1.2 = +20%).",
+                "examples": [
+                  2,
+                  -1,
+                  1.5
+                ]
+              }
+            },
+            "required": [
+              "skill",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false,
+            "description": "A modifier applied to a specific skill."
+          }
+        },
+        "customEffects": {
+          "description": "Scripted effects that don't fit the modifier system. Each entry names a handler function and passes arbitrary parameters to it.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "handler": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Name of the effect handler function that processes this effect.",
+                "examples": [
+                  "reduce_food_consumption",
+                  "immune_to_vacuum"
+                ]
+              },
+              "params": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {},
+                "description": "Arbitrary key-value parameters passed to the handler. Structure depends on the handler.",
+                "examples": [
+                  {
+                    "factor": 0.8
+                  },
+                  {
+                    "duration_hours": 24,
+                    "severity": "mild"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "handler",
+              "params"
+            ],
+            "additionalProperties": false,
+            "description": "A scripted effect with a named handler and free-form parameters."
+          }
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey",
+        "descriptionKey"
+      ],
+      "additionalProperties": false,
+      "description": "A pawn trait that modifies skills or triggers custom gameplay effects."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "origin"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this origin.",
+          "examples": [
+            "base:belt_colony",
+            "base:core_world",
+            "base:frontier"
+          ]
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "skillBonuses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The skill ID to apply the bonus to."
+              },
+              "amount": {
+                "type": "number",
+                "description": "Number of skill levels to add (positive) or subtract (negative).",
+                "examples": [
+                  1,
+                  2,
+                  -1
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "amount"
+            ],
+            "additionalProperties": false,
+            "description": "A starting bonus applied to a specific skill."
+          },
+          "description": "Starting skill level bonuses granted by this origin."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey",
+        "descriptionKey",
+        "skillBonuses"
+      ],
+      "additionalProperties": false,
+      "description": "Where a pawn grew up before appearing in the game."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "career"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this career.",
+          "examples": [
+            "base:belt_miner",
+            "base:navy_pilot",
+            "base:field_medic"
+          ]
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "skillBonuses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The skill ID to apply the bonus to."
+              },
+              "amount": {
+                "type": "number",
+                "description": "Number of skill levels to add (positive) or subtract (negative).",
+                "examples": [
+                  1,
+                  2,
+                  -1
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "amount"
+            ],
+            "additionalProperties": false,
+            "description": "A starting bonus applied to a specific skill."
+          },
+          "description": "Starting skill level bonuses granted by this career."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey",
+        "descriptionKey",
+        "skillBonuses"
+      ],
+      "additionalProperties": false,
+      "description": "What a pawn did professionally before appearing in the game."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "tag"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this tag."
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey"
+      ],
+      "additionalProperties": false,
+      "description": "A tag for categorizing resources and other game objects."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "resource"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this resource."
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tag IDs."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey",
+        "descriptionKey",
+        "tags"
+      ],
+      "additionalProperties": false,
+      "description": "A mineable and tradeable resource."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "formation"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this formation."
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "matrixResource": {
+          "type": "string",
+          "description": "Resource ID for the matrix rock."
+        },
+        "embeddedResources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "resource": {
+                "type": "string",
+                "description": "Resource ID."
+              },
+              "probability": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Chance this resource appears in a generated site (0.0 to 1.0)."
+              },
+              "minGrade": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Minimum fraction of site mass this resource can occupy."
+              },
+              "maxGrade": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Maximum fraction of site mass this resource can occupy."
+              }
+            },
+            "required": [
+              "resource",
+              "probability",
+              "minGrade",
+              "maxGrade"
+            ],
+            "additionalProperties": false,
+            "description": "A resource mixed into a formation matrix. Sum of all maxGrade values in a formation must be <= 1.0."
+          },
+          "description": "Resources mixed into the matrix rock. Sum of all maxGrade values must be <= 1.0."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey",
+        "descriptionKey",
+        "matrixResource",
+        "embeddedResources"
+      ],
+      "additionalProperties": false,
+      "description": "A geological formation made of matrix rock and embedded resources."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "asteroidType"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this asteroid type."
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "massClasses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Identifier for this mass class within the asteroid type."
+              },
+              "nameKey": {
+                "type": "string",
+                "description": "i18n key for the display name."
+              },
+              "minMass": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Minimum total mass in tons."
+              },
+              "maxMass": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Maximum total mass in tons."
+              },
+              "maxSites": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100,
+                "description": "Maximum number of mining sites."
+              }
+            },
+            "required": [
+              "id",
+              "nameKey",
+              "minMass",
+              "maxMass",
+              "maxSites"
+            ],
+            "additionalProperties": false,
+            "description": "A size category bracket for an asteroid type."
+          },
+          "description": "Size categories for this asteroid type. Must have at least one entry."
+        },
+        "formations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "formation": {
+                "type": "string",
+                "description": "Formation ID."
+              },
+              "weight": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Base weight. Must be positive."
+              },
+              "depthBonus": {
+                "description": "Added to weight per site depth level (0 = outermost). Effective weight = weight + depthBonus * depth. Formations with effective weight <= 0 are excluded at that depth.",
+                "type": "number"
+              }
+            },
+            "required": [
+              "formation",
+              "weight"
+            ],
+            "additionalProperties": false,
+            "description": "A formation with a weight for random selection."
+          },
+          "description": "Weighted formation list. Weights are relative. Must have at least one entry."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey",
+        "descriptionKey",
+        "massClasses",
+        "formations"
+      ],
+      "additionalProperties": false,
+      "description": "A top-level asteroid classification."
+    },
+    {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "shipModule"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "bridge"
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category"
+          ],
+          "additionalProperties": false,
+          "description": "Command bridge. Mandatory, one per ship."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "shipModule"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "reactor"
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category"
+          ],
+          "additionalProperties": false,
+          "description": "Ship reactor. Mandatory, one per ship."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "shipModule"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "engine"
+            },
+            "speed": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Ship speed."
+            },
+            "fuelEfficiency": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Fuel efficiency rating."
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category",
+            "speed",
+            "fuelEfficiency"
+          ],
+          "additionalProperties": false,
+          "description": "Propulsion engine."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "shipModule"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "fuelTank"
+            },
+            "capacity": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Fuel capacity in tonnes."
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category",
+            "capacity"
+          ],
+          "additionalProperties": false,
+          "description": "Fuel storage tank."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "shipModule"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "crewQuarters"
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category"
+          ],
+          "additionalProperties": false,
+          "description": "Crew quarters. Houses one crew member."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "shipModule"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "cargoBay"
+            },
+            "capacity": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Cargo capacity in tonnes."
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category",
+            "capacity"
+          ],
+          "additionalProperties": false,
+          "description": "Cargo hold for mined resources."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "shipModule"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "scanner"
+            },
+            "sensitivity": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Scanner sensitivity for detection formula."
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category",
+            "sensitivity"
+          ],
+          "additionalProperties": false,
+          "description": "Ship-mounted spectral scanner for asteroid discovery."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "shipModule"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "machineBay"
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category"
+          ],
+          "additionalProperties": false,
+          "description": "Bay that holds one deployable machine."
+        }
+      ],
+      "description": "A component that can be installed on a ship. Each module has a category that determines its fields."
+    },
+    {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "machine"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "miningRig"
+            },
+            "hopperCapacity": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Hopper capacity in tonnes."
+            },
+            "maxExtractionRate": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Maximum extraction rate."
+            },
+            "crewSlots": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991,
+              "description": "Number of crew that can operate this rig."
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category",
+            "hopperCapacity",
+            "maxExtractionRate",
+            "crewSlots"
+          ],
+          "additionalProperties": false,
+          "description": "Mining rig deployed to extract rock."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "machine"
+            },
+            "id": {
+              "type": "string",
+              "description": "Unique identifier."
+            },
+            "nameKey": {
+              "type": "string",
+              "description": "i18n key for the display name."
+            },
+            "descriptionKey": {
+              "type": "string",
+              "description": "i18n key for the description."
+            },
+            "category": {
+              "type": "string",
+              "const": "scanningRig"
+            },
+            "accuracy": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1,
+              "description": "Survey accuracy in (0.0, 1.0]."
+            },
+            "crewSlots": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991,
+              "description": "Number of crew that can operate this rig."
+            }
+          },
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "category",
+            "accuracy",
+            "crewSlots"
+          ],
+          "additionalProperties": false,
+          "description": "Scanning rig deployed on an asteroid for detailed composition analysis."
+        }
+      ],
+      "description": "Deployable equipment that operates at a fixed location. Transported in ship machine bays."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "scenario"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this scenario."
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "crew": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "originsWhitelist": {
+                "description": "If present, crew rolled from this template must have one of these origin IDs.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "careersWhitelist": {
+                "description": "If present, crew rolled from this template must have one of these career IDs.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sex": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "Male",
+                      "Female"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "description": "Fixed sex for the rolled crew member, or null to randomize."
+              },
+              "age": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "description": "[min, max] age range for the rolled crew member."
+              },
+              "skills": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ]
+                },
+                "description": "Skill ID to [min, max] starting level range."
+              }
+            },
+            "required": [
+              "sex",
+              "age",
+              "skills"
+            ],
+            "additionalProperties": false,
+            "description": "A template that rolls one crew member at scenario start."
+          },
+          "description": "Templates for the starting crew."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey",
+        "descriptionKey",
+        "crew"
+      ],
+      "additionalProperties": false,
+      "description": "A starting scenario that defines initial game conditions."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "zone"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this zone."
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "ID of the parent zone in the tree, or null if this is the root zone."
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "edgeFromParent": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "deltaV": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Delta-v cost of traveling from the parent zone."
+                },
+                "days": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Travel time in days from the parent zone."
+                }
+              },
+              "required": [
+                "deltaV",
+                "days"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Travel cost from the parent zone, or null for the root zone."
+        },
+        "asteroidSpawns": {
+          "description": "If present, asteroids spawn in this zone according to these rules.",
+          "type": "object",
+          "properties": {
+            "density": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Relative density of asteroids spawned in this zone."
+            },
+            "asteroidTypes": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "asteroidType": {
+                    "type": "string",
+                    "description": "Asteroid type ID."
+                  },
+                  "weight": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "description": "Relative weight. Must be positive."
+                  }
+                },
+                "required": [
+                  "asteroidType",
+                  "weight"
+                ],
+                "additionalProperties": false,
+                "description": "An asteroid type with a weight for random selection."
+              },
+              "description": "Weighted list of asteroid types that can spawn here. At least one entry."
+            }
+          },
+          "required": [
+            "density",
+            "asteroidTypes"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "parentId",
+        "nameKey",
+        "descriptionKey",
+        "edgeFromParent"
+      ],
+      "additionalProperties": false,
+      "description": "A location in the star system tree."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "namePool"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this name pool."
+        },
+        "maleFirst": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "First names used for male crew."
+        },
+        "femaleFirst": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "First names used for female crew."
+        },
+        "maleMiddle": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Middle names used for male crew."
+        },
+        "femaleMiddle": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Middle names used for female crew."
+        },
+        "maleLast": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Surnames used for male crew."
+        },
+        "femaleLast": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Surnames used for female crew."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "maleFirst",
+        "femaleFirst",
+        "maleMiddle",
+        "femaleMiddle",
+        "maleLast",
+        "femaleLast"
+      ],
+      "additionalProperties": false,
+      "description": "Name arrays for crew generation."
+    }
+  ],
+  "description": "Any def that can appear in a data pack file. The \"type\" field discriminates between def kinds."
+}

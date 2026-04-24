@@ -1,9 +1,8 @@
-import { z } from 'zod';
-
-import { AnyDefSchema, type AnyDef } from './definitions';
+import type {
+  DataPackDefsFile,
+  DataPackManifestContents,
+} from './data-pack-schema';
 import type { Result } from './result';
-
-const SEMVER_REGEX = /^\d+\.\d+\.\d+$/;
 
 export type DataPackFile = {
   path: string;
@@ -15,27 +14,7 @@ export type ParsedJsonFile<T> = {
   contents: Result<T, string>;
 };
 
-export const DataPackTypeSchema = z.enum(['base', 'dlc', 'mod']);
-export type DataPackType = z.infer<typeof DataPackTypeSchema>;
-
-export const DataPackManifestContentsSchema = z.object({
-  name: z.string(),
-  dataPack: z.object({
-    type: DataPackTypeSchema,
-    files: z.array(z.string()),
-    gameVersion: z.string().regex(SEMVER_REGEX, 'must be semver'),
-    nameKey: z.string(),
-    descriptionKey: z.string(),
-  }),
-});
-export type DataPackManifestContents = z.infer<
-  typeof DataPackManifestContentsSchema
->;
-
 export type DataPackManifest = ParsedJsonFile<DataPackManifestContents>;
-
-export const DataPackDefsFileSchema = z.array(AnyDefSchema);
-export type DataPackDefsFile = AnyDef[];
 
 export type DataPack = {
   path: string;
