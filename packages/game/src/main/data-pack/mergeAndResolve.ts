@@ -1,9 +1,12 @@
-import type {
-  AnyDef,
-  DataPack,
-  Definitions,
-  LoadResult,
+import {
+  partition,
+  type AnyDef,
+  type DataPack,
+  type Definitions,
+  type LoadResult,
 } from '@asteroid-miner/model';
+
+import { toLoadedPack } from './toLoadedPack';
 
 type BucketKey = keyof Definitions;
 
@@ -39,10 +42,12 @@ const emptyDefinitions = (): Definitions => ({
   namePools: {},
 });
 
-export function mergeAndResolve(_packs: DataPack[]): LoadResult<Definitions> {
+export function mergeAndResolve(packs: DataPack[]): LoadResult<Definitions> {
   const value = emptyDefinitions();
   const warnings: string[] = [];
-  const errors: string[] = [];
+
+  const { oks: loadedPacks, errs } = partition(packs.map(toLoadedPack));
+  const errors = errs.flat();
 
   return { value, warnings, errors };
 }

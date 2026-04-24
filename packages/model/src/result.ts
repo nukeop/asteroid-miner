@@ -31,3 +31,12 @@ export function andThen<T, U, E>(
 ): Result<U, E> {
   return result.ok ? fn(result.value) : result;
 }
+
+export function partition<T, E>(
+  results: Result<T, E>[],
+): { oks: T[]; errs: E[] } {
+  return {
+    oks: results.filter(isOk).map((result) => result.value),
+    errs: results.filter(isErr).map((result) => result.error),
+  };
+}
