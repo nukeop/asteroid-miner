@@ -15,9 +15,13 @@ export type ParsedJsonFile<T> = {
   contents: Result<T, string>;
 };
 
+export const DataPackTypeSchema = z.enum(['base', 'dlc', 'mod']);
+export type DataPackType = z.infer<typeof DataPackTypeSchema>;
+
 export const DataPackManifestContentsSchema = z.object({
   name: z.string(),
   dataPack: z.object({
+    type: DataPackTypeSchema,
     files: z.array(z.string()),
     gameVersion: z.string().regex(SEMVER_REGEX, 'must be semver'),
     nameKey: z.string(),

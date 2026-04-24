@@ -99,15 +99,76 @@ describe('mergeAndResolve', () => {
     const result = mergeAndResolve([
       new DataPackBuilder()
         .withName('base')
+        .withType('base')
         .withDefs('defs/skills.json', [miningSkill])
         .build(),
       new DataPackBuilder()
         .withName('dlc')
+        .withType('dlc')
         .withDefs('defs/skills.json', [miningSkillOverride])
         .build(),
     ]);
 
     expect(result.value.skills['base:mining']).toEqual(miningSkillOverride);
     expect(result.warnings).toEqual(["Pack 'dlc' overrides 'base:mining'"]);
+  });
+
+  it('loads packs in order: base, then dlc alphabetical, then mods alphabetical', () => {
+    const fromBase = new SkillDefBuilder()
+      .withId('base:mining')
+      .withNameKey('base')
+      .build();
+    const fromDlcA = new SkillDefBuilder()
+      .withId('base:mining')
+      .withNameKey('dlc-a')
+      .build();
+    const fromDlcB = new SkillDefBuilder()
+      .withId('base:mining')
+      .withNameKey('dlc-b')
+      .build();
+    const fromModA = new SkillDefBuilder()
+      .withId('base:mining')
+      .withNameKey('mod-a')
+      .build();
+    const fromModB = new SkillDefBuilder()
+      .withId('base:mining')
+      .withNameKey('mod-b')
+      .build();
+
+    const result = mergeAndResolve([
+      new DataPackBuilder()
+        .withName('mod-b')
+        .withType('mod')
+        .withDefs('defs/skills.json', [fromModB])
+        .build(),
+      new DataPackBuilder()
+        .withName('dlc-b')
+        .withType('dlc')
+        .withDefs('defs/skills.json', [fromDlcB])
+        .build(),
+      new DataPackBuilder()
+        .withName('base')
+        .withType('base')
+        .withDefs('defs/skills.json', [fromBase])
+        .build(),
+      new DataPackBuilder()
+        .withName('mod-a')
+        .withType('mod')
+        .withDefs('defs/skills.json', [fromModA])
+        .build(),
+      new DataPackBuilder()
+        .withName('dlc-a')
+        .withType('dlc')
+        .withDefs('defs/skills.json', [fromDlcA])
+        .build(),
+    ]);
+
+    expect(result.value.skills['base:mining']).toEqual(fromModB);
+    expect(result.warnings).toEqual([
+      "Pack 'dlc-a' overrides 'base:mining'",
+      "Pack 'dlc-b' overrides 'base:mining'",
+      "Pack 'mod-a' overrides 'base:mining'",
+      "Pack 'mod-b' overrides 'base:mining'",
+    ]);
   });
 });

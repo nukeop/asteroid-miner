@@ -4,6 +4,7 @@ import {
   type AnyDef,
   type DataPack,
   type DataPackManifestContents,
+  type DataPackType,
   type ParsedJsonFile,
 } from '@asteroid-miner/model';
 
@@ -16,6 +17,7 @@ const isOkFile = (file: VirtualFile): file is OkVirtualFile =>
 
 export class DataPackBuilder {
   private name = 'test-pack';
+  private type: DataPackType = 'mod';
   private nameKey = 'pack.test.name';
   private descriptionKey = 'pack.test.description';
   private version = '0.1.0';
@@ -24,6 +26,11 @@ export class DataPackBuilder {
 
   withName(name: string): this {
     this.name = name;
+    return this;
+  }
+
+  withType(type: DataPackType): this {
+    this.type = type;
     return this;
   }
 
@@ -86,6 +93,7 @@ export class DataPackBuilder {
     const contents: DataPackManifestContents = {
       name: this.name,
       dataPack: {
+        type: this.type,
         files: this.files.map((entry) => entry.filename),
         gameVersion: this.version,
         nameKey: this.nameKey,

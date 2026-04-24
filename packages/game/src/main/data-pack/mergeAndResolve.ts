@@ -55,10 +55,10 @@ export function mergeAndResolve(packs: DataPack[]): LoadResult<Definitions> {
     ),
   );
 
-  placements.forEach(({ def }) => {
+  placements.forEach(({ def, packName }) => {
     const bucket = value[bucketKeyByType[def.type]];
     if (bucket[def.id]) {
-      warnings.push(`Pack '${def.id.split(':')[0]}' overrides '${def.id}'`);
+      warnings.push(`Pack '${packName}' overrides '${def.id}'`);
     }
     bucket[def.id] = def;
   });
