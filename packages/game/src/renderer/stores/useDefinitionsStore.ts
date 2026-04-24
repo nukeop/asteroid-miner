@@ -17,8 +17,5 @@ export const useDefinitionsStore = create<DefinitionsState>()((set) => ({
 export async function initializeDefinitionsStore() {
   const packPath = await window.electronAPI.getBaseDataPath();
   const pack: DataPack = await window.electronAPI.parseDataPack(packPath);
-
-  // Merge step (stage 2) not implemented yet — pack is parsed but
-  // Definitions construction comes later.
   void pack;
 }

@@ -11,6 +11,7 @@ const { parseDataPack } = await import('./parseDataPack');
 const validManifest = {
   name: 'base',
   dataPack: {
+    type: 'base',
     files: ['defs/skills.json', 'defs/traits.json'],
     gameVersion: '0.1.0',
     nameKey: 'pack.base.name',
@@ -64,6 +65,7 @@ describe('parseDataPack', () => {
       '/fake/pack/package.json': JSON.stringify({
         name: 'base',
         dataPack: {
+          type: 'base',
           files: [],
           gameVersion: 'not-a-version',
           nameKey: 'pack.base.name',
@@ -85,6 +87,7 @@ describe('parseDataPack', () => {
       '/fake/pack/package.json': JSON.stringify({
         name: 'base',
         dataPack: {
+          type: 'base',
           files: 'defs/skills.json',
           gameVersion: '0.1.0',
           nameKey: 'pack.base.name',

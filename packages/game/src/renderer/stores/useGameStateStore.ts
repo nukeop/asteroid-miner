@@ -37,7 +37,7 @@ export const useGameStateStore = create<GameStateStore>()((set, get) => ({
     const defs = useDefinitionsStore.getState().definitions!;
     const scenario = defs.scenarios[scenarioId];
     const pawns = scenario.crew.map((template) =>
-      instantiatePawn(template, defs.namePool, defs),
+      instantiatePawn(template, defs.namePools['base:default']!, defs),
     );
 
     set({
@@ -60,7 +60,11 @@ export const useGameStateStore = create<GameStateStore>()((set, get) => ({
 
     const scenario = state.defs.scenarios[state.scenarioId];
     const template = scenario.crew[templateIndex];
-    const newPawn = instantiatePawn(template, state.defs.namePool, state.defs);
+    const newPawn = instantiatePawn(
+      template,
+      state.defs.namePools['base:default']!,
+      state.defs,
+    );
 
     const oldId = state.crewOrder[templateIndex];
 
