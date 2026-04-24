@@ -49,5 +49,19 @@ export function mergeAndResolve(packs: DataPack[]): LoadResult<Definitions> {
   const { oks: loadedPacks, errs } = partition(packs.map(toLoadedPack));
   const errors = errs.flat();
 
+  const placements = loadedPacks.flatMap((pack) =>
+    pack.files.flatMap((file) =>
+      file.defs.map((def) => ({ def, packName: pack.name })),
+    ),
+  );
+
+  placements.forEach(({ def }) => {
+    const bucket = value[bucketKeyByType[def.type]];
+    if (bucket[def.id]) {
+      warnings.push(`Pack '${def.id.split(':')[0]}' overrides '${def.id}'`);
+    }
+    bucket[def.id] = def;
+  });
+
   return { value, warnings, errors };
 }

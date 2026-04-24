@@ -42,9 +42,7 @@ describe('mergeAndResolve', () => {
     ]);
 
     expect(result.value.skills).toEqual({ 'base:mining': secondMining });
-    expect(result.warnings).toEqual([
-      "Pack 'base' contains duplicate id 'base:mining'",
-    ]);
+    expect(result.warnings).toEqual(["Pack 'base' overrides 'base:mining'"]);
   });
 
   it('routes each def to the bucket matching its type discriminator', () => {
@@ -110,8 +108,6 @@ describe('mergeAndResolve', () => {
     ]);
 
     expect(result.value.skills['base:mining']).toEqual(miningSkillOverride);
-    expect(result.warnings).toEqual([
-      "Pack 'dlc' overrides 'base:mining' from pack 'base'",
-    ]);
+    expect(result.warnings).toEqual(["Pack 'dlc' overrides 'base:mining'"]);
   });
 });
