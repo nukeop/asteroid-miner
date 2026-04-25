@@ -1,10 +1,9 @@
-import type { DataPack, Result } from '@asteroid-miner/model';
+import type { Definitions, LoadResult, Result } from '@asteroid-miner/model';
 
 interface ElectronAPI {
   saveGame: (data: string) => Promise<Result<void, string>>;
   loadGame: () => Promise<Result<string, string>>;
-  parseDataPack: (path: string) => Promise<DataPack>;
-  getBaseDataPath: () => Promise<string>;
+  loadDefinitions: () => Promise<LoadResult<Definitions>>;
 }
 
 declare global {

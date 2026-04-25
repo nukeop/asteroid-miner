@@ -5,10 +5,16 @@ import { app, type IpcMain } from 'electron';
 
 import { err, ok } from '@asteroid-miner/model';
 
+import { mergePacks } from './data-pack/mergePacks';
 import { parseDataPack } from './data-pack/parseDataPack';
 
 function getSavePath(): string {
   return join(app.getPath('userData'), 'saves', 'save.json');
+}
+
+// TODO: handle production resource path
+function getBaseDataPath(): string {
+  return join(app.getAppPath(), 'data', 'base');
 }
 
 export function registerIpcHandlers(ipcMain: IpcMain) {
@@ -32,12 +38,8 @@ export function registerIpcHandlers(ipcMain: IpcMain) {
     }
   });
 
-  ipcMain.handle('parse-data-pack', async (_event, packPath: string) => {
-    return parseDataPack(packPath);
-  });
-
-  // TODO: handle production resource path
-  ipcMain.handle('get-base-data-path', () => {
-    return join(app.getAppPath(), 'data', 'base');
+  ipcMain.handle('load-definitions', async () => {
+    const basePack = await parseDataPack(getBaseDataPath());
+    return mergePacks([basePack]);
   });
 }

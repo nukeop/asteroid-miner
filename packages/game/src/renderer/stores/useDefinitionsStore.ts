@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import type { DataPack, Definitions } from '@asteroid-miner/model';
+import type { Definitions } from '@asteroid-miner/model';
 
 export type { Definitions };
 
@@ -15,7 +15,14 @@ export const useDefinitionsStore = create<DefinitionsState>()((set) => ({
 }));
 
 export async function initializeDefinitionsStore() {
-  const packPath = await window.electronAPI.getBaseDataPath();
-  const pack: DataPack = await window.electronAPI.parseDataPack(packPath);
-  void pack;
+  const result = await window.electronAPI.loadDefinitions();
+
+  result.warnings.forEach((warning) => {
+    console.warn(warning);
+  });
+  result.errors.forEach((error) => {
+    console.error(error);
+  });
+
+  useDefinitionsStore.getState().setDefinitions(result.value);
 }
