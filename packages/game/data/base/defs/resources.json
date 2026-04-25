@@ -1,14 +1,16 @@
-{
-  "coal": {
-    "id": "coal",
+[
+  {
+    "type": "resource",
+    "id": "base:coal",
     "nameKey": "resource.coal.name",
     "descriptionKey": "resource.coal.description",
-    "tags": ["fuel"]
+    "tags": ["base:fuel"]
   },
-  "sandstone": {
-    "id": "sandstone",
+  {
+    "type": "resource",
+    "id": "base:sandstone",
     "nameKey": "resource.sandstone.name",
     "descriptionKey": "resource.sandstone.description",
     "tags": []
   }
-}
+]

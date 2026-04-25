@@ -1,16 +1,17 @@
-{
-  "coal_bearing_sandstone": {
-    "id": "coal_bearing_sandstone",
+[
+  {
+    "type": "formation",
+    "id": "base:coal_bearing_sandstone",
     "nameKey": "formation.coal_bearing_sandstone.name",
     "descriptionKey": "formation.coal_bearing_sandstone.description",
-    "matrixResource": "sandstone",
+    "matrixResource": "base:sandstone",
     "embeddedResources": [
       {
-        "resource": "coal",
+        "resource": "base:coal",
         "probability": 1.0,
         "minGrade": 0.02,
         "maxGrade": 0.1
       }
     ]
   }
-}
+]

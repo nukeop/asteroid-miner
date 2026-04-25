@@ -1,0 +1,89 @@
+[
+  {
+    "type": "career",
+    "id": "base:belt_miner",
+    "nameKey": "career.belt_miner.name",
+    "descriptionKey": "career.belt_miner.description",
+    "skillBonuses": [
+      { "id": "base:mining", "amount": 4 },
+      { "id": "base:geology", "amount": 2 }
+    ]
+  },
+  {
+    "type": "career",
+    "id": "base:military_cosmonaut",
+    "nameKey": "career.military_cosmonaut.name",
+    "descriptionKey": "career.military_cosmonaut.description",
+    "skillBonuses": [
+      { "id": "base:cosmonautics", "amount": 4 },
+      { "id": "base:navigation", "amount": 2 }
+    ]
+  },
+  {
+    "type": "career",
+    "id": "base:planning_clerk",
+    "nameKey": "career.planning_clerk.name",
+    "descriptionKey": "career.planning_clerk.description",
+    "skillBonuses": [
+      { "id": "base:bureaucracy", "amount": 3 },
+      { "id": "base:cybernetics", "amount": 2 }
+    ]
+  },
+  {
+    "type": "career",
+    "id": "base:dock_worker",
+    "nameKey": "career.dock_worker.name",
+    "descriptionKey": "career.dock_worker.description",
+    "skillBonuses": [
+      { "id": "base:construction", "amount": 3 },
+      { "id": "base:engineering", "amount": 2 }
+    ]
+  },
+  {
+    "type": "career",
+    "id": "base:smuggler",
+    "nameKey": "career.smuggler.name",
+    "descriptionKey": "career.smuggler.description",
+    "skillBonuses": [
+      { "id": "base:cosmonautics", "amount": 3 },
+      { "id": "base:blat", "amount": 2 }
+    ]
+  },
+  {
+    "type": "career",
+    "id": "base:field_medic",
+    "nameKey": "career.field_medic.name",
+    "descriptionKey": "career.field_medic.description",
+    "skillBonuses": [
+      { "id": "base:medicine", "amount": 4 },
+      { "id": "base:leadership", "amount": 1 }
+    ]
+  },
+  {
+    "type": "career",
+    "id": "base:research_assistant",
+    "nameKey": "career.research_assistant.name",
+    "descriptionKey": "career.research_assistant.description",
+    "skillBonuses": [
+      { "id": "base:research", "amount": 3 },
+      { "id": "base:materials_science", "amount": 2 }
+    ]
+  },
+  {
+    "type": "career",
+    "id": "base:apparatchik",
+    "nameKey": "career.apparatchik.name",
+    "descriptionKey": "career.apparatchik.description",
+    "skillBonuses": [
+      { "id": "base:blat", "amount": 4 },
+      { "id": "base:bureaucracy", "amount": 2 }
+    ]
+  },
+  {
+    "type": "career",
+    "id": "base:civilian",
+    "nameKey": "career.civilian.name",
+    "descriptionKey": "career.civilian.description",
+    "skillBonuses": []
+  }
+]

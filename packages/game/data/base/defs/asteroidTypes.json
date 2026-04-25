@@ -1,6 +1,7 @@
-{
-  "c_type": {
-    "id": "c_type",
+[
+  {
+    "type": "asteroidType",
+    "id": "base:c_type",
     "nameKey": "asteroid_type.c_type.name",
     "descriptionKey": "asteroid_type.c_type.description",
     "massClasses": [
@@ -26,6 +27,6 @@
         "maxSites": 4
       }
     ],
-    "formations": [{ "formation": "coal_bearing_sandstone", "weight": 5 }]
+    "formations": [{ "formation": "base:coal_bearing_sandstone", "weight": 5 }]
   }
-}
+]
