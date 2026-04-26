@@ -19,11 +19,16 @@
   ],
   "scripts": {
     "build": "vite build",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "generate-schemas": "tsx scripts/generate-schemas.ts"
   },
   "devDependencies": {
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-dts": "^4.5.4"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
   }
 }

@@ -1,0 +1,51 @@
+[
+  {
+    "type": "zone",
+    "id": "base:leo",
+    "nameKey": "zone.leo.name",
+    "descriptionKey": "zone.leo.description"
+  },
+  {
+    "type": "zone",
+    "id": "base:lunar_transfer_orbit",
+    "nameKey": "zone.lunar_transfer_orbit.name",
+    "descriptionKey": "zone.lunar_transfer_orbit.description"
+  },
+  {
+    "type": "zone",
+    "id": "base:high_lunar_orbit",
+    "nameKey": "zone.high_lunar_orbit.name",
+    "descriptionKey": "zone.high_lunar_orbit.description"
+  },
+  {
+    "type": "zone",
+    "id": "base:llo",
+    "nameKey": "zone.llo.name",
+    "descriptionKey": "zone.llo.description",
+    "asteroidSpawns": {
+      "density": 1.0,
+      "asteroidTypes": [{ "asteroidType": "base:c_type", "weight": 1 }]
+    }
+  },
+  {
+    "type": "zoneConnection",
+    "id": "base:leo__lunar_transfer_orbit",
+    "zones": ["base:leo", "base:lunar_transfer_orbit"],
+    "deltaV": 3.1,
+    "days": 2
+  },
+  {
+    "type": "zoneConnection",
+    "id": "base:high_lunar_orbit__lunar_transfer_orbit",
+    "zones": ["base:high_lunar_orbit", "base:lunar_transfer_orbit"],
+    "deltaV": 0.7,
+    "days": 2
+  },
+  {
+    "type": "zoneConnection",
+    "id": "base:high_lunar_orbit__llo",
+    "zones": ["base:high_lunar_orbit", "base:llo"],
+    "deltaV": 0.8,
+    "days": 1
+  }
+]

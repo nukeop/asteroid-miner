@@ -1,0 +1,109 @@
+[
+  {
+    "type": "trait",
+    "id": "base:strongman",
+    "nameKey": "trait.strongman.name",
+    "descriptionKey": "trait.strongman.description",
+    "skillModifiers": [
+      { "skill": "base:mining", "op": "Flat", "value": 2 },
+      { "skill": "base:construction", "op": "Flat", "value": 1 }
+    ]
+  },
+  {
+    "type": "trait",
+    "id": "base:cocky",
+    "nameKey": "trait.cocky.name",
+    "descriptionKey": "trait.cocky.description",
+    "skillModifiers": [{ "skill": "base:blat", "op": "Flat", "value": 1 }]
+  },
+  {
+    "type": "trait",
+    "id": "base:blue_collar",
+    "nameKey": "trait.blue_collar.name",
+    "descriptionKey": "trait.blue_collar.description",
+    "customEffects": [
+      {
+        "handler": "work_speed_bonus",
+        "params": { "tasks": ["mining", "engineering"], "bonus": 4 }
+      }
+    ]
+  },
+  {
+    "type": "trait",
+    "id": "base:bookworm",
+    "nameKey": "trait.bookworm.name",
+    "descriptionKey": "trait.bookworm.description",
+    "skillModifiers": [
+      { "skill": "base:research", "op": "Flat", "value": 2 },
+      { "skill": "base:materials_science", "op": "Flat", "value": 1 },
+      { "skill": "base:mining", "op": "Flat", "value": -1 }
+    ]
+  },
+  {
+    "type": "trait",
+    "id": "base:natural_leader",
+    "nameKey": "trait.natural_leader.name",
+    "descriptionKey": "trait.natural_leader.description",
+    "skillModifiers": [{ "skill": "base:leadership", "op": "Flat", "value": 3 }]
+  },
+  {
+    "type": "trait",
+    "id": "base:loner",
+    "nameKey": "trait.loner.name",
+    "descriptionKey": "trait.loner.description",
+    "customEffects": [
+      { "handler": "solo_skill_bonus", "params": { "bonus": 1 } }
+    ]
+  },
+  {
+    "type": "trait",
+    "id": "base:quick_learner",
+    "nameKey": "trait.quick_learner.name",
+    "descriptionKey": "trait.quick_learner.description",
+    "customEffects": [
+      { "handler": "xp_gain_modifier", "params": { "factor": 1.3 } }
+    ]
+  },
+  {
+    "type": "trait",
+    "id": "base:veteran_cosmonaut",
+    "nameKey": "trait.veteran_cosmonaut.name",
+    "descriptionKey": "trait.veteran_cosmonaut.description",
+    "skillModifiers": [
+      { "skill": "base:cosmonautics", "op": "Flat", "value": 1 },
+      { "skill": "base:navigation", "op": "Flat", "value": 1 }
+    ]
+  },
+  {
+    "type": "trait",
+    "id": "base:reckless",
+    "nameKey": "trait.reckless.name",
+    "descriptionKey": "trait.reckless.description",
+    "customEffects": [
+      {
+        "handler": "work_speed_bonus",
+        "params": { "condition": "dangerous", "bonus": 2 }
+      },
+      { "handler": "accident_chance_modifier", "params": { "factor": 1.5 } }
+    ]
+  },
+  {
+    "type": "trait",
+    "id": "base:penny_pincher",
+    "nameKey": "trait.penny_pincher.name",
+    "descriptionKey": "trait.penny_pincher.description",
+    "customEffects": [
+      { "handler": "salary_modifier", "params": { "factor": 0.85 } }
+    ]
+  },
+  {
+    "type": "trait",
+    "id": "base:party_member",
+    "nameKey": "trait.party_member.name",
+    "descriptionKey": "trait.party_member.description",
+    "skillModifiers": [
+      { "skill": "base:bureaucracy", "op": "Flat", "value": 2 },
+      { "skill": "base:blat", "op": "Flat", "value": 2 }
+    ]
+  }
+]

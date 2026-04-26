@@ -1,0 +1,70 @@
+[
+  {
+    "type": "origin",
+    "id": "base:core_world",
+    "nameKey": "origin.core_world.name",
+    "descriptionKey": "origin.core_world.description",
+    "skillBonuses": [
+      { "id": "base:cybernetics", "amount": 2 },
+      { "id": "base:blat", "amount": 1 }
+    ]
+  },
+  {
+    "type": "origin",
+    "id": "base:belt_colony",
+    "nameKey": "origin.belt_colony.name",
+    "descriptionKey": "origin.belt_colony.description",
+    "skillBonuses": [
+      { "id": "base:mining", "amount": 2 },
+      { "id": "base:engineering", "amount": 1 }
+    ]
+  },
+  {
+    "type": "origin",
+    "id": "base:orbital_station",
+    "nameKey": "origin.orbital_station.name",
+    "descriptionKey": "origin.orbital_station.description",
+    "skillBonuses": [
+      { "id": "base:engineering", "amount": 2 },
+      { "id": "base:navigation", "amount": 1 }
+    ]
+  },
+  {
+    "type": "origin",
+    "id": "base:frontier",
+    "nameKey": "origin.frontier.name",
+    "descriptionKey": "origin.frontier.description",
+    "skillBonuses": [
+      { "id": "base:construction", "amount": 1 },
+      { "id": "base:mining", "amount": 1 },
+      { "id": "base:medicine", "amount": 1 }
+    ]
+  },
+  {
+    "type": "origin",
+    "id": "base:transport_fleet",
+    "nameKey": "origin.transport_fleet.name",
+    "descriptionKey": "origin.transport_fleet.description",
+    "skillBonuses": [
+      { "id": "base:cosmonautics", "amount": 2 },
+      { "id": "base:blat", "amount": 1 }
+    ]
+  },
+  {
+    "type": "origin",
+    "id": "base:research_outpost",
+    "nameKey": "origin.research_outpost.name",
+    "descriptionKey": "origin.research_outpost.description",
+    "skillBonuses": [
+      { "id": "base:research", "amount": 2 },
+      { "id": "base:cybernetics", "amount": 1 }
+    ]
+  },
+  {
+    "type": "origin",
+    "id": "base:civilian",
+    "nameKey": "origin.civilian.name",
+    "descriptionKey": "origin.civilian.description",
+    "skillBonuses": []
+  }
+]

@@ -9,6 +9,7 @@
     "next": "Next",
     "start": "Start",
     "exit": "Exit",
+    "dataBrowser": "Data Browser",
     "tick": "Tick",
     "day": "Day {{count}}",
     "date": "{{dayOrdinal}} of {{month}}, {{year}}",
@@ -49,6 +50,16 @@
     "traits": "Traits",
     "origins": "Origins",
     "careers": "Careers",
+    "tags": "Tags",
+    "resources": "Resources",
+    "formations": "Formations",
+    "asteroidTypes": "Asteroid Types",
+    "shipModules": "Ship Modules",
+    "machines": "Machines",
+    "scenarios": "Scenarios",
+    "zones": "Zones",
+    "zoneConnections": "Zone Connections",
+    "namePools": "Name Pools",
     "columns": {
       "id": "ID",
       "name": "Name",
@@ -56,7 +67,19 @@
       "xpBase": "XP Base",
       "xpGrowth": "XP Growth",
       "effects": "Effects",
-      "bonuses": "Bonuses"
+      "bonuses": "Bonuses",
+      "tags": "Tags",
+      "category": "Category",
+      "details": "Details",
+      "matrixResource": "Matrix Resource",
+      "embeddedResources": "Embedded Resources",
+      "massClasses": "Mass Classes",
+      "formations": "Formations",
+      "crew": "Crew",
+      "zones": "Zones",
+      "deltaV": "Delta-V",
+      "days": "Days",
+      "nameCounts": "Name Counts"
     }
   },
   "placeholder": {
@@ -232,6 +255,24 @@
     "starting": {
       "name": "Starting Scenario",
       "description": "Starting scenario."
+    }
+  },
+  "zone": {
+    "leo": {
+      "name": "Low Earth Orbit",
+      "description": "Orbit around Earth at low altitude."
+    },
+    "lunar_transfer_orbit": {
+      "name": "Lunar Transfer Orbit",
+      "description": "Transfer trajectory between Earth orbit and lunar orbit."
+    },
+    "high_lunar_orbit": {
+      "name": "High Lunar Orbit",
+      "description": "Orbit around the Moon at high altitude."
+    },
+    "llo": {
+      "name": "Low Lunar Orbit",
+      "description": "Orbit around the Moon at low altitude."
     }
   }
 }

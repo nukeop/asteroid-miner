@@ -8,11 +8,12 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     css: false,
-    setupFiles: './src/renderer/test/setup.ts',
+    setupFiles: './src/test/setup.ts',
     coverage: {
       reporter: ['text', 'lcov'],
       exclude: [
         'node_modules/',
+        'src/test/',
         'src/renderer/test/',
         '**/*.test.{ts,tsx}',
         '**/*.config.{ts,js}',
