@@ -58,6 +58,7 @@
     "machines": "Machines",
     "scenarios": "Scenarios",
     "zones": "Zones",
+    "zoneConnections": "Zone Connections",
     "namePools": "Name Pools",
     "columns": {
       "id": "ID",
@@ -75,8 +76,9 @@
       "massClasses": "Mass Classes",
       "formations": "Formations",
       "crew": "Crew",
-      "parentId": "Parent ID",
-      "edge": "Edge",
+      "zones": "Zones",
+      "deltaV": "Delta-V",
+      "days": "Days",
       "nameCounts": "Name Counts"
     }
   },

@@ -20,7 +20,8 @@
       "defs/shipModules.json",
       "defs/machines.json",
       "defs/scenarios.json",
-      "defs/namePools.json"
+      "defs/namePools.json",
+      "defs/zones.json"
     ]
   }
 }

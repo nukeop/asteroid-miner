@@ -1054,17 +1054,6 @@
           "type": "string",
           "description": "Unique identifier for this zone."
         },
-        "parentId": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "ID of the parent zone in the tree, or null if this is the root zone."
-        },
         "nameKey": {
           "type": "string",
           "description": "i18n key for the display name."
@@ -1072,34 +1061,6 @@
         "descriptionKey": {
           "type": "string",
           "description": "i18n key for the description."
-        },
-        "edgeFromParent": {
-          "anyOf": [
-            {
-              "type": "object",
-              "properties": {
-                "deltaV": {
-                  "type": "number",
-                  "minimum": 0,
-                  "description": "Delta-v cost of traveling from the parent zone."
-                },
-                "days": {
-                  "type": "number",
-                  "minimum": 0,
-                  "description": "Travel time in days from the parent zone."
-                }
-              },
-              "required": [
-                "deltaV",
-                "days"
-              ],
-              "additionalProperties": false
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "description": "Travel cost from the parent zone, or null for the root zone."
         },
         "asteroidSpawns": {
           "description": "If present, asteroids spawn in this zone according to these rules.",
@@ -1146,13 +1107,55 @@
       "required": [
         "type",
         "id",
-        "parentId",
         "nameKey",
-        "descriptionKey",
-        "edgeFromParent"
+        "descriptionKey"
       ],
       "additionalProperties": false,
-      "description": "A location in the star system tree."
+      "description": "A node in the zone graph. An orbit, station, or other location."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "zoneConnection"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this connection."
+        },
+        "zones": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "The two zones this connection joins. Order is not significant; traversal is symmetric."
+        },
+        "deltaV": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Delta-v cost of traversing this connection in either direction."
+        },
+        "days": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Travel time in days for traversing this connection in either direction."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "zones",
+        "deltaV",
+        "days"
+      ],
+      "additionalProperties": false,
+      "description": "An undirected edge between two zones with a symmetric traversal cost."
     },
     {
       "type": "object",

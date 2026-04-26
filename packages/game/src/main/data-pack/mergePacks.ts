@@ -35,6 +35,7 @@ const bucketKeyByType: Record<AnyDef['type'], BucketKey> = {
   machine: 'machines',
   scenario: 'scenarios',
   zone: 'zones',
+  zoneConnection: 'zoneConnections',
   namePool: 'namePools',
 };
 
@@ -51,6 +52,7 @@ const emptyDefinitions = (): Definitions => ({
   machines: {},
   scenarios: {},
   zones: {},
+  zoneConnections: {},
   namePools: {},
 });
 

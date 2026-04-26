@@ -1,0 +1,8 @@
+[
+  {
+    "type": "zone",
+    "id": "base:earth_solar_orbit",
+    "nameKey": "zone.earth_solar_orbit.name",
+    "descriptionKey": "zone.earth_solar_orbit.description"
+  }
+]

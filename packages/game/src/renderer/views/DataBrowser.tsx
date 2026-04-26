@@ -59,6 +59,10 @@ export const DataBrowser: FC = () => {
     () => Object.values(definitions?.zones ?? {}),
     [definitions],
   );
+  const zoneConnections = useMemo(
+    () => Object.values(definitions?.zoneConnections ?? {}),
+    [definitions],
+  );
   const namePools = useMemo(
     () => Object.values(definitions?.namePools ?? {}),
     [definitions],
@@ -363,19 +367,22 @@ export const DataBrowser: FC = () => {
         header: t('data.columns.description'),
         accessorFn: (row) => t(row.descriptionKey),
       },
+    ],
+    [t],
+  );
+
+  const zoneConnectionColumns = useMemo<
+    ColumnDef<(typeof zoneConnections)[number], unknown>[]
+  >(
+    () => [
+      { accessorKey: 'id', header: t('data.columns.id') },
       {
-        id: 'parentId',
-        header: t('data.columns.parentId'),
-        accessorFn: (row) => row.parentId ?? '\u2014',
+        id: 'zones',
+        header: t('data.columns.zones'),
+        accessorFn: (row) => `${row.zones[0]} \u2194 ${row.zones[1]}`,
       },
-      {
-        id: 'edge',
-        header: t('data.columns.edge'),
-        accessorFn: (row) =>
-          row.edgeFromParent
-            ? `dV=${row.edgeFromParent.deltaV}, days=${row.edgeFromParent.days}`
-            : '(root)',
-      },
+      { accessorKey: 'deltaV', header: t('data.columns.deltaV') },
+      { accessorKey: 'days', header: t('data.columns.days') },
     ],
     [t],
   );
@@ -522,6 +529,15 @@ export const DataBrowser: FC = () => {
           columns={zoneColumns}
           getRowId={(row) => row.id}
           aria-label={t('data.zones')}
+        />
+      </Section>
+
+      <Section title={t('data.zoneConnections')}>
+        <DataTable
+          data={zoneConnections}
+          columns={zoneConnectionColumns}
+          getRowId={(row) => row.id}
+          aria-label={t('data.zoneConnections')}
         />
       </Section>
 

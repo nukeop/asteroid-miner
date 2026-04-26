@@ -69,6 +69,7 @@ export const testDefinitions: Definitions = {
   shipModules: {},
   machines: {},
   zones: {},
+  zoneConnections: {},
   scenarios: {
     starting: {
       type: 'scenario',

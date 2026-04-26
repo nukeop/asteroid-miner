@@ -470,33 +470,41 @@ export const ZoneDefSchema = z
   .object({
     type: z.literal('zone'),
     id: z.string().describe('Unique identifier for this zone.'),
-    parentId: z
-      .string()
-      .nullable()
-      .describe(
-        'ID of the parent zone in the tree, or null if this is the root zone.',
-      ),
     nameKey: z.string().describe('i18n key for the display name.'),
     descriptionKey: z.string().describe('i18n key for the description.'),
-    edgeFromParent: z
-      .object({
-        deltaV: z
-          .number()
-          .nonnegative()
-          .describe('Delta-v cost of traveling from the parent zone.'),
-        days: z
-          .number()
-          .nonnegative()
-          .describe('Travel time in days from the parent zone.'),
-      })
-      .nullable()
-      .describe('Travel cost from the parent zone, or null for the root zone.'),
     asteroidSpawns: AsteroidSpawnsDefSchema.optional().describe(
       'If present, asteroids spawn in this zone according to these rules.',
     ),
   })
-  .describe('A location in the star system tree.');
+  .describe('A node in the zone graph. An orbit, station, or other location.');
 export type ZoneDef = z.infer<typeof ZoneDefSchema>;
+
+export const ZoneConnectionDefSchema = z
+  .object({
+    type: z.literal('zoneConnection'),
+    id: z.string().describe('Unique identifier for this connection.'),
+    zones: z
+      .tuple([z.string(), z.string()])
+      .describe(
+        'The two zones this connection joins. Order is not significant; traversal is symmetric.',
+      ),
+    deltaV: z
+      .number()
+      .nonnegative()
+      .describe(
+        'Delta-v cost of traversing this connection in either direction.',
+      ),
+    days: z
+      .number()
+      .nonnegative()
+      .describe(
+        'Travel time in days for traversing this connection in either direction.',
+      ),
+  })
+  .describe(
+    'An undirected edge between two zones with a symmetric traversal cost.',
+  );
+export type ZoneConnectionDef = z.infer<typeof ZoneConnectionDefSchema>;
 
 export const AnyDefSchema = z
   .discriminatedUnion('type', [
@@ -512,6 +520,7 @@ export const AnyDefSchema = z
     MachineDefSchema,
     ScenarioDefSchema,
     ZoneDefSchema,
+    ZoneConnectionDefSchema,
     NamePoolDefSchema,
   ])
   .describe(
@@ -532,5 +541,6 @@ export type Definitions = {
   machines: Record<string, MachineDef>;
   scenarios: Record<string, ScenarioDef>;
   zones: Record<string, ZoneDef>;
+  zoneConnections: Record<string, ZoneConnectionDef>;
   namePools: Record<string, NamePoolDef>;
 };
