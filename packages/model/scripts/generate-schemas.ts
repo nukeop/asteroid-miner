@@ -2,6 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { format, resolveConfig } from 'prettier';
 import { z } from 'zod';
 
 import { DataPackManifestContentsSchema } from '../src/data-pack-schema';
@@ -31,11 +32,12 @@ const writeTarget = async ({ fileName, schema }: Target): Promise<void> => {
   const jsonSchema = z.toJSONSchema(schema, { target: 'draft-2020-12' });
   const withComment = { $comment: generatedComment, ...jsonSchema };
   const outPath = resolve(outDir, fileName);
-  await writeFile(
-    outPath,
-    `${JSON.stringify(withComment, null, 2)}\n`,
-    'utf-8',
-  );
+  const prettierConfig = await resolveConfig(outPath);
+  const formatted = await format(JSON.stringify(withComment), {
+    ...prettierConfig,
+    parser: 'json',
+  });
+  await writeFile(outPath, formatted, 'utf-8');
   console.log(`wrote ${outPath}`);
 };
 

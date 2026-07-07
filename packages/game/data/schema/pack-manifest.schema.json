@@ -12,28 +12,19 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [
-            "base",
-            "dlc",
-            "mod"
-          ],
+          "enum": ["base", "dlc", "mod"],
           "description": "What kind of data pack this is. \"base\" is the core game data. \"dlc\" is for official DLCs. \"mod\" is for mods."
         },
         "files": {
           "type": "array",
-          "items": {
-            "type": "string"
-          },
+          "items": { "type": "string" },
           "description": "Paths to def files shipped by this pack, relative to the pack root."
         },
         "gameVersion": {
           "type": "string",
           "pattern": "^\\d+\\.\\d+\\.\\d+$",
           "description": "Minimum game version this pack requires. Semver (MAJOR.MINOR.PATCH).",
-          "examples": [
-            "0.1.0",
-            "1.0.0"
-          ]
+          "examples": ["0.1.0", "1.0.0"]
         },
         "nameKey": {
           "type": "string",
@@ -44,21 +35,12 @@
           "description": "i18n key for the description."
         }
       },
-      "required": [
-        "type",
-        "files",
-        "gameVersion",
-        "nameKey",
-        "descriptionKey"
-      ],
+      "required": ["type", "files", "gameVersion", "nameKey", "descriptionKey"],
       "additionalProperties": false,
       "description": "Data pack metadata."
     }
   },
-  "required": [
-    "name",
-    "dataPack"
-  ],
+  "required": ["name", "dataPack"],
   "additionalProperties": false,
   "description": "Manifest format for data packs. The base game, DLCs, and community mods all use this format."
 }

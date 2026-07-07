@@ -23,6 +23,7 @@
     "generate-schemas": "tsx scripts/generate-schemas.ts"
   },
   "devDependencies": {
+    "prettier": "^3.8.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",

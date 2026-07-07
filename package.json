@@ -11,6 +11,7 @@
     "test:coverage": "turbo test:coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "check-schemas": "pnpm --filter @asteroid-miner/model generate-schemas && git diff --exit-code -- packages/game/data/schema",
     "type-check": "turbo type-check",
     "storybook": "pnpm --filter @asteroid-miner/storybook dev",
     "clean": "turbo clean",
