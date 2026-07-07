@@ -24,7 +24,7 @@
     "descriptionKey": "zone.llo.description",
     "asteroidSpawns": {
       "density": 1.0,
-      "asteroidTypes": [{ "asteroidType": "base:c_type", "weight": 1 }]
+      "asteroidTypes": [{ "asteroidTypeId": "base:c_type", "weight": 1 }]
     }
   },
   {

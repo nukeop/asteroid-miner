@@ -81,7 +81,7 @@
           "items": {
             "type": "object",
             "properties": {
-              "skill": {
+              "skillId": {
                 "type": "string",
                 "description": "The skill ID this modifier targets."
               },
@@ -104,7 +104,7 @@
               }
             },
             "required": [
-              "skill",
+              "skillId",
               "op",
               "value"
             ],
@@ -369,7 +369,7 @@
           "type": "string",
           "description": "i18n key for the description."
         },
-        "matrixResource": {
+        "matrixResourceId": {
           "type": "string",
           "description": "Resource ID for the matrix rock."
         },
@@ -378,7 +378,7 @@
           "items": {
             "type": "object",
             "properties": {
-              "resource": {
+              "resourceId": {
                 "type": "string",
                 "description": "Resource ID."
               },
@@ -402,7 +402,7 @@
               }
             },
             "required": [
-              "resource",
+              "resourceId",
               "probability",
               "minGrade",
               "maxGrade"
@@ -418,7 +418,7 @@
         "id",
         "nameKey",
         "descriptionKey",
-        "matrixResource",
+        "matrixResourceId",
         "embeddedResources"
       ],
       "additionalProperties": false,
@@ -490,7 +490,7 @@
           "items": {
             "type": "object",
             "properties": {
-              "formation": {
+              "formationId": {
                 "type": "string",
                 "description": "Formation ID."
               },
@@ -505,7 +505,7 @@
               }
             },
             "required": [
-              "formation",
+              "formationId",
               "weight"
             ],
             "additionalProperties": false,
@@ -1077,7 +1077,7 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "asteroidType": {
+                  "asteroidTypeId": {
                     "type": "string",
                     "description": "Asteroid type ID."
                   },
@@ -1088,7 +1088,7 @@
                   }
                 },
                 "required": [
-                  "asteroidType",
+                  "asteroidTypeId",
                   "weight"
                 ],
                 "additionalProperties": false,

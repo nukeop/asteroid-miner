@@ -106,7 +106,7 @@ export const DataBrowser: FC = () => {
         accessorFn: (row) =>
           [
             ...(row.skillModifiers ?? []).map(
-              (m) => `${m.op} ${m.skill} ${m.value}`,
+              (m) => `${m.op} ${m.skillId} ${m.value}`,
             ),
             ...(row.customEffects ?? []).map((e) => e.handler),
           ].join(', ') || '\u2014',
@@ -195,7 +195,7 @@ export const DataBrowser: FC = () => {
       {
         id: 'matrixResource',
         header: t('data.columns.matrixResource'),
-        accessorFn: (row) => row.matrixResource,
+        accessorFn: (row) => row.matrixResourceId,
       },
       {
         id: 'embeddedResources',
@@ -204,7 +204,7 @@ export const DataBrowser: FC = () => {
           row.embeddedResources
             .map(
               (r) =>
-                `${r.resource} (${r.minGrade}-${r.maxGrade}, p=${r.probability})`,
+                `${r.resourceId} (${r.minGrade}-${r.maxGrade}, p=${r.probability})`,
             )
             .join(', ') || '\u2014',
       },
@@ -237,7 +237,7 @@ export const DataBrowser: FC = () => {
         header: t('data.columns.formations'),
         accessorFn: (row) =>
           row.formations
-            .map((f) => `${f.formation} (w=${f.weight})`)
+            .map((f) => `${f.formationId} (w=${f.weight})`)
             .join(', '),
       },
     ],

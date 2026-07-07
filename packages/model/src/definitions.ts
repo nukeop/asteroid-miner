@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const SkillModifierSchema = z
   .object({
-    skill: z.string().describe('The skill ID this modifier targets.'),
+    skillId: z.string().describe('The skill ID this modifier targets.'),
     op: z
       .enum(['Flat', 'Factor'])
       .describe(
@@ -50,7 +50,7 @@ export type StartingBonus = z.infer<typeof StartingBonusSchema>;
 
 export const EmbeddedResourceDefSchema = z
   .object({
-    resource: z.string().describe('Resource ID.'),
+    resourceId: z.string().describe('Resource ID.'),
     probability: z
       .number()
       .min(0)
@@ -94,7 +94,7 @@ export type MassClassDef = z.infer<typeof MassClassDefSchema>;
 
 export const WeightedFormationDefSchema = z
   .object({
-    formation: z.string().describe('Formation ID.'),
+    formationId: z.string().describe('Formation ID.'),
     weight: z.number().positive().describe('Base weight. Must be positive.'),
     depthBonus: z
       .number()
@@ -278,7 +278,7 @@ export const FormationDefSchema = z
     id: z.string().describe('Unique identifier for this formation.'),
     nameKey: z.string().describe('i18n key for the display name.'),
     descriptionKey: z.string().describe('i18n key for the description.'),
-    matrixResource: z.string().describe('Resource ID for the matrix rock.'),
+    matrixResourceId: z.string().describe('Resource ID for the matrix rock.'),
     embeddedResources: z
       .array(EmbeddedResourceDefSchema)
       .describe(
@@ -439,7 +439,7 @@ export type ScenarioDef = z.infer<typeof ScenarioDefSchema>;
 
 export const WeightedAsteroidTypeDefSchema = z
   .object({
-    asteroidType: z.string().describe('Asteroid type ID.'),
+    asteroidTypeId: z.string().describe('Asteroid type ID.'),
     weight: z
       .number()
       .positive()

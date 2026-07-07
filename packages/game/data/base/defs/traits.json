@@ -5,8 +5,8 @@
     "nameKey": "trait.strongman.name",
     "descriptionKey": "trait.strongman.description",
     "skillModifiers": [
-      { "skill": "base:mining", "op": "Flat", "value": 2 },
-      { "skill": "base:construction", "op": "Flat", "value": 1 }
+      { "skillId": "base:mining", "op": "Flat", "value": 2 },
+      { "skillId": "base:construction", "op": "Flat", "value": 1 }
     ]
   },
   {
@@ -14,7 +14,7 @@
     "id": "base:cocky",
     "nameKey": "trait.cocky.name",
     "descriptionKey": "trait.cocky.description",
-    "skillModifiers": [{ "skill": "base:blat", "op": "Flat", "value": 1 }]
+    "skillModifiers": [{ "skillId": "base:blat", "op": "Flat", "value": 1 }]
   },
   {
     "type": "trait",
@@ -34,9 +34,9 @@
     "nameKey": "trait.bookworm.name",
     "descriptionKey": "trait.bookworm.description",
     "skillModifiers": [
-      { "skill": "base:research", "op": "Flat", "value": 2 },
-      { "skill": "base:materials_science", "op": "Flat", "value": 1 },
-      { "skill": "base:mining", "op": "Flat", "value": -1 }
+      { "skillId": "base:research", "op": "Flat", "value": 2 },
+      { "skillId": "base:materials_science", "op": "Flat", "value": 1 },
+      { "skillId": "base:mining", "op": "Flat", "value": -1 }
     ]
   },
   {
@@ -44,7 +44,7 @@
     "id": "base:natural_leader",
     "nameKey": "trait.natural_leader.name",
     "descriptionKey": "trait.natural_leader.description",
-    "skillModifiers": [{ "skill": "base:leadership", "op": "Flat", "value": 3 }]
+    "skillModifiers": [{ "skillId": "base:leadership", "op": "Flat", "value": 3 }]
   },
   {
     "type": "trait",
@@ -70,8 +70,8 @@
     "nameKey": "trait.veteran_cosmonaut.name",
     "descriptionKey": "trait.veteran_cosmonaut.description",
     "skillModifiers": [
-      { "skill": "base:cosmonautics", "op": "Flat", "value": 1 },
-      { "skill": "base:navigation", "op": "Flat", "value": 1 }
+      { "skillId": "base:cosmonautics", "op": "Flat", "value": 1 },
+      { "skillId": "base:navigation", "op": "Flat", "value": 1 }
     ]
   },
   {
@@ -102,8 +102,8 @@
     "nameKey": "trait.party_member.name",
     "descriptionKey": "trait.party_member.description",
     "skillModifiers": [
-      { "skill": "base:bureaucracy", "op": "Flat", "value": 2 },
-      { "skill": "base:blat", "op": "Flat", "value": 2 }
+      { "skillId": "base:bureaucracy", "op": "Flat", "value": 2 },
+      { "skillId": "base:blat", "op": "Flat", "value": 2 }
     ]
   }
 ]
