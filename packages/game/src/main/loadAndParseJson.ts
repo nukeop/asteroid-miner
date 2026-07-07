@@ -14,7 +14,7 @@ export async function loadAndParseJson<T>(
   if (!text.ok) {
     return {
       file: { path, text },
-      contents: err('Could not load file'),
+      contents: err(text.error.message),
     };
   }
 

@@ -114,7 +114,8 @@ describe('parseDataPack', () => {
 
     expect(pack.manifest.contents).toEqual({
       ok: false,
-      error: 'Invalid JSON',
+      error:
+        'Invalid JSON: Unexpected token \'h\', "this is not json" is not valid JSON',
     });
   });
 
@@ -129,7 +130,7 @@ describe('parseDataPack', () => {
     expect(pack.manifest.file.text).toEqual({ ok: false, error: missingError });
     expect(pack.manifest.contents).toEqual({
       ok: false,
-      error: 'Could not load file',
+      error: 'ENOENT: no such file',
     });
   });
 
@@ -210,7 +211,8 @@ describe('parseDataPack', () => {
 
     expect(pack.files[0]?.contents).toEqual({
       ok: false,
-      error: 'Invalid JSON',
+      error:
+        'Invalid JSON: Unexpected token \'o\', "not valid json" is not valid JSON',
     });
     expect(pack.files[1]?.contents).toEqual({ ok: true, value: [] });
   });

@@ -9,8 +9,9 @@ export function parseJsonWithSchema<T>(
   let parsed: unknown;
   try {
     parsed = JSON.parse(raw);
-  } catch {
-    return err('Invalid JSON');
+  } catch (e) {
+    const message = e instanceof Error ? e.message : String(e);
+    return err(`Invalid JSON: ${message}`);
   }
 
   const result = schema.safeParse(parsed);
