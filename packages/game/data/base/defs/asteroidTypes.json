@@ -27,6 +27,8 @@
         "maxSites": 4
       }
     ],
-    "formations": [{ "formationId": "base:coal_bearing_sandstone", "weight": 5 }]
+    "formations": [
+      { "formationId": "base:coal_bearing_sandstone", "weight": 5 }
+    ]
   }
 ]

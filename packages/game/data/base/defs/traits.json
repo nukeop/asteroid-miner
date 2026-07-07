@@ -44,7 +44,9 @@
     "id": "base:natural_leader",
     "nameKey": "trait.natural_leader.name",
     "descriptionKey": "trait.natural_leader.description",
-    "skillModifiers": [{ "skillId": "base:leadership", "op": "Flat", "value": 3 }]
+    "skillModifiers": [
+      { "skillId": "base:leadership", "op": "Flat", "value": 3 }
+    ]
   },
   {
     "type": "trait",
