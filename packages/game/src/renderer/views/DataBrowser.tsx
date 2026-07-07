@@ -134,7 +134,7 @@ export const DataBrowser: FC = () => {
         header: t('data.columns.bonuses'),
         accessorFn: (row) =>
           row.skillBonuses
-            .map((b) => `${b.id} ${b.amount > 0 ? '+' : ''}${b.amount}`)
+            .map((b) => `${b.skillId} ${b.amount > 0 ? '+' : ''}${b.amount}`)
             .join(', ') || '\u2014',
       },
     ],
@@ -171,7 +171,7 @@ export const DataBrowser: FC = () => {
       {
         id: 'tags',
         header: t('data.columns.tags'),
-        accessorFn: (row) => row.tags.join(', ') || '\u2014',
+        accessorFn: (row) => row.tagIds.join(', ') || '\u2014',
       },
     ],
     [t],
@@ -379,7 +379,7 @@ export const DataBrowser: FC = () => {
       {
         id: 'zones',
         header: t('data.columns.zones'),
-        accessorFn: (row) => `${row.zones[0]} \u2194 ${row.zones[1]}`,
+        accessorFn: (row) => `${row.zoneIds[0]} \u2194 ${row.zoneIds[1]}`,
       },
       { accessorKey: 'deltaV', header: t('data.columns.deltaV') },
       { accessorKey: 'days', header: t('data.columns.days') },

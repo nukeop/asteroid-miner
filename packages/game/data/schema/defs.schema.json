@@ -192,7 +192,7 @@
           "items": {
             "type": "object",
             "properties": {
-              "id": {
+              "skillId": {
                 "type": "string",
                 "description": "The skill ID to apply the bonus to."
               },
@@ -207,7 +207,7 @@
               }
             },
             "required": [
-              "id",
+              "skillId",
               "amount"
             ],
             "additionalProperties": false,
@@ -255,7 +255,7 @@
           "items": {
             "type": "object",
             "properties": {
-              "id": {
+              "skillId": {
                 "type": "string",
                 "description": "The skill ID to apply the bonus to."
               },
@@ -270,7 +270,7 @@
               }
             },
             "required": [
-              "id",
+              "skillId",
               "amount"
             ],
             "additionalProperties": false,
@@ -332,7 +332,7 @@
           "type": "string",
           "description": "i18n key for the description."
         },
-        "tags": {
+        "tagIds": {
           "type": "array",
           "items": {
             "type": "string"
@@ -345,7 +345,7 @@
         "id",
         "nameKey",
         "descriptionKey",
-        "tags"
+        "tagIds"
       ],
       "additionalProperties": false,
       "description": "A mineable and tradeable resource."
@@ -1124,7 +1124,7 @@
           "type": "string",
           "description": "Unique identifier for this connection."
         },
-        "zones": {
+        "zoneIds": {
           "type": "array",
           "prefixItems": [
             {
@@ -1134,7 +1134,7 @@
               "type": "string"
             }
           ],
-          "description": "The two zones this connection joins. Order is not significant; traversal is symmetric."
+          "description": "The two zone IDs this connection joins. Order is not significant; traversal is symmetric."
         },
         "deltaV": {
           "type": "number",
@@ -1150,7 +1150,7 @@
       "required": [
         "type",
         "id",
-        "zones",
+        "zoneIds",
         "deltaV",
         "days"
       ],

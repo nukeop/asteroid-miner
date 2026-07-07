@@ -38,7 +38,7 @@ export type CustomEffect = z.infer<typeof CustomEffectSchema>;
 
 export const StartingBonusSchema = z
   .object({
-    id: z.string().describe('The skill ID to apply the bonus to.'),
+    skillId: z.string().describe('The skill ID to apply the bonus to.'),
     amount: z.number().meta({
       description:
         'Number of skill levels to add (positive) or subtract (negative).',
@@ -267,7 +267,7 @@ export const ResourceDefSchema = z
     id: z.string().describe('Unique identifier for this resource.'),
     nameKey: z.string().describe('i18n key for the display name.'),
     descriptionKey: z.string().describe('i18n key for the description.'),
-    tags: z.array(z.string()).describe('Tag IDs.'),
+    tagIds: z.array(z.string()).describe('Tag IDs.'),
   })
   .describe('A mineable and tradeable resource.');
 export type ResourceDef = z.infer<typeof ResourceDefSchema>;
@@ -483,10 +483,10 @@ export const ZoneConnectionDefSchema = z
   .object({
     type: z.literal('zoneConnection'),
     id: z.string().describe('Unique identifier for this connection.'),
-    zones: z
+    zoneIds: z
       .tuple([z.string(), z.string()])
       .describe(
-        'The two zones this connection joins. Order is not significant; traversal is symmetric.',
+        'The two zone IDs this connection joins. Order is not significant; traversal is symmetric.',
       ),
     deltaV: z
       .number()
