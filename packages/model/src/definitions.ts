@@ -472,6 +472,14 @@ export const ZoneDefSchema = z
     id: z.string().describe('Unique identifier for this zone.'),
     nameKey: z.string().describe('i18n key for the display name.'),
     descriptionKey: z.string().describe('i18n key for the description.'),
+    mapPosition: z
+      .object({
+        x: z.number().describe('Horizontal position, 0-100, grows rightward.'),
+        y: z.number().describe('Vertical position, 0-100, grows downward.'),
+      })
+      .describe(
+        'Position of this zone on the schematic transit map, in abstract grid units.',
+      ),
     asteroidSpawns: AsteroidSpawnsDefSchema.optional().describe(
       'If present, asteroids spawn in this zone according to these rules.',
     ),

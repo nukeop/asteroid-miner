@@ -780,6 +780,22 @@
           "type": "string",
           "description": "i18n key for the description."
         },
+        "mapPosition": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "number",
+              "description": "Horizontal position, 0-100, grows rightward."
+            },
+            "y": {
+              "type": "number",
+              "description": "Vertical position, 0-100, grows downward."
+            }
+          },
+          "required": ["x", "y"],
+          "additionalProperties": false,
+          "description": "Position of this zone on the schematic transit map, in abstract grid units."
+        },
         "asteroidSpawns": {
           "description": "If present, asteroids spawn in this zone according to these rules.",
           "type": "object",
@@ -816,7 +832,7 @@
           "additionalProperties": false
         }
       },
-      "required": ["type", "id", "nameKey", "descriptionKey"],
+      "required": ["type", "id", "nameKey", "descriptionKey", "mapPosition"],
       "additionalProperties": false,
       "description": "A node in the zone graph. An orbit, station, or other location."
     },

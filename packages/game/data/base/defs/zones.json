@@ -3,25 +3,29 @@
     "type": "zone",
     "id": "base:leo",
     "nameKey": "zone.leo.name",
-    "descriptionKey": "zone.leo.description"
+    "descriptionKey": "zone.leo.description",
+    "mapPosition": { "x": 10, "y": 75 }
   },
   {
     "type": "zone",
     "id": "base:lunar_transfer_orbit",
     "nameKey": "zone.lunar_transfer_orbit.name",
-    "descriptionKey": "zone.lunar_transfer_orbit.description"
+    "descriptionKey": "zone.lunar_transfer_orbit.description",
+    "mapPosition": { "x": 35, "y": 50 }
   },
   {
     "type": "zone",
     "id": "base:high_lunar_orbit",
     "nameKey": "zone.high_lunar_orbit.name",
-    "descriptionKey": "zone.high_lunar_orbit.description"
+    "descriptionKey": "zone.high_lunar_orbit.description",
+    "mapPosition": { "x": 60, "y": 25 }
   },
   {
     "type": "zone",
     "id": "base:llo",
     "nameKey": "zone.llo.name",
     "descriptionKey": "zone.llo.description",
+    "mapPosition": { "x": 85, "y": 25 },
     "asteroidSpawns": {
       "density": 1.0,
       "asteroidTypes": [{ "asteroidTypeId": "base:c_type", "weight": 1 }]
