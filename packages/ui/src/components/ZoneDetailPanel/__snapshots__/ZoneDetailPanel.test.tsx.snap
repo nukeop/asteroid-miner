@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ZoneDetailPanel > (Snapshot) renders the zone name, description, and contents 1`] = `
+<div>
+  <aside
+    class="border-crt-muted bg-crt-surface text-crt-text w-80 border p-4"
+    data-testid="zone-detail-panel"
+  >
+    <h3
+      class="text-lg"
+    >
+      Low Lunar Orbit
+    </h3>
+    <p
+      class="mt-2 text-sm"
+    >
+      Orbit around the Moon at low altitude.
+    </p>
+    <h5
+      class="mt-4 text-xs opacity-70"
+    >
+      Contents
+    </h5>
+    <p
+      class="mt-1 text-sm"
+    >
+      2 discovered asteroids
+    </p>
+  </aside>
+</div>
+`;

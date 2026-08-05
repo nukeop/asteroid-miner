@@ -8,3 +8,4 @@ export * from './StatBar';
 export * from './TabBar';
 export * from './TopBar';
 export * from './WizardLayout';
+export * from './ZoneDetailPanel';
