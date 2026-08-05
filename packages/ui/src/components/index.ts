@@ -9,3 +9,4 @@ export * from './TabBar';
 export * from './TopBar';
 export * from './WizardLayout';
 export * from './ZoneDetailPanel';
+export * from './ZoneMap';
