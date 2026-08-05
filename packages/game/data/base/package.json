@@ -3,24 +3,25 @@
   "version": "0.1.0",
   "description": "Base game data pack",
   "author": "Asteroid Miner Team",
-  "asteroidMiner": {
+  "dataPack": {
     "type": "base",
     "gameVersion": "0.1.0",
     "nameKey": "pack.base.name",
     "descriptionKey": "pack.base.description",
     "files": [
-      "skills",
-      "traits",
-      "origins",
-      "careers",
-      "tags",
-      "resources",
-      "formations",
-      "asteroidTypes",
-      "shipModules",
-      "machines",
-      "names",
-      "scenarios"
+      "defs/skills.json",
+      "defs/traits.json",
+      "defs/origins.json",
+      "defs/careers.json",
+      "defs/tags.json",
+      "defs/resources.json",
+      "defs/formations.json",
+      "defs/asteroidTypes.json",
+      "defs/shipModules.json",
+      "defs/machines.json",
+      "defs/scenarios.json",
+      "defs/namePools.json",
+      "defs/zones.json"
     ]
   }
 }

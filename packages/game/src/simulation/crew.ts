@@ -1,9 +1,9 @@
 import { isEmpty, mapValues, random, sample } from 'lodash-es';
 
 import type {
-  CrewTemplate,
+  CrewTemplateDef,
   Definitions,
-  NamePool,
+  NamePoolDef,
   Pawn,
 } from '@asteroid-miner/model';
 
@@ -15,8 +15,8 @@ function pickFromWhitelistOrAll(
 }
 
 export function instantiatePawn(
-  template: CrewTemplate,
-  namePool: NamePool,
+  template: CrewTemplateDef,
+  namePool: NamePoolDef,
   defs: Definitions,
 ): Pawn {
   const sex = template.sex ?? sample(['Male', 'Female'] as const)!;

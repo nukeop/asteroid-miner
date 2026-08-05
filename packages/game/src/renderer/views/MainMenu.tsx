@@ -26,6 +26,13 @@ export const MainMenu: FC = () => {
       >
         {t('common.preferences')}
       </Button>
+      <Button
+        className="w-48"
+        variant="secondary"
+        onClick={() => navigate({ to: '/data' })}
+      >
+        {t('common.dataBrowser')}
+      </Button>
       <Button className="w-48" variant="ghost" onClick={() => window.close()}>
         {t('common.exit')}
       </Button>

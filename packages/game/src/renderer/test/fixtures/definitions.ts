@@ -3,6 +3,7 @@ import type { Definitions } from '@asteroid-miner/model';
 export const testDefinitions: Definitions = {
   skills: {
     mining: {
+      type: 'skill',
       id: 'mining',
       nameKey: 'skill.mining.name',
       descriptionKey: 'skill.mining.description',
@@ -10,6 +11,7 @@ export const testDefinitions: Definitions = {
       xpGrowth: 1.5,
     },
     geology: {
+      type: 'skill',
       id: 'geology',
       nameKey: 'skill.geology.name',
       descriptionKey: 'skill.geology.description',
@@ -17,6 +19,7 @@ export const testDefinitions: Definitions = {
       xpGrowth: 1.5,
     },
     cosmonautics: {
+      type: 'skill',
       id: 'cosmonautics',
       nameKey: 'skill.cosmonautics.name',
       descriptionKey: 'skill.cosmonautics.description',
@@ -24,6 +27,7 @@ export const testDefinitions: Definitions = {
       xpGrowth: 1.5,
     },
     navigation: {
+      type: 'skill',
       id: 'navigation',
       nameKey: 'skill.navigation.name',
       descriptionKey: 'skill.navigation.description',
@@ -31,6 +35,7 @@ export const testDefinitions: Definitions = {
       xpGrowth: 1.5,
     },
     engineering: {
+      type: 'skill',
       id: 'engineering',
       nameKey: 'skill.engineering.name',
       descriptionKey: 'skill.engineering.description',
@@ -41,6 +46,7 @@ export const testDefinitions: Definitions = {
   traits: {},
   origins: {
     civilian: {
+      type: 'origin',
       id: 'civilian',
       nameKey: 'origin.civilian.name',
       descriptionKey: 'origin.civilian.description',
@@ -49,6 +55,7 @@ export const testDefinitions: Definitions = {
   },
   careers: {
     civilian: {
+      type: 'career',
       id: 'civilian',
       nameKey: 'career.civilian.name',
       descriptionKey: 'career.civilian.description',
@@ -61,8 +68,66 @@ export const testDefinitions: Definitions = {
   asteroidTypes: {},
   shipModules: {},
   machines: {},
+  zones: {
+    leo: {
+      type: 'zone',
+      id: 'leo',
+      nameKey: 'zone.leo.name',
+      descriptionKey: 'zone.leo.description',
+      mapPosition: { x: 10, y: 75 },
+    },
+    lunar_transfer_orbit: {
+      type: 'zone',
+      id: 'lunar_transfer_orbit',
+      nameKey: 'zone.lunar_transfer_orbit.name',
+      descriptionKey: 'zone.lunar_transfer_orbit.description',
+      mapPosition: { x: 35, y: 50 },
+    },
+    high_lunar_orbit: {
+      type: 'zone',
+      id: 'high_lunar_orbit',
+      nameKey: 'zone.high_lunar_orbit.name',
+      descriptionKey: 'zone.high_lunar_orbit.description',
+      mapPosition: { x: 60, y: 25 },
+    },
+    llo: {
+      type: 'zone',
+      id: 'llo',
+      nameKey: 'zone.llo.name',
+      descriptionKey: 'zone.llo.description',
+      mapPosition: { x: 85, y: 25 },
+      asteroidSpawns: {
+        density: 1.0,
+        asteroidTypes: [{ asteroidTypeId: 'c_type', weight: 1 }],
+      },
+    },
+  },
+  zoneConnections: {
+    leo__lunar_transfer_orbit: {
+      type: 'zoneConnection',
+      id: 'leo__lunar_transfer_orbit',
+      zoneIds: ['leo', 'lunar_transfer_orbit'],
+      deltaV: 3.1,
+      days: 2,
+    },
+    high_lunar_orbit__lunar_transfer_orbit: {
+      type: 'zoneConnection',
+      id: 'high_lunar_orbit__lunar_transfer_orbit',
+      zoneIds: ['high_lunar_orbit', 'lunar_transfer_orbit'],
+      deltaV: 0.7,
+      days: 2,
+    },
+    high_lunar_orbit__llo: {
+      type: 'zoneConnection',
+      id: 'high_lunar_orbit__llo',
+      zoneIds: ['high_lunar_orbit', 'llo'],
+      deltaV: 0.8,
+      days: 1,
+    },
+  },
   scenarios: {
     starting: {
+      type: 'scenario',
       id: 'starting',
       nameKey: 'scenario.starting.name',
       descriptionKey: 'scenario.starting.description',
@@ -103,12 +168,16 @@ export const testDefinitions: Definitions = {
       ],
     },
   },
-  namePool: {
-    maleFirst: ['Ivan'],
-    femaleFirst: ['Olga'],
-    maleMiddle: ['Ivanovich'],
-    femaleMiddle: ['Ivanovna'],
-    maleLast: ['Petrov'],
-    femaleLast: ['Petrova'],
+  namePools: {
+    'base:default': {
+      type: 'namePool',
+      id: 'base:default',
+      maleFirst: ['Ivan'],
+      femaleFirst: ['Olga'],
+      maleMiddle: ['Ivanovich'],
+      femaleMiddle: ['Ivanovna'],
+      maleLast: ['Petrov'],
+      femaleLast: ['Petrova'],
+    },
   },
 };

@@ -1,17 +1,10 @@
-import { keyBy, omit } from 'lodash-es';
+import { keyBy, mapValues, omit } from 'lodash-es';
 import { create } from 'zustand';
 
-import type { Definitions, Pawn } from '@asteroid-miner/model';
+import type { GameState } from '@asteroid-miner/model';
 
 import { instantiatePawn } from '../../simulation/crew';
 import { useDefinitionsStore } from './useDefinitionsStore';
-
-type GameState = {
-  scenarioId: string;
-  defs: Definitions;
-  crew: Record<string, Pawn>;
-  crewOrder: string[];
-};
 
 type GameStateStore = {
   state: GameState | null;
@@ -37,8 +30,12 @@ export const useGameStateStore = create<GameStateStore>()((set, get) => ({
     const defs = useDefinitionsStore.getState().definitions!;
     const scenario = defs.scenarios[scenarioId];
     const pawns = scenario.crew.map((template) =>
-      instantiatePawn(template, defs.namePool, defs),
+      instantiatePawn(template, defs.namePools['base:default']!, defs),
     );
+    const zones = mapValues(defs.zones, (zoneDef) => ({
+      defId: zoneDef.id,
+      asteroids: [],
+    }));
 
     set({
       state: {
@@ -46,6 +43,7 @@ export const useGameStateStore = create<GameStateStore>()((set, get) => ({
         defs,
         crew: keyBy(pawns, 'id'),
         crewOrder: pawns.map((p) => p.id),
+        zones,
       },
     });
   },
@@ -60,7 +58,11 @@ export const useGameStateStore = create<GameStateStore>()((set, get) => ({
 
     const scenario = state.defs.scenarios[state.scenarioId];
     const template = scenario.crew[templateIndex];
-    const newPawn = instantiatePawn(template, state.defs.namePool, state.defs);
+    const newPawn = instantiatePawn(
+      template,
+      state.defs.namePools['base:default']!,
+      state.defs,
+    );
 
     const oldId = state.crewOrder[templateIndex];
 

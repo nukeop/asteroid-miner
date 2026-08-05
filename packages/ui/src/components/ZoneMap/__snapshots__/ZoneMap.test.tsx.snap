@@ -1,0 +1,84 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ZoneMap > (Snapshot) renders the selected ring around the selected zone 1`] = `
+<div>
+  <svg
+    class="h-full w-full"
+    viewBox="0 0 100 100"
+  >
+    <g>
+      <line
+        class="stroke-crt-muted"
+        stroke-width="0.4"
+        x1="10"
+        x2="85"
+        y1="75"
+        y2="25"
+      />
+      <text
+        class="fill-crt-text stroke-crt-bg"
+        dominant-baseline="middle"
+        font-size="2"
+        paint-order="stroke"
+        stroke-width="1"
+        text-anchor="middle"
+        x="47.5"
+        y="50"
+      >
+        Δv 3.1 · 2d
+      </text>
+    </g>
+    <g
+      aria-label="Low Earth Orbit"
+      class="group cursor-pointer"
+      role="button"
+    >
+      <circle
+        class="stroke-crt-muted fill-crt-surface group-hover:fill-crt-muted"
+        cx="10"
+        cy="75"
+        r="2.5"
+        stroke-width="0.4"
+      />
+      <text
+        class="fill-crt-text group-hover:fill-crt-bright"
+        font-size="2.4"
+        text-anchor="middle"
+        x="10"
+        y="81"
+      >
+        Low Earth Orbit
+      </text>
+    </g>
+    <g
+      aria-label="Low Lunar Orbit"
+      class="group cursor-pointer"
+      role="button"
+    >
+      <circle
+        class="stroke-crt-bright fill-none"
+        cx="85"
+        cy="25"
+        r="4"
+        stroke-width="0.4"
+      />
+      <circle
+        class="stroke-crt-muted fill-crt-bright"
+        cx="85"
+        cy="25"
+        r="2.5"
+        stroke-width="0.4"
+      />
+      <text
+        class="fill-crt-bright"
+        font-size="2.4"
+        text-anchor="middle"
+        x="85"
+        y="31"
+      >
+        Low Lunar Orbit
+      </text>
+    </g>
+  </svg>
+</div>
+`;

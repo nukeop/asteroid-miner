@@ -6,12 +6,16 @@ import { defineConfig } from 'electron-vite';
 export default defineConfig({
   main: {
     build: {
-      externalizeDeps: true,
+      externalizeDeps: {
+        exclude: ['@asteroid-miner/model'],
+      },
     },
   },
   preload: {
     build: {
-      externalizeDeps: true,
+      externalizeDeps: {
+        exclude: ['@asteroid-miner/model'],
+      },
       rollupOptions: {
         output: {
           format: 'cjs',

@@ -77,9 +77,14 @@ CI runs on push/PR to `master`: lint > type-check > build > test.
 
 ## Data packs
 
-Data packs are node packages. The base game, DLCs, and mods all use the same format. Each pack has a `package.json` with an `asteroidMiner` field declaring its type, game version, and which data files it includes. The IPC handler reads only the declared files.
+Data packs are node packages. The base game, DLCs, and mods all use the same format. Each pack has a `package.json` with a `dataPack` field declaring its type (`base`, `dlc`, `mod`), game version, and the paths of def files it ships. Loading runs in two stages: stage 1 (`parseDataPack`) reads and schema-validates each pack; stage 2 (`mergePacks`) merges parsed packs into a single `Definitions` object.
 
-Types for data packs live in `@asteroid-miner/model`: `DataPackManifest`, `DataPackMeta`, `DataPackFiles`, `DataFileName`.
+Types and schemas for data packs live in `@asteroid-miner/model`:
+
+- Runtime types (`data-pack.ts`): `DataPack`, `DataPackManifest`, `ParsedJsonFile`, `DataPackFile`.
+- Zod schemas and schema-derived types (`data-pack-schema.ts`): `DataPackManifestContentsSchema`, `DataPackDefsFileSchema`, `DataPackTypeSchema`.
+
+JSON Schema files for editor autocomplete are generated from the Zod schemas. Run `pnpm --filter @asteroid-miner/model generate-schemas` to regenerate.
 
 ## UI components
 
@@ -146,7 +151,7 @@ Prefer `lodash-es` over hand-rolled utility functions. If lodash has a function 
 - **Main process** (`packages/game/src/main/`): Creates BrowserWindow, registers IPC handlers.
 - **Preload** (`packages/game/src/preload/`): Exposes `electronAPI` with `saveGame`/`loadGame` via `contextBridge`.
 - **Renderer** (`packages/game/src/renderer/`): React SPA, initializes i18n.
-- IPC channels: `save-game` (writes JSON to userData), `load-game` (reads it back), `load-data-pack` (reads a data pack from disk).
+- IPC channels: `save-game` (writes JSON to userData), `load-game` (reads it back), `parse-data-pack` (reads and schema-validates a data pack), `get-base-data-path` (returns path to the bundled base pack).
 
 ## Renderer structure
 

@@ -16,3 +16,4 @@ i18n.use(initReactI18next).init({
 });
 
 export { i18n, useTranslation };
+export type { TFunction } from 'i18next';
