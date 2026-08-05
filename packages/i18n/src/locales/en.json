@@ -274,5 +274,11 @@
       "name": "Low Lunar Orbit",
       "description": "Orbit around the Moon at low altitude."
     }
+  },
+  "map": {
+    "contentsHeading": "Contents",
+    "discoveredAsteroidCount_one": "{{count}} discovered asteroid",
+    "discoveredAsteroidCount_other": "{{count}} discovered asteroids",
+    "connectionLabel": "Δv {{deltaV}} · {{days}}d"
   }
 }
