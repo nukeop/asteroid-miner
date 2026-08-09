@@ -402,6 +402,88 @@
       "description": "A top-level asteroid classification."
     },
     {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "generation" },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this generation.",
+          "examples": ["base:g1", "base:g2", "base:g3", "base:g4"]
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        }
+      },
+      "required": ["type", "id", "nameKey", "descriptionKey"],
+      "additionalProperties": false,
+      "description": "A technology generation. Modules install into hulls of the same generation."
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "const": "hull" },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this hull."
+        },
+        "nameKey": {
+          "type": "string",
+          "description": "i18n key for the display name."
+        },
+        "descriptionKey": {
+          "type": "string",
+          "description": "i18n key for the description."
+        },
+        "generationId": {
+          "type": "string",
+          "description": "Generation ID. Only modules of the same generation can be installed."
+        },
+        "dryMass": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Mass of the bare hull in tonnes, before any modules."
+        },
+        "slots": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "enum": ["core", "bay", "engineMount", "utility"],
+            "description": "The kind of hull slot a module occupies."
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "required": ["core", "bay", "engineMount", "utility"],
+          "description": "Number of slots this hull provides, per slot type."
+        },
+        "minCrew": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "description": "Minimum crew required to operate a ship on this hull."
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "nameKey",
+        "descriptionKey",
+        "generationId",
+        "dryMass",
+        "slots",
+        "minCrew"
+      ],
+      "additionalProperties": false,
+      "description": "A ship chassis defining slot layout, dry mass, and generation."
+    },
+    {
       "oneOf": [
         {
           "type": "object",
@@ -416,9 +498,38 @@
               "type": "string",
               "description": "i18n key for the description."
             },
+            "slotType": {
+              "type": "string",
+              "enum": ["core", "bay", "engineMount", "utility"],
+              "description": "The hull slot type this module occupies."
+            },
+            "generationId": {
+              "type": "string",
+              "description": "Generation ID. Must match the hull it is installed in."
+            },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the module in tonnes."
+            },
+            "powerDraw": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Power this module draws while installed."
+            },
             "category": { "type": "string", "const": "bridge" }
           },
-          "required": ["type", "id", "nameKey", "descriptionKey", "category"],
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "slotType",
+            "generationId",
+            "mass",
+            "powerDraw",
+            "category"
+          ],
           "additionalProperties": false,
           "description": "Command bridge. Mandatory, one per ship."
         },
@@ -435,9 +546,44 @@
               "type": "string",
               "description": "i18n key for the description."
             },
-            "category": { "type": "string", "const": "reactor" }
+            "slotType": {
+              "type": "string",
+              "enum": ["core", "bay", "engineMount", "utility"],
+              "description": "The hull slot type this module occupies."
+            },
+            "generationId": {
+              "type": "string",
+              "description": "Generation ID. Must match the hull it is installed in."
+            },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the module in tonnes."
+            },
+            "powerDraw": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Power this module draws while installed."
+            },
+            "category": { "type": "string", "const": "reactor" },
+            "powerOutput": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Power produced for other modules to draw from."
+            }
           },
-          "required": ["type", "id", "nameKey", "descriptionKey", "category"],
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "slotType",
+            "generationId",
+            "mass",
+            "powerDraw",
+            "category",
+            "powerOutput"
+          ],
           "additionalProperties": false,
           "description": "Ship reactor. Mandatory, one per ship."
         },
@@ -453,6 +599,25 @@
             "descriptionKey": {
               "type": "string",
               "description": "i18n key for the description."
+            },
+            "slotType": {
+              "type": "string",
+              "enum": ["core", "bay", "engineMount", "utility"],
+              "description": "The hull slot type this module occupies."
+            },
+            "generationId": {
+              "type": "string",
+              "description": "Generation ID. Must match the hull it is installed in."
+            },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the module in tonnes."
+            },
+            "powerDraw": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Power this module draws while installed."
             },
             "category": { "type": "string", "const": "engine" },
             "speed": {
@@ -471,6 +636,10 @@
             "id",
             "nameKey",
             "descriptionKey",
+            "slotType",
+            "generationId",
+            "mass",
+            "powerDraw",
             "category",
             "speed",
             "fuelEfficiency"
@@ -491,6 +660,25 @@
               "type": "string",
               "description": "i18n key for the description."
             },
+            "slotType": {
+              "type": "string",
+              "enum": ["core", "bay", "engineMount", "utility"],
+              "description": "The hull slot type this module occupies."
+            },
+            "generationId": {
+              "type": "string",
+              "description": "Generation ID. Must match the hull it is installed in."
+            },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the module in tonnes."
+            },
+            "powerDraw": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Power this module draws while installed."
+            },
             "category": { "type": "string", "const": "fuelTank" },
             "capacity": {
               "type": "number",
@@ -503,6 +691,10 @@
             "id",
             "nameKey",
             "descriptionKey",
+            "slotType",
+            "generationId",
+            "mass",
+            "powerDraw",
             "category",
             "capacity"
           ],
@@ -522,9 +714,38 @@
               "type": "string",
               "description": "i18n key for the description."
             },
+            "slotType": {
+              "type": "string",
+              "enum": ["core", "bay", "engineMount", "utility"],
+              "description": "The hull slot type this module occupies."
+            },
+            "generationId": {
+              "type": "string",
+              "description": "Generation ID. Must match the hull it is installed in."
+            },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the module in tonnes."
+            },
+            "powerDraw": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Power this module draws while installed."
+            },
             "category": { "type": "string", "const": "crewQuarters" }
           },
-          "required": ["type", "id", "nameKey", "descriptionKey", "category"],
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "slotType",
+            "generationId",
+            "mass",
+            "powerDraw",
+            "category"
+          ],
           "additionalProperties": false,
           "description": "Crew quarters. Houses one crew member."
         },
@@ -541,6 +762,25 @@
               "type": "string",
               "description": "i18n key for the description."
             },
+            "slotType": {
+              "type": "string",
+              "enum": ["core", "bay", "engineMount", "utility"],
+              "description": "The hull slot type this module occupies."
+            },
+            "generationId": {
+              "type": "string",
+              "description": "Generation ID. Must match the hull it is installed in."
+            },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the module in tonnes."
+            },
+            "powerDraw": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Power this module draws while installed."
+            },
             "category": { "type": "string", "const": "cargoBay" },
             "capacity": {
               "type": "number",
@@ -553,6 +793,10 @@
             "id",
             "nameKey",
             "descriptionKey",
+            "slotType",
+            "generationId",
+            "mass",
+            "powerDraw",
             "category",
             "capacity"
           ],
@@ -572,6 +816,25 @@
               "type": "string",
               "description": "i18n key for the description."
             },
+            "slotType": {
+              "type": "string",
+              "enum": ["core", "bay", "engineMount", "utility"],
+              "description": "The hull slot type this module occupies."
+            },
+            "generationId": {
+              "type": "string",
+              "description": "Generation ID. Must match the hull it is installed in."
+            },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the module in tonnes."
+            },
+            "powerDraw": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Power this module draws while installed."
+            },
             "category": { "type": "string", "const": "scanner" },
             "sensitivity": {
               "type": "number",
@@ -584,6 +847,10 @@
             "id",
             "nameKey",
             "descriptionKey",
+            "slotType",
+            "generationId",
+            "mass",
+            "powerDraw",
             "category",
             "sensitivity"
           ],
@@ -603,9 +870,38 @@
               "type": "string",
               "description": "i18n key for the description."
             },
+            "slotType": {
+              "type": "string",
+              "enum": ["core", "bay", "engineMount", "utility"],
+              "description": "The hull slot type this module occupies."
+            },
+            "generationId": {
+              "type": "string",
+              "description": "Generation ID. Must match the hull it is installed in."
+            },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the module in tonnes."
+            },
+            "powerDraw": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Power this module draws while installed."
+            },
             "category": { "type": "string", "const": "machineBay" }
           },
-          "required": ["type", "id", "nameKey", "descriptionKey", "category"],
+          "required": [
+            "type",
+            "id",
+            "nameKey",
+            "descriptionKey",
+            "slotType",
+            "generationId",
+            "mass",
+            "powerDraw",
+            "category"
+          ],
           "additionalProperties": false,
           "description": "Bay that holds one deployable machine."
         }
@@ -627,6 +923,17 @@
               "type": "string",
               "description": "i18n key for the description."
             },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the machine in tonnes."
+            },
+            "crewSlots": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991,
+              "description": "Number of crew that can operate this machine."
+            },
             "category": { "type": "string", "const": "miningRig" },
             "hopperCapacity": {
               "type": "number",
@@ -637,12 +944,6 @@
               "type": "number",
               "exclusiveMinimum": 0,
               "description": "Maximum extraction rate."
-            },
-            "crewSlots": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 9007199254740991,
-              "description": "Number of crew that can operate this rig."
             }
           },
           "required": [
@@ -650,10 +951,11 @@
             "id",
             "nameKey",
             "descriptionKey",
+            "mass",
+            "crewSlots",
             "category",
             "hopperCapacity",
-            "maxExtractionRate",
-            "crewSlots"
+            "maxExtractionRate"
           ],
           "additionalProperties": false,
           "description": "Mining rig deployed to extract rock."
@@ -671,18 +973,23 @@
               "type": "string",
               "description": "i18n key for the description."
             },
+            "mass": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Mass of the machine in tonnes."
+            },
+            "crewSlots": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991,
+              "description": "Number of crew that can operate this machine."
+            },
             "category": { "type": "string", "const": "scanningRig" },
             "accuracy": {
               "type": "number",
               "exclusiveMinimum": 0,
               "maximum": 1,
               "description": "Survey accuracy in (0.0, 1.0]."
-            },
-            "crewSlots": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 9007199254740991,
-              "description": "Number of crew that can operate this rig."
             }
           },
           "required": [
@@ -690,9 +997,10 @@
             "id",
             "nameKey",
             "descriptionKey",
+            "mass",
+            "crewSlots",
             "category",
-            "accuracy",
-            "crewSlots"
+            "accuracy"
           ],
           "additionalProperties": false,
           "description": "Scanning rig deployed on an asteroid for detailed composition analysis."
@@ -758,9 +1066,31 @@
             "description": "A template that rolls one crew member at scenario start."
           },
           "description": "Templates for the starting crew."
+        },
+        "ship": {
+          "type": "object",
+          "properties": {
+            "hullId": {
+              "type": "string",
+              "description": "Hull ID the starting ship is built on."
+            },
+            "moduleIds": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Ship module IDs installed on the hull. Repeat an ID to install it more than once."
+            },
+            "machineIds": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Machine IDs carried in the ship machine bays."
+            }
+          },
+          "required": ["hullId", "moduleIds", "machineIds"],
+          "additionalProperties": false,
+          "description": "The ship the player starts with."
         }
       },
-      "required": ["type", "id", "nameKey", "descriptionKey", "crew"],
+      "required": ["type", "id", "nameKey", "descriptionKey", "crew", "ship"],
       "additionalProperties": false,
       "description": "A starting scenario that defines initial game conditions."
     },

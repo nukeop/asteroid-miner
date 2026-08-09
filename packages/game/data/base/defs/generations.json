@@ -1,0 +1,26 @@
+[
+  {
+    "type": "generation",
+    "id": "base:g1",
+    "nameKey": "generation.g1.name",
+    "descriptionKey": "generation.g1.description"
+  },
+  {
+    "type": "generation",
+    "id": "base:g2",
+    "nameKey": "generation.g2.name",
+    "descriptionKey": "generation.g2.description"
+  },
+  {
+    "type": "generation",
+    "id": "base:g3",
+    "nameKey": "generation.g3.name",
+    "descriptionKey": "generation.g3.description"
+  },
+  {
+    "type": "generation",
+    "id": "base:g4",
+    "nameKey": "generation.g4.name",
+    "descriptionKey": "generation.g4.description"
+  }
+]

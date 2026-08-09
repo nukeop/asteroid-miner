@@ -5,9 +5,10 @@
     "category": "miningRig",
     "nameKey": "machine.mining_rig_basic.name",
     "descriptionKey": "machine.mining_rig_basic.description",
+    "mass": 40.0,
+    "crewSlots": 2,
     "hopperCapacity": 100.0,
-    "maxExtractionRate": 100.0,
-    "crewSlots": 2
+    "maxExtractionRate": 100.0
   },
   {
     "type": "machine",
@@ -15,7 +16,8 @@
     "category": "scanningRig",
     "nameKey": "machine.scanning_rig_basic.name",
     "descriptionKey": "machine.scanning_rig_basic.description",
-    "accuracy": 0.5,
-    "crewSlots": 1
+    "mass": 20.0,
+    "crewSlots": 1,
+    "accuracy": 0.5
   }
 ]

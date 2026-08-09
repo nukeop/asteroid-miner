@@ -17,6 +17,8 @@
       "defs/resources.json",
       "defs/formations.json",
       "defs/asteroidTypes.json",
+      "defs/generations.json",
+      "defs/hulls.json",
       "defs/shipModules.json",
       "defs/machines.json",
       "defs/scenarios.json",

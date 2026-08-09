@@ -310,11 +310,67 @@ export const AsteroidTypeDefSchema = z
   .describe('A top-level asteroid classification.');
 export type AsteroidTypeDef = z.infer<typeof AsteroidTypeDefSchema>;
 
+export const SlotTypeSchema = z
+  .enum(['core', 'bay', 'engineMount', 'utility'])
+  .describe('The kind of hull slot a module occupies.');
+export type SlotType = z.infer<typeof SlotTypeSchema>;
+
+export const GenerationDefSchema = z
+  .object({
+    type: z.literal('generation'),
+    id: z.string().meta({
+      description: 'Unique identifier for this generation.',
+      examples: ['base:g1', 'base:g2', 'base:g3', 'base:g4'],
+    }),
+    nameKey: z.string().describe('i18n key for the display name.'),
+    descriptionKey: z.string().describe('i18n key for the description.'),
+  })
+  .describe(
+    'A technology generation. Modules install into hulls of the same generation.',
+  );
+export type GenerationDef = z.infer<typeof GenerationDefSchema>;
+
+export const HullDefSchema = z
+  .object({
+    type: z.literal('hull'),
+    id: z.string().describe('Unique identifier for this hull.'),
+    nameKey: z.string().describe('i18n key for the display name.'),
+    descriptionKey: z.string().describe('i18n key for the description.'),
+    generationId: z
+      .string()
+      .describe(
+        'Generation ID. Only modules of the same generation can be installed.',
+      ),
+    dryMass: z
+      .number()
+      .positive()
+      .describe('Mass of the bare hull in tonnes, before any modules.'),
+    slots: z
+      .record(SlotTypeSchema, z.number().int().nonnegative())
+      .describe('Number of slots this hull provides, per slot type.'),
+    minCrew: z
+      .number()
+      .int()
+      .min(1)
+      .describe('Minimum crew required to operate a ship on this hull.'),
+  })
+  .describe('A ship chassis defining slot layout, dry mass, and generation.');
+export type HullDef = z.infer<typeof HullDefSchema>;
+
 const shipModuleBase = {
   type: z.literal('shipModule'),
   id: z.string().describe('Unique identifier.'),
   nameKey: z.string().describe('i18n key for the display name.'),
   descriptionKey: z.string().describe('i18n key for the description.'),
+  slotType: SlotTypeSchema.describe('The hull slot type this module occupies.'),
+  generationId: z
+    .string()
+    .describe('Generation ID. Must match the hull it is installed in.'),
+  mass: z.number().positive().describe('Mass of the module in tonnes.'),
+  powerDraw: z
+    .number()
+    .nonnegative()
+    .describe('Power this module draws while installed.'),
 };
 
 export const ShipModuleDefSchema = z
@@ -323,7 +379,14 @@ export const ShipModuleDefSchema = z
       .object({ ...shipModuleBase, category: z.literal('bridge') })
       .describe('Command bridge. Mandatory, one per ship.'),
     z
-      .object({ ...shipModuleBase, category: z.literal('reactor') })
+      .object({
+        ...shipModuleBase,
+        category: z.literal('reactor'),
+        powerOutput: z
+          .number()
+          .positive()
+          .describe('Power produced for other modules to draw from.'),
+      })
       .describe('Ship reactor. Mandatory, one per ship.'),
     z
       .object({
@@ -377,6 +440,12 @@ const machineBase = {
   id: z.string().describe('Unique identifier.'),
   nameKey: z.string().describe('i18n key for the display name.'),
   descriptionKey: z.string().describe('i18n key for the description.'),
+  mass: z.number().positive().describe('Mass of the machine in tonnes.'),
+  crewSlots: z
+    .number()
+    .int()
+    .min(1)
+    .describe('Number of crew that can operate this machine.'),
 };
 
 export const MachineDefSchema = z
@@ -393,11 +462,6 @@ export const MachineDefSchema = z
           .number()
           .positive()
           .describe('Maximum extraction rate.'),
-        crewSlots: z
-          .number()
-          .int()
-          .min(1)
-          .describe('Number of crew that can operate this rig.'),
       })
       .describe('Mining rig deployed to extract rock.'),
     z
@@ -409,11 +473,6 @@ export const MachineDefSchema = z
           .positive()
           .max(1)
           .describe('Survey accuracy in (0.0, 1.0].'),
-        crewSlots: z
-          .number()
-          .int()
-          .min(1)
-          .describe('Number of crew that can operate this rig.'),
       })
       .describe(
         'Scanning rig deployed on an asteroid for detailed composition analysis.',
@@ -424,6 +483,21 @@ export const MachineDefSchema = z
   );
 export type MachineDef = z.infer<typeof MachineDefSchema>;
 
+export const StartingShipDefSchema = z
+  .object({
+    hullId: z.string().describe('Hull ID the starting ship is built on.'),
+    moduleIds: z
+      .array(z.string())
+      .describe(
+        'Ship module IDs installed on the hull. Repeat an ID to install it more than once.',
+      ),
+    machineIds: z
+      .array(z.string())
+      .describe('Machine IDs carried in the ship machine bays.'),
+  })
+  .describe('The ship the player starts a scenario with.');
+export type StartingShipDef = z.infer<typeof StartingShipDefSchema>;
+
 export const ScenarioDefSchema = z
   .object({
     type: z.literal('scenario'),
@@ -433,6 +507,7 @@ export const ScenarioDefSchema = z
     crew: z
       .array(CrewTemplateDefSchema)
       .describe('Templates for the starting crew.'),
+    ship: StartingShipDefSchema.describe('The ship the player starts with.'),
   })
   .describe('A starting scenario that defines initial game conditions.');
 export type ScenarioDef = z.infer<typeof ScenarioDefSchema>;
@@ -524,6 +599,8 @@ export const AnyDefSchema = z
     ResourceDefSchema,
     FormationDefSchema,
     AsteroidTypeDefSchema,
+    GenerationDefSchema,
+    HullDefSchema,
     ShipModuleDefSchema,
     MachineDefSchema,
     ScenarioDefSchema,
@@ -545,6 +622,8 @@ export type Definitions = {
   resources: Record<string, ResourceDef>;
   formations: Record<string, FormationDef>;
   asteroidTypes: Record<string, AsteroidTypeDef>;
+  generations: Record<string, GenerationDef>;
+  hulls: Record<string, HullDef>;
   shipModules: Record<string, ShipModuleDef>;
   machines: Record<string, MachineDef>;
   scenarios: Record<string, ScenarioDef>;

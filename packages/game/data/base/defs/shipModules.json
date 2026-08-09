@@ -4,14 +4,23 @@
     "id": "base:bridge_basic",
     "category": "bridge",
     "nameKey": "ship_module.bridge_basic.name",
-    "descriptionKey": "ship_module.bridge_basic.description"
+    "descriptionKey": "ship_module.bridge_basic.description",
+    "slotType": "core",
+    "generationId": "base:g1",
+    "mass": 30.0,
+    "powerDraw": 5.0
   },
   {
     "type": "shipModule",
     "id": "base:reactor_basic",
     "category": "reactor",
     "nameKey": "ship_module.reactor_basic.name",
-    "descriptionKey": "ship_module.reactor_basic.description"
+    "descriptionKey": "ship_module.reactor_basic.description",
+    "slotType": "core",
+    "generationId": "base:g1",
+    "mass": 60.0,
+    "powerDraw": 0.0,
+    "powerOutput": 100.0
   },
   {
     "type": "shipModule",
@@ -19,6 +28,10 @@
     "category": "engine",
     "nameKey": "ship_module.engine_basic.name",
     "descriptionKey": "ship_module.engine_basic.description",
+    "slotType": "engineMount",
+    "generationId": "base:g1",
+    "mass": 50.0,
+    "powerDraw": 20.0,
     "speed": 1.0,
     "fuelEfficiency": 1.0
   },
@@ -28,6 +41,10 @@
     "category": "fuelTank",
     "nameKey": "ship_module.fuel_tank_basic.name",
     "descriptionKey": "ship_module.fuel_tank_basic.description",
+    "slotType": "bay",
+    "generationId": "base:g1",
+    "mass": 15.0,
+    "powerDraw": 0.0,
     "capacity": 500.0
   },
   {
@@ -35,7 +52,11 @@
     "id": "base:crew_quarters_basic",
     "category": "crewQuarters",
     "nameKey": "ship_module.crew_quarters_basic.name",
-    "descriptionKey": "ship_module.crew_quarters_basic.description"
+    "descriptionKey": "ship_module.crew_quarters_basic.description",
+    "slotType": "bay",
+    "generationId": "base:g1",
+    "mass": 10.0,
+    "powerDraw": 3.0
   },
   {
     "type": "shipModule",
@@ -43,6 +64,10 @@
     "category": "cargoBay",
     "nameKey": "ship_module.cargo_bay_small.name",
     "descriptionKey": "ship_module.cargo_bay_small.description",
+    "slotType": "bay",
+    "generationId": "base:g1",
+    "mass": 20.0,
+    "powerDraw": 1.0,
     "capacity": 1000.0
   },
   {
@@ -51,6 +76,10 @@
     "category": "scanner",
     "nameKey": "ship_module.scanner_basic.name",
     "descriptionKey": "ship_module.scanner_basic.description",
+    "slotType": "utility",
+    "generationId": "base:g1",
+    "mass": 8.0,
+    "powerDraw": 15.0,
     "sensitivity": 10.0
   },
   {
@@ -58,6 +87,10 @@
     "id": "base:machine_bay_basic",
     "category": "machineBay",
     "nameKey": "ship_module.machine_bay_basic.name",
-    "descriptionKey": "ship_module.machine_bay_basic.description"
+    "descriptionKey": "ship_module.machine_bay_basic.description",
+    "slotType": "bay",
+    "generationId": "base:g1",
+    "mass": 25.0,
+    "powerDraw": 2.0
   }
 ]

@@ -66,6 +66,8 @@ export const testDefinitions: Definitions = {
   resources: {},
   formations: {},
   asteroidTypes: {},
+  generations: {},
+  hulls: {},
   shipModules: {},
   machines: {},
   zones: {
@@ -166,6 +168,11 @@ export const testDefinitions: Definitions = {
           },
         },
       ],
+      ship: {
+        hullId: 'hauler_small',
+        moduleIds: ['bridge_basic', 'reactor_basic', 'engine_basic'],
+        machineIds: ['mining_rig_basic'],
+      },
     },
   },
   namePools: {

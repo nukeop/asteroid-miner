@@ -38,6 +38,27 @@
           "base:engineering": [1, 1]
         }
       }
-    ]
+    ],
+    "ship": {
+      "hullId": "base:coal_barge",
+      "moduleIds": [
+        "base:bridge_basic",
+        "base:reactor_basic",
+        "base:engine_basic",
+        "base:scanner_basic",
+        "base:fuel_tank_basic",
+        "base:crew_quarters_basic",
+        "base:crew_quarters_basic",
+        "base:crew_quarters_basic",
+        "base:machine_bay_basic",
+        "base:machine_bay_basic",
+        "base:cargo_bay_small",
+        "base:cargo_bay_small",
+        "base:cargo_bay_small",
+        "base:cargo_bay_small",
+        "base:cargo_bay_small"
+      ],
+      "machineIds": ["base:mining_rig_basic", "base:scanning_rig_basic"]
+    }
   }
 ]

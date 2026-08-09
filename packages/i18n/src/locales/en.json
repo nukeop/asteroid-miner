@@ -92,7 +92,9 @@
     }
   },
   "tag": {
-    "fuel": { "name": "Fuel" }
+    "fuel": {
+      "name": "Fuel"
+    }
   },
   "resource": {
     "coal": {
@@ -117,9 +119,15 @@
     }
   },
   "mass_class": {
-    "s": { "name": "Small" },
-    "m": { "name": "Medium" },
-    "l": { "name": "Large" }
+    "s": {
+      "name": "Small"
+    },
+    "m": {
+      "name": "Medium"
+    },
+    "l": {
+      "name": "Large"
+    }
   },
   "ship_module": {
     "bridge_basic": {
@@ -166,7 +174,10 @@
     }
   },
   "skill": {
-    "mining": { "name": "Mining", "description": "Extracting ore from rock." },
+    "mining": {
+      "name": "Mining",
+      "description": "Extracting ore from rock."
+    },
     "geology": {
       "name": "Geology",
       "description": "Reading rock composition and structure."
@@ -280,5 +291,29 @@
     "discoveredAsteroidCount_one": "{{count}} discovered asteroid",
     "discoveredAsteroidCount_other": "{{count}} discovered asteroids",
     "connectionLabel": "Δv {{deltaV}} · {{days}}d"
+  },
+  "generation": {
+    "g1": {
+      "name": "G1",
+      "description": ""
+    },
+    "g2": {
+      "name": "G2",
+      "description": ""
+    },
+    "g3": {
+      "name": "G3",
+      "description": ""
+    },
+    "g4": {
+      "name": "G4",
+      "description": ""
+    }
+  },
+  "hull": {
+    "hauler_small": {
+      "name": "Small Hauler",
+      "description": ""
+    }
   }
 }

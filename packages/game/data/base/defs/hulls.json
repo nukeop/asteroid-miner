@@ -1,0 +1,17 @@
+[
+  {
+    "type": "hull",
+    "id": "base:hauler_small",
+    "nameKey": "hull.hauler_small.name",
+    "descriptionKey": "hull.hauler_small.description",
+    "generationId": "base:g1",
+    "dryMass": 400.0,
+    "slots": {
+      "core": 2,
+      "bay": 11,
+      "engineMount": 1,
+      "utility": 1
+    },
+    "minCrew": 1
+  }
+]
