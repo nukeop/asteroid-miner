@@ -235,12 +235,68 @@
     "civilian": {
       "name": "Civilian",
       "description": "No specialized background."
+    },
+    "core_world": {
+      "name": "Core World",
+      "description": ""
+    },
+    "belt_colony": {
+      "name": "Belt Colony",
+      "description": ""
+    },
+    "orbital_station": {
+      "name": "Orbital Station",
+      "description": ""
+    },
+    "frontier": {
+      "name": "Frontier",
+      "description": ""
+    },
+    "transport_fleet": {
+      "name": "Transport Fleet",
+      "description": ""
+    },
+    "research_outpost": {
+      "name": "Research Outpost",
+      "description": ""
     }
   },
   "career": {
     "civilian": {
       "name": "Civilian",
       "description": "No specialized training."
+    },
+    "belt_miner": {
+      "name": "Belt Miner",
+      "description": ""
+    },
+    "military_cosmonaut": {
+      "name": "Military Cosmonaut",
+      "description": ""
+    },
+    "planning_clerk": {
+      "name": "Planning Clerk",
+      "description": ""
+    },
+    "dock_worker": {
+      "name": "Dock Worker",
+      "description": ""
+    },
+    "smuggler": {
+      "name": "Smuggler",
+      "description": ""
+    },
+    "field_medic": {
+      "name": "Field Medic",
+      "description": ""
+    },
+    "research_assistant": {
+      "name": "Research Assistant",
+      "description": ""
+    },
+    "apparatchik": {
+      "name": "Apparatchik",
+      "description": ""
     }
   },
   "newGame": {
@@ -260,6 +316,52 @@
       "lastName": "Last name",
       "nickname": "Nickname",
       "unnamed": "(unnamed)"
+    }
+  },
+  "trait": {
+    "strongman": {
+      "name": "Strongman",
+      "description": ""
+    },
+    "cocky": {
+      "name": "Cocky",
+      "description": ""
+    },
+    "blue_collar": {
+      "name": "Blue Collar",
+      "description": ""
+    },
+    "bookworm": {
+      "name": "Bookworm",
+      "description": ""
+    },
+    "natural_leader": {
+      "name": "Natural Leader",
+      "description": ""
+    },
+    "loner": {
+      "name": "Loner",
+      "description": ""
+    },
+    "quick_learner": {
+      "name": "Quick Learner",
+      "description": ""
+    },
+    "veteran_cosmonaut": {
+      "name": "Veteran Cosmonaut",
+      "description": ""
+    },
+    "reckless": {
+      "name": "Reckless",
+      "description": ""
+    },
+    "penny_pincher": {
+      "name": "Penny Pincher",
+      "description": ""
+    },
+    "party_member": {
+      "name": "Party Member",
+      "description": ""
     }
   },
   "scenario": {

@@ -40,7 +40,7 @@
       }
     ],
     "ship": {
-      "hullId": "base:coal_barge",
+      "hullId": "base:hauler_small",
       "moduleIds": [
         "base:bridge_basic",
         "base:reactor_basic",
