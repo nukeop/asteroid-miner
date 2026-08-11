@@ -4,6 +4,7 @@ import { create } from 'zustand';
 import type { GameState } from '@asteroid-miner/model';
 
 import { instantiatePawn } from '../../simulation/crew';
+import { instantiateShip } from '../../simulation/ship';
 import { useDefinitionsStore } from './useDefinitionsStore';
 
 type GameStateStore = {
@@ -36,6 +37,7 @@ export const useGameStateStore = create<GameStateStore>()((set, get) => ({
       defId: zoneDef.id,
       asteroids: [],
     }));
+    const ship = instantiateShip(scenario.ship);
 
     set({
       state: {
@@ -44,6 +46,7 @@ export const useGameStateStore = create<GameStateStore>()((set, get) => ({
         crew: keyBy(pawns, 'id'),
         crewOrder: pawns.map((p) => p.id),
         zones,
+        ships: { [ship.id]: ship },
       },
     });
   },

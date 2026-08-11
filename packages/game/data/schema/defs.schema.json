@@ -1070,9 +1070,17 @@
         "ship": {
           "type": "object",
           "properties": {
+            "name": {
+              "type": "string",
+              "description": "The starting ship's name."
+            },
             "hullId": {
               "type": "string",
               "description": "Hull ID the starting ship is built on."
+            },
+            "startingZoneId": {
+              "type": "string",
+              "description": "Zone ID where the ship is located at scenario start."
             },
             "moduleIds": {
               "type": "array",
@@ -1085,7 +1093,13 @@
               "description": "Machine IDs carried in the ship machine bays."
             }
           },
-          "required": ["hullId", "moduleIds", "machineIds"],
+          "required": [
+            "name",
+            "hullId",
+            "startingZoneId",
+            "moduleIds",
+            "machineIds"
+          ],
           "additionalProperties": false,
           "description": "The ship the player starts with."
         }

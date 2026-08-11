@@ -169,7 +169,9 @@ export const testDefinitions: Definitions = {
         },
       ],
       ship: {
+        name: 'Barge',
         hullId: 'hauler_small',
+        startingZoneId: 'leo',
         moduleIds: ['bridge_basic', 'reactor_basic', 'engine_basic'],
         machineIds: ['mining_rig_basic'],
       },

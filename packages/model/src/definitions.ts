@@ -485,7 +485,11 @@ export type MachineDef = z.infer<typeof MachineDefSchema>;
 
 export const StartingShipDefSchema = z
   .object({
+    name: z.string().describe("The starting ship's name."),
     hullId: z.string().describe('Hull ID the starting ship is built on.'),
+    startingZoneId: z
+      .string()
+      .describe('Zone ID where the ship is located at scenario start.'),
     moduleIds: z
       .array(z.string())
       .describe(

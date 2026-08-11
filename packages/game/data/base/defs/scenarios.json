@@ -6,41 +6,91 @@
     "descriptionKey": "scenario.starting.description",
     "crew": [
       {
-        "originsWhitelist": ["base:civilian"],
-        "careersWhitelist": ["base:civilian"],
+        "originsWhitelist": [
+          "base:civilian"
+        ],
+        "careersWhitelist": [
+          "base:civilian"
+        ],
         "sex": null,
-        "age": [25, 40],
+        "age": [
+          25,
+          40
+        ],
         "skills": {
-          "base:mining": [6, 6],
-          "base:geology": [2, 2],
-          "base:cosmonautics": [1, 1]
+          "base:mining": [
+            6,
+            6
+          ],
+          "base:geology": [
+            2,
+            2
+          ],
+          "base:cosmonautics": [
+            1,
+            1
+          ]
         }
       },
       {
-        "originsWhitelist": ["base:civilian"],
-        "careersWhitelist": ["base:civilian"],
+        "originsWhitelist": [
+          "base:civilian"
+        ],
+        "careersWhitelist": [
+          "base:civilian"
+        ],
         "sex": null,
-        "age": [25, 40],
+        "age": [
+          25,
+          40
+        ],
         "skills": {
-          "base:geology": [5, 5],
-          "base:cosmonautics": [2, 2],
-          "base:navigation": [1, 1]
+          "base:geology": [
+            5,
+            5
+          ],
+          "base:cosmonautics": [
+            2,
+            2
+          ],
+          "base:navigation": [
+            1,
+            1
+          ]
         }
       },
       {
-        "originsWhitelist": ["base:civilian"],
-        "careersWhitelist": ["base:civilian"],
+        "originsWhitelist": [
+          "base:civilian"
+        ],
+        "careersWhitelist": [
+          "base:civilian"
+        ],
         "sex": null,
-        "age": [28, 45],
+        "age": [
+          28,
+          45
+        ],
         "skills": {
-          "base:cosmonautics": [6, 6],
-          "base:navigation": [4, 4],
-          "base:engineering": [1, 1]
+          "base:cosmonautics": [
+            6,
+            6
+          ],
+          "base:navigation": [
+            4,
+            4
+          ],
+          "base:engineering": [
+            1,
+            1
+          ]
         }
       }
     ],
     "ship": {
+      "name": "Barge",
       "hullId": "base:hauler_small",
+      "startingZoneId": "base:leo",
       "moduleIds": [
         "base:bridge_basic",
         "base:reactor_basic",
@@ -58,7 +108,10 @@
         "base:cargo_bay_small",
         "base:cargo_bay_small"
       ],
-      "machineIds": ["base:mining_rig_basic", "base:scanning_rig_basic"]
+      "machineIds": [
+        "base:mining_rig_basic",
+        "base:scanning_rig_basic"
+      ]
     }
   }
 ]
